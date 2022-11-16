@@ -29,18 +29,11 @@ public class LoginActivity extends AppCompatActivity {
 
         progressDialog=new ProgressDialog(this);
         progressDialog.setTitle("Loading...");
-        progressDialog.setMessage("Loading in");
+        progressDialog.setMessage("Logging in");
         progressDialog.setCancelable(false);
 
         binding.loginSubmitBtn.setOnClickListener(this::login);
 
-
-        //TODO
-//        viewModel.getToastMsg().observe(this, this::showMsgToast);
-//
-//        viewModel.isLoading().observe(this, this::progressDialog);
-//
-//        viewModel.isLoggedIn().observe(this, this::loggedIn);
     }
 
     private void login(View view) {

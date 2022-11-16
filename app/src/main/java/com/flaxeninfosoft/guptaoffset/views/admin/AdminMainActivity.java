@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.admin;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -36,7 +37,13 @@ public class AdminMainActivity extends AppCompatActivity {
 
         config = new AppBarConfiguration.Builder(R.id.adminHomeFragment).build();
 
+        viewModel.getToastMessageLiveData().observe(this, this::showToast);
+
         setSupportActionBar(binding.adminMainToolbar);
         NavigationUI.setupActionBarWithNavController(this, navController, config);
+    }
+
+    private void showToast(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 }
