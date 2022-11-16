@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="credential"
+            type="com.flaxeninfosoft.guptaoffset.models.LoginModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -36,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
-                    android:text="" />
+                    android:text="@={credential.email}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -54,7 +56,7 @@
                     android:hint="Password"
                     android:background="@drawable/shape_round_corners"
                     android:inputType="textPassword"
-                    android:text="" />
+                    android:text="@={credential.password}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton

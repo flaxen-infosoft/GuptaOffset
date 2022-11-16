@@ -5,6 +5,11 @@ public class LoginModel {
     private String email;
     private String password;
 
+    public LoginModel() {
+      email="";
+      password="";
+    }
+
     public String getEmail() {
         return email;
     }
