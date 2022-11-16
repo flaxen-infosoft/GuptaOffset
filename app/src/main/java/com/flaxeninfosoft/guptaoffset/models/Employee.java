@@ -29,6 +29,10 @@ public class Employee {
     @Expose
     private String phone;
 
+    @SerializedName("department")
+    @Expose
+    private String department;
+
     @SerializedName("token")
     @Expose
     private String token;
@@ -79,6 +83,14 @@ public class Employee {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public String getToken() {
