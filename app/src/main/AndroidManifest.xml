@@ -14,21 +14,21 @@
         android:theme="@style/Theme.GuptaOffset"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name=".views.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".EmployeeMainActivity"
+            android:name=".views.employee.EmployeeMainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AdminMainActivity"
+            android:name=".views.admin.AdminMainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
