@@ -44,13 +44,20 @@ public class LoginActivity extends AppCompatActivity {
         }else if (binding.getCredential().getPassword().trim().isEmpty()){
             binding.loginPasswordTtl.setError("Password required");
         }else{
-            //TODO
+            viewModel.loginUser(binding.getCredential()).observe(this, this::showProgressDialog);
+        }
+    }
+
+    private void showProgressDialog(Boolean toShow) {
+        if (toShow){
+            progressDialog.show();
+        }else {
+            progressDialog.dismiss();
         }
     }
 
     private void clearErrors(){
         binding.loginEmailTtl.setError(null);
         binding.loginPasswordTtl.setError(null);
-
     }
 }

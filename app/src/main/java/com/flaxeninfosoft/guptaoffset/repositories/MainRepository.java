@@ -24,7 +24,6 @@ public class MainRepository {
 
     private static MainRepository instance;
 
-    private final SharedPrefs sharedPrefs;
     private final AdminApiInterface adminApiInterface;
     private final EmployeeApiInterface employeeApiInterface;
 
@@ -34,7 +33,6 @@ public class MainRepository {
     private MainRepository(Context context){
         Retrofit apiClient = RetrofitClient.getClient();
 
-        sharedPrefs = SharedPrefs.getInstance(context);
         adminApiInterface = apiClient.create(AdminApiInterface.class);
         employeeApiInterface = apiClient.create(EmployeeApiInterface.class);
     }
