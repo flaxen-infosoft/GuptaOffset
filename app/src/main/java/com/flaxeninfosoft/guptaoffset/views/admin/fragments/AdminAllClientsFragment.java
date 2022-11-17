@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 
 import com.flaxeninfosoft.guptaoffset.R;
 
-public class AdminHomeFragment extends Fragment {
+public class AdminAllClientsFragment extends Fragment {
     //TODO
-    public AdminHomeFragment() {
+    public AdminAllClientsFragment() {
         // Required empty public constructor
     }
 
@@ -26,6 +26,6 @@ public class AdminHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_home, container, false);
+        return inflater.inflate(R.layout.fragment_admin_all_clients, container, false);
     }
 }
