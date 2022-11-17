@@ -15,6 +15,8 @@ import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.utils.RetrofitClient;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -80,4 +82,7 @@ public class MainRepository {
         });
     }
 
+    public void fetchAllEmployees(ApiResponseListener<List<Employee>, String> listener) {
+        Call<List<Employee>> getAllEmployeesCall = adminApiInterface.getAllEmployees();
+    }
 }
