@@ -1,8 +1,16 @@
 package com.flaxeninfosoft.guptaoffset.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class LoginModel {
 
+    @SerializedName("email")
+    @Expose
     private String email;
+
+    @SerializedName("password")
+    @Expose
     private String password;
 
     public LoginModel() {
