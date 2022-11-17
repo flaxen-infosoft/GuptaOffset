@@ -18,7 +18,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
     private final List<Employee> employeeList;
     private final SingleEmployeeCardOnClickListener onClickListener;
 
-    EmployeeRecyclerAdapter(List<Employee> employeeList, SingleEmployeeCardOnClickListener onClickListener) {
+    public EmployeeRecyclerAdapter(List<Employee> employeeList, SingleEmployeeCardOnClickListener onClickListener) {
         this.employeeList = employeeList;
         this.onClickListener = onClickListener;
 

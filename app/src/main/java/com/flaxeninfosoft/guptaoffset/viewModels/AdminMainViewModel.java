@@ -54,4 +54,8 @@ public class AdminMainViewModel extends AndroidViewModel {
         }
         return allEmployeeListLiveData;
     }
+
+    public LiveData<String> toastMessage(){
+        return toastMessage;
+    }
 }
