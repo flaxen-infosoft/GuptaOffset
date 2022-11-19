@@ -1,16 +1,16 @@
 package com.flaxeninfosoft.guptaoffset.views.admin.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.EmployeeRecyclerAdapter;
@@ -32,28 +32,32 @@ public class AdminAllEmployeesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        viewModel=new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(AdminMainViewModel.class);
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(AdminMainViewModel.class);
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_admin_all_employees,container,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_all_employees, container, false);
 
-        setUpRecycler();
-        setUpSwipeRefresh();
+        setupRecycler();
+        setupSwipeRefresh();
 
-        binding.adminAllEmployeeSwipeRefresh.setRefreshing(true);
-        viewModel.getAllEmployeeListLiveData().observe(getViewLifecycleOwner(),this::updateEmployee);
+        viewModel.getAllEmployeeListLiveData().observe(getViewLifecycleOwner(), this::updateEmployeeList);
+
+        binding.adminAllEmployeeAddEmployeeFab.setOnClickListener(this::onCLickAddEmployee);
 
         return binding.getRoot();
     }
 
-    private void updateEmployee(List<Employee> employees){
-        EmployeeRecyclerAdapter adapter=new EmployeeRecyclerAdapter(employees,this::onClickEmployee);
-        binding.adminAllEmployeeRecyclerView.setAdapter(adapter);
-        stopSwipeRefreshing();
+    private void onCLickAddEmployee(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminAllEmployeesFragment_to_adminAddEmployeeFragment);
+    }
+
+    private void updateEmployeeList(List<Employee> employees) {
+        EmployeeRecyclerAdapter adapter = new EmployeeRecyclerAdapter(employees, this::onClickEmployee);
+        binding.adminAllEmployeeRecycler.setAdapter(adapter);
     }
 
     private void stopSwipeRefreshing() {
@@ -61,23 +65,21 @@ public class AdminAllEmployeesFragment extends Fragment {
     }
 
     private void onClickEmployee(Employee employee) {
-        Bundle bundle=new Bundle();
-        bundle.putLong(getString(R.string.key_employee_id),employee.getId());
-        getParentFragmentManager().setFragmentResult(getString(R.string.key_employee_id),bundle);
+        Bundle bundle = new Bundle();
+        bundle.putLong(getString(R.string.key_employee_id), employee.getId());
 
-//        TODO
-//        Navigation.findNavController(binding.getRoot()).navigate(R.id.admin_all_empolyeeFRa);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminAllEmployeesFragment_to_employeeProfileFragment, bundle);
     }
 
-    private void setUpRecycler(){
-        binding.adminAllEmployeeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    private void setupRecycler() {
+        binding.adminAllEmployeeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-    private void setUpSwipeRefresh(){
+    private void setupSwipeRefresh() {
         binding.adminAllEmployeeSwipeRefresh.setOnRefreshListener(this::onRefresh);
     }
 
     private void onRefresh() {
-        viewModel.fetchAllEmployees();
+        viewModel.fetchAllEmployees().observe(getViewLifecycleOwner(), f -> stopSwipeRefreshing());
     }
 }

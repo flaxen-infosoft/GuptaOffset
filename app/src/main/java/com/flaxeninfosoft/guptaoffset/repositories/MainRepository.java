@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import com.flaxeninfosoft.guptaoffset.api.AdminApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.EmployeeApiInterface;
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
+import com.flaxeninfosoft.guptaoffset.models.Client;
 import com.flaxeninfosoft.guptaoffset.models.Dto;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.LoginModel;
@@ -84,5 +85,11 @@ public class MainRepository {
 
     public void fetchAllEmployees(ApiResponseListener<List<Employee>, String> listener) {
         Call<List<Employee>> getAllEmployeesCall = adminApiInterface.getAllEmployees();
+        //TODO
+    }
+
+    public void fetchAllClients(ApiResponseListener<List<Client>, String> listener) {
+        Call<List<Client>> getAllClientsCall = adminApiInterface.getAllClients();
+        //TODO
     }
 }

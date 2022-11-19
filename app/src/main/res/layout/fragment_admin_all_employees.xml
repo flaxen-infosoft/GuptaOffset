@@ -13,11 +13,11 @@
         tools:context=".views.admin.fragments.AdminAllEmployeesFragment">
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/admin_all_employee_floating_btn"
+            android:id="@+id/admin_all_employee_add_employee_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text=""
+            android:text="Add Employee"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -32,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/admin_all_employee_recycler_view"
+                android:id="@+id/admin_all_employee_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="8dp" />
