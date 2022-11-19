@@ -3,11 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/activity_employee_main.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/activity_login.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/activity_splash.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/fragment_admin_all_expenses.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/fragment_admin_home.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/fragment_employee_add_expense.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/fragment_employee_apply_leave.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/fragment_employee_attendance_overview.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/fragment_employee_attendance_report.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/fragment_employee_expense_overview.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/fragment_employee_home.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/fragment_employee_profile.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/GuptaOffset/app/src/main/res/layout/fragment_employee_tracking.xml" value="0.17552083333333332" />
       </map>
     </option>
   </component>
