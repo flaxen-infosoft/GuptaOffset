@@ -1,6 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.models;
 //TODO
-public class Location {
+public class LeaveRequest {
     private Long id;
 
     public Long getId() {

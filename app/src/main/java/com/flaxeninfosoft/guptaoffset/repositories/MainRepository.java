@@ -15,7 +15,7 @@ import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
 import com.flaxeninfosoft.guptaoffset.models.Client;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
-import com.flaxeninfosoft.guptaoffset.models.Leave;
+import com.flaxeninfosoft.guptaoffset.models.LeaveRequest;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.LoginModel;
 import com.flaxeninfosoft.guptaoffset.models.Message;
@@ -152,26 +152,26 @@ public class MainRepository {
     }
 
 
-    public void getAllLeaveRequests(ApiResponseListener<List<Leave>, String> listener) {
-        Call<List<Leave>> getAllLeaveRequestsCall = leaveApiInterface.getAllLeaveRequests();
+    public void getAllLeaveRequests(ApiResponseListener<List<LeaveRequest>, String> listener) {
+        Call<List<LeaveRequest>> getAllLeaveRequestsCall = leaveApiInterface.getAllLeaveRequests();
 
         processLeaveListCall(getAllLeaveRequestsCall, listener);
     }
 
-    public void getEmployeeLeaveRequests(Long empId, ApiResponseListener<List<Leave>, String> listener) {
-        Call<List<Leave>> getEmployeeLeaveRequestsCall = leaveApiInterface.getEmployeeLeaveRequests(empId);
+    public void getEmployeeLeaveRequests(Long empId, ApiResponseListener<List<LeaveRequest>, String> listener) {
+        Call<List<LeaveRequest>> getEmployeeLeaveRequestsCall = leaveApiInterface.getEmployeeLeaveRequests(empId);
 
         processLeaveListCall(getEmployeeLeaveRequestsCall, listener);
     }
 
-    public void getLeaveRequestById(Long leaveId, ApiResponseListener<Leave, String> listener) {
-        Call<Leave> getLeaveRequestByIdCall = leaveApiInterface.getLeaveRequestById(leaveId);
+    public void getLeaveRequestById(Long leaveId, ApiResponseListener<LeaveRequest, String> listener) {
+        Call<LeaveRequest> getLeaveRequestByIdCall = leaveApiInterface.getLeaveRequestById(leaveId);
 
         processLeaveCall(getLeaveRequestByIdCall, listener);
     }
 
-    public void updateLeaveRequestById(Long leaveId, Leave leave, ApiResponseListener<Leave, String> listener) {
-        Call<Leave> updateLeaveRequestByIdCall = leaveApiInterface.updateLeaveRequestById(leaveId, leave);
+    public void updateLeaveRequestById(Long leaveId, LeaveRequest leave, ApiResponseListener<LeaveRequest, String> listener) {
+        Call<LeaveRequest> updateLeaveRequestByIdCall = leaveApiInterface.updateLeaveRequestById(leaveId, leave);
 
         processLeaveCall(updateLeaveRequestByIdCall, listener);
     }
@@ -420,10 +420,10 @@ public class MainRepository {
         });
     }
 
-    private void processLeaveListCall(Call<List<Leave>> call, ApiResponseListener<List<Leave>, String> listener) {
-        call.enqueue(new Callback<List<Leave>>() {
+    private void processLeaveListCall(Call<List<LeaveRequest>> call, ApiResponseListener<List<LeaveRequest>, String> listener) {
+        call.enqueue(new Callback<List<LeaveRequest>>() {
             @Override
-            public void onResponse(@NonNull Call<List<Leave>> call, @NonNull Response<List<Leave>> response) {
+            public void onResponse(@NonNull Call<List<LeaveRequest>> call, @NonNull Response<List<LeaveRequest>> response) {
                 if (response.isSuccessful()) {
                     listener.onSuccess(response.body());
                 } else if (response.code() == STATUS_NOT_FOUND) {
@@ -435,17 +435,17 @@ public class MainRepository {
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<Leave>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<LeaveRequest>> call, @NonNull Throwable t) {
                 t.printStackTrace();
                 listener.onFailure("Unable to connect to server.");
             }
         });
     }
 
-    private void processLeaveCall(Call<Leave> call, ApiResponseListener<Leave, String> listener) {
-        call.enqueue(new Callback<Leave>() {
+    private void processLeaveCall(Call<LeaveRequest> call, ApiResponseListener<LeaveRequest, String> listener) {
+        call.enqueue(new Callback<LeaveRequest>() {
             @Override
-            public void onResponse(@NonNull Call<Leave> call, @NonNull Response<Leave> response) {
+            public void onResponse(@NonNull Call<LeaveRequest> call, @NonNull Response<LeaveRequest> response) {
                 if (response.isSuccessful()) {
                     listener.onSuccess(response.body());
                 } else if (response.code() == STATUS_NOT_FOUND) {
@@ -457,7 +457,7 @@ public class MainRepository {
             }
 
             @Override
-            public void onFailure(@NonNull Call<Leave> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<LeaveRequest> call, @NonNull Throwable t) {
                 t.printStackTrace();
                 listener.onFailure("Unable to connect to server.");
             }
