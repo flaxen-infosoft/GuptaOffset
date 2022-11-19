@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
+import com.flaxeninfosoft.guptaoffset.models.Client;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 
@@ -19,6 +20,7 @@ public class AdminMainViewModel extends AndroidViewModel {
 
     private final MutableLiveData<String> toastMessage;
     private final MutableLiveData<List<Employee>> allEmployeeListLiveData;
+    private final MutableLiveData<List<Client>> allClientListLiveData;
 
     public AdminMainViewModel(@NonNull Application application) {
         super(application);
@@ -27,21 +29,48 @@ public class AdminMainViewModel extends AndroidViewModel {
 
         toastMessage = new MutableLiveData<>();
         allEmployeeListLiveData = new MutableLiveData<>();
+        allClientListLiveData = new MutableLiveData<>();
     }
 
-    public void fetchAllEmployees() {
+    public LiveData<Boolean> fetchAllEmployees() {
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
+
         repo.fetchAllEmployees(new ApiResponseListener<List<Employee>, String>( ){
 
             @Override
             public void onSuccess(List<Employee> response) {
                 allEmployeeListLiveData.postValue(response);
+                flag.postValue(true);
             }
 
             @Override
             public void onFailure(String error) {
                 toastMessage.postValue(error);
+                flag.postValue(false);
             }
         });
+
+        return flag;
+    }
+
+    public LiveData<Boolean> fetchAllClients(){
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
+
+        repo.fetchAllClients(new ApiResponseListener<List<Client>, String>( ){
+            @Override
+            public void onSuccess(List<Client> response) {
+                allClientListLiveData.postValue(response);
+                flag.postValue(true);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                toastMessage.postValue(error);
+                flag.postValue(false);
+            }
+        });
+
+        return flag;
     }
 
     public LiveData<String> getToastMessageLiveData(){
@@ -55,7 +84,11 @@ public class AdminMainViewModel extends AndroidViewModel {
         return allEmployeeListLiveData;
     }
 
-    public LiveData<String> toastMessage(){
-        return toastMessage;
+    public LiveData<List<Client>> getAllClientListLiveData(){
+        if (allClientListLiveData == null || allEmployeeListLiveData.getValue().isEmpty()){
+            fetchAllClients();
+        }
+        return allClientListLiveData;
     }
+
 }

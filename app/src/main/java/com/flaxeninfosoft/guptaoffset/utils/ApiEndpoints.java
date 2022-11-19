@@ -6,4 +6,5 @@ public class ApiEndpoints {
 
     public static final String LOGIN = "employee/login.php";
     public static final String ADMIN_GET_ALL_EMPLOYEES = "employee/get_all_employees.php";
+    public static final String ADMIN_GET_ALL_CLIENTS = "client/get_all_clients.php";
 }

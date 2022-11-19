@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.api;
 
+import com.flaxeninfosoft.guptaoffset.models.Client;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 
@@ -12,4 +13,7 @@ public interface AdminApiInterface {
 
     @GET(ApiEndpoints.ADMIN_GET_ALL_EMPLOYEES)
     Call<List<Employee>> getAllEmployees();
+
+    @GET(ApiEndpoints.ADMIN_GET_ALL_CLIENTS)
+    Call<List<Client>> getAllClients();
 }
