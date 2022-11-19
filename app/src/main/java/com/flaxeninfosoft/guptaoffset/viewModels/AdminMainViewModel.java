@@ -35,7 +35,7 @@ public class AdminMainViewModel extends AndroidViewModel {
     public LiveData<Boolean> fetchAllEmployees() {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
-        repo.fetchAllEmployees(new ApiResponseListener<List<Employee>, String>( ){
+        repo.getAllEmployees(new ApiResponseListener<List<Employee>, String>( ){
 
             @Override
             public void onSuccess(List<Employee> response) {
@@ -56,7 +56,7 @@ public class AdminMainViewModel extends AndroidViewModel {
     public LiveData<Boolean> fetchAllClients(){
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
-        repo.fetchAllClients(new ApiResponseListener<List<Client>, String>( ){
+        repo.getAllClients(new ApiResponseListener<List<Client>, String>( ){
             @Override
             public void onSuccess(List<Client> response) {
                 allClientListLiveData.postValue(response);
