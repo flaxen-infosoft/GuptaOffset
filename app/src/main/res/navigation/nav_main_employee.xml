@@ -9,5 +9,131 @@
         android:id="@+id/employeeHomeFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeHomeFragment"
         android:label="fragment_employee_home"
-        tools:layout="@layout/fragment_employee_home" />
+        tools:layout="@layout/fragment_employee_home" >
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_employeeTrackingFragment"
+            app:destination="@id/employeeTrackingFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_employeeAllClientsFragment"
+            app:destination="@id/employeeAllClientsFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_employeeLeaveRequestsFragment2"
+            app:destination="@id/employeeLeaveRequestsFragment2" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_employeeAllExpensesFragment"
+            app:destination="@id/employeeAllExpensesFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_employeeAddAttendanceFragment"
+            app:destination="@id/employeeAddAttendanceFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_employeeChatRoomFragment"
+            app:destination="@id/employeeChatRoomFragment" />
+    </fragment>
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/employeeProfileFragment">
+        <fragment
+            android:id="@+id/employeeProfileFragment"
+            android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeProfileFragment"
+            android:label="fragment_employee_profile"
+            tools:layout="@layout/fragment_employee_profile" />
+    </navigation>
+    <fragment
+        android:id="@+id/employeeTrackingFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeTrackingFragment"
+        android:label="fragment_employee_tracking"
+        tools:layout="@layout/fragment_employee_tracking" />
+    <fragment
+        android:id="@+id/employeeAllClientsFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllClientsFragment"
+        android:label="fragment_employee_all_clients"
+        tools:layout="@layout/fragment_employee_all_clients" >
+        <action
+            android:id="@+id/action_employeeAllClientsFragment_to_employeeClientProfileFragment2"
+            app:destination="@id/employeeClientProfileFragment2" />
+        <action
+            android:id="@+id/action_employeeAllClientsFragment_to_employeeAddClientFragment2"
+            app:destination="@id/employeeAddClientFragment2" />
+        <action
+            android:id="@+id/action_employeeAllClientsFragment_to_employeeUpdateClientFragment"
+            app:destination="@id/employeeUpdateClientFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeClientProfileFragment2"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeClientProfileFragment"
+        android:label="fragment_employee_client_profile"
+        tools:layout="@layout/fragment_employee_client_profile" />
+    <fragment
+        android:id="@+id/employeeAddClientFragment2"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddClientFragment"
+        android:label="fragment_employee_add_client"
+        tools:layout="@layout/fragment_employee_add_client" />
+    <fragment
+        android:id="@+id/employeeUpdateClientFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeUpdateClientFragment"
+        android:label="fragment_employee_update_client"
+        tools:layout="@layout/fragment_employee_update_client" />
+    <fragment
+        android:id="@+id/employeeLeaveRequestsFragment2"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeLeaveRequestsFragment"
+        android:label="fragment_employee_leave_requests"
+        tools:layout="@layout/fragment_employee_leave_requests" >
+        <action
+            android:id="@+id/action_employeeLeaveRequestsFragment2_to_employeeApplyLeaveFragment"
+            app:destination="@id/employeeApplyLeaveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeApplyLeaveFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeApplyLeaveFragment"
+        android:label="fragment_employee_apply_leave"
+        tools:layout="@layout/fragment_employee_apply_leave" />
+    <fragment
+        android:id="@+id/employeeAllExpensesFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllExpensesFragment"
+        android:label="fragment_employee_all_expenses"
+        tools:layout="@layout/fragment_employee_all_expenses" >
+        <action
+            android:id="@+id/action_employeeAllExpensesFragment_to_employeeExpenseOverviewFragment3"
+            app:destination="@id/employeeExpenseOverviewFragment3" />
+        <action
+            android:id="@+id/action_employeeAllExpensesFragment_to_employeeAddExpenseFragment3"
+            app:destination="@id/employeeAddExpenseFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeExpenseOverviewFragment3"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeExpenseOverviewFragment"
+        android:label="fragment_employee_expense_overview"
+        tools:layout="@layout/fragment_employee_expense_overview" />
+    <fragment
+        android:id="@+id/employeeAddExpenseFragment3"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddExpenseFragment"
+        android:label="fragment_employee_add_expense"
+        tools:layout="@layout/fragment_employee_add_expense" />
+    <fragment
+        android:id="@+id/employeeAddAttendanceFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddAttendanceFragment"
+        android:label="fragment_employee_add_attendance"
+        tools:layout="@layout/fragment_employee_add_attendance" >
+        <action
+            android:id="@+id/action_employeeAddAttendanceFragment_to_employeeAttendanceReportFragment"
+            app:destination="@id/employeeAttendanceReportFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeAttendanceReportFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAttendanceReportFragment"
+        android:label="fragment_employee_attendance_report"
+        tools:layout="@layout/fragment_employee_attendance_report" >
+        <action
+            android:id="@+id/action_employeeAttendanceReportFragment_to_employeeAttendanceOverviewFragment3"
+            app:destination="@id/employeeAttendanceOverviewFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeAttendanceOverviewFragment3"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAttendanceOverviewFragment"
+        android:label="fragment_employee_attendance_overview"
+        tools:layout="@layout/fragment_employee_attendance_overview" />
+    <fragment
+        android:id="@+id/employeeChatRoomFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeChatRoomFragment"
+        android:label="fragment_employee_chat_room"
+        tools:layout="@layout/fragment_employee_chat_room" />
 </navigation>
