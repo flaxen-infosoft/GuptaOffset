@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
 
@@ -13,7 +15,7 @@ import com.flaxeninfosoft.guptaoffset.R;
 public class AdminAddEmployeeFragment extends Fragment {
 
     public AdminAddEmployeeFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -25,7 +27,8 @@ public class AdminAddEmployeeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+
         return inflater.inflate(R.layout.fragment_admin_add_employee, container, false);
     }
 }

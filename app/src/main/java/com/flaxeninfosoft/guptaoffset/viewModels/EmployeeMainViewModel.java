@@ -21,6 +21,8 @@ public class EmployeeMainViewModel extends AndroidViewModel {
     private final MutableLiveData<String> toastMessage;
     private final MutableLiveData<List<Client>> employeeClientListLiveData;
 
+
+
     public EmployeeMainViewModel(@NonNull Application application) {
         super(application);
         repo = MainRepository.getInstance(application.getApplicationContext());
