@@ -34,7 +34,6 @@ public class AdminAllClientsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(AdminMainViewModel.class);
-
     }
 
     @Override
@@ -67,8 +66,8 @@ public class AdminAllClientsFragment extends Fragment {
     private void onClickClient(Client client){
         Bundle bundle = new Bundle();
         bundle.putLong(getString(R.string.key_client_id), client.getId());
-
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminAllClientsFragment_to_employeeClientProfileFragment, bundle);
+
     }
 
     private void onRefresh() {
@@ -80,6 +79,6 @@ public class AdminAllClientsFragment extends Fragment {
     }
 
     private void setupRecycler() {
-        binding.adminAllClientsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+         binding.adminAllClientsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

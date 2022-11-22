@@ -48,20 +48,15 @@
         android:label="fragment_employee_all_clients"
         tools:layout="@layout/fragment_employee_all_clients" >
         <action
-            android:id="@+id/action_employeeAllClientsFragment_to_employeeClientProfileFragment2"
-            app:destination="@id/employeeClientProfileFragment2" />
-        <action
             android:id="@+id/action_employeeAllClientsFragment_to_employeeAddClientFragment2"
             app:destination="@id/employeeAddClientFragment2" />
         <action
             android:id="@+id/action_employeeAllClientsFragment_to_employeeUpdateClientFragment"
             app:destination="@id/employeeUpdateClientFragment" />
+        <action
+            android:id="@+id/action_employeeAllClientsFragment_to_employeeClientProfileFragment2"
+            app:destination="@id/employeeClientProfileFragment2" />
     </fragment>
-    <fragment
-        android:id="@+id/employeeClientProfileFragment2"
-        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeClientProfileFragment"
-        android:label="fragment_employee_client_profile"
-        tools:layout="@layout/fragment_employee_client_profile" />
     <fragment
         android:id="@+id/employeeAddClientFragment2"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddClientFragment"
@@ -136,4 +131,9 @@
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeChatRoomFragment"
         android:label="fragment_employee_chat_room"
         tools:layout="@layout/fragment_employee_chat_room" />
+    <fragment
+        android:id="@+id/employeeClientProfileFragment2"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeClientProfileFragment"
+        android:label="fragment_employee_client_profile"
+        tools:layout="@layout/fragment_employee_client_profile" />
 </navigation>

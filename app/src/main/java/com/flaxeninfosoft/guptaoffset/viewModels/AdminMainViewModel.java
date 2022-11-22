@@ -85,7 +85,7 @@ public class AdminMainViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Client>> getAllClientListLiveData(){
-        if (allClientListLiveData == null || allEmployeeListLiveData.getValue().isEmpty()){
+        if (allClientListLiveData == null || allClientListLiveData.getValue().isEmpty()){
             fetchAllClients();
         }
         return allClientListLiveData;
