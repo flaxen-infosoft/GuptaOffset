@@ -65,6 +65,7 @@ public class AdminMainViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(String error) {
+
                 toastMessage.postValue(error);
                 flag.postValue(false);
             }
