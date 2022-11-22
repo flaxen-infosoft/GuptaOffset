@@ -2,13 +2,12 @@ package com.flaxeninfosoft.guptaoffset.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.databinding.ActivitySplashBinding;
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
@@ -18,34 +17,41 @@ import com.flaxeninfosoft.guptaoffset.views.employee.EmployeeMainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private ActivitySplashBinding binding;
     private MainRepository repo;
+    private static int splash_time_out=2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
+        setContentView( R.layout.activity_splash);
 
         repo = MainRepository.getInstance(getApplicationContext());
 
-        boolean isLoggedIn = SharedPrefs.getInstance(getApplicationContext()).isLoggedIn();
 
-        if (isLoggedIn) {
-            repo.login(SharedPrefs.getInstance(getApplicationContext()).getCredentials(), new ApiResponseListener<Employee, String>() {
-                @Override
-                public void onSuccess(Employee response) {
-                    startHomeActivityByEmployee(response);
-                }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                boolean isLoggedIn = SharedPrefs.getInstance(getApplicationContext()).isLoggedIn();
 
-                @Override
-                public void onFailure(String error) {
-                    Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+                if (isLoggedIn) {
+                    repo.login(SharedPrefs.getInstance(getApplicationContext()).getCredentials(), new ApiResponseListener<Employee, String>() {
+                        @Override
+                        public void onSuccess(Employee response) {
+                            startHomeActivityByEmployee(response);
+                        }
+
+                        @Override
+                        public void onFailure(String error) {
+                            Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+                            startLoginActivity();
+                        }
+                    });
+                } else {
                     startLoginActivity();
                 }
-            });
-        } else {
-            startLoginActivity();
-        }
+            }
+        },splash_time_out);
+
 
     }
 
