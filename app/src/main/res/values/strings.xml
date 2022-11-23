@@ -3,5 +3,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="key_employee_id">KEY_EMPLOYEE_ID</string>
     <string name="key_client_id">KEY_CLIENT_ID</string>
+    <string name="map_key">AIzaSyAJe6reTdRY5qFB-P6fZBzCs_exCV0Hsfc</string>
 
 </resources>

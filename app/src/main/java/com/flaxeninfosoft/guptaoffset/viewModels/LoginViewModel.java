@@ -29,6 +29,10 @@ public class LoginViewModel extends AndroidViewModel {
         toastMessage = new MutableLiveData<>();
     }
 
+    public LiveData<String> getToastMessage(){
+        return toastMessage;
+    }
+
     public LiveData<Boolean> loginUser(LoginModel credentials) {
 
         MutableLiveData<Boolean> flag = new MutableLiveData<>(true);

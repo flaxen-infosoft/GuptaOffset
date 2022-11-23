@@ -1,9 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.api;
 
-import com.flaxeninfosoft.guptaoffset.models.Client;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
-import com.flaxeninfosoft.guptaoffset.models.Expense;
-import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.LoginModel;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 
@@ -17,7 +14,7 @@ import retrofit2.http.Query;
 
 public interface EmployeeApiInterface {
 
-    @GET(ApiEndpoints.LOGIN)
+    @POST(ApiEndpoints.LOGIN)
     Call<Employee> loginByEmailAndPassword(@Body LoginModel loginModel);
 
     @POST(ApiEndpoints.ADD_EMPLOYEE)
