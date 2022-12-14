@@ -9,7 +9,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Client;
-import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 
@@ -20,7 +19,6 @@ public class EmployeeMainViewModel extends AndroidViewModel {
 
     private final MutableLiveData<String> toastMessage;
     private final MutableLiveData<List<Client>> employeeClientListLiveData;
-
 
 
     public EmployeeMainViewModel(@NonNull Application application) {

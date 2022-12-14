@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
 
         viewModel.getToastMessage().observe(this, this::showToast);
         binding.loginSubmitBtn.setOnClickListener(this::login);
-
     }
 
     private void showToast(String s) {
@@ -51,7 +50,8 @@ public class LoginActivity extends AppCompatActivity {
             binding.loginEmailTtl.setError("Email required");
         } else if (binding.getCredential().getPassword().trim().isEmpty()) {
             binding.loginPasswordTtl.setError("Password required");
-        } else {
+        }
+        else {
             viewModel.loginUser(binding.getCredential()).observe(this, this::showProgressDialog);
         }
     }
