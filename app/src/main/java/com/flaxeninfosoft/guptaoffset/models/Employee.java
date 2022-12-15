@@ -31,11 +31,11 @@ public class Employee {
 
     @SerializedName("daily_allowance")
     @Expose
-    private Integer dailyAllowance;
+    private String dailyAllowance;
 
     @SerializedName("active")
     @Expose
-    private boolean active;
+    private String active;
 
     @SerializedName("phone")
     @Expose
@@ -43,7 +43,7 @@ public class Employee {
 
     @SerializedName("salary")
     @Expose
-    private Double salary;
+    private String salary;
 
     @SerializedName("token")
     @Expose
@@ -97,19 +97,19 @@ public class Employee {
         this.area = area;
     }
 
-    public Integer getDailyAllowance() {
+    public String getDailyAllowance() {
         return dailyAllowance;
     }
 
-    public void setDailyAllowance(Integer dailyAllowance) {
+    public void setDailyAllowance(String dailyAllowance) {
         this.dailyAllowance = dailyAllowance;
     }
 
-    public boolean isActive() {
+    public String getActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(String active) {
         this.active = active;
     }
 
@@ -121,11 +121,11 @@ public class Employee {
         this.phone = phone;
     }
 
-    public Double getSalary() {
+    public String getSalary() {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(String salary) {
         this.salary = salary;
     }
 

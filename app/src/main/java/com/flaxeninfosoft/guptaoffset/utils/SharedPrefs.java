@@ -2,6 +2,7 @@ package com.flaxeninfosoft.guptaoffset.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.LoginModel;
@@ -11,13 +12,14 @@ public class SharedPrefs {
     private final SharedPreferences pref;
     private Employee currentEmployee;
 
-    public static final String PREFERENCE = "FLAXEN_CRM";
+    public static final String PREFERENCE = "GUPTA_OFFSET";
     public static final int MODE = Context.MODE_PRIVATE;
 
     private static final String EMAIL = "EMP_EMAIL";
     private static final String PASSWORD = "EMP_PASSWORD";
 
     private static SharedPrefs instance;
+
     private SharedPrefs(Context context){
         pref = context.getSharedPreferences(PREFERENCE,MODE);
     }
@@ -47,6 +49,8 @@ public class SharedPrefs {
         LoginModel model = new LoginModel();
         model.setEmail(pref.getString(EMAIL,null));
         model.setPassword(pref.getString(PASSWORD, null));
+        Log.e("TEST", model.getEmail());
+        Log.e("TEST", model.getPassword());
         if (model.getEmail()==null || model.getPassword()==null){
             return null;
         }

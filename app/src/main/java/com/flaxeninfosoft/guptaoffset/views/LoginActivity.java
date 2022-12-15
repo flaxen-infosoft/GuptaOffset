@@ -1,7 +1,9 @@
 package com.flaxeninfosoft.guptaoffset.views;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -52,15 +54,19 @@ public class LoginActivity extends AppCompatActivity {
             binding.loginPasswordTtl.setError("Password required");
         }
         else {
+            progressDialog.show();
             viewModel.loginUser(binding.getCredential()).observe(this, this::showProgressDialog);
         }
     }
 
     private void showProgressDialog(Boolean toShow) {
+        progressDialog.dismiss();
+        Log.e("TEST", toShow+" this is response");
         if (toShow) {
-            progressDialog.show();
-        } else {
-            progressDialog.dismiss();
+            Intent intent = new Intent(this, SplashActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         }
     }
 

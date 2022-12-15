@@ -35,17 +35,15 @@ public class LoginViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> loginUser(LoginModel credentials) {
 
-        MutableLiveData<Boolean> flag = new MutableLiveData<>(true);
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
         repo.login(credentials, new ApiResponseListener<Employee, String>() {
 
             @Override
             public void onSuccess(Employee emp) {
-                LoginModel loginModel = new LoginModel();
-                loginModel.setEmail(emp.getEmail());
-                loginModel.setPassword(emp.getPassword());
-                sharedPrefs.setCredentials(loginModel);
-                flag.postValue(false);
+                sharedPrefs.setCredentials(credentials);
+                sharedPrefs.setCurrentEmployee(emp);
+                flag.postValue(true);
             }
 
             @Override

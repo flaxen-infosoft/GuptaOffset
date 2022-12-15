@@ -3,61 +3,56 @@ package com.flaxeninfosoft.guptaoffset.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
+import com.flaxeninfosoft.guptaoffset.viewModels.LoginViewModel;
 import com.flaxeninfosoft.guptaoffset.views.admin.AdminMainActivity;
 import com.flaxeninfosoft.guptaoffset.views.employee.EmployeeMainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
     private MainRepository repo;
-    private static int splash_time_out=2000;
+    private LoginViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_splash);
 
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(LoginViewModel.class);
         repo = MainRepository.getInstance(getApplicationContext());
 
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                boolean isLoggedIn = SharedPrefs.getInstance(getApplicationContext()).isLoggedIn();
-
-                if (isLoggedIn) {
-                    repo.login(SharedPrefs.getInstance(getApplicationContext()).getCredentials(), new ApiResponseListener<Employee, String>() {
-                        @Override
-                        public void onSuccess(Employee response) {
-                            startHomeActivityByEmployee(response);
-                        }
-
-                        @Override
-                        public void onFailure(String error) {
-                            Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
-                            startLoginActivity();
-                        }
-                    });
-                } else {
-                    startLoginActivity();
-                }
-            }
-        },splash_time_out);
-
+        boolean isLoggedIn = SharedPrefs.getInstance(getApplicationContext()).isLoggedIn();
+        Log.e("TEST", isLoggedIn+" this is loggedIN");
+        if (isLoggedIn) {
+            viewModel.loginUser(SharedPrefs.getInstance(getApplicationContext()).getCredentials()).observe(this, this::onLoginRequestComplete);
+        } else {
+            startLoginActivity();
+        }
 
     }
 
-    private void startHomeActivityByEmployee(Employee employee) {
+    private void onLoginRequestComplete(Boolean isSuccess) {
+        if (isSuccess){
+            startHomeActivityByEmployee();
+        }else {
+            startLoginActivity();
+        }
+    }
+
+    private void startHomeActivityByEmployee() {
 
         Intent intent;
+        Employee employee = SharedPrefs.getInstance(getApplicationContext()).getCurrentEmployee();
 
         switch (employee.getDesignation()) {
             case "employee":
@@ -76,7 +71,7 @@ public class SplashActivity extends AppCompatActivity {
 
             default:
                 SharedPrefs.getInstance(getApplication().getApplicationContext()).clearCredentials();
-                Toast.makeText(this, "Department is not supported", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Department is not supported", Toast.LENGTH_SHORT).show();
                 startLoginActivity();
         }
     }

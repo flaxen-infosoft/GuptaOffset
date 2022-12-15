@@ -8,14 +8,17 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface EmployeeApiInterface {
 
+    @FormUrlEncoded
     @POST(ApiEndpoints.LOGIN)
-    Call<Employee> loginByEmailAndPassword(@Body LoginModel loginModel);
+    Call<Employee> loginByEmailAndPassword(@Field("email") String email, @Field("password") String password);
 
     @POST(ApiEndpoints.ADD_EMPLOYEE)
     Call<Employee> addEmployee(@Body Employee employee);

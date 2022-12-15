@@ -15,27 +15,19 @@ public class Client {
 
     @SerializedName("org_Name")
     @Expose
-    private String OrgName;
+    private String orgName;
 
-    @SerializedName("Contact_no")
+    @SerializedName("contact_no")
     @Expose
-    private Long contact_no;
+    private Long contactNo;
 
     @SerializedName("address")
     @Expose
     private String Address;
 
-    @SerializedName("packageName")
-    @Expose
-    private String packageName;
-
-    @SerializedName("packageValue")
-    @Expose
-    private String packageValue;
-
     @SerializedName("Assign_to_id")
     @Expose
-    private Long assign_to_Id;
+    private Long assignToId;
 
     public Client() {
     }
@@ -57,19 +49,19 @@ public class Client {
     }
 
     public String getOrgName() {
-        return OrgName;
+        return orgName;
     }
 
     public void setOrgName(String orgName) {
-        OrgName = orgName;
+        this.orgName = orgName;
     }
 
-    public Long getContact_no() {
-        return contact_no;
+    public Long getContactNo() {
+        return contactNo;
     }
 
-    public void setContact_no(Long contact_no) {
-        this.contact_no = contact_no;
+    public void setContactNo(Long contactNo) {
+        this.contactNo = contactNo;
     }
 
     public String getAddress() {
@@ -80,27 +72,11 @@ public class Client {
         Address = address;
     }
 
-    public String getPackageName() {
-        return packageName;
+    public Long getAssignToId() {
+        return assignToId;
     }
 
-    public void setPackageName(String packageName) {
-        this.packageName = packageName;
-    }
-
-    public String getPackageValue() {
-        return packageValue;
-    }
-
-    public void setPackageValue(String packageValue) {
-        this.packageValue = packageValue;
-    }
-
-    public Long getAssign_to_Id() {
-        return assign_to_Id;
-    }
-
-    public void setAssign_to_Id(Long assign_to_Id) {
-        this.assign_to_Id = assign_to_Id;
+    public void setAssignToId(Long assignToId) {
+        this.assignToId = assignToId;
     }
 }
