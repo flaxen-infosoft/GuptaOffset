@@ -91,5 +91,4 @@ public class AdminMainViewModel extends AndroidViewModel {
         }
         return allClientListLiveData;
     }
-
 }
