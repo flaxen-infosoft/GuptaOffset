@@ -59,7 +59,7 @@ public class SplashActivity extends AppCompatActivity {
 
         Intent intent;
 
-        switch (employee.getDepartment()) {
+        switch (employee.getDesignation()) {
             case "employee":
                 intent = new Intent(this, EmployeeMainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

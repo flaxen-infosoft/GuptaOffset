@@ -25,35 +25,82 @@ public class Client {
     @Expose
     private String Address;
 
+    @SerializedName("packageName")
+    @Expose
+    private String packageName;
+
+    @SerializedName("packageValue")
+    @Expose
+    private String packageValue;
+
     @SerializedName("Assign_to_id")
     @Expose
     private Long assign_to_Id;
 
-    public Client(){
+    public Client() {
     }
-    public Long getId(){return id;}
 
-    public void setid(Long Id) {this.id= id;}
+    public Long getId() {
+        return id;
+    }
 
-    public String getClient_name(){return client_name;}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public void setClientName(String clientName){this.client_name= clientName;}
+    public String getClient_name() {
+        return client_name;
+    }
 
-    public String getOrgName(){return OrgName;}
+    public void setClient_name(String client_name) {
+        this.client_name = client_name;
+    }
 
-    public void setOrgName(String orgName){this.OrgName= OrgName;}
+    public String getOrgName() {
+        return OrgName;
+    }
 
-    public Long getContact_no(){return contact_no;}
+    public void setOrgName(String orgName) {
+        OrgName = orgName;
+    }
 
-    public void setContact_no(String contactNo){this.contact_no= contact_no;}
+    public Long getContact_no() {
+        return contact_no;
+    }
 
-    public String getAddress(){return Address;}
+    public void setContact_no(Long contact_no) {
+        this.contact_no = contact_no;
+    }
 
-    public void setAddress(String address){this.Address= Address;}
+    public String getAddress() {
+        return Address;
+    }
 
-    public Long getAssign_to_Id(){return assign_to_Id;}
+    public void setAddress(String address) {
+        Address = address;
+    }
 
-    public void setAssign_to_Id(Long assign_to_Id){this.assign_to_Id=assign_to_Id;}
+    public String getPackageName() {
+        return packageName;
+    }
 
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
 
+    public String getPackageValue() {
+        return packageValue;
+    }
+
+    public void setPackageValue(String packageValue) {
+        this.packageValue = packageValue;
+    }
+
+    public Long getAssign_to_Id() {
+        return assign_to_Id;
+    }
+
+    public void setAssign_to_Id(Long assign_to_Id) {
+        this.assign_to_Id = assign_to_Id;
+    }
 }

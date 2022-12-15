@@ -8,7 +8,8 @@
     <fragment
         android:id="@+id/adminAllEmployeesFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllEmployeesFragment"
-        android:label="AdminAllEmployeesFragment" >
+        android:label="AdminAllEmployeesFragment"
+        tools:layout="@layout/fragment_admin_all_employees">
         <action
             android:id="@+id/action_adminAllEmployeesFragment_to_employeeProfileFragment"
             app:destination="@id/employeeProfileFragment" />
@@ -29,6 +30,7 @@
     <fragment
         android:id="@+id/adminHomeFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminHomeFragment"
+        tools:layout="@layout/fragment_admin_home"
         android:label="AdminHomeFragment" >
         <action
             android:id="@+id/action_adminHomeFragment_to_adminAllEmployeesFragment2"

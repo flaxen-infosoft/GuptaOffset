@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.employee;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -22,5 +23,13 @@ public class EmployeeMainActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(EmployeeMainViewModel.class);
 
+        viewModel.getToastMessageLiveData().observe(this, this::showToastMessage);
+
+    }
+
+    private void showToastMessage(String s) {
+        if (s != null && !s.isEmpty()){
+            Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+        }
     }
 }

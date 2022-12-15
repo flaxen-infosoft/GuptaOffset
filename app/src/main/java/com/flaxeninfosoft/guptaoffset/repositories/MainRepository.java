@@ -22,6 +22,7 @@ import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.utils.RetrofitClient;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -263,28 +264,6 @@ public class MainRepository {
         });
     }
 
-    private void processClientCall(Call<Client> call, ApiResponseListener<Client, String> listener) {
-        call.enqueue(new Callback<Client>() {
-            @Override
-            public void onResponse(@NonNull Call<Client> call, @NonNull Response<Client> response) {
-                if (response.isSuccessful()) {
-                    listener.onSuccess(response.body());
-                } else if (response.code() == STATUS_NOT_FOUND) {
-                    listener.onFailure("Api not found.");
-                } else {
-                    Log.e(Constants.LOG_TAG, response.message());
-                    listener.onFailure(response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<Client> call, @NonNull Throwable t) {
-                t.printStackTrace();
-                listener.onFailure("Unable to connect to server.");
-            }
-        });
-    }
-
     private void processLocationCall(Call<Location> call, ApiResponseListener<Location, String> listener) {
         call.enqueue(new Callback<Location>() {
             @Override
@@ -308,7 +287,6 @@ public class MainRepository {
     }
 
     private void processLocationListCall(Call<List<Location>> call, ApiResponseListener<List<Location>, String> listener) {
-
         call.enqueue(new Callback<List<Location>>() {
             @Override
             public void onResponse(@NonNull Call<List<Location>> call, @NonNull Response<List<Location>> response) {
@@ -324,6 +302,28 @@ public class MainRepository {
 
             @Override
             public void onFailure(@NonNull Call<List<Location>> call, @NonNull Throwable t) {
+                t.printStackTrace();
+                listener.onFailure("Unable to connect to server.");
+            }
+        });
+    }
+
+    private void processClientCall(Call<Client> call, ApiResponseListener<Client, String> listener) {
+        call.enqueue(new Callback<Client>() {
+            @Override
+            public void onResponse(@NonNull Call<Client> call, @NonNull Response<Client> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else if (response.code() == STATUS_NOT_FOUND) {
+                    listener.onFailure("Api not found.");
+                } else {
+                    Log.e(Constants.LOG_TAG, response.message());
+                    listener.onFailure(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Client> call, @NonNull Throwable t) {
                 t.printStackTrace();
                 listener.onFailure("Unable to connect to server.");
             }
@@ -398,7 +398,6 @@ public class MainRepository {
     }
 
     private void processMessageListCall(Call<List<Message>> call, ApiResponseListener<List<Message>, String> listener) {
-
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(@NonNull Call<List<Message>> call, @NonNull Response<List<Message>> response) {

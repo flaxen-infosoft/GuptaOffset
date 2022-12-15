@@ -25,9 +25,13 @@ public class Employee {
     @Expose
     private String designation;
 
-    @SerializedName("date_of_joining")
+    @SerializedName("area")
     @Expose
-    private String dateOfJoining;
+    private String area;
+
+    @SerializedName("daily_allowance")
+    @Expose
+    private Integer dailyAllowance;
 
     @SerializedName("active")
     @Expose
@@ -37,9 +41,9 @@ public class Employee {
     @Expose
     private String phone;
 
-    @SerializedName("department")
+    @SerializedName("salary")
     @Expose
-    private String department;
+    private Double salary;
 
     @SerializedName("token")
     @Expose
@@ -85,12 +89,20 @@ public class Employee {
         this.designation = designation;
     }
 
-    public String getDateOfJoining() {
-        return dateOfJoining;
+    public String getArea() {
+        return area;
     }
 
-    public void setDateOfJoining(String dateOfJoining) {
-        this.dateOfJoining = dateOfJoining;
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public Integer getDailyAllowance() {
+        return dailyAllowance;
+    }
+
+    public void setDailyAllowance(Integer dailyAllowance) {
+        this.dailyAllowance = dailyAllowance;
     }
 
     public boolean isActive() {
@@ -109,12 +121,12 @@ public class Employee {
         this.phone = phone;
     }
 
-    public String getDepartment() {
-        return department;
+    public Double getSalary() {
+        return salary;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setSalary(Double salary) {
+        this.salary = salary;
     }
 
     public String getToken() {
