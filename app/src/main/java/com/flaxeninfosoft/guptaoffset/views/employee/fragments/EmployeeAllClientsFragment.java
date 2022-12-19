@@ -1,6 +1,9 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -8,16 +11,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.ClientRecyclerAdapter;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentAdminAllClientsBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAllClientsBinding;
 import com.flaxeninfosoft.guptaoffset.models.Client;
-import com.flaxeninfosoft.guptaoffset.viewModels.AdminMainViewModel;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeMainViewModel;
 
 import java.util.List;

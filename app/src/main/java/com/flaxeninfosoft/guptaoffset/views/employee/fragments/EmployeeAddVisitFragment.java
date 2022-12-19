@@ -1,31 +1,27 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.flaxeninfosoft.guptaoffset.R;
-public class EmployeeAttendanceOverviewFragment extends Fragment {
-    //TODO
-    public EmployeeAttendanceOverviewFragment() {
+
+
+public class EmployeeAddVisitFragment extends Fragment {
+
+
+    public EmployeeAddVisitFragment() {
         // Required empty public constructor
     }
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_employee_attendance_overview, container, false);
+        return inflater.inflate(R.layout.fragment_employee_add_visit, container, false);
     }
 }

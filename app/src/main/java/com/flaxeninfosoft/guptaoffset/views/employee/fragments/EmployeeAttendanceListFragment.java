@@ -1,31 +1,26 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.flaxeninfosoft.guptaoffset.R;
-//TODO
-public class EmployeeChatRoomFragment extends Fragment {
+import androidx.fragment.app.Fragment;
 
-    public EmployeeChatRoomFragment() {
+import com.flaxeninfosoft.guptaoffset.R;
+
+
+public class EmployeeAttendanceListFragment extends Fragment {
+
+    public EmployeeAttendanceListFragment() {
         // Required empty public constructor
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_employee_chat_room, container, false);
+        return inflater.inflate(R.layout.fragment_employee_attendance_list, container, false);
     }
 }
