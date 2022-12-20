@@ -1,28 +1,19 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+
 import com.flaxeninfosoft.guptaoffset.R;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddAttendanceBinding;
+import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 
 public class EmployeeAddAttendanceFragment extends Fragment {
 
-
-    public EmployeeAddAttendanceFragment() {
-        // Required empty public constructor
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_employee_add_attendance, container, false);
-    }
 }

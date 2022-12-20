@@ -2,24 +2,23 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddClientBinding;
 import com.flaxeninfosoft.guptaoffset.models.Client;
-import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeMainViewModel;
+import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 public class EmployeeAddClientFragment extends Fragment{
 
     private FragmentEmployeeAddClientBinding binding;
-    private EmployeeMainViewModel viewModel;
+    private EmployeeViewModel viewModel;
 
     public EmployeeAddClientFragment() {
         // Required empty public constructor
@@ -29,7 +28,7 @@ public class EmployeeAddClientFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeMainViewModel.class);
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeViewModel.class);
     }
 
     @Override

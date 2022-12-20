@@ -9,24 +9,26 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Client;
-import com.flaxeninfosoft.guptaoffset.models.Employee;
-import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 
 import java.util.List;
 
-public class EmployeeMainViewModel extends AndroidViewModel {
+public class EmployeeViewModel extends AndroidViewModel {
     private final MainRepository repo;
 
     private final MutableLiveData<String> toastMessage;
     private final MutableLiveData<List<Client>> employeeClientListLiveData;
+    private final MutableLiveData<List<Client>> attendanceListLiveData;
 
-    public EmployeeMainViewModel(@NonNull Application application) {
+    public EmployeeViewModel(@NonNull Application application, MutableLiveData<List<Client>> attendanceListLiveData) {
         super(application);
         repo = MainRepository.getInstance(application.getApplicationContext());
+        this.attendanceListLiveData = attendanceListLiveData;
         toastMessage = new MutableLiveData<>();
         employeeClientListLiveData = new MutableLiveData<>();
+        attendanceListLiveData = new MutableLiveData<>();
+
     }
 
     public LiveData<Boolean> fetchEmployeeClients(){
@@ -38,6 +40,7 @@ public class EmployeeMainViewModel extends AndroidViewModel {
             @Override
             public void onSuccess(List<Client> response) {
                 employeeClientListLiveData.postValue(response);
+                attendanceListLiveData.postValue(response);
                 flag.postValue(true);
             }
 

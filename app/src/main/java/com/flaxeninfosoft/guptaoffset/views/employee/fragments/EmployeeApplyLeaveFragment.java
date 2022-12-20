@@ -14,9 +14,8 @@ import android.widget.Toast;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeApplyLeaveBinding;
-import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
-import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeMainViewModel;
+import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,7 +24,7 @@ import java.util.Locale;
 public class EmployeeApplyLeaveFragment extends Fragment {
 
     private FragmentEmployeeApplyLeaveBinding binding;
-    private EmployeeMainViewModel viewModel;
+    private EmployeeViewModel viewModel;
 
     public EmployeeApplyLeaveFragment() {
         // Required empty public constructor
@@ -35,7 +34,7 @@ public class EmployeeApplyLeaveFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        viewModel=new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeMainViewModel.class);
+        viewModel=new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeViewModel.class);
     }
 
     @Override

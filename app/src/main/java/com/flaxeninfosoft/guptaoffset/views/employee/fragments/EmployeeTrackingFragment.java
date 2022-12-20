@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeMainViewModel;
+import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -19,7 +19,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 public class EmployeeTrackingFragment extends Fragment implements OnMapReadyCallback {
 
     //    private FragmentEmployeeTrackingBinding binding;
-    private EmployeeMainViewModel viewModel;
+    private EmployeeViewModel viewModel;
     private GoogleMap mMap;
 
     public EmployeeTrackingFragment() {
@@ -32,7 +32,7 @@ public class EmployeeTrackingFragment extends Fragment implements OnMapReadyCall
 
         viewModel = new ViewModelProvider
                 .AndroidViewModelFactory(getActivity().getApplication())
-                .create(EmployeeMainViewModel.class);
+                .create(EmployeeViewModel.class);
     }
 
     @Override

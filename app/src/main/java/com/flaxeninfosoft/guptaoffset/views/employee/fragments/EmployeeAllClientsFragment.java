@@ -15,14 +15,14 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.ClientRecyclerAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAllClientsBinding;
 import com.flaxeninfosoft.guptaoffset.models.Client;
-import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeMainViewModel;
+import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.util.List;
 
 public class EmployeeAllClientsFragment extends Fragment {
 
     private FragmentEmployeeAllClientsBinding binding;
-    private EmployeeMainViewModel viewModel;
+    private EmployeeViewModel viewModel;
 
     public EmployeeAllClientsFragment() {
         // Required empty public constructor
@@ -32,7 +32,7 @@ public class EmployeeAllClientsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeMainViewModel.class);
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeViewModel.class);
 
     }
 

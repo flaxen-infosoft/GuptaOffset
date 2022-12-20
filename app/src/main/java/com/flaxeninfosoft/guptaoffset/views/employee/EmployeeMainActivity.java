@@ -9,19 +9,19 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.ActivityEmployeeMainBinding;
-import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeMainViewModel;
+import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 public class EmployeeMainActivity extends AppCompatActivity {
 
     private ActivityEmployeeMainBinding binding;
-    private EmployeeMainViewModel viewModel;
+    private EmployeeViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_employee_main);
 
-        viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(EmployeeMainViewModel.class);
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(EmployeeViewModel.class);
 
         viewModel.getToastMessageLiveData().observe(this, this::showToastMessage);
 
