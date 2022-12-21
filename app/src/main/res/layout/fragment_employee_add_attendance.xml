@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:padding="12dp"
-        tools:context=".activities.employee.EmployeeAddAttendanceFragment">
+        tools:context=".views.employee.fragments.EmployeeAddAttendanceFragment">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
-                            android:text="@{attendance.timeIn}" />
+                            android:text="@={attendance.timeIn}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -98,7 +98,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
-                            android:text="@{attendance.TimeOut()}" />
+                            android:text="@={attendance.timeOut}" />
                     </LinearLayout>
 
                 </LinearLayout>
