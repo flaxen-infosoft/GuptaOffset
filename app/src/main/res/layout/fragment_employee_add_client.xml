@@ -120,7 +120,7 @@
                             android:hint="   Contact"
                             android:drawableLeft="@drawable/contact_24"
                             android:inputType="textPersonName"
-                            android:text="@={client.contactNo}" />
+                            android:text="@={}" />
 
                     </com.google.android.material.textfield.TextInputLayout>
                 <ImageView
