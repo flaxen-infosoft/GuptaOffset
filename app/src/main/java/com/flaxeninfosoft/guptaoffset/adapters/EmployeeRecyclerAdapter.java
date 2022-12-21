@@ -49,6 +49,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
     public static class EmployeeViewHolder extends RecyclerView.ViewHolder {
 
         private final SingleEmployeeCardBinding binding;
+
         private final SingleEmployeeCardOnClickListener onClickListener;
 
         public EmployeeViewHolder(@NonNull SingleEmployeeCardBinding binding, SingleEmployeeCardOnClickListener onClickListener) {

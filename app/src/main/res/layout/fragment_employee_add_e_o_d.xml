@@ -1,14 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.employee.fragments.EmployeeAddEODFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".views.employee.fragments.EmployeeAddEODFragment">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:background="@drawable/splash_back">
+                <TextView
+                    android:id="@+id/employee_add_e_o_d_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="start"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:background="#A4FFFFFF"
+                    android:textStyle="bold"
+                    android:text="Sumit End of the Day Report "
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="20dp">
 
-</FrameLayout>
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:shape="oval"
+                        android:layout_marginTop="-90dp"
+                        android:src="@drawable/user_logo1" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/employee_add_e_o_d_employee_name"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_corners"
+                        app:boxStrokeWidth="0dp"
+                        android:layout_marginTop="110dp"
+                        app:boxStrokeWidthFocused="0dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter Name"
+                            android:inputType="textPersonName"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/employee_add_e_o_d_employee_code"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_corners"
+                        app:boxStrokeWidth="0dp"
+                        android:layout_marginTop="170dp"
+                        app:boxStrokeWidthFocused="0dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Aera Code"
+                            android:inputType="textPersonName"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/employee_add_e_o_d_employee_dATE"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_corners"
+                        app:boxStrokeWidth="0dp"
+                        android:layout_marginTop="230dp"
+                        app:boxStrokeWidthFocused="0dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="DD/MM/YY"
+                            android:inputType="textPersonName"
+                            android:text=""/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Today's Reading"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:paddingTop="10dp"
+                        android:textSize="20dp"
+                        android:paddingLeft="10dp"
+                        android:background="#A4FFFFFF"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/employee_add_e_o_d_employee_starting"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_corners"
+                        app:boxStrokeWidth="0dp"
+                        android:layout_marginTop="50dp"
+                        app:boxStrokeWidthFocused="0dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Starting K.M."
+                            android:inputType="textPersonName"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/employee_add_e_o_d_employee_ending"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_corners"
+                        app:boxStrokeWidth="0dp"
+                        android:layout_marginTop="100dp"
+                        app:boxStrokeWidthFocused="0dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Ending K.M."
+                            android:inputType="textPersonName"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/employee_add_e_o_d_employee_total"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_corners"
+                        app:boxStrokeWidth="0dp"
+                        android:layout_marginTop="150dp"
+                        app:boxStrokeWidthFocused="0dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Total K.M."
+                            android:inputType="textPersonName"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="105dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="200dp"
+                        android:background="@color/white">
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/empolyee_add_e_o_d_btn_start"
+                            android:layout_width="180dp"
+                            android:layout_height="70dp"
+                            android:textAllCaps="false"
+                            android:text="Add Start Image"
+                            android:textSize="20dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:backgroundTint="#356828"/>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/empolyee_add_e_o_d_btn_end"
+                            android:layout_width="180dp"
+                            android:layout_height="70dp"
+                            android:textAllCaps="false"
+                            android:text="Add End Image"
+                            android:textSize="20dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="20dp"
+                            android:backgroundTint="#356828"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="20dp">
+                </androidx.cardview.widget.CardView>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/empolyee_add_e_o_d_btn"
+                    android:layout_width="250dp"
+                    android:layout_height="80dp"
+                    android:textAllCaps="false"
+                    android:text="Submit Eod"
+                    android:textSize="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="#356828"/>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

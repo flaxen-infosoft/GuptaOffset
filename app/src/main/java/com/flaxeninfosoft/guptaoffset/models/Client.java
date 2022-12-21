@@ -29,6 +29,14 @@ public class Client {
     @Expose
     private Long assignToId;
 
+    @SerializedName("latitude")
+    @Expose
+    private double latitude;
+
+    @SerializedName("longitude")
+    @Expose
+    private double longitude;
+
     public Client() {
     }
 
@@ -78,5 +86,21 @@ public class Client {
 
     public void setAssignToId(Long assignToId) {
         this.assignToId = assignToId;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }
