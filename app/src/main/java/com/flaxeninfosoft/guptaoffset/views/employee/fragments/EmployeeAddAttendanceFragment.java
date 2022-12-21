@@ -14,7 +14,4 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddAttendanceB
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 
-public class EmployeeAddAttendanceFragment extends Fragment {
-
-
 }
