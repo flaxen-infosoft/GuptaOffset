@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_adminAllEmployeesFragment_to_adminAddEmployeeFragment"
             app:destination="@id/adminAddEmployeeFragment" />
+        <action
+            android:id="@+id/action_adminAllEmployeesFragment_to_employeeProfileFragment2"
+            app:destination="@id/employeeProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/employeeProfileFragment"
