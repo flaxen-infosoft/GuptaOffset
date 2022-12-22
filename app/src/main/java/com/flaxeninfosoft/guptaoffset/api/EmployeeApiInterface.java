@@ -20,16 +20,25 @@ public interface EmployeeApiInterface {
     @POST(ApiEndpoints.LOGIN)
     Call<Employee> loginByEmailAndPassword(@Field("email") String email, @Field("password") String password);
 
-    @POST(ApiEndpoints.ADD_EMPLOYEE)
-    Call<Employee> addEmployee(@Body Employee employee);
-
     @GET(ApiEndpoints.GET_EMPLOYEE_BY_ID)
     Call<Employee> getEmployeeById(@Query("emp_id") Long empId);
 
     @GET(ApiEndpoints.GET_ALL_EMPLOYEES)
     Call<List<Employee>> getAllEmployees();
 
+    @GET(ApiEndpoints.GET_ALL_SUPER_EMPLOYEES)
+    Call<List<Employee>> getAllSuperEmployees();
+
+    @POST(ApiEndpoints.ADD_EMPLOYEE)
+    Call<Employee> addEmployee(@Body Employee employee);
+
     @POST(ApiEndpoints.UPDATE_EMPLOYEE_BY_ID)
-    Call<Employee> updateEmployeeById(@Query("emp_id") Long empId, @Body Employee employee);
+    Call<Employee> updateEmployeeById(@Body Employee employee);
+
+    @GET(ApiEndpoints.SUSPEND_EMPLOYEE_BY_ID)
+    Call<Employee> suspendEmployeeById(@Query("empId") Long empId);
+
+    @GET(ApiEndpoints.ACTIVATE_EMPLOYEE_BY_ID)
+    Call<Employee> activateEmployeeById(@Query("empId") Long empId);
 
 }

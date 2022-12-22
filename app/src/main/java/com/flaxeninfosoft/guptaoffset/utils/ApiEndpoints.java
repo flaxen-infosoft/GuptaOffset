@@ -8,10 +8,13 @@ public class ApiEndpoints {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public static final String GET_ALL_EMPLOYEES = "employee/get_all_employees.php";
-    public static final String ADD_EMPLOYEE = "employee/add_employee.php";
-    public static final String GET_EMPLOYEE_BY_ID = "employee/get_employee_by_id.php";
-    public static final String UPDATE_EMPLOYEE_BY_ID = "employee/update_employee_by_id.php";
+    public static final String GET_EMPLOYEE_BY_ID = "employee/getEmployeeById.php";
+    public static final String GET_ALL_EMPLOYEES = "employee/getAllEmployees.php";
+    public static final String GET_ALL_SUPER_EMPLOYEES = "employee/getAllSuperEmployees.php";
+    public static final String ADD_EMPLOYEE = "employee/addEmployee.php";
+    public static final String UPDATE_EMPLOYEE_BY_ID = "employee/updateEmployeesById.php";
+    public static final String SUSPEND_EMPLOYEE_BY_ID = "employee/suspendEmployeeById.php";
+    public static final String ACTIVATE_EMPLOYEE_BY_ID = "employee/activateEmployeeById.php";
 
 //    ----------------------------------------------------------------------------------------------
 
@@ -36,10 +39,15 @@ public class ApiEndpoints {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public static final String GET_ALL_LEAVE_REQUESTS = "leaves/get_all_leave_requests.php";
-    public static final String GET_EMPLOYEE_LEAVE_REQUESTS = "leaves/get_employee_leave_requests.php";
-    public static final String GET_LEAVE_REQUEST_BY_ID = "leaves/get_leave_request_by_id.php";
-    public static final String UPDATE_LEAVE_STATUS_BY_ID = "leaves/update_leave_status_by_id.php";
+    public static final String GET_LEAVE_BY_ID = "leave/getLeaveById.php";
+    public static final String APPROVE_LEAVE_BY_ID = "leave/approveLeaveById.php";
+    public static final String REJECT_LEAVE_BY_ID = "leave/rejectLeaveById.php";
+    public static final String GET_ALL_LEAVES = "leave/getAllLeaves.php";
+    public static final String GET_ALL_PENDING_LEAVES = "leave/getAllPendingLeaves.php";
+    public static final String GET_ALL_APPROVED_LEAVES = "leave/getAllApprovedLeaves.php";
+    public static final String GET_ALL_REJECTED_LEAVES = "leave/getAllRejectedLeaves.php";
+    public static final String GET_EMPLOYEE_ALL_LEAVES = "leave/getEmployeeAllLeaves.php";
+    public static final String ADD_LEAVE = "leave/addLeave.php";
 
 //    ----------------------------------------------------------------------------------------------
 

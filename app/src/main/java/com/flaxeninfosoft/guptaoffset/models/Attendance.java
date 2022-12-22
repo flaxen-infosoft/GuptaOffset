@@ -60,7 +60,7 @@ public class Attendance {
         this.timeIn = timeIn;
     }
 
-    public String setTimeOut() {
+    public String getTimeOut() {
         return timeOut;
     }
 
