@@ -1,14 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.employee.fragments.EmployeeAddOrderFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".views.employee.fragments.EmployeeAddOrderFragment">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:background="@drawable/splash_back"
+            tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/employee_add_client_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="start"
+            android:paddingEnd="20dp"
+            android:drawableEnd="@drawable/ic_baseline_add_shopping_cart_24"
+            android:text="Add New Client"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:background="#A4FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="20dp"/>
+
+            <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerCrop"
+            android:shape="oval"
+            android:src="@drawable/user_logo1" />
+
+        <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/employee_add_client_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corners"
+        android:layout_margin="8dp"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="   Enter Name"
+            android:drawableLeft="@drawable/user_logo"
+            android:inputType="textPersonName"
+            android:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/employee_add_client_organisation_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:background="@drawable/round_corners"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="   Email"
+                android:drawableLeft="@drawable/ic_baseline_email_24"
+                android:inputType="textPersonName"
+                android:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/employee_add_client_address"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_corners"
+            android:layout_margin="8dp"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="   Address"
+                android:drawableLeft="@drawable/address_24"
+                android:inputType="textPersonName"
+                android:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/employee_add_client_contact"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_corners"
+            android:layout_margin="8dp"
+            tools:ignore="MissingConstraints">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="   Contact"
+                android:drawableLeft="@drawable/contact_24"
+                android:inputType="textPersonName"
+                android:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:background="#7CC6A1"
+                android:backgroundTint="#356828" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/empolyee_add_e_o_d_btn"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:textAllCaps="false"
+                android:text="Add Oreder"
+                android:textSize="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#356828"/>
+        </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>>
+</layout>
