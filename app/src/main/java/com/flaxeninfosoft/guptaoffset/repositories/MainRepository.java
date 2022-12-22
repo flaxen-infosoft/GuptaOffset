@@ -86,7 +86,7 @@ public class MainRepository {
     }
 
     public void updateEmployeeById(Long empId, Employee employee, ApiResponseListener<Employee, String> listener) {
-        Call<Employee> updateEmployeeByIdCall = employeeApiInterface.updateEmployeeById(empId, employee);
+        Call<Employee> updateEmployeeByIdCall = employeeApiInterface.updateEmployeeById(employee);
 
         processEmployeeCall(updateEmployeeByIdCall, listener);
     }
@@ -140,19 +140,19 @@ public class MainRepository {
 //    ----------------------------------------------------------------------------------------------
 
     public void getAllLeaveRequests(ApiResponseListener<List<Leave>, String> listener) {
-        Call<List<Leave>> getAllLeaveRequestsCall = leaveApiInterface.getAllLeaveRequests();
+        Call<List<Leave>> getAllLeaveRequestsCall = leaveApiInterface.getAllLeaves();
 
         processLeaveListCall(getAllLeaveRequestsCall, listener);
     }
 
     public void getEmployeeLeaveRequests(Long empId, ApiResponseListener<List<Leave>, String> listener) {
-        Call<List<Leave>> getEmployeeLeaveRequestsCall = leaveApiInterface.getEmployeeLeaveRequests(empId);
+        Call<List<Leave>> getEmployeeLeaveRequestsCall = leaveApiInterface.getEmployeeLeave(empId);
 
         processLeaveListCall(getEmployeeLeaveRequestsCall, listener);
     }
 
     public void getLeaveRequestById(Long leaveId, ApiResponseListener<Leave, String> listener) {
-        Call<Leave> getLeaveRequestByIdCall = leaveApiInterface.getLeaveRequestById(leaveId);
+        Call<Leave> getLeaveRequestByIdCall = leaveApiInterface.getLeaveById(leaveId);
 
         processLeaveCall(getLeaveRequestByIdCall, listener);
     }

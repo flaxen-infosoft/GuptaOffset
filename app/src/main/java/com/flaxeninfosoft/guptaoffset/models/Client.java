@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Client {
 
-    @SerializedName("Id")
+    @SerializedName("id")
     @Expose
     private Long id;
 
@@ -19,13 +19,13 @@ public class Client {
 
     @SerializedName("contact_no")
     @Expose
-    private Long contactNo;
+    private String contactNo;
 
     @SerializedName("address")
     @Expose
     private String Address;
 
-    @SerializedName("Assign_to_id")
+    @SerializedName("assign_to_id")
     @Expose
     private Long assignToId;
 
@@ -64,11 +64,11 @@ public class Client {
         this.orgName = orgName;
     }
 
-    public Long getContactNo() {
+    public String getContactNo() {
         return contactNo;
     }
 
-    public void setContactNo(Long contactNo) {
+    public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
 
