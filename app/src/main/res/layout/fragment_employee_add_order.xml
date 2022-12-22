@@ -123,22 +123,21 @@
                 android:text="" />
         </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
+            <ImageView
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_gravity="center"
-                android:layout_margin="16dp"
-                android:background="#7CC6A1"
-                android:backgroundTint="#356828" />
+                android:layout_marginTop="15dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/add_cart" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/empolyee_add_e_o_d_btn"
                 android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:textAllCaps="false"
-                android:text="Add Oreder"
-                android:textSize="20dp"
+                android:text="Add Order"
+                android:textSize="20sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="#356828"/>
