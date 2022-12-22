@@ -8,15 +8,13 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddClientBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddEODBinding;
-import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeMainViewModel;
+import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 
 public class EmployeeAddEODFragment extends Fragment {
     private FragmentEmployeeAddEODBinding binding;
-    private EmployeeMainViewModel viewModel;
-
+    private EmployeeViewModel viewModel;
 
 
     public EmployeeAddEODFragment() {
