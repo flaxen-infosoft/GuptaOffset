@@ -1,40 +1,38 @@
 package com.flaxeninfosoft.guptaoffset.models;
 
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Order {
-    @SerializedName("id")
+
+    @SerializedName(Constants.ID)
     @Expose
     private Long id;
 
-    @SerializedName("client_id")
+    @SerializedName(Constants.CLIENT_ID)
     @Expose
     private Long client_Id;
 
-    @SerializedName("latitude")
-    @Expose
-    private double latitude;
-
-    @SerializedName("longitude")
-    @Expose
-    private double longitude;
-
-    @SerializedName("slip_image")
-    @Expose
-    private String slipImage;
-
-    @SerializedName("date")
-    @Expose
-    private Long date;
-
-    @SerializedName("emp_id")
+    @SerializedName(Constants.EMPLOYEE_ID)
     @Expose
     private Long emp_Id;
 
-    public Order(){
+    @SerializedName(Constants.LATITUDE)
+    @Expose
+    private double latitude;
 
-    }
+    @SerializedName(Constants.LONGITUDE)
+    @Expose
+    private double longitude;
+
+    @SerializedName(Constants.IMAGE)
+    @Expose
+    private String slipImage;
+
+    @SerializedName(Constants.DATE)
+    @Expose
+    private Long date;
 
     public Long getId() {
         return id;
@@ -50,6 +48,14 @@ public class Order {
 
     public void setClient_Id(Long client_Id) {
         this.client_Id = client_Id;
+    }
+
+    public Long getEmp_Id() {
+        return emp_Id;
+    }
+
+    public void setEmp_Id(Long emp_Id) {
+        this.emp_Id = emp_Id;
     }
 
     public double getLatitude() {
@@ -82,13 +88,5 @@ public class Order {
 
     public void setDate(Long date) {
         this.date = date;
-    }
-
-    public Long getEmp_Id() {
-        return emp_Id;
-    }
-
-    public void setEmp_Id(Long emp_Id) {
-        this.emp_Id = emp_Id;
     }
 }

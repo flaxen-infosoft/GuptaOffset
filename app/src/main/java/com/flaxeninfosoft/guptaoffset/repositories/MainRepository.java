@@ -5,13 +5,15 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.flaxeninfosoft.guptaoffset.api.AttendanceApiInterface;
+import com.flaxeninfosoft.guptaoffset.api.AuthApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.ClientApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.EmployeeApiInterface;
+import com.flaxeninfosoft.guptaoffset.api.EodApiInterface;
+import com.flaxeninfosoft.guptaoffset.api.ExpensesApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LeaveApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LocationApiInterface;
+import com.flaxeninfosoft.guptaoffset.api.OrderApiInterface;
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
-import com.flaxeninfosoft.guptaoffset.models.Attendance;
 import com.flaxeninfosoft.guptaoffset.models.Client;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
@@ -31,22 +33,28 @@ public class MainRepository {
 
     private static MainRepository instance;
 
+    private final AuthApiInterface authApiInterface;
     private final EmployeeApiInterface employeeApiInterface;
-    private final ClientApiInterface clientApiInterface;
-    private final LocationApiInterface locationApiInterface;
     private final LeaveApiInterface leaveApiInterface;
-    private final AttendanceApiInterface attendanceApiInterface;
+    private final EodApiInterface eodApiInterface;
+    private final LocationApiInterface locationApiInterface;
+    private final ExpensesApiInterface expensesApiInterface;
+    private final ClientApiInterface clientApiInterface;
+    private final OrderApiInterface orderApiInterface;
 
     private final int STATUS_NOT_FOUND = 404;
 
     private MainRepository(Context context) {
         Retrofit apiClient = RetrofitClient.getClient();
 
+        authApiInterface = apiClient.create(AuthApiInterface.class);
         employeeApiInterface = apiClient.create(EmployeeApiInterface.class);
-        clientApiInterface = apiClient.create(ClientApiInterface.class);
-        locationApiInterface = apiClient.create(LocationApiInterface.class);
         leaveApiInterface = apiClient.create(LeaveApiInterface.class);
-        attendanceApiInterface = apiClient.create(AttendanceApiInterface.class);
+        eodApiInterface = apiClient.create(EodApiInterface.class);
+        locationApiInterface = apiClient.create(LocationApiInterface.class);
+        expensesApiInterface = apiClient.create(ExpensesApiInterface.class);
+        clientApiInterface = apiClient.create(ClientApiInterface.class);
+        orderApiInterface = apiClient.create(OrderApiInterface.class);
     }
 
     public static MainRepository getInstance(Context context) {
@@ -59,24 +67,12 @@ public class MainRepository {
 
     public void login(LoginModel credentials, ApiResponseListener<Employee, String> listener) {
 
-        Call<Employee> loginCall = employeeApiInterface.loginByEmailAndPassword(credentials.getEmail(), credentials.getPassword());
+        Call<Employee> loginCall = authApiInterface.loginByEmailAndPassword(credentials.getEmail(), credentials.getPassword());
 
         processEmployeeCall(loginCall, listener);
     }
 
-//    ----------------------------------------------------------------------------------------------
-
-    public void getAllEmployees(ApiResponseListener<List<Employee>, String> listener) {
-        Call<List<Employee>> getAllEmployeesCall = employeeApiInterface.getAllEmployees();
-
-        processEmployeeListCall(getAllEmployeesCall, listener);
-    }
-
-    public void addEmployee(Employee employee, ApiResponseListener<Employee, String> listener) {
-        Call<Employee> addEmployeeCall = employeeApiInterface.addEmployee(employee);
-
-        processEmployeeCall(addEmployeeCall, listener);
-    }
+    //    ----------------------------------------------------------------------------------------------
 
     public void getEmployeeById(Long empId, ApiResponseListener<Employee, String> listener) {
 
@@ -85,31 +81,116 @@ public class MainRepository {
         processEmployeeCall(getEmployeeByIdCall, listener);
     }
 
-    public void updateEmployeeById(Long empId, Employee employee, ApiResponseListener<Employee, String> listener) {
+    public void getAllEmployees(ApiResponseListener<List<Employee>, String> listener) {
+        Call<List<Employee>> getAllEmployeesCall = employeeApiInterface.getAllEmployees();
+
+        processEmployeeListCall(getAllEmployeesCall, listener);
+    }
+
+    public void getAllSuperEmployees(ApiResponseListener<List<Employee>, String> listener) {
+        Call<List<Employee>> allSuperEmployeesCall = employeeApiInterface.getAllSuperEmployees();
+
+        processEmployeeListCall(allSuperEmployeesCall, listener);
+    }
+
+    public void addEmployee(Employee employee, ApiResponseListener<Employee, String> listener) {
+        Call<Employee> addEmployeeCall = employeeApiInterface.addEmployee(employee);
+
+        processEmployeeCall(addEmployeeCall, listener);
+    }
+
+    public void updateEmployeeById(Employee employee, ApiResponseListener<Employee, String> listener) {
         Call<Employee> updateEmployeeByIdCall = employeeApiInterface.updateEmployeeById(employee);
 
         processEmployeeCall(updateEmployeeByIdCall, listener);
     }
 
-//    ----------------------------------------------------------------------------------------------
+    public void suspendEmployeeById(Long empId, ApiResponseListener<Employee, String> listener) {
+        Call<Employee> suspendEmployeeCall = employeeApiInterface.suspendEmployeeById(empId);
 
-    public void getAllEmployeesLocation(ApiResponseListener<List<Location>, String> listener) {
-        Call<List<Location>> getAllEmployeesLocationCall = locationApiInterface.getAllEmployeesLocation();
-
-        processLocationListCall(getAllEmployeesLocationCall, listener);
+        processEmployeeCall(suspendEmployeeCall, listener);
     }
 
+    public void activateEmployeeById(Long empId, ApiResponseListener<Employee, String> listener) {
+        Call<Employee> activateEmployeeCall = employeeApiInterface.activateEmployeeById(empId);
+
+        processEmployeeCall(activateEmployeeCall, listener);
+    }
+//    ----------------------------------------------------------------------------------------------
+
+    public void getLeaveById(Long leaveId, ApiResponseListener<Leave, String> listener) {
+        Call<Leave> getLeaveByIdCall = leaveApiInterface.getLeaveById(leaveId);
+
+        processLeaveCall(getLeaveByIdCall, listener);
+    }
+
+    public void approveLeaveById(Long leaveId, ApiResponseListener<Leave, String> listener) {
+        Call<Leave> approveLeaveCall = leaveApiInterface.approveLeaveById(leaveId);
+
+        processLeaveCall(approveLeaveCall, listener);
+    }
+
+    public void rejectLeaveById(Long leaveId, ApiResponseListener<Leave, String> listener) {
+        Call<Leave> rejectLeaveCall = leaveApiInterface.rejectLeaveById(leaveId);
+
+        processLeaveCall(rejectLeaveCall, listener);
+    }
+
+    public void getAllLeaves(ApiResponseListener<List<Leave>, String> listener) {
+        Call<List<Leave>> allLeavesCall = leaveApiInterface.getAllLeaves();
+
+        processLeaveListCall(allLeavesCall, listener);
+    }
+
+    public void getAllPendingLeaves(ApiResponseListener<List<Leave>, String> listener) {
+        Call<List<Leave>> pendingLeavesCall = leaveApiInterface.getAllPendingLeaves();
+
+        processLeaveListCall(pendingLeavesCall, listener);
+    }
+
+    public void getAllApprovedLeaves(ApiResponseListener<List<Leave>, String> listener) {
+        Call<List<Leave>> approvedLeavesCall = leaveApiInterface.getAllApprovedLeaves();
+
+        processLeaveListCall(approvedLeavesCall, listener);
+    }
+
+    public void getAllRejectedLeaves(ApiResponseListener<List<Leave>, String> listener) {
+        Call<List<Leave>> rejectedLeavesCall = leaveApiInterface.getAllRejectedLeaves();
+
+        processLeaveListCall(rejectedLeavesCall, listener);
+    }
+
+    public void getEmployeeAllLeaves(Long empId, ApiResponseListener<List<Leave>, String> listener) {
+        Call<List<Leave>> employeeLeavesCall = leaveApiInterface.getEmployeeLeave(empId);
+
+        processLeaveListCall(employeeLeavesCall, listener);
+    }
+
+    public void addLeave(Leave leave, ApiResponseListener<Leave, String> listener) {
+        Call<Leave> addLeaveCall = leaveApiInterface.addLeave(leave);
+
+        processLeaveCall(addLeaveCall, listener);
+    }
+
+//    ----------------------------------------------------------------------------------------------
+
+//    public void getAllEmployeesLocation(ApiResponseListener<List<Location>, String> listener) {
+//        Call<List<Location>> getAllEmployeesLocationCall = locationApiInterface.getAllEmployeesLocation();
+//
+//        processLocationListCall(getAllEmployeesLocationCall, listener);
+//    }
+
     public void getEmployeeLocationById(Long empId, ApiResponseListener<Location, String> listener) {
-        Call<Location> getEmployeeLocationByIdCall = locationApiInterface.getEmployeeLocationById(empId);
+        Call<Location> getEmployeeLocationByIdCall = locationApiInterface.getEmployeeCurrentLocationById(empId);
 
         processLocationCall(getEmployeeLocationByIdCall, listener);
     }
 
-    public void updateEmployeeLocationById(Long empId, Location location, ApiResponseListener<Location, String> listener) {
-        Call<Location> updateEmployeeLocationByIdCall = locationApiInterface.updateEmployeeLocation(empId, location);
-
-        processLocationCall(updateEmployeeLocationByIdCall, listener);
-    }
+//    public void updateEmployeeLocationById(Long empId, Location location, ApiResponseListener<Location, String> listener) {
+//        Call<Location> updateEmployeeLocationByIdCall = locationApiInterface.addEmployeeLocation(empId, location);
+//
+//        processLocationCall(updateEmployeeLocationByIdCall, listener);
+//    }
 
 //    ----------------------------------------------------------------------------------------------
 
@@ -137,97 +218,72 @@ public class MainRepository {
         processClientCall(updateClientByIdCall, listener);
     }
 
-//    ----------------------------------------------------------------------------------------------
-
-    public void getAllLeaveRequests(ApiResponseListener<List<Leave>, String> listener) {
-        Call<List<Leave>> getAllLeaveRequestsCall = leaveApiInterface.getAllLeaves();
-
-        processLeaveListCall(getAllLeaveRequestsCall, listener);
-    }
-
-    public void getEmployeeLeaveRequests(Long empId, ApiResponseListener<List<Leave>, String> listener) {
-        Call<List<Leave>> getEmployeeLeaveRequestsCall = leaveApiInterface.getEmployeeLeave(empId);
-
-        processLeaveListCall(getEmployeeLeaveRequestsCall, listener);
-    }
-
-    public void getLeaveRequestById(Long leaveId, ApiResponseListener<Leave, String> listener) {
-        Call<Leave> getLeaveRequestByIdCall = leaveApiInterface.getLeaveById(leaveId);
-
-        processLeaveCall(getLeaveRequestByIdCall, listener);
-    }
-
-    public void updateLeaveRequestById(Long leaveId, Leave leave, ApiResponseListener<Leave, String> listener) {
-        Call<Leave> updateLeaveRequestByIdCall = leaveApiInterface.updateLeaveRequestById(leaveId, leave);
-
-        processLeaveCall(updateLeaveRequestByIdCall, listener);
-    }
 
 //    ----------------------------------------------------------------------------------------------
-
-    public void getEmployeeAttendance(Long empId, ApiResponseListener<List<Attendance>, String> listener) {
-        Call<List<Attendance>> getEmployeeAttendanceCall = attendanceApiInterface.getEmployeeAttendance(empId);
-
-        processAttendanceListCall(getEmployeeAttendanceCall, listener);
-    }
-
-    public void getAttendanceById(Long attendanceId, ApiResponseListener<Attendance, String> listener) {
-        Call<Attendance> getAttendanceByIdCall = attendanceApiInterface.getAttendanceById(attendanceId);
-
-        processAttendanceCall(getAttendanceByIdCall, listener);
-    }
-
-    public void addEmployeeAttendance(Long empId, Attendance attendance, ApiResponseListener<Attendance, String> listener) {
-        Call<Attendance> addEmployeeAttendanceCall = attendanceApiInterface.addEmployeeAttendance(empId, attendance);
-
-        processAttendanceCall(addEmployeeAttendanceCall, listener);
-    }
+//
+//    public void getEmployeeAttendance(Long empId, ApiResponseListener<List<Attendance>, String> listener) {
+//        Call<List<Attendance>> getEmployeeAttendanceCall = eodApiInterface.getEmployeeAttendance(empId);
+//
+//        processAttendanceListCall(getEmployeeAttendanceCall, listener);
+//    }
+//
+//    public void getAttendanceById(Long attendanceId, ApiResponseListener<Attendance, String> listener) {
+//        Call<Attendance> getAttendanceByIdCall = eodApiInterface.getAttendanceById(attendanceId);
+//
+//        processAttendanceCall(getAttendanceByIdCall, listener);
+//    }
+//
+//    public void addEmployeeAttendance(Long empId, Attendance attendance, ApiResponseListener<Attendance, String> listener) {
+//        Call<Attendance> addEmployeeAttendanceCall = eodApiInterface.addEmployeeAttendance(empId, attendance);
+//
+//        processAttendanceCall(addEmployeeAttendanceCall, listener);
+//    }
 
 //    ----------------------------------------------------------------------------------------------
-
-    private void processAttendanceCall(Call<Attendance> call, ApiResponseListener<Attendance, String> listener) {
-        call.enqueue(new Callback<Attendance>() {
-            @Override
-            public void onResponse(@NonNull Call<Attendance> call, @NonNull Response<Attendance> response) {
-                if (response.isSuccessful()) {
-                    listener.onSuccess(response.body());
-                } else if (response.code() == STATUS_NOT_FOUND) {
-                    listener.onFailure("Api not found.");
-                } else {
-                    Log.e(Constants.LOG_TAG, response.message());
-                    listener.onFailure(response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<Attendance> call, @NonNull Throwable t) {
-                t.printStackTrace();
-                listener.onFailure("Unable to connect to server.");
-            }
-        });
-    }
-
-    private void processAttendanceListCall(Call<List<Attendance>> call, ApiResponseListener<List<Attendance>, String> listener) {
-        call.enqueue(new Callback<List<Attendance>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<Attendance>> call, @NonNull Response<List<Attendance>> response) {
-                if (response.isSuccessful()) {
-                    listener.onSuccess(response.body());
-                } else if (response.code() == STATUS_NOT_FOUND) {
-                    listener.onFailure("Api not found.");
-                } else {
-                    Log.e(Constants.LOG_TAG, response.message());
-                    listener.onFailure(response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<List<Attendance>> call, @NonNull Throwable t) {
-                t.printStackTrace();
-                listener.onFailure("Unable to connect to server.");
-            }
-        });
-    }
+//
+//    private void processAttendanceCall(Call<Attendance> call, ApiResponseListener<Attendance, String> listener) {
+//        call.enqueue(new Callback<Attendance>() {
+//            @Override
+//            public void onResponse(@NonNull Call<Attendance> call, @NonNull Response<Attendance> response) {
+//                if (response.isSuccessful()) {
+//                    listener.onSuccess(response.body());
+//                } else if (response.code() == STATUS_NOT_FOUND) {
+//                    listener.onFailure("Api not found.");
+//                } else {
+//                    Log.e(Constants.LOG_TAG, response.message());
+//                    listener.onFailure(response.message());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<Attendance> call, @NonNull Throwable t) {
+//                t.printStackTrace();
+//                listener.onFailure("Unable to connect to server.");
+//            }
+//        });
+//    }
+//
+//    private void processAttendanceListCall(Call<List<Attendance>> call, ApiResponseListener<List<Attendance>, String> listener) {
+//        call.enqueue(new Callback<List<Attendance>>() {
+//            @Override
+//            public void onResponse(@NonNull Call<List<Attendance>> call, @NonNull Response<List<Attendance>> response) {
+//                if (response.isSuccessful()) {
+//                    listener.onSuccess(response.body());
+//                } else if (response.code() == STATUS_NOT_FOUND) {
+//                    listener.onFailure("Api not found.");
+//                } else {
+//                    Log.e(Constants.LOG_TAG, response.message());
+//                    listener.onFailure(response.message());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<List<Attendance>> call, @NonNull Throwable t) {
+//                t.printStackTrace();
+//                listener.onFailure("Unable to connect to server.");
+//            }
+//        });
+//    }
 
     private void processLocationCall(Call<Location> call, ApiResponseListener<Location, String> listener) {
         call.enqueue(new Callback<Location>() {

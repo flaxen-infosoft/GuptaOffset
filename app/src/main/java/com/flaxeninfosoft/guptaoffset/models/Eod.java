@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Location {
+public class Eod {
 
     @SerializedName(Constants.ID)
     @Expose
@@ -21,16 +21,28 @@ public class Location {
     @Expose
     private Date date;
 
-    @SerializedName(Constants.TIME)
+    @SerializedName(Constants.TIME_IN)
     @Expose
-    private Time time;
+    private Time timeIn;
 
-    @SerializedName(Constants.LATITUDE)
+    @SerializedName(Constants.TIME_OUT)
     @Expose
-    private double latitude;
+    private Time timeOut;
 
-    @SerializedName(Constants.LONGITUDE)
+    @SerializedName(Constants.START_METER)
     @Expose
-    private double longitude;
+    private String startMeter;
+
+    @SerializedName(Constants.END_METER)
+    @Expose
+    private String endMeter;
+
+    @SerializedName(Constants.START_METER_IMAGE)
+    @Expose
+    private String startMeterImage;
+
+    @SerializedName(Constants.END_METER_IMAGE)
+    @Expose
+    private String endMeterImage;
 
 }

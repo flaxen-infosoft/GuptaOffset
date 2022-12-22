@@ -1,44 +1,46 @@
 package com.flaxeninfosoft.guptaoffset.models;
 
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Client {
 
-    @SerializedName("id")
+    @SerializedName(Constants.ID)
     @Expose
     private Long id;
 
-    @SerializedName("client_Name")
+    @SerializedName(Constants.NAME)
     @Expose
     private String client_name;
 
-    @SerializedName("org_Name")
+    @SerializedName(Constants.ORGANIZATION_NAME)
     @Expose
     private String orgName;
 
-    @SerializedName("contact_no")
-    @Expose
-    private String contactNo;
-
-    @SerializedName("address")
+    @SerializedName(Constants.ADDRESS)
     @Expose
     private String Address;
 
-    @SerializedName("assign_to_id")
+    @SerializedName(Constants.PHONE)
     @Expose
-    private Long assignToId;
+    private String contactNo;
 
-    @SerializedName("latitude")
+    @SerializedName(Constants.LATITUDE)
     @Expose
     private double latitude;
 
-    @SerializedName("longitude")
+    @SerializedName(Constants.LONGITUDE)
     @Expose
     private double longitude;
 
-    public Client() {
-    }
+    @SerializedName(Constants.ASSIGNED_TO)
+    @Expose
+    private Long assignToId;
+
+    @SerializedName(Constants.TYPE)
+    @Expose
+    private String type;
 
     public Long getId() {
         return id;
@@ -64,14 +66,6 @@ public class Client {
         this.orgName = orgName;
     }
 
-    public String getContactNo() {
-        return contactNo;
-    }
-
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
-    }
-
     public String getAddress() {
         return Address;
     }
@@ -80,12 +74,12 @@ public class Client {
         Address = address;
     }
 
-    public Long getAssignToId() {
-        return assignToId;
+    public String getContactNo() {
+        return contactNo;
     }
 
-    public void setAssignToId(Long assignToId) {
-        this.assignToId = assignToId;
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
     }
 
     public double getLatitude() {
@@ -102,5 +96,21 @@ public class Client {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public Long getAssignToId() {
+        return assignToId;
+    }
+
+    public void setAssignToId(Long assignToId) {
+        this.assignToId = assignToId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

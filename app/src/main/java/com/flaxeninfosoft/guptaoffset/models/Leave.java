@@ -1,39 +1,42 @@
 package com.flaxeninfosoft.guptaoffset.models;
 
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.sql.Date;
+
 public class Leave {
 
-    @SerializedName("id")
+    @SerializedName(Constants.ID)
     @Expose
     private Long id;
 
-    @SerializedName("emp_id")
+    @SerializedName(Constants.EMPLOYEE_ID)
     @Expose
     private Long empId;
 
-    @SerializedName("from_date")
+    @SerializedName(Constants.FROM_DATE)
     @Expose
-    private String fromDate;
+    private Date fromDate;
 
-    @SerializedName("to_date")
+    @SerializedName(Constants.TO_DATE)
     @Expose
-    private String toDate;
+    private Date toDate;
 
-    @SerializedName("apply_date")
+    @SerializedName(Constants.APPLY_DATE)
     @Expose
-    private String applyDate;
+    private Date applyDate;
 
-    @SerializedName("subject")
+    @SerializedName(Constants.SUBJECT)
     @Expose
     private String subject;
 
-    @SerializedName("message")
+    @SerializedName(Constants.MESSAGE)
     @Expose
     private String message;
 
-    @SerializedName("status")
+    @SerializedName(Constants.STATUS)
     @Expose
     private String status;
 
@@ -53,27 +56,27 @@ public class Leave {
         this.empId = empId;
     }
 
-    public String getFromDate() {
+    public Date getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(String fromDate) {
+    public void setFromDate(Date fromDate) {
         this.fromDate = fromDate;
     }
 
-    public String getToDate() {
+    public Date getToDate() {
         return toDate;
     }
 
-    public void setToDate(String toDate) {
+    public void setToDate(Date toDate) {
         this.toDate = toDate;
     }
 
-    public String getApplyDate() {
+    public Date getApplyDate() {
         return applyDate;
     }
 
-    public void setApplyDate(String applyDate) {
+    public void setApplyDate(Date applyDate) {
         this.applyDate = applyDate;
     }
 

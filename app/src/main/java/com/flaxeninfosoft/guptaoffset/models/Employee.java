@@ -1,53 +1,58 @@
 package com.flaxeninfosoft.guptaoffset.models;
 
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Employee {
 
-    @SerializedName("id")
+    @SerializedName(Constants.ID)
     @Expose
     private Long id;
 
-    @SerializedName("name")
+    @SerializedName(Constants.NAME)
     @Expose
     private String name;
 
-    @SerializedName("email")
+    @SerializedName(Constants.EMAIL)
     @Expose
     private String email;
 
-    @SerializedName("password")
+    @SerializedName(Constants.PASSWORD)
     @Expose
     private String password;
 
-    @SerializedName("designation")
+    @SerializedName(Constants.DESIGNATION)
     @Expose
     private String designation;
 
-    @SerializedName("area")
+    @SerializedName(Constants.AREA)
     @Expose
     private String area;
 
-    @SerializedName("daily_allowance")
+    @SerializedName(Constants.DAILY_ALLOWANCE)
     @Expose
     private String dailyAllowance;
 
-    @SerializedName("active")
+    @SerializedName(Constants.STATUS)
     @Expose
-    private String active;
+    private String status;
 
-    @SerializedName("phone")
+    @SerializedName(Constants.PHONE)
     @Expose
     private String phone;
 
-    @SerializedName("salary")
+    @SerializedName(Constants.SALARY)
     @Expose
     private String salary;
 
-    @SerializedName("token")
+    @SerializedName(Constants.TOKEN)
     @Expose
     private String token;
+
+    @SerializedName(Constants.ASSIGNED_TO)
+    @Expose
+    private Long assignedTo;
 
     public Long getId() {
         return id;
@@ -105,12 +110,12 @@ public class Employee {
         this.dailyAllowance = dailyAllowance;
     }
 
-    public String getActive() {
-        return active;
+    public String getStatus() {
+        return status;
     }
 
-    public void setActive(String active) {
-        this.active = active;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getPhone() {
@@ -135,5 +140,13 @@ public class Employee {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Long getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(Long assignedTo) {
+        this.assignedTo = assignedTo;
     }
 }

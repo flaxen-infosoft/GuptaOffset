@@ -3,6 +3,7 @@ package com.flaxeninfosoft.guptaoffset.api;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.LoginModel;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 
 import java.util.List;
 
@@ -16,12 +17,8 @@ import retrofit2.http.Query;
 
 public interface EmployeeApiInterface {
 
-    @FormUrlEncoded
-    @POST(ApiEndpoints.LOGIN)
-    Call<Employee> loginByEmailAndPassword(@Field("email") String email, @Field("password") String password);
-
     @GET(ApiEndpoints.GET_EMPLOYEE_BY_ID)
-    Call<Employee> getEmployeeById(@Query("emp_id") Long empId);
+    Call<Employee> getEmployeeById(@Query(Constants.EMPLOYEE_ID) Long empId);
 
     @GET(ApiEndpoints.GET_ALL_EMPLOYEES)
     Call<List<Employee>> getAllEmployees();
@@ -36,9 +33,9 @@ public interface EmployeeApiInterface {
     Call<Employee> updateEmployeeById(@Body Employee employee);
 
     @GET(ApiEndpoints.SUSPEND_EMPLOYEE_BY_ID)
-    Call<Employee> suspendEmployeeById(@Query("empId") Long empId);
+    Call<Employee> suspendEmployeeById(@Query(Constants.EMPLOYEE_ID) Long empId);
 
     @GET(ApiEndpoints.ACTIVATE_EMPLOYEE_BY_ID)
-    Call<Employee> activateEmployeeById(@Query("empId") Long empId);
+    Call<Employee> activateEmployeeById(@Query(Constants.EMPLOYEE_ID) Long empId);
 
 }

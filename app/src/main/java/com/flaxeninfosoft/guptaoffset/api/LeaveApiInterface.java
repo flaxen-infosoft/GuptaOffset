@@ -2,6 +2,7 @@ package com.flaxeninfosoft.guptaoffset.api;
 
 import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 
 import java.util.List;
 
@@ -14,13 +15,13 @@ import retrofit2.http.Query;
 public interface LeaveApiInterface {
 
     @GET(ApiEndpoints.GET_LEAVE_BY_ID)
-    Call<Leave> getLeaveById(@Query("leave_id") Long leaveId);
+    Call<Leave> getLeaveById(@Query(Constants.LEAVE_ID) Long leaveId);
 
     @GET(ApiEndpoints.APPROVE_LEAVE_BY_ID)
-    Call<Leave> approveLeaveById(@Query("leaveId") Long leaveId);
+    Call<Leave> approveLeaveById(@Query(Constants.LEAVE_ID) Long leaveId);
 
     @GET(ApiEndpoints.REJECT_LEAVE_BY_ID)
-    Call<Leave> rejectLeaveById(@Query("leaveId") Long leaveId);
+    Call<Leave> rejectLeaveById(@Query(Constants.LEAVE_ID) Long leaveId);
 
     @GET(ApiEndpoints.GET_ALL_LEAVES)
     Call<List<Leave>> getAllLeaves();
@@ -35,10 +36,9 @@ public interface LeaveApiInterface {
     Call<List<Leave>> getAllRejectedLeaves();
 
     @GET(ApiEndpoints.GET_EMPLOYEE_ALL_LEAVES)
-    Call<List<Leave>> getEmployeeLeave(@Query("empId") Long empId);
+    Call<List<Leave>> getEmployeeLeave(@Query(Constants.EMPLOYEE_ID) Long empId);
 
     @POST(ApiEndpoints.ADD_LEAVE)
     Call<Leave> addLeave(@Body Leave leave);
-
 
 }

@@ -1,49 +1,60 @@
 package com.flaxeninfosoft.guptaoffset.models;
 
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.sql.Date;
+
 public class Expense {
 
-    @SerializedName("Id")
+    @SerializedName(Constants.ID)
     @Expose
     private Long id;
 
-    @SerializedName("empId")
+    @SerializedName(Constants.EMPLOYEE_ID)
     @Expose
     private Long empId;
 
-    @SerializedName("start_location")
+    @SerializedName(Constants.START_LOCATION)
     @Expose
     private String startLocation;
 
-    @SerializedName("end_location")
+    @SerializedName(Constants.END_LOCATION)
     @Expose
     private String endLocation;
 
-    @SerializedName("starting_meter")
+    @SerializedName(Constants.START_METER)
     @Expose
     private long startMeter;
 
-    @SerializedName("end_meter")
+    @SerializedName(Constants.END_METER)
     @Expose
     private long endMeter;
 
-    @SerializedName("total_meter")
+    @SerializedName(Constants.TOTAL_DISTANCE)
     @Expose
-    private long totalMeter;
+    private long totalDistance;
 
-    @SerializedName("fuel_cost")
+    @SerializedName(Constants.FUEL_COST)
     @Expose
     private String fuelCost;
 
-    @SerializedName("extra_expenses")
+    @SerializedName(Constants.EXTRA_EXPENSE)
     @Expose
-    private String extraExpenses;
+    private String extraExpense;
 
-    @SerializedName("total_expenses")
+    @SerializedName(Constants.TOTAL_EXPENSE)
     @Expose
-    private String totalExpenses;
+    private String totalExpense;
+
+    @SerializedName(Constants.DATE)
+    @Expose
+    private Date date;
+
+    @SerializedName(Constants.REMARK)
+    @Expose
+    private String remark;
 
     public Long getId() {
         return id;
@@ -93,12 +104,12 @@ public class Expense {
         this.endMeter = endMeter;
     }
 
-    public long getTotalMeter() {
-        return totalMeter;
+    public long getTotalDistance() {
+        return totalDistance;
     }
 
-    public void setTotalMeter(long totalMeter) {
-        this.totalMeter = totalMeter;
+    public void setTotalDistance(long totalDistance) {
+        this.totalDistance = totalDistance;
     }
 
     public String getFuelCost() {
@@ -109,19 +120,35 @@ public class Expense {
         this.fuelCost = fuelCost;
     }
 
-    public String getExtraExpenses() {
-        return extraExpenses;
+    public String getExtraExpense() {
+        return extraExpense;
     }
 
-    public void setExtraExpenses(String extraExpenses) {
-        this.extraExpenses = extraExpenses;
+    public void setExtraExpense(String extraExpense) {
+        this.extraExpense = extraExpense;
     }
 
-    public String getTotalExpenses() {
-        return totalExpenses;
+    public String getTotalExpense() {
+        return totalExpense;
     }
 
-    public void setTotalExpenses(String totalExpenses) {
-        this.totalExpenses = totalExpenses;
+    public void setTotalExpense(String totalExpense) {
+        this.totalExpense = totalExpense;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

@@ -2,6 +2,7 @@ package com.flaxeninfosoft.guptaoffset.api;
 
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 
 import java.util.List;
 
@@ -13,13 +14,13 @@ import retrofit2.http.Query;
 
 public interface LocationApiInterface {
 
-    @GET(ApiEndpoints.GET_ALL_EMPLOYEES_LOCATION)
-    Call<List<Location>> getAllEmployeesLocation();
+    @GET(ApiEndpoints.GET_EMPLOYEE_CURRENT_LOCATION)
+    Call<Location> getEmployeeCurrentLocationById(@Query(Constants.EMPLOYEE_ID) Long empId);
 
-    @GET(ApiEndpoints.GET_EMPLOYEE_LOCATION_BY_ID)
-    Call<Location> getEmployeeLocationById(@Query("emp_id") Long empId);
+    @GET(ApiEndpoints.GET_EMPLOYEE_TODAYS_LOCATION_HISTORY)
+    Call<List<Location>> getEmployeeTodaysLocationHistory(@Query(Constants.EMPLOYEE_ID) Long empId);
 
-    @POST(ApiEndpoints.UPDATE_EMPLOYEE_LOCATION_BY_ID)
-    Call<Location> updateEmployeeLocation(@Query("emp_id") Long empId, @Body Location location);
+    @POST(ApiEndpoints.ADD_EMPLOYEE_LOCATION)
+    Call<Location> addEmployeeLocation(@Body Location location);
 
 }
