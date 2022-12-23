@@ -143,5 +143,5 @@
                 android:backgroundTint="#356828"/>
         </LinearLayout>
         </ScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

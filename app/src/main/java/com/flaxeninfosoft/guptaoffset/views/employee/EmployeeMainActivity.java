@@ -21,15 +21,15 @@ public class EmployeeMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_employee_main);
 
-        viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(EmployeeViewModel.class);
-
-        viewModel.getToastMessageLiveData().observe(this, this::showToastMessage);
+//        viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(EmployeeViewModel.class);
+//
+//        viewModel.getToastMessageLiveData().observe(this, this::showToastMessage);
 
     }
 
     private void showToastMessage(String s) {
         if (s != null && !s.isEmpty()){
             Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-        }
+           }
     }
 }
