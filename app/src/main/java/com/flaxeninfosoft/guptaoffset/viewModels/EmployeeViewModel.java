@@ -36,7 +36,7 @@ public class EmployeeViewModel extends AndroidViewModel {
 
 
         Long currentEmpId = getCurrentEmployeeId();
-        repo.getEmployeeClients(currentEmpId, new ApiResponseListener<List<Client>, String>() {
+        repo.getEmployeeClientsById(currentEmpId, new ApiResponseListener<List<Client>, String>() {
             @Override
             public void onSuccess(List<Client> response) {
                 employeeClientListLiveData.postValue(response);
