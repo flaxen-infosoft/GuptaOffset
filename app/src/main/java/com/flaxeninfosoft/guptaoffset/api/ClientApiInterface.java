@@ -24,5 +24,5 @@ public interface ClientApiInterface {
     Call<List<Client>> getEmployeeClientsById(@Query(Constants.EMPLOYEE_ID) Long empId);
 
     @POST(ApiEndpoints.UPDATE_CLIENT_BY_ID)
-    Call<Client> updateClientById(@Query(Constants.CLIENT_ID) Long clientId, @Body Client client);
+    Call<Client> updateClientById(@Body Client client);
 }
