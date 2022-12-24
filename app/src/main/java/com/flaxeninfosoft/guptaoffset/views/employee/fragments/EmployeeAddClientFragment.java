@@ -51,7 +51,7 @@ public class EmployeeAddClientFragment extends Fragment{
 
     private boolean isValidateForm() {
 
-        if (binding.getClient().getClient_name().isEmpty()) {
+        if (binding.getClient().getName().isEmpty()) {
             binding.employeeAddClientName.setError("Name is required");
             binding.employeeAddClientName.requestFocus();
             return false;

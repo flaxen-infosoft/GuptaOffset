@@ -53,33 +53,33 @@ public class EmployeeApplyLeaveFragment extends Fragment {
     }
 
     private void selectFromDate(View view) {
-        Calendar calendar = Calendar.getInstance();
-        new DatePickerDialog(getContext(), (datePicker, y, m, d) -> {
-            calendar.set(Calendar.YEAR, y);
-            calendar.set(Calendar.MONTH, m);
-            calendar.set(Calendar.DAY_OF_MONTH, d);
-
-            String myFormat = "dd-MM-yyyy";
-            SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
-            String toDate = dateFormat.format(calendar.getTime());
-            binding.getLeave().setFromDate(toDate);
-            binding.employeeApplyLeaveDateToTv.setText(binding.getLeave().getFromDate());
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+//        Calendar calendar = Calendar.getInstance();
+//        new DatePickerDialog(getContext(), (datePicker, y, m, d) -> {
+//            calendar.set(Calendar.YEAR, y);
+//            calendar.set(Calendar.MONTH, m);
+//            calendar.set(Calendar.DAY_OF_MONTH, d);
+//
+//            String myFormat = "dd-MM-yyyy";
+//            SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
+//            String toDate = dateFormat.format(calendar.getTime());
+//            binding.getLeave().setFromDate(toDate);
+//            binding.employeeApplyLeaveDateToTv.setText(binding.getLeave().getFromDate());
+//        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
     private void selectToDate(View view) {
-        Calendar calendar = Calendar.getInstance();
-        new DatePickerDialog(getContext(), (datePicker, y, m, d) -> {
-            calendar.set(Calendar.YEAR, y);
-            calendar.set(Calendar.MONTH, m);
-            calendar.set(Calendar.DAY_OF_MONTH, d);
-
-            String myFormat = "dd-MM-yyyy";
-            SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
-            String toDate = dateFormat.format(calendar.getTime());
-            binding.getLeave().setToDate(toDate);
-            binding.employeeApplyLeaveDateToTv.setText(binding.getLeave().getToDate());
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+//        Calendar calendar = Calendar.getInstance();
+//        new DatePickerDialog(getContext(), (datePicker, y, m, d) -> {
+//            calendar.set(Calendar.YEAR, y);
+//            calendar.set(Calendar.MONTH, m);
+//            calendar.set(Calendar.DAY_OF_MONTH, d);
+//
+//            String myFormat = "dd-MM-yyyy";
+//            SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
+//            String toDate = dateFormat.format(calendar.getTime());
+//            binding.getLeave().setToDate(toDate);
+//            binding.employeeApplyLeaveDateToTv.setText(binding.getLeave().getToDate());
+//        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
     private void showToastMessgae(String s) {

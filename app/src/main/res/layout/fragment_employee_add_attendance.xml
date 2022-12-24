@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
    <data>
-     <variable
-         name="attendance"
-         type="com.flaxeninfosoft.guptaoffset.models.Attendance" />
+
    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +43,7 @@
                     android:id="@+id/employee_add_attendance_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{attendance.date}"
+                    android:text=" "
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +74,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
-                            android:text="@{attendance.timeIn}" />
+                            android:text=" " />
                     </LinearLayout>
 
                     <LinearLayout
@@ -98,7 +96,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
-                            android:text="@{attendance.timeOut}" />
+                            android:text=" " />
                     </LinearLayout>
 
                 </LinearLayout>
