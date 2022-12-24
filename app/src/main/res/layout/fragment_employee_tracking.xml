@@ -12,4 +12,5 @@
         android:id="@+id/employee_tracking_map"
         tools:context=".views.employee.fragments.EmployeeTrackingFragment"
         android:name="com.google.android.gms.maps.SupportMapFragment" />
+
 </layout>
