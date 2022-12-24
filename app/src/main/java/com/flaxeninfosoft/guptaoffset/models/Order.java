@@ -12,11 +12,11 @@ public class Order {
 
     @SerializedName(Constants.CLIENT_ID)
     @Expose
-    private Long client_Id;
+    private Long clientId;
 
     @SerializedName(Constants.EMPLOYEE_ID)
     @Expose
-    private Long emp_Id;
+    private Long empId;
 
     @SerializedName(Constants.LATITUDE)
     @Expose
@@ -42,20 +42,20 @@ public class Order {
         this.id = id;
     }
 
-    public Long getClient_Id() {
-        return client_Id;
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setClient_Id(Long client_Id) {
-        this.client_Id = client_Id;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
-    public Long getEmp_Id() {
-        return emp_Id;
+    public Long getEmpId() {
+        return empId;
     }
 
-    public void setEmp_Id(Long emp_Id) {
-        this.emp_Id = emp_Id;
+    public void setEmpId(Long empId) {
+        this.empId = empId;
     }
 
     public double getLatitude() {

@@ -502,6 +502,12 @@ public class MainRepository {
         processClientCall(updateClientByIdCall, listener);
     }
 
+    public void addClient(Client client, ApiResponseListener<Client, String> listener){
+        Call<Client> call = clientApiInterface.addClient(client);
+
+        processClientCall(call, listener);
+    }
+
     private void processClientCall(Call<Client> call, ApiResponseListener<Client, String> listener) {
         call.enqueue(new Callback<Client>() {
             @Override

@@ -52,6 +52,7 @@ public class ApiEndpoints {
 
 //  ----------------------------------------------------------------------------------------------
 
+    public static final String ADD_CLIENT = "client/addClient.php";
     public static final String GET_CLIENT_BY_ID = "client/getClientById.php";
     public static final String GET_ALL_CLIENTS = "client/getAllClients.php";
     public static final String GET_EMPLOYEE_CLIENTS_BY_ID = "client/getEmployeeClients.php";

@@ -12,7 +12,7 @@ public class Client {
 
     @SerializedName(Constants.NAME)
     @Expose
-    private String client_name;
+    private String name;
 
     @SerializedName(Constants.ORGANIZATION_NAME)
     @Expose
@@ -20,7 +20,7 @@ public class Client {
 
     @SerializedName(Constants.ADDRESS)
     @Expose
-    private String Address;
+    private String address;
 
     @SerializedName(Constants.PHONE)
     @Expose
@@ -50,12 +50,12 @@ public class Client {
         this.id = id;
     }
 
-    public String getClient_name() {
-        return client_name;
+    public String getName() {
+        return name;
     }
 
-    public void setClient_name(String client_name) {
-        this.client_name = client_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getOrgName() {
@@ -67,11 +67,11 @@ public class Client {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public String getContactNo() {

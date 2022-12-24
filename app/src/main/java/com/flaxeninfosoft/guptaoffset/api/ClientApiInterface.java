@@ -3,6 +3,7 @@ package com.flaxeninfosoft.guptaoffset.api;
 import com.flaxeninfosoft.guptaoffset.models.Client;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
+import com.google.android.gms.common.api.Api;
 
 import java.util.List;
 
@@ -25,4 +26,7 @@ public interface ClientApiInterface {
 
     @POST(ApiEndpoints.UPDATE_CLIENT_BY_ID)
     Call<Client> updateClientById(@Body Client client);
+
+    @POST(ApiEndpoints.ADD_CLIENT)
+    Call<Client> addClient(@Body Client client);
 }

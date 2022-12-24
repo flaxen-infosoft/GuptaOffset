@@ -46,7 +46,7 @@ public class EmployeeAllClientsFragment extends Fragment {
         setupRecycler();
         setUpSwipeRefresh();
 
-        viewModel.getAllClientListLiveData().observe(getViewLifecycleOwner(), this::updateClientList);
+//        viewModel.getAllClientListLiveData().observe(getViewLifecycleOwner(), this::updateClientList);
 
         return binding.getRoot();
     }
@@ -73,7 +73,7 @@ public class EmployeeAllClientsFragment extends Fragment {
     }
 
     private void onRefresh() {
-        viewModel.fetchEmployeeClients().observe(getViewLifecycleOwner(), f -> stopSwipeRefreshing());
+//        viewModel.fetchEmployeeClients().observe(getViewLifecycleOwner(), f -> stopSwipeRefreshing());
     }
 
     private void stopSwipeRefreshing() {
