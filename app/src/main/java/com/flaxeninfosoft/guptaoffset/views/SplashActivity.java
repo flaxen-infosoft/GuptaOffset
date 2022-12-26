@@ -13,6 +13,7 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 import com.flaxeninfosoft.guptaoffset.viewModels.LoginViewModel;
 import com.flaxeninfosoft.guptaoffset.views.admin.AdminMainActivity;
@@ -55,14 +56,14 @@ public class SplashActivity extends AppCompatActivity {
         Employee employee = SharedPrefs.getInstance(getApplicationContext()).getCurrentEmployee();
 
         switch (employee.getDesignation()) {
-            case "employee":
+            case Constants.DESIGNATION_EMPLOYEE:
                 intent = new Intent(this, EmployeeMainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
                 break;
 
-            case "admin":
+            case Constants.DESIGNATION_ADMIN:
                 intent = new Intent(this, AdminMainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);

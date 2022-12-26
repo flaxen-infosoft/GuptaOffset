@@ -24,7 +24,6 @@ import com.flaxeninfosoft.guptaoffset.models.LoginModel;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.utils.RetrofitClient;
-import com.google.android.gms.common.api.Api;
 
 import java.util.List;
 
@@ -103,7 +102,7 @@ public class MainRepository {
         processEmployeeCall(addEmployeeCall, listener);
     }
 
-    public void updateEmployeeById(Employee employee, ApiResponseListener<Employee, String> listener) {
+    public void updateEmployee(Employee employee, ApiResponseListener<Employee, String> listener) {
         Call<Employee> updateEmployeeByIdCall = employeeApiInterface.updateEmployeeById(employee);
 
         processEmployeeCall(updateEmployeeByIdCall, listener);
@@ -496,7 +495,7 @@ public class MainRepository {
         processClientListCall(getEmployeeClientsCall, listener);
     }
 
-    public void updateClientById(Client client, ApiResponseListener<Client, String> listener) {
+    public void updateClient(Client client, ApiResponseListener<Client, String> listener) {
         Call<Client> updateClientByIdCall = clientApiInterface.updateClientById(client);
 
         processClientCall(updateClientByIdCall, listener);

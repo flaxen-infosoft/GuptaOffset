@@ -53,4 +53,11 @@ public class Constants {
 
     public static final String TIME = "time";
     public static final String IMAGE = "image";
+
+    public static final String DESIGNATION_EMPLOYEE = "employee";
+    public static final String DESIGNATION_SUPER_EMPLOYEE = "super_employee";
+    public static final String DESIGNATION_ADMIN = "admin";
+
+    public static final String EMPLOYEE_STATUS_ACTIVE = "active";
+    public static final String EMPLOYEE_STATUS_SUSPENDED = "suspended";
 }
