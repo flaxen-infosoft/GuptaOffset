@@ -10,10 +10,17 @@
             type="com.flaxeninfosoft.guptaoffset.models.Client" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".views.employee.fragments.EmployeeAddClientFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:title="Add New Client" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -26,24 +33,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/splash_back"
                 android:orientation="vertical"
-                android:padding="8dp"
-                android:background="@drawable/splash_back">
-
-                <TextView
-                    android:id="@+id/employee_add_client_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:gravity="start"
-                    android:text="Add New Client"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:background="#A4FFFFFF"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="20dp"/>
+                android:padding="8dp">
 
                 <ImageView
                     android:layout_width="100dp"
@@ -59,82 +51,85 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/round_corners"
-                    android:layout_margin="8dp">
+                    android:layout_margin="8dp"
+                    android:background="@drawable/round_corners">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/user_logo"
                         android:hint="Enter Name"
-                        android:drawableLeft="@drawable/user_logo"
                         android:inputType="textPersonName"
                         android:text="@={client.name}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/employee_add_client_organisation_name"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:background="@drawable/round_corners"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Organisation Name"
-                            android:drawableLeft="@drawable/orga_name_24"
-                            android:inputType="textPersonName"
-                            android:text="@={client.orgName}" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/employee_add_client_address"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:id="@+id/employee_add_client_organisation_name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/round_corners">
+
+                    <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/round_corners"
-                        android:layout_margin="8dp">
+                        android:drawableStart="@drawable/orga_name_24"
+                        android:hint="Organisation Name"
+                        android:inputType="textAutoComplete"
+                        android:text="@={client.orgName}" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="   Address"
-                            android:drawableLeft="@drawable/address_24"
-                            android:inputType="textPersonName"
-                            android:text="@={client.address}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                    </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/employee_add_client_contact"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:id="@+id/employee_add_client_address"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/round_corners">
+
+                    <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/round_corners"
-                        android:layout_margin="8dp">
+                        android:drawableStart="@drawable/address_24"
+                        android:hint="Address"
+                        android:inputType="textAutoComplete"
+                        android:text="@={client.address}" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="   Contact"
-                            android:drawableLeft="@drawable/contact_24"
-                            android:inputType="textPersonName"
-                            android:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/employee_add_client_contact"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/round_corners">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/contact_24"
+                        android:hint="Contact"
+                        android:inputType="textPersonName"
+                        android:text="@={client.contactNo}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
-                    android:scaleType="center"
+                    android:layout_margin="16dp"
                     android:background="@drawable/round_corners"
+                    android:scaleType="center"
                     android:src="@drawable/location" />
 
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/empolyee_add_client_register_btn"
+                    android:id="@+id/employee_add_client_register_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -146,5 +141,5 @@
 
         </ScrollView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
