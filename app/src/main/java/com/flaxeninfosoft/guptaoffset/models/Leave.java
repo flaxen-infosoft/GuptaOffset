@@ -1,5 +1,9 @@
 package com.flaxeninfosoft.guptaoffset.models;
 
+import android.widget.TextView;
+
+import androidx.databinding.BindingAdapter;
+
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -102,5 +106,13 @@ public class Leave {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @BindingAdapter("android:text")
+    public static void setText(TextView textView, Date date){
+        if (date != null && textView != null){
+            String dateText = date.toString();
+            textView.setText(dateText);
+        }
     }
 }
