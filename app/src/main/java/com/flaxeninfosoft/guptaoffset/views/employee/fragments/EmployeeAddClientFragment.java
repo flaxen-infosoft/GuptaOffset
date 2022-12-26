@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -43,8 +42,8 @@ public class EmployeeAddClientFragment extends Fragment {
         binding.setClient(new Client());
 
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Adding Expense..");
-        progressDialog.setMessage("Please wait.\n Adding expenses");
+        progressDialog.setTitle("Adding client..");
+        progressDialog.setMessage("Please wait.\n Adding client");
         progressDialog.setCancelable(false);
 
 
@@ -58,7 +57,7 @@ public class EmployeeAddClientFragment extends Fragment {
             progressDialog.show();
             viewModel.addClient(binding.getClient()).observe(getViewLifecycleOwner(), isSuccessful -> {
                 progressDialog.dismiss();
-                if (isSuccessful){
+                if (isSuccessful) {
                     navigateUp();
                 }
             });
