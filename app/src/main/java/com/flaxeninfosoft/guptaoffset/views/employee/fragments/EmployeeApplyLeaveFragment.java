@@ -41,8 +41,7 @@ public class EmployeeApplyLeaveFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_apply_leave, container, false);
         binding.setLeave(new Leave());
 
@@ -88,10 +87,13 @@ public class EmployeeApplyLeaveFragment extends Fragment {
     private void onClickSubmit(View view) {
         if (isValid()) {
             progressDialog.show();
+            binding.employeeApplyLeaveSubmitBtn.setEnabled(false);
             viewModel.addLeave(binding.getLeave()).observe(getViewLifecycleOwner(), isSuccess -> {
                 progressDialog.dismiss();
                 if (isSuccess) {
                     navigateUp();
+                } else {
+                    binding.employeeApplyLeaveSubmitBtn.setEnabled(true);
                 }
             });
         }

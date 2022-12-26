@@ -5,12 +5,22 @@
 
     <data>
 
+        <variable
+            name="expense"
+            type="com.flaxeninfosoft.guptaoffset.models.Expense" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".views.employee.fragments.EmployeeAddExpenseFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:title="Add Expense" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -27,25 +37,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/splash_back"
                 android:orientation="vertical"
-                android:padding="8dp"
-                tools:ignore="MissingConstraints">
-
-                <TextView
-                    android:id="@+id/employee_order_details_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="20dp"
-                    android:background="#A4FFFFFF"
-                    android:drawableEnd="@drawable/ic_baseline_currency_exchange_24"
-                    android:gravity="start"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="20dp"
-                    android:text="Add Expense"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:padding="8dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/employee_add_expense_start_destination"
@@ -59,9 +51,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="   Start Destination"
-                        android:inputType="textPersonName"
-                        android:text="" />
+                        android:hint="Start Destination"
+                        android:inputType="textAutoComplete"
+                        android:text="@={expense.startLocation}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -76,9 +68,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="   End Location"
-                        android:inputType="textPersonName"
-                        android:text="" />
+                        android:hint="End Location"
+                        android:inputType="textAutoComplete"
+                        android:text="@={expense.endLocation}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -87,15 +79,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="@drawable/round_corners"
-                    tools:ignore="MissingConstraints">
+                    android:background="@drawable/round_corners">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="   Starting Meter"
-                        android:inputType="textPersonName"
-                        android:text="" />
+                        android:hint="Starting Meter"
+                        android:inputType="numberSigned"
+                        android:text="@={``+expense.startMeter}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -104,15 +95,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="@drawable/round_corners"
-                    tools:ignore="MissingConstraints">
+                    android:background="@drawable/round_corners">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="   End Meter"
-                        android:inputType="textPersonName"
-                        android:text="" />
+                        android:hint="End Meter"
+                        android:inputType="numberSigned"
+                        android:text="@={``+expense.endMeter}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -121,31 +111,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="@drawable/round_corners"
-                    tools:ignore="MissingConstraints">
+                    android:background="@drawable/round_corners">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="   Total Distance"
-                        android:inputType="textPersonName"
-                        android:text="" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/employee_add_expense_fuel_cost"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/round_corners"
-                    tools:ignore="MissingConstraints">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:text="" />
+                        android:hint="Total Distance"
+                        android:inputType="numberSigned"
+                        android:text="@={``+expense.totalDistance}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -154,45 +127,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="@drawable/round_corners"
-                    tools:ignore="MissingConstraints">
+                    android:background="@drawable/round_corners">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="   Extra Expenses"
-                        android:inputType="textPersonName"
-                        android:text="" />
+                        android:hint="Extra Expenses"
+                        android:inputType="textAutoComplete"
+                        android:text="@={expense.extraExpense}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/employee_order_details_name"
+                    android:id="@+id/employee_add_expense_total_expenses"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="@drawable/round_corners"
-                    tools:ignore="MissingConstraints">
+                    android:background="@drawable/round_corners">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="   Total Expenses"
-                        android:inputType="textPersonName"
-                        android:text="" />
+                        android:hint="Total Expenses"
+                        android:inputType="textAutoComplete"
+                        android:text="@={expense.totalExpense}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/empolyee_add_e_o_d_btn"
-                    android:layout_width="200dp"
-                    android:layout_height="60dp"
+                    android:id="@+id/employee_add_expense_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
                     android:backgroundTint="#356828"
-                    android:text="Add Expenses"
-                    android:textAllCaps="false"
-                    android:textSize="20dp" />
+                    android:text="Add Expenses" />
             </LinearLayout>
         </ScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
