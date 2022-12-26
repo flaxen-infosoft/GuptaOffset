@@ -44,7 +44,7 @@ public class AdminAllEmployeesFragment extends Fragment {
         setupRecycler();
         setupSwipeRefresh();
 
-        viewModel.getAllEmployeeListLiveData().observe(getViewLifecycleOwner(), this::updateEmployeeList);
+        viewModel.getAllEmployees().observe(getViewLifecycleOwner(), this::updateEmployeeList);
 
         binding.adminAllEmployeeAddEmployeeFab.setOnClickListener(this::onCLickAddEmployee);
 
@@ -58,6 +58,7 @@ public class AdminAllEmployeesFragment extends Fragment {
     private void updateEmployeeList(List<Employee> employees) {
         EmployeeRecyclerAdapter adapter = new EmployeeRecyclerAdapter(employees, this::onClickEmployee);
         binding.adminAllEmployeeRecycler.setAdapter(adapter);
+        stopSwipeRefreshing();
     }
 
     private void stopSwipeRefreshing() {
@@ -80,6 +81,6 @@ public class AdminAllEmployeesFragment extends Fragment {
     }
 
     private void onRefresh() {
-        viewModel.fetchAllEmployees().observe(getViewLifecycleOwner(), f -> stopSwipeRefreshing());
+        viewModel.getAllEmployees();
     }
 }

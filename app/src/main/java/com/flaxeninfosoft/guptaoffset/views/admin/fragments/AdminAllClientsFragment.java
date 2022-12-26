@@ -44,7 +44,7 @@ public class AdminAllClientsFragment extends Fragment {
         setupRecycler();
         setUpSwipeRefresh();
 
-        viewModel.getAllClientListLiveData().observe(getViewLifecycleOwner(), this::updateClientList);
+        viewModel.getAllClients().observe(getViewLifecycleOwner(), this::updateClientList);
 
         return binding.getRoot();
     }
@@ -57,6 +57,7 @@ public class AdminAllClientsFragment extends Fragment {
             }
         });
         binding.adminAllClientsRecycler.setAdapter(adapter);
+        stopSwipeRefreshing();
     }
 
     private void setUpSwipeRefresh() {
@@ -71,7 +72,7 @@ public class AdminAllClientsFragment extends Fragment {
     }
 
     private void onRefresh() {
-        viewModel.fetchAllClients().observe(getViewLifecycleOwner(), f -> stopSwipeRefreshing());
+        viewModel.getAllClients();
     }
 
     private void stopSwipeRefreshing() {
