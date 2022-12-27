@@ -5,22 +5,54 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
+import com.flaxeninfosoft.guptaoffset.adapters.EodRecyclerAdapter;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAttendanceListBinding;
+import com.flaxeninfosoft.guptaoffset.models.Eod;
+import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+
+import java.util.List;
 
 
 public class EmployeeAttendanceListFragment extends Fragment {
+
+    private EmployeeViewModel viewModel;
+    private FragmentEmployeeAttendanceListBinding binding;
 
     public EmployeeAttendanceListFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeViewModel.class);
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_employee_attendance_list, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_attendance_list, container, false);
+
+        viewModel.getCurrentEmployeeAllEods().observe(getViewLifecycleOwner(), this::updateAttendanceList);
+
+        return binding.getRoot();
+    }
+
+    private void updateAttendanceList(List<Eod> list) {
+        EodRecyclerAdapter adapter = new EodRecyclerAdapter(list, new EodRecyclerAdapter.SingleEodCardOnClickListener() {
+            @Override
+            public void onClickCard(Eod eod) {
+                //TODO
+            }
+        });
+
+        binding.employeeAttendanceListRecycler.setAdapter(adapter);
     }
 }

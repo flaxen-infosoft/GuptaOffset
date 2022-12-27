@@ -29,14 +29,6 @@
             android:id="@+id/action_employeeHomeFragment_to_employeeChatRoomFragment"
             app:destination="@id/employeeChatRoomFragment" />
     </fragment>
-    <navigation android:id="@+id/navigation"
-        app:startDestination="@id/employeeProfileFragment">
-        <fragment
-            android:id="@+id/employeeProfileFragment"
-            android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeProfileFragment"
-            android:label="fragment_employee_profile"
-            tools:layout="@layout/fragment_employee_profile" />
-    </navigation>
     <fragment
         android:id="@+id/employeeTrackingFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeTrackingFragment"
