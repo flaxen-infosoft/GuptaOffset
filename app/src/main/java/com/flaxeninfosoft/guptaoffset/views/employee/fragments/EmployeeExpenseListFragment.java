@@ -5,23 +5,57 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.flaxeninfosoft.guptaoffset.R;
+import com.flaxeninfosoft.guptaoffset.adapters.ExpenseRecyclerAdapter;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeExpenseListBinding;
+import com.flaxeninfosoft.guptaoffset.models.Expense;
+import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+
+import java.util.List;
 
 
 public class EmployeeExpenseListFragment extends Fragment {
 
+    private FragmentEmployeeExpenseListBinding binding;
+    private EmployeeViewModel viewModel;
 
     public EmployeeExpenseListFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeViewModel.class);
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_employee_expense_list, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_expense_list, container, false);
+        binding.employeeExpenseListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        viewModel.getCurrentEmployeeExpenses().observe(getViewLifecycleOwner(), this::updateExpenses);
+
+        return binding.getRoot();
+    }
+
+    private void updateExpenses(List<Expense> expenses) {
+        ExpenseRecyclerAdapter adapter = new ExpenseRecyclerAdapter(expenses, new ExpenseRecyclerAdapter.SingleExpenseCardClickListener() {
+            @Override
+            public void onClickCard(Expense expense) {
+                //TODO
+            }
+        });
+
+        binding.employeeExpenseListRecycler.setAdapter(adapter);
     }
 }
