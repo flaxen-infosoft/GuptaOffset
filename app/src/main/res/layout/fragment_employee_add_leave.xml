@@ -12,18 +12,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/splash_back"
         android:orientation="vertical"
-        tools:context=".views.employee.fragments.EmployeeApplyLeaveFragment">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="Apply for leave" />
+        android:background="@drawable/splash_back"
+        tools:context=".views.employee.fragments.EmployeeAddLeaveFragment">
 
         <LinearLayout
             android:id="@+id/employee_apply_leave_linear1"

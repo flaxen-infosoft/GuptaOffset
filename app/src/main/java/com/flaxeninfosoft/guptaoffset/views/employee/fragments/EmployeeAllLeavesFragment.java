@@ -13,18 +13,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.LeaveRecyclerAdapter;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeLeaveRequestsBinding;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAllLeavesBinding;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.util.List;
 
-public class EmployeeLeaveRequestsFragment extends Fragment {
+public class EmployeeAllLeavesFragment extends Fragment {
 
-    private FragmentEmployeeLeaveRequestsBinding binding;
+    private FragmentEmployeeAllLeavesBinding binding;
     private EmployeeViewModel viewModel;
 
-    public EmployeeLeaveRequestsFragment() {
+    public EmployeeAllLeavesFragment() {
         // Required empty public constructor
     }
 
@@ -37,7 +37,7 @@ public class EmployeeLeaveRequestsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_leave_requests, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_all_leaves, container, false);
         binding.employeeLeaveRequestsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         viewModel.getCurrentEmployeeLeaves().observe(getViewLifecycleOwner(), this::updateLeaves);

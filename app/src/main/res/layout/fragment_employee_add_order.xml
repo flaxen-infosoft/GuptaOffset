@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".views.employee.fragments.EmployeeAddOrderFragment">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,129 +20,108 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp"
-            android:background="@drawable/splash_back"
-            tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/employee_add_client_text"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="start"
-            android:paddingEnd="20dp"
-            android:drawableEnd="@drawable/ic_baseline_add_shopping_cart_24"
-            android:text="Add New Client"
-            android:paddingTop="10dp"
-            android:paddingLeft="10dp"
-            android:background="#A4FFFFFF"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="20dp"/>
-
-            <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:scaleType="centerCrop"
-            android:shape="oval"
-            android:src="@drawable/user_logo1" />
-
-        <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/employee_add_client_name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_corners"
-        android:layout_margin="8dp"
-        tools:ignore="MissingConstraints">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="   Enter Name"
-            android:drawableLeft="@drawable/user_logo"
-            android:inputType="textPersonName"
-            android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/employee_add_client_organisation_name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:background="@drawable/round_corners"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            tools:ignore="MissingConstraints">
-
-            <com.google.android.material.textfield.TextInputEditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="   Email"
-                android:drawableLeft="@drawable/ic_baseline_email_24"
-                android:inputType="textPersonName"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/employee_add_client_address"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_corners"
-            android:layout_margin="8dp"
-            tools:ignore="MissingConstraints">
+                android:background="@drawable/splash_back"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="   Address"
-                android:drawableLeft="@drawable/address_24"
-                android:inputType="textPersonName"
-                android:text="" />
-            </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/employee_add_client_contact"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_corners"
-            android:layout_margin="8dp"
-            tools:ignore="MissingConstraints">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:scaleType="centerCrop"
+                    android:shape="oval"
+                    android:src="@drawable/user_logo1" />
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/employee_add_client_name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/round_corners">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="   Contact"
-                android:drawableLeft="@drawable/contact_24"
-                android:inputType="textPersonName"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/user_logo"
+                        android:hint="Enter Name"
+                        android:inputType="textPersonName"
+                        android:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/add_cart" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/employee_add_client_organisation_name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/round_corners">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/empolyee_add_e_o_d_btn"
-                android:layout_width="200dp"
-                android:layout_height="60dp"
-                android:textAllCaps="false"
-                android:text="Add Order"
-                android:textSize="20sp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="#356828"/>
-        </LinearLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_baseline_email_24"
+                        android:hint="Email"
+                        android:inputType="textPersonName"
+                        android:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/employee_add_client_address"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/round_corners">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/address_24"
+                        android:hint="Address"
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/employee_add_client_contact"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/round_corners">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/contact_24"
+                        android:hint="Contact"
+                        android:inputType="textPersonName"
+                        android:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/add_cart" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/employee_add_e_o_d_btn"
+                    android:layout_width="200dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="#356828"
+                    android:text="Add Order"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
+            </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

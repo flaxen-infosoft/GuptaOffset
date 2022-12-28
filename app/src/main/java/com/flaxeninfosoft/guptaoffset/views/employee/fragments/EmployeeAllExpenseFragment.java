@@ -14,19 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.ExpenseRecyclerAdapter;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeExpenseListBinding;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAllExpensesBinding;
 import com.flaxeninfosoft.guptaoffset.models.Expense;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.util.List;
 
 
-public class EmployeeExpenseListFragment extends Fragment {
+public class EmployeeAllExpenseFragment extends Fragment {
 
-    private FragmentEmployeeExpenseListBinding binding;
+    private FragmentEmployeeAllExpensesBinding binding;
     private EmployeeViewModel viewModel;
 
-    public EmployeeExpenseListFragment() {
+    public EmployeeAllExpenseFragment() {
         // Required empty public constructor
     }
 
@@ -40,7 +40,7 @@ public class EmployeeExpenseListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_expense_list, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_all_expenses, container, false);
         binding.employeeExpenseListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         viewModel.getCurrentEmployeeExpenses().observe(getViewLifecycleOwner(), this::updateExpenses);

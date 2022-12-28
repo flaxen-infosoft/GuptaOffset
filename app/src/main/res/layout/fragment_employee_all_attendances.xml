@@ -7,13 +7,13 @@
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.employee.fragments.EmployeeLeaveRequestsFragment">
+        android:orientation="vertical"
+        tools:context=".views.employee.fragments.EmployeeAllAttendanceFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/employee_leave_requests_recycler"
+            android:id="@+id/employee_attendance_list_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp"/>

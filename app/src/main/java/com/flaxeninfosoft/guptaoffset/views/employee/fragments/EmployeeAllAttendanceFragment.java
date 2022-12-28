@@ -13,19 +13,19 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.EodRecyclerAdapter;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAttendanceListBinding;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAllAttendancesBinding;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.util.List;
 
 
-public class EmployeeAttendanceListFragment extends Fragment {
+public class EmployeeAllAttendanceFragment extends Fragment {
 
     private EmployeeViewModel viewModel;
-    private FragmentEmployeeAttendanceListBinding binding;
+    private FragmentEmployeeAllAttendancesBinding binding;
 
-    public EmployeeAttendanceListFragment() {
+    public EmployeeAllAttendanceFragment() {
         // Required empty public constructor
     }
 
@@ -38,7 +38,7 @@ public class EmployeeAttendanceListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_attendance_list, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_all_attendances, container, false);
 
         viewModel.getCurrentEmployeeAllEods().observe(getViewLifecycleOwner(), this::updateAttendanceList);
 

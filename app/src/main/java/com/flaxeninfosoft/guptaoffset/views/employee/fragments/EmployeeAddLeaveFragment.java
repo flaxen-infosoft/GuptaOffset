@@ -15,21 +15,21 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeApplyLeaveBinding;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddLeaveBinding;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.sql.Date;
 import java.util.Calendar;
 
-public class EmployeeApplyLeaveFragment extends Fragment {
+public class EmployeeAddLeaveFragment extends Fragment {
 
-    private FragmentEmployeeApplyLeaveBinding binding;
+    private FragmentEmployeeAddLeaveBinding binding;
     private EmployeeViewModel viewModel;
 
     private ProgressDialog progressDialog;
 
-    public EmployeeApplyLeaveFragment() {
+    public EmployeeAddLeaveFragment() {
         // Required empty public constructor
     }
 
@@ -42,7 +42,7 @@ public class EmployeeApplyLeaveFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_apply_leave, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_add_leave, container, false);
         binding.setLeave(new Leave());
 
         progressDialog = new ProgressDialog(getContext());

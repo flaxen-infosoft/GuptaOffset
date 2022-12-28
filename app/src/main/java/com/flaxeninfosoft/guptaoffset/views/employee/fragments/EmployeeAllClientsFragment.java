@@ -68,7 +68,6 @@ public class EmployeeAllClientsFragment extends Fragment {
     private void onClickClient(Client client){
         Bundle bundle = new Bundle();
         bundle.putLong(getString(R.string.key_client_id), client.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeAllClientsFragment_to_employeeClientProfileFragment2, bundle);
 
     }
 

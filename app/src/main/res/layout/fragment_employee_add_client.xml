@@ -16,12 +16,6 @@
         android:orientation="vertical"
         tools:context=".views.employee.fragments.EmployeeAddClientFragment">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:title="Add New Client" />
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
