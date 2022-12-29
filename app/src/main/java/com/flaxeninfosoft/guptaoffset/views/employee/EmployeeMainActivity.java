@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.employee;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,8 +46,9 @@ public class EmployeeMainActivity extends AppCompatActivity {
     }
 
     private void showToastMessage(String s) {
+        Log.d("CRM-LOG", s);
         if (s != null && !s.isEmpty()) {
-            Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
 }

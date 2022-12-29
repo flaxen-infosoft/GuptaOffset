@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.viewModels;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -56,11 +57,13 @@ public class EmployeeViewModel extends BaseViewModel {
             @Override
             public void onSuccess(List<Client> response) {
                 currentEmployeeClients.postValue(response);
+                Log.d("CRM-LOG", "onSuccess: "+response);
             }
 
             @Override
             public void onFailure(String error) {
                 currentEmployeeClients.postValue(null);
+                Log.d("CRM-LOG", "onFailed: "+error);
                 getToastMessageLiveData().postValue(error);
             }
         });

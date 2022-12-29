@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.flaxeninfosoft.guptaoffset.R;
@@ -37,16 +37,12 @@ public class EmployeeAllClientsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_all_clients, container, false);
+        binding.employeeAllClientsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        setupRecycler();
-        setUpSwipeRefresh();
-
-//        viewModel.getAllClientListLiveData().observe(getViewLifecycleOwner(), this::updateClientList);
+        viewModel.getCurrentEmployeeClients().observe(getViewLifecycleOwner(), this::updateClientList);
 
         return binding.getRoot();
     }
@@ -61,24 +57,9 @@ public class EmployeeAllClientsFragment extends Fragment {
         binding.employeeAllClientsRecycler.setAdapter(adapter);
     }
 
-    private void setUpSwipeRefresh() {
-        binding.employeeAllClientsSwipeRefresh.setOnRefreshListener(this::onRefresh);
-    }
-
-    private void onClickClient(Client client){
+    private void onClickClient(Client client) {
         Bundle bundle = new Bundle();
         bundle.putLong(getString(R.string.key_client_id), client.getId());
 
-    }
-
-    private void onRefresh() {
-//        viewModel.fetchEmployeeClients().observe(getViewLifecycleOwner(), f -> stopSwipeRefreshing());
-    }
-
-    private void stopSwipeRefreshing() {
-        binding.employeeAllClientsSwipeRefresh.setRefreshing(false);
-    }
-    private void setupRecycler() {
-        binding.employeeAllClientsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

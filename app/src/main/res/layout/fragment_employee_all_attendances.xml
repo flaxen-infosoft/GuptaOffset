@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/splash_back"
         android:orientation="vertical"
         tools:context=".views.employee.fragments.EmployeeAllAttendanceFragment">
 
@@ -16,7 +17,7 @@
             android:id="@+id/employee_attendance_list_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp"/>
+            android:padding="8dp" />
 
     </LinearLayout>
 </layout>
