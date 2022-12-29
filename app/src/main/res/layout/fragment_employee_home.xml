@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             app:layout_constraintBottom_toTopOf="@id/employee_home_bottom_bar"
@@ -46,85 +46,85 @@
 
                 <ImageView
                     android:id="@+id/employee_home_card_add_expense"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/add_expense_logo" />
 
                 <ImageView
                     android:id="@+id/employee_home_card_add_leave"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/add_level" />
 
                 <ImageView
                     android:id="@+id/employee_home_card_add_school"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/add_school" />
 
                 <ImageView
                     android:id="@+id/employee_home_card_add_order"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/add_order" />
 
                 <ImageView
                     android:id="@+id/employee_home_card_add_visit"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/img" />
 
                 <ImageView
                     android:id="@+id/employee_home_card_map"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/img_1" />
 
                 <ImageView
                     android:id="@+id/employee_home_card_add_eod"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/img_2" />
 
                 <ImageView
                     android:id="@+id/employee_home_card_add_client"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/img_3" />
 
                 <ImageView
                     android:id="@+id/employee_home_card_leaves"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/leave_request" />
 
                 <ImageView
                     android:id="@+id/employee_home_card_expenses"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/add_expense_logo" />
 
                 <ImageView
                     android:id="@+id/employee_home_card_attendances"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/img_5" />
 
                 <ImageView
                     android:id="@+id/employee_home_card_clients"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/client_list" />
             </GridLayout>
