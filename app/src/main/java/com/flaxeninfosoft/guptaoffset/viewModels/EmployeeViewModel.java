@@ -1,8 +1,13 @@
 package com.flaxeninfosoft.guptaoffset.viewModels;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.Application;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
+import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -31,6 +36,8 @@ public class EmployeeViewModel extends BaseViewModel {
     private final MutableLiveData<Eod> currentEmployeeTodaysEod;
     private final MutableLiveData<List<Leave>> currentEmployeeLeaves;
     private final MutableLiveData<String> toastMessage;
+    private final MutableLiveData<Uri> imageUri;
+
 
     public EmployeeViewModel(@NonNull Application application) {
         super(application);
@@ -44,7 +51,7 @@ public class EmployeeViewModel extends BaseViewModel {
         currentEmployeeOrders = new MutableLiveData<>();
         currentEmployeeTodaysEod = new MutableLiveData<>();
         currentEmployeeLeaves = new MutableLiveData<>();
-
+        imageUri= new MutableLiveData<>();
     }
 
 //    ----------------------------------------------------------------------------------------------
@@ -230,4 +237,17 @@ public class EmployeeViewModel extends BaseViewModel {
     public MutableLiveData<String> getToastMessageLiveData() {
         return toastMessage;
     }
+
+//    ----------------------------------------------------------------------------------------------
+
+    public void onImagePickerResult(int resultCode, ActivityResult result) {
+        if (result.getResultCode()==RESULT_OK) {
+            imageUri.setValue(result.getData().getData());
+        }
+    }
+
+    public LiveData<Uri> getImageUri() {
+        return imageUri;
+    }
+
 }
