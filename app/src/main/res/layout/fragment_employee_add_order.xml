@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+         <variable
+             name="order"
+             type="com.flaxeninfosoft.guptaoffset.models.Order" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +39,7 @@
                     android:src="@drawable/user_logo1" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/employee_add_client_name"
+                    android:id="@+id/employee_add_order_name"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -48,13 +50,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/user_logo"
-                        android:hint="Enter Name"
+                        android:hint="  Enter Name"
                         android:inputType="textPersonName"
-                        android:text="" />
+                        android:text="@={order.name}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/employee_add_client_organisation_name"
+                    android:id="@+id/employee_add_order_email"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -65,13 +67,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_baseline_email_24"
-                        android:hint="Email"
+                        android:hint="  Email"
                         android:inputType="textPersonName"
-                        android:text="" />
+                        android:text="@={order.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/employee_add_client_address"
+                    android:id="@+id/employee_add_order_address"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -82,12 +84,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/address_24"
-                        android:hint="Address"
+                        android:hint="  Address"
+                        android:text="@={order.address}"
                         android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/employee_add_client_contact"
+                    android:id="@+id/employee_add_order_contact"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -98,18 +101,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/contact_24"
-                        android:hint="Contact"
-                        android:inputType="textPersonName"
-                        android:text="" />
+                        android:hint="  Contact"
+                        android:inputType="phone"
+                        android:text="@={``+order.contact}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
-                    android:layout_width="250dp"
+                    android:id="@+id/fragment_employee_add_order_image"
+                    android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginTop="15dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/add_cart" />
+                    android:scaleType="center"
+                    android:src="@drawable/add_cart"
+                    />
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/employee_add_e_o_d_btn"
