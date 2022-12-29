@@ -47,7 +47,6 @@ public class EmployeeAddClientFragment extends Fragment {
         progressDialog.setMessage("Please wait.\n Adding client");
         progressDialog.setCancelable(false);
 
-
         binding.employeeAddClientRegisterBtn.setOnClickListener(this::registerClient);
 
         return binding.getRoot();
@@ -71,22 +70,22 @@ public class EmployeeAddClientFragment extends Fragment {
 
     private boolean isValidateForm() {
 
-        if (binding.getClient().getName().isEmpty()) {
+        if (binding.getClient().getName() == null || binding.getClient().getName().isEmpty()) {
             binding.employeeAddClientName.setError("Name is required");
             binding.employeeAddClientName.requestFocus();
             return false;
         }
-        if (binding.getClient().getOrgName().isEmpty()) {
+        if (binding.getClient().getOrgName() == null  || binding.getClient().getOrgName().isEmpty()) {
             binding.employeeAddClientOrganisationName.setError("Organization name is required");
             binding.employeeAddClientOrganisationName.requestFocus();
             return false;
         }
-        if (binding.getClient().getAddress().isEmpty()) {
+        if (binding.getClient().getAddress() == null || binding.getClient().getAddress().isEmpty()) {
             binding.employeeAddClientAddress.setError("Address is required");
             binding.employeeAddClientAddress.requestFocus();
             return false;
         }
-        if (binding.getClient().getContactNo().isEmpty()) {
+        if (binding.getClient().getContactNo() == null || binding.getClient().getContactNo().isEmpty()) {
             binding.employeeAddClientContact.setError("Contact number is required");
             binding.employeeAddClientContact.requestFocus();
             return false;

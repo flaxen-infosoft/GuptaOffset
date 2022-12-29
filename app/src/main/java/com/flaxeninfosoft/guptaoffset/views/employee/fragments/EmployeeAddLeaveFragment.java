@@ -65,9 +65,10 @@ public class EmployeeAddLeaveFragment extends Fragment {
             calendar.set(Calendar.MONTH, m);
             calendar.set(Calendar.DAY_OF_MONTH, d);
 
-            Date date = (Date) calendar.getTime();
+            Date date = new Date(calendar.getTime().getTime());
 
             binding.getLeave().setFromDate(date);
+            binding.employeeApplyLeaveDateFromTv.setText(date.toString());
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
@@ -78,9 +79,10 @@ public class EmployeeAddLeaveFragment extends Fragment {
             calendar.set(Calendar.MONTH, m);
             calendar.set(Calendar.DAY_OF_MONTH, d);
 
-            Date date = (Date) calendar.getTime();
+            Date date = new Date(calendar.getTime().getTime());
 
             binding.getLeave().setToDate(date);
+            binding.employeeApplyLeaveDateToTv.setText(date.toString());
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 

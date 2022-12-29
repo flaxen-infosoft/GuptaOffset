@@ -33,6 +33,7 @@
                 android:layout_weight="5"
                 android:background="@color/white"
                 android:gravity="center"
+                android:hint="Leave from"
                 android:text="@{leave.fromDate}"
                 android:textStyle="bold" />
 
@@ -44,6 +45,7 @@
                 android:layout_weight="5"
                 android:background="@color/white"
                 android:gravity="center"
+                android:hint="Leave to"
                 android:text="@{leave.toDate}"
                 android:textStyle="bold" />
         </LinearLayout>

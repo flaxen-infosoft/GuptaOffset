@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddExpenseBinding;
+import com.flaxeninfosoft.guptaoffset.models.Expense;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 public class EmployeeAddExpenseFragment extends Fragment {
@@ -37,6 +37,7 @@ public class EmployeeAddExpenseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_add_expense, container, false);
+        binding.setExpense(new Expense());
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Adding Expense..");
@@ -49,18 +50,24 @@ public class EmployeeAddExpenseFragment extends Fragment {
     }
 
     private void onClickSubmit(View view) {
-        binding.employeeAddExpenseBtn.setEnabled(false);
-        progressDialog.show();
-        viewModel.addExpense(binding.getExpense()).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean isSuccessful) {
-                binding.employeeAddExpenseBtn.setEnabled(true);
-                progressDialog.dismiss();
-                if (isSuccessful) {
-                    navigateUp();
-                }
-            }
-        });
+        if (isValidInput()) {
+            binding.employeeAddExpenseBtn.setEnabled(false);
+            progressDialog.show();
+            viewModel.addExpense(binding.getExpense()).observe(getViewLifecycleOwner(), this::onResponse);
+        }
+    }
+
+    private void onResponse(Boolean isSuccessful) {
+        binding.employeeAddExpenseBtn.setEnabled(true);
+        progressDialog.dismiss();
+        if (isSuccessful) {
+            navigateUp();
+        }
+    }
+
+    private boolean isValidInput() {
+        //TODO validate input
+        return true;
     }
 
     private void navigateUp() {
