@@ -82,7 +82,7 @@ public class EmployeeHomeFragment extends Fragment {
     }
 
     private void navigateToMap(View view) {
-//        Navigation.findNavController(binding.getRoot());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeMapFragment);
     }
 
     private void navigateToAddOrder(View view) {

@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_employeeHomeFragment_to_employeeAllClientsFragment"
             app:destination="@id/employeeAllClientsFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_employeeMapFragment"
+            app:destination="@id/employeeMapFragment" />
     </fragment>
 
     <fragment
@@ -84,5 +87,10 @@
         android:id="@+id/employeeAllClientsFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllClientsFragment"
         android:label="All clients" />
+    <fragment
+        android:id="@+id/employeeMapFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeMapFragment"
+        android:label="fragment_employee_map"
+        tools:layout="@layout/fragment_employee_map" />
 
 </navigation>
