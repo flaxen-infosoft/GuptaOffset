@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.models;
 
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
@@ -109,10 +110,15 @@ public class Leave {
     }
 
     @BindingAdapter("android:text")
-    public static void setText(TextView textView, Date date){
-        if (date != null && textView != null){
+    public static String setText(TextView textView, Date date){
+        if (date != null){
+            Log.d("CRM-LOG", date.toString());
             String dateText = date.toString();
             textView.setText(dateText);
+            return dateText;
+        }else{
+            Log.d("CRM-LOG", "Date is null");
+            return "";
         }
     }
 }
