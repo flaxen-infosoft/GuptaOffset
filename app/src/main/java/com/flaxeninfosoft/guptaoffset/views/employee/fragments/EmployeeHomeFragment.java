@@ -19,7 +19,6 @@ public class EmployeeHomeFragment extends Fragment {
 
     private EmployeeViewModel viewModel;
     private FragmentEmployeeHomeBinding binding;
-    private Boolean isVisible;
 
     public EmployeeHomeFragment() {
         // Required empty public constructor
@@ -28,7 +27,6 @@ public class EmployeeHomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        isVisible = false;
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeViewModel.class);
     }
 
@@ -49,12 +47,11 @@ public class EmployeeHomeFragment extends Fragment {
         binding.employeeHomeCardClients.setOnClickListener(this::navigateToClients);
 
         binding.employeeHomeViewFab.setOnClickListener(view -> {
-            if (isVisible) {
+            if (binding.employeeHomeCard.getVisibility() == View.VISIBLE) {
                 binding.employeeHomeCard.setVisibility(View.GONE);
             } else {
                 binding.employeeHomeCard.setVisibility(View.VISIBLE);
             }
-            isVisible = !isVisible;
         });
 
         return binding.getRoot();
