@@ -11,7 +11,9 @@ public class ApiEndpoints {
     public static final String GET_EMPLOYEE_BY_ID = "employee/getEmployeeById.php";
     public static final String GET_ALL_EMPLOYEES = "employee/getAllEmployees.php";
     public static final String GET_ALL_SUPER_EMPLOYEES = "employee/getAllSuperEmployees.php";
+    public static final String GET_EMPLOYEES_OF_SUPER_EMPLOYEE = "employee/getEmployeesOfSuperEmployee.php";
     public static final String ADD_EMPLOYEE = "employee/addEmployee.php";
+    public static final String ADD_SUPER_EMPLOYEE = "employee/addSuperEmployee.php";
     public static final String UPDATE_EMPLOYEE_BY_ID = "employee/updateEmployeesById.php";
     public static final String SUSPEND_EMPLOYEE_BY_ID = "employee/suspendEmployeeById.php";
     public static final String ACTIVATE_EMPLOYEE_BY_ID = "employee/activateEmployeeById.php";
@@ -41,7 +43,6 @@ public class ApiEndpoints {
     public static final String GET_EMPLOYEE_CURRENT_LOCATION = "location/getEmployeeCurrentLocation.php";
     public static final String GET_EMPLOYEE_TODAYS_LOCATION_HISTORY = "location/getEmployeeTodaysLocationHistory.php";
     public static final String ADD_EMPLOYEE_LOCATION = "location/addEmployeeLocation.php";
-
 
 //  ----------------------------------------------------------------------------------------------
 

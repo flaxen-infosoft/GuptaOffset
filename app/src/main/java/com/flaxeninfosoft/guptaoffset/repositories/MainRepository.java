@@ -96,10 +96,24 @@ public class MainRepository {
         processEmployeeListCall(allSuperEmployeesCall, listener);
     }
 
+    public void getEmployeesOfSuperEmployee(Long empId, ApiResponseListener<List<Employee>, String> listener) {
+        Call<List<Employee>> employeesOfSuperEmployeeCall = employeeApiInterface.getEmployeesOfSuperEmployee(empId);
+
+        processEmployeeListCall(employeesOfSuperEmployeeCall, listener);
+    }
+
     public void addEmployee(Employee employee, ApiResponseListener<Employee, String> listener) {
+        employee.setDesignation(Constants.DESIGNATION_EMPLOYEE);
         Call<Employee> addEmployeeCall = employeeApiInterface.addEmployee(employee);
 
         processEmployeeCall(addEmployeeCall, listener);
+    }
+
+    public void addSuperEmployee(Employee employee, ApiResponseListener<Employee, String> listener) {
+        employee.setDesignation(Constants.DESIGNATION_SUPER_EMPLOYEE);
+        Call<Employee> addSuperEmployeeCall = employeeApiInterface.addSuperEmployee(employee);
+
+        processEmployeeCall(addSuperEmployeeCall, listener);
     }
 
     public void updateEmployee(Employee employee, ApiResponseListener<Employee, String> listener) {
@@ -501,7 +515,7 @@ public class MainRepository {
         processClientCall(updateClientByIdCall, listener);
     }
 
-    public void addClient(Client client, ApiResponseListener<Client, String> listener){
+    public void addClient(Client client, ApiResponseListener<Client, String> listener) {
         Call<Client> call = clientApiInterface.addClient(client);
 
         processClientCall(call, listener);
@@ -553,31 +567,31 @@ public class MainRepository {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public void getOrderById(Long orderId, ApiResponseListener<Order, String> listener){
+    public void getOrderById(Long orderId, ApiResponseListener<Order, String> listener) {
         Call<Order> call = orderApiInterface.getOrderById(orderId);
 
         processOrderCall(call, listener);
     }
 
-    public void getEmployeeOrders(Long empId, ApiResponseListener<List<Order>, String> listener){
+    public void getEmployeeOrders(Long empId, ApiResponseListener<List<Order>, String> listener) {
         Call<List<Order>> call = orderApiInterface.getEmployeeOrders(empId);
 
         processOrderListCall(call, listener);
     }
 
-    public void getAllOrders(ApiResponseListener<List<Order>, String> listener){
+    public void getAllOrders(ApiResponseListener<List<Order>, String> listener) {
         Call<List<Order>> call = orderApiInterface.getAllOrders();
 
         processOrderListCall(call, listener);
     }
 
-    public void addOrder(Order order, ApiResponseListener<Order, String> listener){
+    public void addOrder(Order order, ApiResponseListener<Order, String> listener) {
         Call<Order> call = orderApiInterface.addOrder(order);
 
         processOrderCall(call, listener);
     }
 
-    private void processOrderCall(Call<Order> call, ApiResponseListener<Order, String> listener){
+    private void processOrderCall(Call<Order> call, ApiResponseListener<Order, String> listener) {
         call.enqueue(new Callback<Order>() {
             @Override
             public void onResponse(@NonNull Call<Order> call, @NonNull Response<Order> response) {
@@ -599,7 +613,7 @@ public class MainRepository {
         });
     }
 
-    private void processOrderListCall(Call<List<Order>> call, ApiResponseListener<List<Order>, String> listener){
+    private void processOrderListCall(Call<List<Order>> call, ApiResponseListener<List<Order>, String> listener) {
         call.enqueue(new Callback<List<Order>>() {
             @Override
             public void onResponse(@NonNull Call<List<Order>> call, @NonNull Response<List<Order>> response) {

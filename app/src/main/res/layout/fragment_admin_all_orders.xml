@@ -10,10 +10,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.admin.fragments.AdminAllExpensesFragment">
+        android:background="@drawable/splash_back"
+        tools:context=".views.admin.fragments.AdminAllOrdersFragment">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/admin_all_expenses_swipe_refresh"
+            android:id="@+id/admin_all_orders_swipe_refresh"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,11 +24,12 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/admin_all_expenses_recycler"
+                android:id="@+id/admin_all_orders_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="8dp" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

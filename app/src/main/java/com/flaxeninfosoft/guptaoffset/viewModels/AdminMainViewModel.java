@@ -176,9 +176,9 @@ public class AdminMainViewModel extends BaseViewModel {
         return flag;
     }
 
-    public LiveData<Employee> addSuperEmployee(Employee employee) {
+    public LiveData<Boolean> addSuperEmployee(Employee employee) {
 
-        MutableLiveData<Employee> flag = new MutableLiveData<>();
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
         employee.setDesignation(Constants.DESIGNATION_SUPER_EMPLOYEE);
         employee.setAssignedTo(0L);
@@ -187,12 +187,12 @@ public class AdminMainViewModel extends BaseViewModel {
         repo.addEmployee(employee, new ApiResponseListener<Employee, String>() {
             @Override
             public void onSuccess(Employee response) {
-                flag.postValue(employee);
+                flag.postValue(true);
             }
 
             @Override
             public void onFailure(String error) {
-                flag.postValue(null);
+                flag.postValue(false);
                 toastMessage.postValue(error);
             }
         });
