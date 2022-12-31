@@ -5,14 +5,14 @@
 
     <data>
         <variable
-            name="client"
-            type="com.flaxeninfosoft.guptaoffset.models.Client" />
+            name="order"
+            type="com.flaxeninfosoft.guptaoffset.models.Order" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.employee.fragments.EmployeeClientProfileFragment">
+        tools:context=".views.employee.fragments.EmployeeOrderDetailsFragment">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -47,16 +47,16 @@
                     android:textColor="#000000"
                     android:textStyle="bold" />
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/employee_client_profile_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:drawableStart="@drawable/user_logo"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/round_corners"
-                    android:hint="  Enter Name"
-                    android:paddingLeft="15dp"
-                    android:inputType="textPersonName"
-                    android:text="@={client.name}" />
+                        android:id="@+id/employee_add_order_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:drawableStart="@drawable/user_logo"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/round_corners"
+                        android:hint="  Enter Name"
+                        android:paddingLeft="15dp"
+                        android:inputType="textPersonName"
+                        android:text="@={order.name}" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -66,16 +66,16 @@
                     android:textColor="#000000"
                     android:textStyle="bold" />
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/employee_client_profile_organization_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:drawableStart="@drawable/ic_baseline_email_24"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/round_corners"
-                    android:hint="  Organization Name"
-                    android:paddingLeft="15dp"
-                    android:inputType="textPersonName"
-                    android:text="@={client.orgName}" />
+                        android:id="@+id/employee_add_order_organization_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:drawableStart="@drawable/ic_baseline_email_24"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/round_corners"
+                        android:hint="  Organization Name"
+                        android:paddingLeft="15dp"
+                        android:inputType="textPersonName"
+                        android:text="@={order.organizationName}" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
                     android:textColor="#000000"
                     android:textStyle="bold" />
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/employee_client_profile_address"
+                    android:id="@+id/employee_add_order_address"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:drawableStart="@drawable/address_24"
@@ -94,17 +94,17 @@
                     android:hint="  Address"
                     android:paddingLeft="15dp"
                     android:inputType="textPersonName"
-                    android:text="@={client.address}" />
+                    android:text="@={order.address}" />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Contact"
-                    android:layout_marginLeft="8dp"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:textStyle="bold" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact"
+                android:layout_marginLeft="8dp"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:textStyle="bold" />
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/employee_client_profile_contact"
+                    android:id="@+id/employee_add_order_contact"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:drawableStart="@drawable/contact_24"
@@ -113,14 +113,20 @@
                     android:hint="  Contact"
                     android:paddingLeft="15dp"
                     android:inputType="textPersonName"
-                    android:text="@={``+client.contactNo}" />
+                    android:text="@={``+order.contact}" />
 
-                <fragment
-                    android:id="@+id/employee_add_client_map"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                <ImageView
+                    android:id="@+id/fragment_employee_add_order_image"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_margin="8dp"/>
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:scaleType="center"
+                    android:src="@drawable/add_image"
+                    />
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/employee_add_e_o_d_btn"
@@ -132,28 +138,7 @@
                     android:text="Delete Order"
                     android:textAllCaps="false"
                     android:textSize="20sp" />
-
             </LinearLayout>
-            <LinearLayout
-                android:id="@+id/employee_client_profile_ll"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:gravity="end"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/employee_client_profile_fab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:src="@drawable/ic_baseline_add_24" />
-
-            </LinearLayout>
-
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

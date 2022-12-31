@@ -46,6 +46,10 @@ public class Order {
     @Expose
     private String slipImage;
 
+    @SerializedName(Constants.ORGANIZATION_NAME)
+    @Expose
+    private String organizationName;
+
     @SerializedName(Constants.DATE)
     @Expose
     private Long date;
@@ -96,6 +100,14 @@ public class Order {
 
     public void setSlipImage(String slipImage) {
         this.slipImage = slipImage;
+    }
+
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
     }
 
     public String getName() {

@@ -2,15 +2,27 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.os.Bundle;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.flaxeninfosoft.guptaoffset.R;
+import com.flaxeninfosoft.guptaoffset.adapters.OrderRecyclerAdapter;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddOrderBinding;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAllOrdersBinding;
+import com.flaxeninfosoft.guptaoffset.models.Order;
+import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+
+import java.util.List;
 
 public class EmployeeAllOrdersFragment extends Fragment {
+
+    private FragmentEmployeeAllOrdersBinding binding;
+    private EmployeeViewModel viewModel;
 
     public EmployeeAllOrdersFragment() {
         // Required empty public constructor
@@ -19,13 +31,26 @@ public class EmployeeAllOrdersFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        viewModel=new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_employee_all_orders, container, false);
+        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_employee_all_orders,container,false);
+
+        viewModel.getCurrentEmployeeOrders().observe(getViewLifecycleOwner(),this::updateOrdersList);
+
+        return  binding.getRoot();
+    }
+
+    private void updateOrdersList(List<Order> orders) {
+        OrderRecyclerAdapter adapter=new OrderRecyclerAdapter(orders, new OrderRecyclerAdapter.SingleOrderCardOnClickListener() {
+            @Override
+            public void onCLickCard(Order order) {
+                //TODO
+            }
+        });
+        binding.employeeOrderListRecycler.setAdapter(adapter);
     }
 }
