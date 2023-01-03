@@ -45,4 +45,75 @@ public class Eod {
     @Expose
     private String endMeterImage;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(Long empId) {
+        this.empId = empId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Time getTimeIn() {
+        return timeIn;
+    }
+
+    public void setTimeIn(Time timeIn) {
+        this.timeIn = timeIn;
+    }
+
+    public Time getTimeOut() {
+        return timeOut;
+    }
+
+    public void setTimeOut(Time timeOut) {
+        this.timeOut = timeOut;
+    }
+
+    public String getStartMeter() {
+        return startMeter;
+    }
+
+    public void setStartMeter(String startMeter) {
+        this.startMeter = startMeter;
+    }
+
+    public String getEndMeter() {
+        return endMeter;
+    }
+
+    public void setEndMeter(String endMeter) {
+        this.endMeter = endMeter;
+    }
+
+    public String getStartMeterImage() {
+        return startMeterImage;
+    }
+
+    public void setStartMeterImage(String startMeterImage) {
+        this.startMeterImage = startMeterImage;
+    }
+
+    public String getEndMeterImage() {
+        return endMeterImage;
+    }
+
+    public void setEndMeterImage(String endMeterImage) {
+        this.endMeterImage = endMeterImage;
+    }
 }
