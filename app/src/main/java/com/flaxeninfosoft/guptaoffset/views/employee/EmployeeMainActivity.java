@@ -1,13 +1,19 @@
 package com.flaxeninfosoft.guptaoffset.views.employee;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -15,6 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.ActivityEmployeeMainBinding;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.flaxeninfosoft.guptaoffset.views.SplashActivity;
 
 public class EmployeeMainActivity extends AppCompatActivity {
 
@@ -43,6 +50,33 @@ public class EmployeeMainActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(EmployeeViewModel.class);
         viewModel.getToastMessageLiveData().observe(this, this::showToastMessage);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_employee_home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.menu_employee_home_profile){
+            navController.navigate(R.id.employeeProfileFragment);
+            return true;
+        }
+        if (item.getItemId() == R.id.menu_employee_home_logout){
+
+            viewModel.logout();
+
+            Intent intent = new Intent(EmployeeMainActivity.this, SplashActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return false;
     }
 
     private void showToastMessage(String s) {

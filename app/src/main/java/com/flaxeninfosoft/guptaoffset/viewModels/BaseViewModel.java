@@ -114,7 +114,7 @@ public class BaseViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Expense> getExpenseById(Long expenseId){
+    public LiveData<Expense> getExpenseById(Long expenseId) {
         MutableLiveData<Expense> flag = new MutableLiveData<>();
 
         repo.getExpenseById(expenseId, new ApiResponseListener<Expense, String>() {
@@ -155,7 +155,7 @@ public class BaseViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Client> updateClientById(Client client){
+    public LiveData<Client> updateClientById(Client client) {
         MutableLiveData<Client> flag = new MutableLiveData<>();
 
         repo.updateClient(client, new ApiResponseListener<Client, String>() {
@@ -176,7 +176,7 @@ public class BaseViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Order> getOrderById(Long orderId){
+    public LiveData<Order> getOrderById(Long orderId) {
         MutableLiveData<Order> flag = new MutableLiveData<>();
 
         repo.getOrderById(orderId, new ApiResponseListener<Order, String>() {
@@ -248,4 +248,7 @@ public class BaseViewModel extends AndroidViewModel {
         return toastMessage;
     }
 
+    public void logout() {
+        sharedPrefs.clearCredentials();
+    }
 }

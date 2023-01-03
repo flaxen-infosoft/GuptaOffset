@@ -102,5 +102,9 @@
             android:id="@+id/action_employeeAllOrdersFragment_to_employeeOrderDetailsFragment"
             app:destination="@id/employeeOrderDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/employeeProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeProfileFragment"
+        android:label="EmployeeProfileFragment" />
 
 </navigation>
