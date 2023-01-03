@@ -1,13 +1,27 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.flaxeninfosoft.guptaoffset.R;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeOrderDetailsBinding;
+import com.flaxeninfosoft.guptaoffset.models.Order;
+import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 public class EmployeeOrderDetailsFragment extends Fragment {
+
+    private FragmentEmployeeOrderDetailsBinding binding;
+    private EmployeeViewModel viewModel;
+    private ProgressDialog progressDialog;
 
     public EmployeeOrderDetailsFragment() {
     }
@@ -15,12 +29,40 @@ public class EmployeeOrderDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        viewModel=new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_employee_order_details, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_order_details, container, false);
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Fetching data...");
+        progressDialog.setMessage("Loading");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        Long orderId = getArguments().getLong(getString(R.string.key_order_id));
+
+        viewModel.getOrderById(orderId).observe(getViewLifecycleOwner(),this::setOrderDetails);
+
+        binding.employeeOrderDetailsDeleteOrderBtn.setOnClickListener(this::deleteOrder);
+
+        return binding.getRoot();
+    }
+
+    private void deleteOrder(View view) {
+        //TODO
+    }
+
+    private void setOrderDetails(Order order) {
+        progressDialog.dismiss();
+        if(order==null){
+            Navigation.findNavController(binding.getRoot()).navigateUp();
+        }else{
+            binding.setOrder(order);
+        }
     }
 }

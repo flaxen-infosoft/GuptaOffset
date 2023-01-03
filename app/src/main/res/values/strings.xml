@@ -5,4 +5,5 @@
     <string name="key_client_id">KEY_CLIENT_ID</string>
     <string name="map_key">AIzaSyAJe6reTdRY5qFB-P6fZBzCs_exCV0Hsfc</string>
     <string name="key_leave_id">ORDER_ID</string>
+    <string name="key_order_id">ORDER_ID</string>
 </resources>
