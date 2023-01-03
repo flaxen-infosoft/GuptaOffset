@@ -77,7 +77,7 @@
     </fragment>
     <fragment
         android:id="@+id/employeeClientProfileFragment"
-        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeClientProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.EmployeeClientProfileFragment"
         android:label="fragment_employee_client_profile"
         tools:layout="@layout/fragment_employee_client_profile" />
     <fragment

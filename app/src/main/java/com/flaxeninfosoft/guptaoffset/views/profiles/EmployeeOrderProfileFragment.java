@@ -1,39 +1,39 @@
-package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
+package com.flaxeninfosoft.guptaoffset.views.profiles;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeOrderDetailsBinding;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
-public class EmployeeOrderDetailsFragment extends Fragment {
+public class EmployeeOrderProfileFragment extends Fragment {
 
     private FragmentEmployeeOrderDetailsBinding binding;
     private EmployeeViewModel viewModel;
     private ProgressDialog progressDialog;
 
-    public EmployeeOrderDetailsFragment() {
+    public EmployeeOrderProfileFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel=new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeViewModel.class);
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeViewModel.class);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_order_details, container, false);
@@ -46,7 +46,7 @@ public class EmployeeOrderDetailsFragment extends Fragment {
 
         Long orderId = getArguments().getLong(getString(R.string.key_order_id));
 
-        viewModel.getOrderById(orderId).observe(getViewLifecycleOwner(),this::setOrderDetails);
+        viewModel.getOrderById(orderId).observe(getViewLifecycleOwner(), this::setOrderDetails);
 
         binding.employeeOrderDetailsDeleteOrderBtn.setOnClickListener(this::deleteOrder);
 
@@ -59,9 +59,9 @@ public class EmployeeOrderDetailsFragment extends Fragment {
 
     private void setOrderDetails(Order order) {
         progressDialog.dismiss();
-        if(order==null){
+        if (order == null) {
             Navigation.findNavController(binding.getRoot()).navigateUp();
-        }else{
+        } else {
             binding.setOrder(order);
         }
     }

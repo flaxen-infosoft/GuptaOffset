@@ -1,27 +1,22 @@
-package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
+package com.flaxeninfosoft.guptaoffset.views.profiles;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAllLeavesBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeClientProfileBinding;
 import com.flaxeninfosoft.guptaoffset.models.Client;
-import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
-//TODO
 public class EmployeeClientProfileFragment extends Fragment {
 
     private FragmentEmployeeClientProfileBinding binding;
@@ -47,9 +42,9 @@ public class EmployeeClientProfileFragment extends Fragment {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
-        Long clientId=getArguments().getLong(getString(R.string.key_client_id));
+        Long clientId = getArguments().getLong(getString(R.string.key_client_id));
 
-        viewModel.getClientById(clientId).observe(getViewLifecycleOwner(),this::setClintDetails);
+        viewModel.getClientById(clientId).observe(getViewLifecycleOwner(), this::setClintDetails);
 
         return binding.getRoot();
     }
@@ -58,8 +53,7 @@ public class EmployeeClientProfileFragment extends Fragment {
         progressDialog.dismiss();
         if (client == null) {
             Navigation.findNavController(binding.getRoot()).navigateUp();
-        }
-        else{
+        } else {
             binding.setClient(client);
         }
     }

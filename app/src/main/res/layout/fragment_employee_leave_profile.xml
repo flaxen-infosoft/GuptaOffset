@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.employee.fragments.EmployeeLeaveProfile">
+        tools:context=".views.profiles.EmployeeLeaveProfileFragment">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/employee_leave_profile_delete_btn"

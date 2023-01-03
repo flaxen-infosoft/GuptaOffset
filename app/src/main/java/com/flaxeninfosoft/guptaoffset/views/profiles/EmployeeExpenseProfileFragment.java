@@ -1,4 +1,4 @@
-package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
+package com.flaxeninfosoft.guptaoffset.views.profiles;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;

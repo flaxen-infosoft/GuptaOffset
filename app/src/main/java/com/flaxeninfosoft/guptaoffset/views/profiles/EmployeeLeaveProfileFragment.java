@@ -1,4 +1,4 @@
-package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
+package com.flaxeninfosoft.guptaoffset.views.profiles;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -13,18 +13,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeEodProfileBinding;
-import com.flaxeninfosoft.guptaoffset.models.Eod;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeLeaveProfileBinding;
+import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
-public class EmployeeEodProfileFragment extends Fragment {
+public class EmployeeLeaveProfileFragment extends Fragment {
 
     private EmployeeViewModel viewModel;
-    private FragmentEmployeeEodProfileBinding binding;
+    private FragmentEmployeeLeaveProfileBinding binding;
     private ProgressDialog progressDialog;
 
-
-    public EmployeeEodProfileFragment() {
+    public EmployeeLeaveProfileFragment() {
         // Required empty public constructor
     }
 
@@ -37,26 +36,26 @@ public class EmployeeEodProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_eod_profile, container, false);
-
-        Long eodId = getArguments().getLong(getString(R.string.key_eod_id));
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_leave_profile, container, false);
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Loading...");
         progressDialog.setCancelable(false);
         progressDialog.show();
+        Long leaveId = getArguments().getLong(getString(R.string.key_leave_id));
 
-        viewModel.getEodById(eodId).observe(getViewLifecycleOwner(), this::setEod);
+        viewModel.getLeaveById(leaveId).observe(getViewLifecycleOwner(), this::setLeave);
+
 
         return binding.getRoot();
     }
 
-    private void setEod(Eod eod) {
+    private void setLeave(Leave leave) {
         progressDialog.dismiss();
-        if (eod == null) {
+        if (leave == null) {
             Navigation.findNavController(binding.getRoot()).navigateUp();
         } else {
-            binding.setEod(eod);
+            binding.setLeave(leave);
         }
     }
 }

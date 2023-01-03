@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/employeeHomeFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeHomeFragment"
-        android:label="EmployeeHomeFragment"
+        android:label="Home"
         tools:layout="@layout/fragment_employee_home">
         <action
             android:id="@+id/action_employeeHomeFragment_to_employeeAddOrderFragment"
@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/employeeAddLeaveFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddLeaveFragment"
-        android:label="Apply for leave"
+        android:label="Add Leave"
         tools:layout="@layout/fragment_employee_add_leave" />
 
     <fragment
@@ -51,25 +51,25 @@
     <fragment
         android:id="@+id/employeeAllLeavesFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllLeavesFragment"
-        android:label="Leaves"
+        android:label="My Leaves"
         tools:layout="@layout/fragment_employee_all_leaves" />
 
     <fragment
         android:id="@+id/employeeAllExpenseFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllExpenseFragment"
-        android:label="Expenses"
+        android:label="All Expenses"
         tools:layout="@layout/fragment_employee_all_expenses" />
 
     <fragment
         android:id="@+id/employeeAllAttendanceFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllAttendanceFragment"
-        android:label="Attendance"
+        android:label="All Attendance"
         tools:layout="@layout/fragment_employee_all_attendances" />
 
     <fragment
         android:id="@+id/employeeAllClientsFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllClientsFragment"
-        android:label="All clients"
+        android:label="All Clients"
         tools:layout="@layout/fragment_employee_all_clients">
         <action
             android:id="@+id/action_employeeAllClientsFragment_to_employeeClientProfileFragment2"
@@ -78,21 +78,22 @@
     <fragment
         android:id="@+id/employeeMapFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeMapFragment"
-        android:label="fragment_employee_map"
+        android:label="My Map"
         tools:layout="@layout/fragment_employee_map" />
     <fragment
         android:id="@+id/employeeClientProfileFragment"
-        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeClientProfileFragment"
-        android:label="EmployeeClientProfileFragment" />
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.EmployeeClientProfileFragment"
+        android:label="Client Profile"
+        tools:layout="@layout/fragment_employee_client_profile"/>
     <fragment
         android:id="@+id/employeeOrderDetailsFragment"
-        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeOrderDetailsFragment"
-        android:label="EmployeeOrderDetailsFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.EmployeeOrderProfileFragment"
+        android:label="Order"
         tools:layout="@layout/fragment_employee_order_details" />
     <fragment
         android:id="@+id/employeeAllOrdersFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllOrdersFragment"
-        android:label="EmployeeAllOrdersFragment"
+        android:label="My Orders"
         tools:layout="@layout/fragment_employee_all_orders">
         <action
             android:id="@+id/action_employeeAllOrdersFragment_to_employeeOrderDetailsFragment"
