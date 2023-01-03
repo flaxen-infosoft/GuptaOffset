@@ -12,8 +12,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.flaxeninfosoft.guptaoffset.R;
+import com.flaxeninfosoft.guptaoffset.adapters.EmployeeHomeFragmentStateAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeHomeBinding;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class EmployeeHomeFragment extends Fragment {
 
@@ -38,13 +40,10 @@ public class EmployeeHomeFragment extends Fragment {
         binding.employeeHomeCardAddExpense.setOnClickListener(this::navigateToAddExpense);
         binding.employeeHomeCardAddLeave.setOnClickListener(this::navigateToAddLeave);
         binding.employeeHomeCardAddOrder.setOnClickListener(this::navigateToAddOrder);
-        binding.employeeHomeCardMap.setOnClickListener(this::navigateToMap);
-        binding.employeeHomeCardAddEod.setOnClickListener(this::navigateToAddEod);
         binding.employeeHomeCardAddClient.setOnClickListener(this::navigateToAddClient);
-        binding.employeeHomeCardLeaves.setOnClickListener(this::navigateToLeaves);
-        binding.employeeHomeCardExpenses.setOnClickListener(this::navigateToExpenses);
-        binding.employeeHomeCardAttendances.setOnClickListener(this::navigateToAttendances);
-        binding.employeeHomeCardClients.setOnClickListener(this::navigateToClients);
+        binding.employeeHomeCardMap.setOnClickListener(this::navigateToMap);
+
+        setTabLayout();
 
         binding.employeeHomeViewFab.setOnClickListener(view -> {
             if (binding.employeeHomeCard.getVisibility() == View.VISIBLE) {
@@ -57,32 +56,12 @@ public class EmployeeHomeFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void navigateToClients(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAllClientsFragment);
-    }
-
-    private void navigateToAttendances(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAttendanceListFragment);
-    }
-
-    private void navigateToExpenses(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeExpenseListFragment);
-    }
-
-    private void navigateToLeaves(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeLeaveRequestsFragment);
+    private void navigateToMap(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeMapFragment);
     }
 
     private void navigateToAddClient(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddClientFragment);
-    }
-
-    private void navigateToAddEod(View view) {
-//        Navigation.findNavController(binding.getRoot()).navigate(R.id.);
-    }
-
-    private void navigateToMap(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeMapFragment);
     }
 
     private void navigateToAddOrder(View view) {
@@ -90,10 +69,41 @@ public class EmployeeHomeFragment extends Fragment {
     }
 
     private void navigateToAddLeave(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeApplyLeaveFragment);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddLeaveFragment);
     }
 
     private void navigateToAddExpense(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddExpenseFragment);
+    }
+
+    private void setTabLayout() {
+        EmployeeHomeFragmentStateAdapter adapter = new EmployeeHomeFragmentStateAdapter(getActivity());
+        binding.employeeHomeViewPager.setAdapter(adapter);
+        binding.employeeHomeViewPager.setCurrentItem(0);
+
+        new TabLayoutMediator(binding.employeeHomeTabLayout, binding.employeeHomeViewPager,
+                (tab, position) -> {
+
+                    switch (position) {
+                        case 0:
+                            tab.setText("Orders");
+                            break;
+                        case 1:
+                            tab.setText("Leaves");
+                            break;
+                        case 2:
+                            tab.setText("Expenses");
+                            break;
+                        case 3:
+                            tab.setText("Clients");
+                            break;
+                        case 4:
+                            tab.setText("Attendance");
+                            break;
+                        case 5:
+                            tab.setText("My Map");
+                            break;
+                    }
+                }).attach();
     }
 }

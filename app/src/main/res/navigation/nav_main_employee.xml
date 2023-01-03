@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_employeeHomeFragment_to_employeeAddExpenseFragment"
             app:destination="@id/employeeAddExpenseFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_employeeMapFragment"
+            app:destination="@id/employeeMapFragment" />
     </fragment>
 
     <fragment

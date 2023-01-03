@@ -12,148 +12,129 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/splash_back"
         tools:context=".views.profiles.EmployeeClientProfileFragment">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+<!--        <ScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/splash_back"
-                android:orientation="vertical"
-                android:padding="8dp">
+<!--&lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:orientation="vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:padding="8dp">&ndash;&gt;-->
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
-                    android:scaleType="centerCrop"
-                    android:shape="oval"
-                    android:src="@drawable/user_logo1" />
+<!--&lt;!&ndash;                <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="100dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="100dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginTop="15dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:scaleType="centerCrop"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:shape="oval"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:src="@drawable/user_logo1" />&ndash;&gt;-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:layout_marginLeft="8dp"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:textStyle="bold" />
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/employee_client_profile_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:drawableStart="@drawable/user_logo"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/round_corners"
-                    android:hint="  Enter Name"
-                    android:paddingLeft="15dp"
-                    android:inputType="textPersonName"
-                    android:text="@={client.name}" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Organization Name"
-                    android:layout_marginLeft="8dp"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:textStyle="bold" />
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/employee_client_profile_organization_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:drawableStart="@drawable/ic_baseline_email_24"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/round_corners"
-                    android:hint="  Organization Name"
-                    android:paddingLeft="15dp"
-                    android:inputType="textPersonName"
-                    android:text="@={client.orgName}" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Address"
-                    android:layout_marginLeft="8dp"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:textStyle="bold" />
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/employee_client_profile_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:drawableStart="@drawable/address_24"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/round_corners"
-                    android:hint="  Address"
-                    android:paddingLeft="15dp"
-                    android:inputType="textPersonName"
-                    android:text="@={client.address}" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Contact"
-                    android:layout_marginLeft="8dp"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:textStyle="bold" />
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/employee_client_profile_contact"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:drawableStart="@drawable/contact_24"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/round_corners"
-                    android:hint="  Contact"
-                    android:paddingLeft="15dp"
-                    android:inputType="textPersonName"
-                    android:text="@={``+client.contactNo}" />
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="Name"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginStart="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="18sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#000000"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textStyle="bold" />&ndash;&gt;-->
+<!--&lt;!&ndash;                <com.google.android.material.textfield.TextInputEditText&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/employee_client_profile_name"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="60dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:drawableStart="@drawable/user_logo"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_margin="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@drawable/round_corners"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:hint="Enter Name"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:paddingHorizontal="15dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:inputType="textPersonName"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="@={client.name}" />&ndash;&gt;-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="Organization Name"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginStart="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="18sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#000000"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textStyle="bold" />&ndash;&gt;-->
+<!--&lt;!&ndash;                <com.google.android.material.textfield.TextInputEditText&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/employee_client_profile_organization_name"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="60dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:drawableStart="@drawable/ic_baseline_email_24"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_margin="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@drawable/round_corners"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:hint="Organization Name"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:paddingHorizontal="15dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:inputType="textPersonName"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="@={client.orgName}" />&ndash;&gt;-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="Address"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginStart="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="18sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#000000"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textStyle="bold" />&ndash;&gt;-->
+<!--&lt;!&ndash;                <com.google.android.material.textfield.TextInputEditText&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/employee_client_profile_address"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="60dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:drawableStart="@drawable/address_24"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_margin="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@drawable/round_corners"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:hint="Address"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:paddingHorizontal="15dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:inputType="textPersonName"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="@={client.address}" />&ndash;&gt;-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="Contact"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginStart="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="18sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#000000"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textStyle="bold" />&ndash;&gt;-->
+<!--&lt;!&ndash;                <com.google.android.material.textfield.TextInputEditText&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/employee_client_profile_contact"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="60dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:drawableStart="@drawable/contact_24"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_margin="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@drawable/round_corners"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:paddingHorizontal="15dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:hint="Contact"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:inputType="numberSigned"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="@={``+client.contactNo}" />&ndash;&gt;-->
 
-                <fragment
-                    android:id="@+id/employee_add_client_map"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_margin="8dp"/>
+<!--&lt;!&ndash;                <fragment&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/employee_client_profile_map"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:name="com.google.android.gms.maps.SupportMapFragment"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="300dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_margin="8dp"/>&ndash;&gt;-->
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/employee_add_e_o_d_btn"
-                    android:layout_width="200dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="#356828"
-                    android:text="Delete Order"
-                    android:textAllCaps="false"
-                    android:textSize="20sp" />
+<!--&lt;!&ndash;                <com.google.android.material.button.MaterialButton&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/employee_add_e_o_d_btn"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="200dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="60dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_gravity="center_horizontal"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginTop="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:backgroundTint="#356828"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="Delete Order"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textAllCaps="false"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="20sp" />&ndash;&gt;-->
 
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/employee_client_profile_ll"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:gravity="end"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+<!--            </LinearLayout>-->
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/employee_client_profile_fab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:src="@drawable/ic_baseline_add_24" />
-
-            </LinearLayout>
-
-        </ScrollView>
+<!--        </ScrollView>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

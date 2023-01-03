@@ -13,15 +13,57 @@
         android:background="@drawable/splash_back"
         tools:context=".views.employee.fragments.EmployeeHomeFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/employee_home_recycler"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/employee_home_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabContentStart="56dp"
+            app:tabMode="scrollable"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Orders" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Leaves" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Expenses" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clients" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attendance" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Map" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/employee_home_view_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:padding="8dp"
-            app:layout_constraintBottom_toTopOf="@id/employee_home_bottom_bar"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_weight="1"
+            app:layout_constraintTop_toBottomOf="@id/employee_home_tab_layout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/employee_home_card"
@@ -99,33 +141,6 @@
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/img_3" />
 
-                <ImageView
-                    android:id="@+id/employee_home_card_leaves"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="8dp"
-                    app:srcCompat="@drawable/leave_request" />
-
-                <ImageView
-                    android:id="@+id/employee_home_card_expenses"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="8dp"
-                    app:srcCompat="@drawable/add_expense_logo" />
-
-                <ImageView
-                    android:id="@+id/employee_home_card_attendances"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="8dp"
-                    app:srcCompat="@drawable/img_5" />
-
-                <ImageView
-                    android:id="@+id/employee_home_card_clients"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="8dp"
-                    app:srcCompat="@drawable/client_list" />
             </GridLayout>
 
         </com.google.android.material.card.MaterialCardView>
