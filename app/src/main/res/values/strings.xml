@@ -7,4 +7,5 @@
     <string name="key_leave_id">ORDER_ID</string>
     <string name="key_order_id">ORDER_ID</string>
     <string name="key_expense_id">EXPENSE_ID</string>
+    <string name="key_eod_id">EOD_ID</string>
 </resources>
