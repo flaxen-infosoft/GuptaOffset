@@ -10,41 +10,18 @@
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeHomeFragment"
         android:label="EmployeeHomeFragment"
         tools:layout="@layout/fragment_employee_home">
-
-        <action
-            android:id="@+id/action_employeeHomeFragment_to_employeeAddExpenseFragment"
-            app:destination="@id/employeeAddExpenseFragment" />
-
-        <action
-            android:id="@+id/action_employeeHomeFragment_to_employeeApplyLeaveFragment"
-            app:destination="@id/employeeApplyLeaveFragment" />
-
         <action
             android:id="@+id/action_employeeHomeFragment_to_employeeAddOrderFragment"
             app:destination="@id/employeeAddOrderFragment" />
-
         <action
             android:id="@+id/action_employeeHomeFragment_to_employeeAddClientFragment"
             app:destination="@id/employeeAddClientFragment" />
-
         <action
-            android:id="@+id/action_employeeHomeFragment_to_employeeLeaveRequestsFragment"
-            app:destination="@id/employeeLeaveRequestsFragment" />
-
+            android:id="@+id/action_employeeHomeFragment_to_employeeAddLeaveFragment"
+            app:destination="@id/employeeAddLeaveFragment" />
         <action
-            android:id="@+id/action_employeeHomeFragment_to_employeeExpenseListFragment"
-            app:destination="@id/employeeExpenseListFragment" />
-
-        <action
-            android:id="@+id/action_employeeHomeFragment_to_employeeAttendanceListFragment"
-            app:destination="@id/employeeAttendanceListFragment" />
-
-        <action
-            android:id="@+id/action_employeeHomeFragment_to_employeeAllClientsFragment"
-            app:destination="@id/employeeAllClientsFragment" />
-        <action
-            android:id="@+id/action_employeeHomeFragment_to_employeeMapFragment"
-            app:destination="@id/employeeMapFragment" />
+            android:id="@+id/action_employeeHomeFragment_to_employeeAddExpenseFragment"
+            app:destination="@id/employeeAddExpenseFragment" />
     </fragment>
 
     <fragment
@@ -54,43 +31,72 @@
         tools:layout="@layout/fragment_employee_add_expense" />
 
     <fragment
-        android:id="@+id/employeeApplyLeaveFragment"
+        android:id="@+id/employeeAddLeaveFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddLeaveFragment"
-        android:label="Apply for leave" />
+        android:label="Apply for leave"
+        tools:layout="@layout/fragment_employee_add_leave" />
 
     <fragment
         android:id="@+id/employeeAddOrderFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddOrderFragment"
-        android:label="Add Order" />
+        android:label="Add Order"
+        tools:layout="@layout/fragment_employee_add_order" />
 
     <fragment
         android:id="@+id/employeeAddClientFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddClientFragment"
-        android:label="Add client" />
+        android:label="Add client"
+        tools:layout="@layout/fragment_employee_add_client" />
 
     <fragment
-        android:id="@+id/employeeLeaveRequestsFragment"
+        android:id="@+id/employeeAllLeavesFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllLeavesFragment"
-        android:label="Leaves" />
+        android:label="Leaves"
+        tools:layout="@layout/fragment_employee_all_leaves" />
 
     <fragment
-        android:id="@+id/employeeExpenseListFragment"
+        android:id="@+id/employeeAllExpenseFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllExpenseFragment"
-        android:label="Expenses" />
+        android:label="Expenses"
+        tools:layout="@layout/fragment_employee_all_expenses" />
 
     <fragment
-        android:id="@+id/employeeAttendanceListFragment"
+        android:id="@+id/employeeAllAttendanceFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllAttendanceFragment"
-        android:label="Attendance" />
+        android:label="Attendance"
+        tools:layout="@layout/fragment_employee_all_attendances" />
 
     <fragment
         android:id="@+id/employeeAllClientsFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllClientsFragment"
-        android:label="All clients" />
+        android:label="All clients"
+        tools:layout="@layout/fragment_employee_all_clients">
+        <action
+            android:id="@+id/action_employeeAllClientsFragment_to_employeeClientProfileFragment2"
+            app:destination="@id/employeeClientProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/employeeMapFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeMapFragment"
         android:label="fragment_employee_map"
         tools:layout="@layout/fragment_employee_map" />
+    <fragment
+        android:id="@+id/employeeClientProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeClientProfileFragment"
+        android:label="EmployeeClientProfileFragment" />
+    <fragment
+        android:id="@+id/employeeOrderDetailsFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeOrderDetailsFragment"
+        android:label="EmployeeOrderDetailsFragment"
+        tools:layout="@layout/fragment_employee_order_details" />
+    <fragment
+        android:id="@+id/employeeAllOrdersFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllOrdersFragment"
+        android:label="EmployeeAllOrdersFragment"
+        tools:layout="@layout/fragment_employee_all_orders">
+        <action
+            android:id="@+id/action_employeeAllOrdersFragment_to_employeeOrderDetailsFragment"
+            app:destination="@id/employeeOrderDetailsFragment" />
+    </fragment>
 
 </navigation>
