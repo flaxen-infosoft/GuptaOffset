@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +49,9 @@ public class EmployeeAllOrdersFragment extends Fragment {
         OrderRecyclerAdapter adapter=new OrderRecyclerAdapter(orders, new OrderRecyclerAdapter.SingleOrderCardOnClickListener() {
             @Override
             public void onCLickCard(Order order) {
-                //TODO
+                Bundle bundle = new Bundle();
+                bundle.putLong(getString(R.string.key_order_id), order.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeAllOrdersFragment_to_employeeOrderDetailsFragment, bundle);
             }
         });
         binding.employeeOrderListRecycler.setAdapter(adapter);

@@ -12,7 +12,7 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddEODBinding;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 
-public class EmployeeAddEODFragment extends Fragment {
+public class    EmployeeAddEODFragment extends Fragment {
     private FragmentEmployeeAddEODBinding binding;
     private EmployeeViewModel viewModel;
 

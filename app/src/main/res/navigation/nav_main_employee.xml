@@ -92,5 +92,17 @@
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeMapFragment"
         android:label="fragment_employee_map"
         tools:layout="@layout/fragment_employee_map" />
+    <fragment
+        android:id="@+id/employeeOrderDetailsFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeOrderDetailsFragment"
+        android:label="EmployeeOrderDetailsFragment" />
+    <fragment
+        android:id="@+id/employeeAllOrdersFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllOrdersFragment"
+        android:label="EmployeeAllOrdersFragment" >
+        <action
+            android:id="@+id/action_employeeAllOrdersFragment_to_employeeOrderDetailsFragment"
+            app:destination="@id/employeeOrderDetailsFragment" />
+    </fragment>
 
 </navigation>

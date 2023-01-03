@@ -129,7 +129,7 @@
 
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/employee_add_e_o_d_btn"
+                    android:id="@+id/employee_order_details_delete_order_btn"
                     android:layout_width="200dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
