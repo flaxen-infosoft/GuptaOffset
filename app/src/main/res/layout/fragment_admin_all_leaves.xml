@@ -11,24 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/splash_back"
-        tools:context=".views.admin.fragments.AdminAllClientsFragment">
+        tools:context=".views.admin.fragments.AdminAllLeavesFragment">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/admin_all_clients_swipe_refresh"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/admin_all_leaves_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/admin_all_clients_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

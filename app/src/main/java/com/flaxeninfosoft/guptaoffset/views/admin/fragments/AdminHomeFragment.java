@@ -36,6 +36,14 @@ public class AdminHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_home, container, false);
 
+        binding.adminHomeViewFab.setOnClickListener(v -> {
+            if(binding.adminHomeCard.getVisibility() == View.VISIBLE){
+                binding.adminHomeCard.setVisibility(View.GONE);
+            }else{
+                binding.adminHomeCard.setVisibility(View.VISIBLE);
+            }
+        });
+
         setTabLayout();
 
         return binding.getRoot();
