@@ -86,19 +86,19 @@ public class EmployeeHomeFragment extends Fragment {
 
                     switch (position) {
                         case 0:
-                            tab.setText("Orders");
+                            tab.setText("My Orders");
                             break;
                         case 1:
-                            tab.setText("Leaves");
+                            tab.setText("My Leaves");
                             break;
                         case 2:
-                            tab.setText("Expenses");
+                            tab.setText("My Expenses");
                             break;
                         case 3:
-                            tab.setText("Clients");
+                            tab.setText("My Clients");
                             break;
                         case 4:
-                            tab.setText("Attendance");
+                            tab.setText("My Attendance");
                             break;
                         case 5:
                             tab.setText("My Map");
