@@ -46,13 +46,7 @@ public class AdminAllEmployeesFragment extends Fragment {
 
         viewModel.getAllEmployees().observe(getViewLifecycleOwner(), this::updateEmployeeList);
 
-        binding.adminAllEmployeeAddEmployeeFab.setOnClickListener(this::onCLickAddEmployee);
-
         return binding.getRoot();
-    }
-
-    private void onCLickAddEmployee(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminAllEmployeesFragment_to_adminAddEmployeeFragment);
     }
 
     private void updateEmployeeList(List<Employee> employees) {

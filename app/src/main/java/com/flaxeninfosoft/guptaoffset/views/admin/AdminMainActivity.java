@@ -1,8 +1,12 @@
 package com.flaxeninfosoft.guptaoffset.views.admin;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,6 +18,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.ActivityAdminMainBinding;
 import com.flaxeninfosoft.guptaoffset.viewModels.AdminMainViewModel;
+import com.flaxeninfosoft.guptaoffset.views.SplashActivity;
+import com.flaxeninfosoft.guptaoffset.views.employee.EmployeeMainActivity;
 
 public class AdminMainActivity extends AppCompatActivity {
 
@@ -41,6 +47,29 @@ public class AdminMainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.adminMainToolbar);
         NavigationUI.setupActionBarWithNavController(this, navController, config);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_admin_home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.menu_admin_home_logout){
+
+            viewModel.logout();
+
+            Intent intent = new Intent(AdminMainActivity.this, SplashActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return false;
     }
 
     private void showToast(String s) {

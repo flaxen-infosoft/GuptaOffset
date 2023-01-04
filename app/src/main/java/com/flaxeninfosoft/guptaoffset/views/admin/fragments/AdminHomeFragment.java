@@ -1,17 +1,26 @@
 package com.flaxeninfosoft.guptaoffset.views.admin.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.flaxeninfosoft.guptaoffset.R;
+import com.flaxeninfosoft.guptaoffset.adapters.AdminHomeFragmentStateAdapter;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentAdminHomeBinding;
+import com.flaxeninfosoft.guptaoffset.viewModels.AdminMainViewModel;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class AdminHomeFragment extends Fragment {
-    //TODO
+
+    private AdminMainViewModel viewModel;
+    private FragmentAdminHomeBinding binding;
+
     public AdminHomeFragment() {
         // Required empty public constructor
     }
@@ -19,13 +28,49 @@ public class AdminHomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(AdminMainViewModel.class);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_home, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_home, container, false);
+
+        setTabLayout();
+
+        return binding.getRoot();
+    }
+
+    private void setTabLayout() {
+        AdminHomeFragmentStateAdapter adapter = new AdminHomeFragmentStateAdapter(getActivity());
+        binding.adminHomeViewPager.setAdapter(adapter);
+        binding.adminHomeViewPager.setCurrentItem(0);
+
+        new TabLayoutMediator(binding.adminHomeTabLayout, binding.adminHomeViewPager,
+                (tab, position) -> {
+
+                    switch (position) {
+                        case 0:
+                            tab.setText("All Employees");
+                            break;
+                        case 1:
+                            tab.setText("All Super Employees");
+                            break;
+                        case 2:
+                            tab.setText("All Orders");
+                            break;
+                        case 3:
+                            tab.setText("All Clients");
+                            break;
+                        case 4:
+                            tab.setText("All Expenses");
+                            break;
+                        case 5:
+                            tab.setText("All Eods");
+                            break;
+                        case 6:
+                            tab.setText("All Leaves");
+                    }
+                }).attach();
     }
 }
