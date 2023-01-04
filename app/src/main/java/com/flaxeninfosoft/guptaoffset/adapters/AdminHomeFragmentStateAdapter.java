@@ -7,7 +7,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllClientsFragment;
 import com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllEmployeesFragment;
+import com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllEodsFragment;
 import com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllExpensesFragment;
+import com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllLeavesFragment;
 import com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllOrdersFragment;
 import com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllSuperEmployeesFragment;
 import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllLeavesFragment;
@@ -31,6 +33,10 @@ public class AdminHomeFragmentStateAdapter extends FragmentStateAdapter {
             case 3:
                 return new AdminAllClientsFragment();
             case 4:
+                return new AdminAllLeavesFragment();
+            case 5:
+                return new AdminAllEodsFragment();
+            case 6:
                 return new AdminAllExpensesFragment();
             default:
                 return null;
@@ -39,6 +45,6 @@ public class AdminHomeFragmentStateAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 7;
     }
 }

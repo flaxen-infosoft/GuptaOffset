@@ -100,34 +100,12 @@
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/img_1" />
 
-
                 <ImageView
-                    android:id="@+id/admin_home_card_all_leaves"
+                    android:id="@+id/admin_home_card_add_super_employee"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
-                    app:srcCompat="@drawable/leave_request" />
-
-                <ImageView
-                    android:id="@+id/admin_home_card_all_expenses"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="8dp"
-                    app:srcCompat="@drawable/add_expense_logo" />
-
-                <ImageView
-                    android:id="@+id/admin_home_card_all_attendances"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="8dp"
-                    app:srcCompat="@drawable/img_5" />
-
-                <ImageView
-                    android:id="@+id/admin_home_card_all_clients"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="8dp"
-                    app:srcCompat="@drawable/client_list" />
+                    app:srcCompat="@drawable/img_3" />
 
             </GridLayout>
 

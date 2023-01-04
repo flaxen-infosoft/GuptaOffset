@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.AdminHomeFragmentStateAdapter;
@@ -36,6 +37,9 @@ public class AdminHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_home, container, false);
 
+        binding.adminHomeCardMap.setOnClickListener(this::navigateToMap);
+        binding.adminHomeCardAddSuperEmployee.setOnClickListener(this::navigateToAddSuperEmployee);
+
         binding.adminHomeViewFab.setOnClickListener(v -> {
             if(binding.adminHomeCard.getVisibility() == View.VISIBLE){
                 binding.adminHomeCard.setVisibility(View.GONE);
@@ -47,6 +51,14 @@ public class AdminHomeFragment extends Fragment {
         setTabLayout();
 
         return binding.getRoot();
+    }
+
+    private void navigateToAddSuperEmployee(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_adminAddSuperEmployeeFragment);
+    }
+
+    private void navigateToMap(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_adminMapFragment);
     }
 
     private void setTabLayout() {
