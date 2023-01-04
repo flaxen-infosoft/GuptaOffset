@@ -126,7 +126,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Starting K.M."
+                            android:hint="Starting KM."
                             android:inputType="textPersonName"
                             android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -142,7 +142,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Ending K.M."
+                            android:hint="Ending KM."
                             android:inputType="textPersonName"
                             android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
