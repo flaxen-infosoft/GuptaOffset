@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.flaxeninfosoft.guptaoffset.R;
@@ -41,18 +42,18 @@ public class AdminAllSuperEmployeesFragment extends Fragment {
 
         binding.adminAllSuperEmployeesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        viewModel.getAllSuperEmployees().observe(getViewLifecycleOwner(), this::updateSuperEmployees);
+        viewModel.getAllSuperEmployees().observe(getViewLifecycleOwner(), this::setSuperEmployees);
 
         return binding.getRoot();
     }
 
-    private void updateSuperEmployees(List<Employee> employees) {
+    private void setSuperEmployees(List<Employee> employees) {
         EmployeeRecyclerAdapter adapter = new EmployeeRecyclerAdapter(employees, new EmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
             @Override
             public void onClickCard(Employee employee) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(getString(R.string.key_employee_id), employee.getId());
-                //todo
+//                Navigation.findNavController(binding.getRoot()).navigate();
             }
         });
 

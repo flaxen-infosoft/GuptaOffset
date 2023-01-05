@@ -16,15 +16,26 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_adminMapFragment"
             app:destination="@id/adminMapFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_employeeProfileFragment"
+            app:destination="@id/employeeProfileFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_employeeLeaveProfileFragment"
+            app:destination="@id/employeeLeaveProfileFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_employeeOrderProfileFragment"
+            app:destination="@id/employeeOrderProfileFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_employeeClientProfileFragment"
+            app:destination="@id/employeeClientProfileFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_employeeExpenseProfileFragment"
+            app:destination="@id/employeeExpenseProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminAllEmployeesFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllEmployeesFragment"
-        android:label="AdminAllEmployeesFragment">
-        <action
-            android:id="@+id/action_adminAllEmployeesFragment_to_employeeProfileFragment"
-            app:destination="@id/employeeProfileFragment" />
-    </fragment>
+        android:label="AdminAllEmployeesFragment"/>
     <fragment
         android:id="@+id/employeeProfileFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeProfileFragment"
@@ -32,11 +43,7 @@
     <fragment
         android:id="@+id/adminAllOrdersFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllOrdersFragment"
-        android:label="AdminAllOrdersFragment">
-        <action
-            android:id="@+id/action_adminAllOrdersFragment_to_employeeOrderProfileFragment"
-            app:destination="@id/employeeOrderProfileFragment" />
-    </fragment>
+        android:label="AdminAllOrdersFragment"/>
     <fragment
         android:id="@+id/employeeOrderProfileFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.profiles.EmployeeOrderProfileFragment"
@@ -44,11 +51,7 @@
     <fragment
         android:id="@+id/adminAllClientsFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllClientsFragment"
-        android:label="AdminAllClientsFragment">
-        <action
-            android:id="@+id/action_adminAllClientsFragment_to_employeeClientProfileFragment"
-            app:destination="@id/employeeClientProfileFragment" />
-    </fragment>
+        android:label="AdminAllClientsFragment"/>
     <fragment
         android:id="@+id/employeeClientProfileFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.profiles.EmployeeClientProfileFragment"
@@ -56,11 +59,7 @@
     <fragment
         android:id="@+id/adminAllExpensesFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllExpensesFragment"
-        android:label="AdminAllExpensesFragment">
-        <action
-            android:id="@+id/action_adminAllExpensesFragment_to_employeeExpenseProfileFragment"
-            app:destination="@id/employeeExpenseProfileFragment" />
-    </fragment>
+        android:label="AdminAllExpensesFragment"/>
     <fragment
         android:id="@+id/employeeExpenseProfileFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.profiles.EmployeeExpenseProfileFragment"
@@ -68,11 +67,7 @@
     <fragment
         android:id="@+id/adminAllLeavesFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllLeavesFragment"
-        android:label="AdminAllLeavesFragment">
-        <action
-            android:id="@+id/action_adminAllLeavesFragment_to_employeeLeaveProfileFragment"
-            app:destination="@id/employeeLeaveProfileFragment" />
-    </fragment>
+        android:label="AdminAllLeavesFragment"/>
     <fragment
         android:id="@+id/employeeLeaveProfileFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.profiles.EmployeeLeaveProfileFragment"

@@ -1,20 +1,17 @@
 package com.flaxeninfosoft.guptaoffset.views.admin.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.flaxeninfosoft.guptaoffset.DataBinderMapperImpl;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentAdminMapBinding;
-import com.flaxeninfosoft.guptaoffset.models.Client;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.viewModels.AdminMainViewModel;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -44,23 +41,41 @@ public class AdminMapFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_map, container, false);
 
-        mapReadyCallback = googleMap -> viewModel.getAllEmployees().observe(getViewLifecycleOwner(), employees -> {
-            if (employees != null) {
-                for (Employee e : employees) {
-                    if (e.getLatitude() != 0d && e.getLongitude() != 0d) {
-                        LatLng latLng = new LatLng(e.getLatitude(), e.getLongitude());
-                        googleMap.addMarker(new MarkerOptions()
-                                .position(latLng)
-                                .title(e.getName()));
+        mapReadyCallback = googleMap -> {
+            viewModel.getAllEmployees().observe(getViewLifecycleOwner(), employees -> {
+                        if (employees != null) {
+                            for (Employee e : employees) {
+                                if (e.getLatitude() != 0d && e.getLongitude() != 0d) {
+                                    LatLng latLng = new LatLng(e.getLatitude(), e.getLongitude());
+                                    googleMap.addMarker(new MarkerOptions()
+                                            .position(latLng)
+                                            .title(e.getName()));
+                                }
+                            }
+                        }
                     }
-                }
-            }
-        });
+            );
+
+            viewModel.getAllSuperEmployees().observe(getViewLifecycleOwner(), employees -> {
+                        if (employees != null) {
+                            for (Employee e : employees) {
+                                if (e.getLatitude() != 0d && e.getLongitude() != 0d) {
+                                    LatLng latLng = new LatLng(e.getLatitude(), e.getLongitude());
+                                    googleMap.addMarker(new MarkerOptions()
+                                            .position(latLng)
+                                            .title(e.getName()));
+                                }
+                            }
+                        }
+                    }
+            );
+
+        };
 
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.employee_map_map, mapFragment)
+                .add(R.id.admin_map_map, mapFragment)
                 .commit();
         mapFragment.getMapAsync(mapReadyCallback);
 

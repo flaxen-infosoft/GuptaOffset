@@ -63,7 +63,7 @@ public class AdminAllEmployeesFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putLong(getString(R.string.key_employee_id), employee.getId());
 
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminAllEmployeesFragment_to_employeeProfileFragment, bundle);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_employeeProfileFragment, bundle);
     }
 
     private void setupRecycler() {
