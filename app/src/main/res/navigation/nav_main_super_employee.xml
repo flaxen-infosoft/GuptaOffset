@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main_super_employee"
+    app:startDestination="@id/superEmployeeHomeFragment">
+
+    <fragment
+        android:id="@+id/superEmployeeHomeFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.superEmployee.fragments.SuperEmployeeHomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_super_employee_home" >
+        <action
+            android:id="@+id/action_superEmployeeHomeFragment_to_employeeProfileFragment"
+            app:destination="@id/employeeProfileFragment" />
+        <action
+            android:id="@+id/action_superEmployeeHomeFragment_to_superEmployeeMapFragment"
+            app:destination="@id/superEmployeeMapFragment" />
+        <action
+            android:id="@+id/action_superEmployeeHomeFragment_to_employeeAddClientFragment"
+            app:destination="@id/employeeAddClientFragment" />
+        <action
+            android:id="@+id/action_superEmployeeHomeFragment_to_employeeAddOrderFragment"
+            app:destination="@id/employeeAddOrderFragment" />
+        <action
+            android:id="@+id/action_superEmployeeHomeFragment_to_employeeAddLeaveFragment"
+            app:destination="@id/employeeAddLeaveFragment" />
+        <action
+            android:id="@+id/action_superEmployeeHomeFragment_to_employeeAddExpenseFragment"
+            app:destination="@id/employeeAddExpenseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_employee_profile"/>
+    <fragment
+        android:id="@+id/superEmployeeMapFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.superEmployee.fragments.SuperEmployeeMapFragment"
+        android:label="fragment_super_employee_map"
+        tools:layout="@layout/fragment_super_employee_map" />
+    <fragment
+        android:id="@+id/employeeAddClientFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddClientFragment"
+        android:label="EmployeeAddClientFragment" />
+    <fragment
+        android:id="@+id/employeeAddOrderFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddOrderFragment"
+        android:label="EmployeeAddOrderFragment" />
+    <fragment
+        android:id="@+id/employeeAddLeaveFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddLeaveFragment"
+        android:label="EmployeeAddLeaveFragment" />
+    <fragment
+        android:id="@+id/employeeAddExpenseFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddExpenseFragment"
+        android:label="EmployeeAddExpenseFragment" />
+</navigation>

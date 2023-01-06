@@ -2,7 +2,6 @@ package com.flaxeninfosoft.guptaoffset.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -10,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
@@ -18,6 +16,7 @@ import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 import com.flaxeninfosoft.guptaoffset.viewModels.LoginViewModel;
 import com.flaxeninfosoft.guptaoffset.views.admin.AdminMainActivity;
 import com.flaxeninfosoft.guptaoffset.views.employee.EmployeeMainActivity;
+import com.flaxeninfosoft.guptaoffset.views.superEmployee.SuperEmployeeMainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -65,6 +64,13 @@ public class SplashActivity extends AppCompatActivity {
 
             case Constants.DESIGNATION_ADMIN:
                 intent = new Intent(this, AdminMainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+                break;
+
+            case Constants.DESIGNATION_SUPER_EMPLOYEE:
+                intent = new Intent(this, SuperEmployeeMainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
