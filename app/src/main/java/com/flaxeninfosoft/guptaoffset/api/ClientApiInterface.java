@@ -1,9 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.api;
 
-import com.flaxeninfosoft.guptaoffset.models.Client;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
-import com.google.android.gms.common.api.Api;
 
 import java.util.List;
 

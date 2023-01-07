@@ -52,7 +52,7 @@ public class Constants {
     public static final String MESSAGE = "message";
 
     public static final String TIME = "time";
-    public static final String IMAGE = "image";
+    public static final String IMAGE = "snap";
 
     public static final String DESIGNATION_EMPLOYEE = "employee";
     public static final String DESIGNATION_SUPER_EMPLOYEE = "super_employee";
@@ -60,4 +60,17 @@ public class Constants {
 
     public static final String EMPLOYEE_STATUS_ACTIVE = "active";
     public static final String EMPLOYEE_STATUS_SUSPENDED = "suspended";
+
+    public static final String SCHOOL_VISITS = "school_visits";
+    public static final String PETROL_EXPENSE = "petrol_expenses";
+    public static final String OTHER_EXPENSE = "other_expenses";
+
+    public static final String AMOUNT = "amount";
+    public static final String SNAP_IN = "snap_in";
+
+    public static final String SNAP_OUT = "snap_out";
+    public static final String STUDENT_STRENGTH = "student_strength";
+    public static final String ATN_ID = "atn_id";
+    public static final String SCHOOL_ID = "school_id";
+    public static final String DEALER_ID = "dealer_id";
 }

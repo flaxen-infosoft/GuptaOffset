@@ -1,6 +1,5 @@
 package com.flaxeninfosoft.guptaoffset.api;
 
-import com.flaxeninfosoft.guptaoffset.models.Expense;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 

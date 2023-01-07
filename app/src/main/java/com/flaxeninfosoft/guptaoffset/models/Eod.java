@@ -5,7 +5,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.sql.Date;
-import java.sql.Time;
 
 public class Eod {
 
@@ -21,29 +20,17 @@ public class Eod {
     @Expose
     private Date date;
 
-    @SerializedName(Constants.TIME_IN)
+    @SerializedName(Constants.SCHOOL_VISITS)
     @Expose
-    private Time timeIn;
+    private int schoolVisits;
 
-    @SerializedName(Constants.TIME_OUT)
+    @SerializedName(Constants.PETROL_EXPENSE)
     @Expose
-    private Time timeOut;
+    private int petrolExpense;
 
-    @SerializedName(Constants.START_METER)
+    @SerializedName(Constants.OTHER_EXPENSE)
     @Expose
-    private String startMeter;
-
-    @SerializedName(Constants.END_METER)
-    @Expose
-    private String endMeter;
-
-    @SerializedName(Constants.START_METER_IMAGE)
-    @Expose
-    private String startMeterImage;
-
-    @SerializedName(Constants.END_METER_IMAGE)
-    @Expose
-    private String endMeterImage;
+    private int otherExpense;
 
     public Long getId() {
         return id;
@@ -69,51 +56,27 @@ public class Eod {
         this.date = date;
     }
 
-    public Time getTimeIn() {
-        return timeIn;
+    public int getSchoolVisits() {
+        return schoolVisits;
     }
 
-    public void setTimeIn(Time timeIn) {
-        this.timeIn = timeIn;
+    public void setSchoolVisits(int schoolVisits) {
+        this.schoolVisits = schoolVisits;
     }
 
-    public Time getTimeOut() {
-        return timeOut;
+    public int getPetrolExpense() {
+        return petrolExpense;
     }
 
-    public void setTimeOut(Time timeOut) {
-        this.timeOut = timeOut;
+    public void setPetrolExpense(int petrolExpense) {
+        this.petrolExpense = petrolExpense;
     }
 
-    public String getStartMeter() {
-        return startMeter;
+    public int getOtherExpense() {
+        return otherExpense;
     }
 
-    public void setStartMeter(String startMeter) {
-        this.startMeter = startMeter;
-    }
-
-    public String getEndMeter() {
-        return endMeter;
-    }
-
-    public void setEndMeter(String endMeter) {
-        this.endMeter = endMeter;
-    }
-
-    public String getStartMeterImage() {
-        return startMeterImage;
-    }
-
-    public void setStartMeterImage(String startMeterImage) {
-        this.startMeterImage = startMeterImage;
-    }
-
-    public String getEndMeterImage() {
-        return endMeterImage;
-    }
-
-    public void setEndMeterImage(String endMeterImage) {
-        this.endMeterImage = endMeterImage;
+    public void setOtherExpense(int otherExpense) {
+        this.otherExpense = otherExpense;
     }
 }

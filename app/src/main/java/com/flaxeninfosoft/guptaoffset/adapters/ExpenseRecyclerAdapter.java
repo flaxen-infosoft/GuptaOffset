@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleExpenseCardBinding;
-import com.flaxeninfosoft.guptaoffset.models.Expense;
 
 import java.util.List;
 

@@ -12,7 +12,7 @@ import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 
 import java.util.List;
 
-public class SuperEmployeeViewModel extends BaseViewModel {
+public class SuperEmployeeViewModel extends EmployeeViewModel {
 
     private final MainRepository repo;
 

@@ -82,7 +82,6 @@ public class SuperEmployeeHomeFragment extends Fragment {
         SuperEmployeeHomeFragmentStateAdapter adapter = new SuperEmployeeHomeFragmentStateAdapter(getActivity());
         binding.superEmployeeHomeViewPager.setAdapter(adapter);
         binding.superEmployeeHomeViewPager.setCurrentItem(0);
-        Toast.makeText(getContext(), "Super Employee", Toast.LENGTH_LONG).show();
         new TabLayoutMediator(binding.superEmployeeHomeTabLayout, binding.superEmployeeHomeViewPager,
                 (tab, position) -> {
 

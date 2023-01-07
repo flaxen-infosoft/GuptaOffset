@@ -1,66 +1,82 @@
 package com.flaxeninfosoft.guptaoffset.views.superEmployee.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.flaxeninfosoft.guptaoffset.R;
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SuperEmployeeMapFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.flaxeninfosoft.guptaoffset.R;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentSuperEmployeeMapBinding;
+import com.flaxeninfosoft.guptaoffset.models.Employee;
+import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 public class SuperEmployeeMapFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentSuperEmployeeMapBinding binding;
+    private SuperEmployeeViewModel viewModel;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private OnMapReadyCallback mapReadyCallback;
 
     public SuperEmployeeMapFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SuperEmployeeMapFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SuperEmployeeMapFragment newInstance(String param1, String param2) {
-        SuperEmployeeMapFragment fragment = new SuperEmployeeMapFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(SuperEmployeeViewModel.class);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_super_employee_map, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_super_employee_map, container, false);
+
+        mapReadyCallback = googleMap -> {
+            viewModel.getCurrentEmployeeClients().observe(getViewLifecycleOwner(), clients -> {
+                if (clients != null) {
+                    for (Client c : clients) {
+                        if (c.getLatitude() != 0d && c.getLongitude() != 0d) {
+                            LatLng latLng = new LatLng(c.getLatitude(), c.getLongitude());
+                            googleMap.addMarker(new MarkerOptions()
+                                    .position(latLng)
+                                    .title(c.getOrgName()));
+                        }
+                    }
+                }
+            });
+
+            viewModel.getCurrentSuperEmployeeEmployees().observe(getViewLifecycleOwner(), employees -> {
+                if (employees != null) {
+                    for (Employee e : employees) {
+                        if (e.getLatitude() != 0d && e.getLongitude() != 0d) {
+                            LatLng latLng = new LatLng(e.getLatitude(), e.getLongitude());
+                            googleMap.addMarker(new MarkerOptions()
+                                    .position(latLng)
+                                    .title(e.getName()));
+                        }
+                    }
+                }
+            });
+        };
+
+
+        SupportMapFragment mapFragment = SupportMapFragment.newInstance();
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.super_employee_map_map, mapFragment)
+                .commit();
+        mapFragment.getMapAsync(mapReadyCallback);
+
+        return binding.getRoot();
     }
 }

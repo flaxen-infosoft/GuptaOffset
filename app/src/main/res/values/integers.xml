@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="TYPE_ADD_LEAVE">1</integer>
+    <integer name="TYPE_ADD_EOD">2</integer>
+    <integer name="TYPE_ADD_ATN">3</integer>
+    <integer name="TYPE_ADD_SCHOOL">4</integer>
+    <integer name="TYPE_ADD_DEALER">5</integer>
+    <integer name="TYPE_ADD_SAMPLE_ORDER">6</integer>
+    <integer name="TYPE_ADD_PAYMENT_REQUEST">7</integer>
+</resources>
