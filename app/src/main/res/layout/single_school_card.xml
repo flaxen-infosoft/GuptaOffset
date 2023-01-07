@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="leave"
-            type="com.flaxeninfosoft.guptaoffset.models.Leave" />
+            name="school"
+            type="com.flaxeninfosoft.guptaoffset.models.School" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,17 +13,17 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/leave_text"
+            android:id="@+id/school_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/card"
-            android:text="LEAVE"
+            android:text="SCHOOL"
             android:textSize="20dp"
             android:textColor="@color/black"
             android:textStyle="bold" />
         <TextView
-            android:id="@+id/single_leave_card_date_apply"
+            android:id="@+id/single_school_card_date_apply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintRight_toRightOf="@id/card"
@@ -46,7 +46,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/leave_text">
+            app:layout_constraintTop_toBottomOf="@id/school_text">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -54,79 +54,111 @@
                 android:padding="12dp">
 
                 <TextView
-                    android:id="@+id/single_eod_card_leave_date_from"
+                    android:id="@+id/single_school_card_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Leave From: "
+                    android:text="Name: "
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
                 <TextView
-                    android:id="@+id/single_eod_card_leave_date_to"
+                    android:id="@+id/single_school_card_strength"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Leave To: "
+                    android:text="Strength: "
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/single_eod_card_leave_date_from" />
+                    app:layout_constraintTop_toBottomOf="@id/single_school_card_name" />
                 <TextView
-                    android:id="@+id/single_eod_card_message"
+                    android:id="@+id/single_school_card_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Message: "
+                    android:text="Address: "
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/single_eod_card_leave_date_to" />
+                    app:layout_constraintTop_toBottomOf="@id/single_school_card_strength" />
+                <TextView
+                    android:id="@+id/single_school_card_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Contact: "
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/single_school_card_address" />
 
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/single_eod_card_barrier1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:barrierDirection="end"
-                    app:constraint_referenced_ids="single_eod_card_leave_date_from,single_eod_card_leave_date_to,single_eod_card_message" />
+                    app:constraint_referenced_ids="single_school_card_name,single_school_card_strength,single_school_card_address,single_school_card_contact" />
 
                 <TextView
-                    android:id="@+id/single_eod_card_leave_date_from_empty"
+                    android:id="@+id/single_school_card_name_empty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="@{leave.fromDate}"
+                    android:text="@{school.name}"
                     android:textSize="16sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/single_eod_card_leave_date_from"
+                    app:layout_constraintBaseline_toBaselineOf="@id/single_school_card_name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
                 <TextView
-                    android:id="@+id/single_eod_card_leave_date_to_empty"
+                    android:id="@+id/single_school_card_strength_empty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="@{leave.toDate}"
+                    android:text="@{school.strength}"
                     android:textSize="16sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/single_eod_card_leave_date_to"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/single_school_card_strength"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
                 <TextView
-                    android:id="@+id/single_eod_card_message_empty"
+                    android:id="@+id/single_school_card_address_empty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="@{leave.message}"
+                    android:text="@{school.address}"
                     android:textSize="16sp"
-                    app:layout_constraintBaseline_toBaselineOf="@id/single_eod_card_message"
+                    app:layout_constraintBaseline_toBaselineOf="@id/single_school_card_address"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
+                <TextView
+                    android:id="@+id/single_school_card_contact_empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{school.contact}"
+                    android:textSize="16sp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/single_school_card_contact"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/single_school_card_contact"
+                    android:layout_margin="12dp"
+                    android:scaleType="centerCrop"
+                    />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
