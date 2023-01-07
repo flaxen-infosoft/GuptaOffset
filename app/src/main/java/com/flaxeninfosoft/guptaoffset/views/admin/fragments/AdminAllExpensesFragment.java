@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.adapters.ExpenseRecyclerAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentAdminAllExpensesBinding;
 import com.flaxeninfosoft.guptaoffset.viewModels.AdminMainViewModel;
 

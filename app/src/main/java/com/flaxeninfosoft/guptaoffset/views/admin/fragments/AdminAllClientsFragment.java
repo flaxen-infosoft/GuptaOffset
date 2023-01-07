@@ -13,7 +13,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.adapters.ClientRecyclerAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentAdminAllClientsBinding;
 import com.flaxeninfosoft.guptaoffset.viewModels.AdminMainViewModel;
 

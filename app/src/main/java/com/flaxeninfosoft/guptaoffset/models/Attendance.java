@@ -32,6 +32,11 @@ public class Attendance {
     @Expose
     private Long snapOut;
 
+    @SerializedName(Constants.DATE)
+    @Expose
+    private Long date;
+
+
     public int getId() {
         return id;
     }
@@ -78,5 +83,13 @@ public class Attendance {
 
     public void setSnapOut(Long snapOut) {
         this.snapOut = snapOut;
+    }
+
+    public Long getDate() {
+        return date;
+    }
+
+    public void setDate(Long date) {
+        this.date = date;
     }
 }

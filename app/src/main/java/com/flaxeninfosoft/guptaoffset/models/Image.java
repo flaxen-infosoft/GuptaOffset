@@ -34,4 +34,9 @@ public class Image {
     @Expose
     private String dealerId;
 
+    @SerializedName(Constants.IMAGE)
+    @Expose
+    private String image;
+
+
 }

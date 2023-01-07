@@ -22,7 +22,7 @@ public class PaymentRequest {
 
     @SerializedName(Constants.STATUS)
     @Expose
-    private int status;
+    private String status;
 
     @SerializedName(Constants.DATE)
     @Expose
@@ -52,11 +52,11 @@ public class PaymentRequest {
         this.amount = amount;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

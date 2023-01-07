@@ -31,47 +31,6 @@ public class BaseViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Client> getClientById(Long clientId) {
-        MutableLiveData<Client> flag = new MutableLiveData<>();
-
-        repo.getClientById(clientId, new ApiResponseListener<Client, String>() {
-            @Override
-            public void onSuccess(Client response) {
-                flag.postValue(response);
-            }
-
-            @Override
-            public void onFailure(String error) {
-                flag.postValue(null);
-                toastMessage.postValue(error);
-            }
-        });
-
-        return flag;
-    }
-
-    public LiveData<Boolean> addClient(Client client) {
-        MutableLiveData<Boolean> flag = new MutableLiveData<>();
-
-        client.setAssignToId(getCurrentEmployeeId());
-        repo.addClient(client, new ApiResponseListener<Client, String>() {
-            @Override
-            public void onSuccess(Client response) {
-                flag.postValue(true);
-            }
-
-            @Override
-            public void onFailure(String error) {
-                flag.postValue(false);
-                toastMessage.postValue(error);
-            }
-        });
-
-        return flag;
-    }
-
-//    ----------------------------------------------------------------------------------------------
-
     public LiveData<Leave> getLeaveById(Long leaveId) {
         MutableLiveData<Leave> flag = new MutableLiveData<>();
 
@@ -103,68 +62,6 @@ public class BaseViewModel extends AndroidViewModel {
             @Override
             public void onFailure(String error) {
                 flag.postValue(false);
-                toastMessage.postValue(error);
-            }
-        });
-
-        return flag;
-    }
-
-//    ----------------------------------------------------------------------------------------------
-
-    public LiveData<Expense> getExpenseById(Long expenseId) {
-        MutableLiveData<Expense> flag = new MutableLiveData<>();
-
-        repo.getExpenseById(expenseId, new ApiResponseListener<Expense, String>() {
-            @Override
-            public void onSuccess(Expense response) {
-                flag.postValue(response);
-            }
-
-            @Override
-            public void onFailure(String error) {
-                flag.postValue(null);
-                toastMessage.postValue(error);
-            }
-        });
-
-        return flag;
-    }
-
-    public LiveData<Boolean> addExpense(Expense expense) {
-        MutableLiveData<Boolean> flag = new MutableLiveData<>();
-
-        expense.setEmpId(getCurrentEmployeeId());
-        repo.addExpense(expense, new ApiResponseListener<Expense, String>() {
-            @Override
-            public void onSuccess(Expense response) {
-                flag.postValue(true);
-            }
-
-            @Override
-            public void onFailure(String error) {
-                flag.postValue(false);
-                toastMessage.postValue(error);
-            }
-        });
-
-        return flag;
-    }
-
-//    ----------------------------------------------------------------------------------------------
-
-    public LiveData<Client> updateClientById(Client client) {
-        MutableLiveData<Client> flag = new MutableLiveData<>();
-
-        repo.updateClient(client, new ApiResponseListener<Client, String>() {
-            @Override
-            public void onSuccess(Client response) {
-                flag.postValue(response);
-            }
-
-            @Override
-            public void onFailure(String error) {
-                flag.postValue(null);
                 toastMessage.postValue(error);
             }
         });

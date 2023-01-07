@@ -21,7 +21,6 @@ public class AdminMainViewModel extends BaseViewModel {
 
     private final MainRepository repo;
 
-    private final MutableLiveData<List<Client>> allClients;
     private final MutableLiveData<List<Employee>> allSuperEmployees;
     private final MutableLiveData<List<Employee>> allEmployees;
 
@@ -29,8 +28,6 @@ public class AdminMainViewModel extends BaseViewModel {
     private final MutableLiveData<List<Leave>> pendingLeaves;
     private final MutableLiveData<List<Leave>> approvedLeaves;
     private final MutableLiveData<List<Leave>> rejectedLeaves;
-
-    private final MutableLiveData<List<Expense>> allExpenses;
 
     private final MutableLiveData<List<Order>> allOrders;
 
@@ -42,7 +39,6 @@ public class AdminMainViewModel extends BaseViewModel {
         super(application);
         repo = MainRepository.getInstance(application.getApplicationContext());
 
-        allClients = new MutableLiveData<>();
         allSuperEmployees = new MutableLiveData<>();
         allEmployees = new MutableLiveData<>();
 
@@ -50,8 +46,6 @@ public class AdminMainViewModel extends BaseViewModel {
         pendingLeaves = new MutableLiveData<>();
         approvedLeaves = new MutableLiveData<>();
         rejectedLeaves = new MutableLiveData<>();
-
-        allExpenses = new MutableLiveData<>();
 
         allOrders = new MutableLiveData<>();
 
@@ -308,46 +302,6 @@ public class AdminMainViewModel extends BaseViewModel {
         });
 
         return rejectedLeaves;
-    }
-
-//    ----------------------------------------------------------------------------------------------
-
-    public LiveData<List<Expense>> getAllExpenses() {
-
-        repo.getAllExpenses(new ApiResponseListener<List<Expense>, String>() {
-            @Override
-            public void onSuccess(List<Expense> response) {
-                allExpenses.postValue(response);
-            }
-
-            @Override
-            public void onFailure(String error) {
-                allExpenses.postValue(null);
-                toastMessage.postValue(error);
-            }
-        });
-
-        return allExpenses;
-    }
-
-//    ----------------------------------------------------------------------------------------------
-
-    public LiveData<List<Client>> getAllClients() {
-
-        repo.getAllClients(new ApiResponseListener<List<Client>, String>() {
-            @Override
-            public void onSuccess(List<Client> response) {
-                allClients.postValue(response);
-            }
-
-            @Override
-            public void onFailure(String error) {
-                allClients.postValue(null);
-                toastMessage.postValue(error);
-            }
-        });
-
-        return allClients;
     }
 
 //    ----------------------------------------------------------------------------------------------

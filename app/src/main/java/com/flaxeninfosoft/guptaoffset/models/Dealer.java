@@ -8,11 +8,11 @@ public class Dealer {
 
     @SerializedName(Constants.ID)
     @Expose
-    private String id;
+    private Long id;
 
     @SerializedName(Constants.EMPLOYEE_ID)
     @Expose
-    private String empId;
+    private Long empId;
 
     @SerializedName(Constants.NAME)
     @Expose
@@ -24,11 +24,11 @@ public class Dealer {
 
     @SerializedName(Constants.LATITUDE)
     @Expose
-    private String latitude;
+    private Double latitude;
 
     @SerializedName(Constants.LONGITUDE)
     @Expose
-    private String longitude;
+    private Double longitude;
 
     @SerializedName(Constants.IMAGE)
     @Expose

@@ -30,8 +30,8 @@ public class Constants {
     public static final String CLIENT_ID = "clientId";
     public static final String ORDER_ID = "orderId";
 
-    public static final String TIME_IN = "time_in";
-    public static final String TIME_OUT = "time_out";
+    public static final String TIME_IN = "timeIn";
+    public static final String TIME_OUT = "timeOut";
     public static final String DATE = "date";
     public static final String START_METER = "starting_meter";
     public static final String END_METER = "ending_meter";
@@ -62,14 +62,14 @@ public class Constants {
     public static final String EMPLOYEE_STATUS_SUSPENDED = "suspended";
 
     public static final String SCHOOL_VISITS = "school_visits";
-    public static final String PETROL_EXPENSE = "petrol_expenses";
-    public static final String OTHER_EXPENSE = "other_expenses";
+    public static final String PETROL_EXPENSE = "petrolExpenses";
+    public static final String OTHER_EXPENSE = "otherExpenses";
 
     public static final String AMOUNT = "amount";
-    public static final String SNAP_IN = "snap_in";
+    public static final String SNAP_IN = "snapIn";
 
-    public static final String SNAP_OUT = "snap_out";
-    public static final String STUDENT_STRENGTH = "student_strength";
+    public static final String SNAP_OUT = "snapOut";
+    public static final String STUDENT_STRENGTH = "studentStrength";
     public static final String ATN_ID = "atn_id";
     public static final String SCHOOL_ID = "school_id";
     public static final String DEALER_ID = "dealer_id";

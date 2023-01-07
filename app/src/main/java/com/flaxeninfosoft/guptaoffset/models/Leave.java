@@ -33,10 +33,6 @@ public class Leave {
     @Expose
     private Date applyDate;
 
-    @SerializedName(Constants.SUBJECT)
-    @Expose
-    private String subject;
-
     @SerializedName(Constants.MESSAGE)
     @Expose
     private String message;
@@ -83,14 +79,6 @@ public class Leave {
 
     public void setApplyDate(Date applyDate) {
         this.applyDate = applyDate;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
     }
 
     public String getMessage() {

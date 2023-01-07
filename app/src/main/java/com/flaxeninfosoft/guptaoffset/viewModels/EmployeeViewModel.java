@@ -26,8 +26,6 @@ public class EmployeeViewModel extends BaseViewModel {
     private final MainRepository repo;
     private final SharedPrefs sharedPrefs;
 
-    private final MutableLiveData<List<Client>> currentEmployeeClients;
-    private final MutableLiveData<List<Expense>> currentEmployeeExpenses;
     private final MutableLiveData<List<Eod>> currentEmployeeAllEods;
     private final MutableLiveData<List<Order>> currentEmployeeOrders;
     private final MutableLiveData<Eod> currentEmployeeTodaysEod;
@@ -42,8 +40,6 @@ public class EmployeeViewModel extends BaseViewModel {
         sharedPrefs = SharedPrefs.getInstance(application.getApplicationContext());
         toastMessage = super.getToastMessageLiveData();
 
-        currentEmployeeClients = new MutableLiveData<>();
-        currentEmployeeExpenses = new MutableLiveData<>();
         currentEmployeeAllEods = new MutableLiveData<>();
         currentEmployeeOrders = new MutableLiveData<>();
         currentEmployeeTodaysEod = new MutableLiveData<>();
@@ -53,54 +49,8 @@ public class EmployeeViewModel extends BaseViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<List<Client>> getCurrentEmployeeClients() {
-
-        Long empId = getCurrentEmployeeId();
-
-        repo.getEmployeeClientsById(empId, new ApiResponseListener<List<Client>, String>() {
-            @Override
-            public void onSuccess(List<Client> response) {
-                currentEmployeeClients.postValue(response);
-                Log.d("CRM-LOG", "onSuccess: "+response);
-            }
-
-            @Override
-            public void onFailure(String error) {
-                currentEmployeeClients.postValue(null);
-                Log.d("CRM-LOG", "onFailed: "+error);
-                getToastMessageLiveData().postValue(error);
-            }
-        });
-
-        return currentEmployeeClients;
-    }
-
-//    ----------------------------------------------------------------------------------------------
-
     public Employee getCurrentEmployee() {
         return sharedPrefs.getCurrentEmployee();
-    }
-
-//    ----------------------------------------------------------------------------------------------
-
-    public LiveData<List<Expense>> getCurrentEmployeeExpenses() {
-
-        Long empId = getCurrentEmployeeId();
-
-        repo.getEmployeeExpenses(empId, new ApiResponseListener<List<Expense>, String>() {
-            @Override
-            public void onSuccess(List<Expense> response) {
-                currentEmployeeExpenses.postValue(response);
-            }
-
-            @Override
-            public void onFailure(String error) {
-                currentEmployeeExpenses.postValue(null);
-                toastMessage.postValue(error);
-            }
-        });
-
-        return currentEmployeeExpenses;
     }
 
 //    ----------------------------------------------------------------------------------------------
