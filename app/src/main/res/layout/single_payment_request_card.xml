@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="order"
-            type="com.flaxeninfosoft.guptaoffset.models.Order" />
+            name="dealer"
+            type="com.flaxeninfosoft.guptaoffset.models.Dealer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,17 +13,17 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/order_text"
+            android:id="@+id/payment_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/card"
-            android:text="ORDER"
+            android:text="PAYMENT"
             android:textSize="20dp"
             android:textColor="@color/black"
             android:textStyle="bold" />
         <TextView
-            android:id="@+id/single_order_card_date_apply"
+            android:id="@+id/single_payment_card_date_apply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintRight_toRightOf="@id/card"
@@ -46,21 +46,36 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/order_text">
+            app:layout_constraintTop_toBottomOf="@id/payment_text">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:padding="12dp">
 
+                <TextView
+                    android:id="@+id/single_payment_request_card_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:text="Payment"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"/>
 
-                <ImageView
-                    android:id="@+id/single_order_card_order_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src=""
+                <TextView
+                    android:id="@+id/single_payment_request_card_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/single_payment_request_card_payment"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:text="Status"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
