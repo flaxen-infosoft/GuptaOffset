@@ -217,7 +217,7 @@ public class EmployeeViewModel extends AndroidViewModel {
 //    ----------------------------------------------------------------------------------------------
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Boolean> addSchool(School school){
+    public LiveData<Boolean> addSchool(School school) {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
         repo.addSchool(getCurrentEmployeeId(), school, new ApiResponseListener<School, String>() {
@@ -394,8 +394,7 @@ public class EmployeeViewModel extends AndroidViewModel {
         }
     }
 
-    public LiveData<Uri> getImageUri() {
-        return imageUri;
+    public void logout() {
+        SharedPrefs.getInstance(getApplication().getApplicationContext()).clearCredentials();
     }
-
 }

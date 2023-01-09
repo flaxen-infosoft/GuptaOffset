@@ -72,14 +72,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/add_image" />
+                android:src="@drawable/ic_add_image" />
 
             <ImageView
                 android:id="@+id/employee_add_attendance_end_meter_image"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/add_image"
+                android:src="@drawable/ic_add_image"
                 android:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton

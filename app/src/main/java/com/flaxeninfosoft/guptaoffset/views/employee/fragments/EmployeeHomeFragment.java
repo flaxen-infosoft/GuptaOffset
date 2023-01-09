@@ -12,10 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.adapters.EmployeeHomeFragmentStateAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeHomeBinding;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 public class EmployeeHomeFragment extends Fragment {
 
@@ -37,11 +35,13 @@ public class EmployeeHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_home, container, false);
 
-        binding.employeeHomeCardAddLeave.setOnClickListener(this::navigateToAddLeave);
+        binding.employeeHomeCardAddAttendance.setOnClickListener(this::navigateAddAttendance);
         binding.employeeHomeCardAddOrder.setOnClickListener(this::navigateToAddOrder);
-        binding.employeeHomeCardMap.setOnClickListener(this::navigateToMap);
-
-//        setTabLayout();
+        binding.employeeHomeCardAddSchool.setOnClickListener(this::navigateToAddSchool);
+        binding.employeeHomeCardAddShop.setOnClickListener(this::navigateToAddShop);
+        binding.employeeHomeCardAddLeave.setOnClickListener(this::navigateToAddLeave);
+        binding.employeeHomeCardAddEod.setOnClickListener(this::navigateToAddEod);
+        binding.employeeHomeCardMyMap.setOnClickListener(this::navigateToMap);
 
         binding.employeeHomeViewFab.setOnClickListener(view -> {
             if (binding.employeeHomeCard.getVisibility() == View.VISIBLE) {
@@ -54,12 +54,28 @@ public class EmployeeHomeFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void navigateToMap(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeMapFragment);
+    private void navigateToAddEod(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddEODFragment);
+    }
+
+    private void navigateToAddShop(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddDealerFragment);
+    }
+
+    private void navigateToAddSchool(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddSchoolFragment);
+    }
+
+    private void navigateAddAttendance(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddAttendanceFragment);
     }
 
     private void navigateToAddOrder(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddOrderFragment);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddAttendanceFragment);
+    }
+
+    private void navigateToMap(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeMapFragment);
     }
 
     private void navigateToAddLeave(View view) {

@@ -94,35 +94,35 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
-                    app:srcCompat="@drawable/add_level" />
+                    app:srcCompat="@drawable/ic_leave" />
 
                 <ImageView
                     android:id="@+id/super_employee_home_card_add_school"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
-                    app:srcCompat="@drawable/add_school" />
+                    app:srcCompat="@drawable/ic_school" />
 
                 <ImageView
                     android:id="@+id/super_employee_home_card_add_order"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
-                    app:srcCompat="@drawable/add_order" />
+                    app:srcCompat="@drawable/ic_order" />
 
                 <ImageView
                     android:id="@+id/super_employee_home_card_add_visit"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
-                    app:srcCompat="@drawable/img" />
+                    app:srcCompat="@drawable/ic_eod" />
 
                 <ImageView
                     android:id="@+id/super_employee_home_card_map"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
-                    app:srcCompat="@drawable/img_1" />
+                    app:srcCompat="@drawable/ic_map" />
 
                 <ImageView
                     android:id="@+id/super_employee_home_card_add_eod"
