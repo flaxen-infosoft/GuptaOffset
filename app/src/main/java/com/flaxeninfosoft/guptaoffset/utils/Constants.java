@@ -73,4 +73,5 @@ public class Constants {
     public static final String ATN_ID = "atn_id";
     public static final String SCHOOL_ID = "school_id";
     public static final String DEALER_ID = "dealer_id";
+    public static final String PUNCH_STATUS = "punchStatus";
 }

@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.viewModels;
 
 import android.app.Application;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -12,7 +13,10 @@ import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
+import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
+
+import java.io.IOException;
 
 public class BaseViewModel extends AndroidViewModel {
 
@@ -90,10 +94,11 @@ public class BaseViewModel extends AndroidViewModel {
         return flag;
     }
 
-    public LiveData<Boolean> addOrder(Order order) {
+    public LiveData<Boolean> addOrder(Order order, Uri uri) throws IOException {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
         order.setEmpId(getCurrentEmployeeId());
+        order.setSnap(FileEncoder.encodeImage(getApplication().getContentResolver(), uri));
         repo.addOrder(order, new ApiResponseListener<Order, String>() {
             @Override
             public void onSuccess(Order response) {

@@ -18,7 +18,7 @@ public interface EodApiInterface {
     Call<Eod> getEodById(@Query(Constants.EOD_ID) Long eodId);
 
     @POST(ApiEndpoints.ADD_EOD)
-    Call<Eod> addEod(@Body Eod eod);
+    Call<Eod> addEod(@Query(Constants.EMPLOYEE_ID) Long empId, @Body Eod eod);
 
     @GET(ApiEndpoints.GET_EMPLOYEE_ALL_EOD_BY_ID)
     Call<List<Eod>> getEmployeeAllEodsById(@Query(Constants.EMPLOYEE_ID) Long empId);

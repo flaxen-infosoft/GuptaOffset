@@ -4,7 +4,6 @@ import static android.app.Activity.RESULT_OK;
 
 import android.app.Application;
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
@@ -12,6 +11,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
+import com.flaxeninfosoft.guptaoffset.models.Attendance;
+import com.flaxeninfosoft.guptaoffset.models.Dealer;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
@@ -20,6 +21,7 @@ import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 
+import java.sql.Date;
 import java.util.List;
 
 public class EmployeeViewModel extends BaseViewModel {
@@ -44,13 +46,83 @@ public class EmployeeViewModel extends BaseViewModel {
         currentEmployeeOrders = new MutableLiveData<>();
         currentEmployeeTodaysEod = new MutableLiveData<>();
         currentEmployeeLeaves = new MutableLiveData<>();
-        imageUri= new MutableLiveData<>();
+        imageUri = new MutableLiveData<>();
     }
 
 //    ----------------------------------------------------------------------------------------------
 
     public Employee getCurrentEmployee() {
         return sharedPrefs.getCurrentEmployee();
+    }
+
+//    ----------------------------------------------------------------------------------------------
+
+    public LiveData<Attendance> getCurrentEmployeeTodaysAttendance() {
+        MutableLiveData<Attendance> flag = new MutableLiveData<>();
+
+        repo.getEmployeeTodaysAttendance(getCurrentEmployeeId(), new ApiResponseListener<Attendance, String>() {
+            @Override
+            public void onSuccess(Attendance response) {
+                if (response == null) {
+                    Attendance attendance = new Attendance();
+                    attendance.setEmpId(getCurrentEmployeeId());
+                    attendance.setTimeIn(new Date(System.currentTimeMillis()));
+                    response = attendance;
+                }
+
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                toastMessage.postValue(error);
+                flag.postValue(null);
+            }
+        });
+
+        return flag;
+    }
+
+    public LiveData<Attendance> punchAttendance(Long reading, Uri imageUri) {
+        MutableLiveData<Attendance> flag = new MutableLiveData<>();
+
+        String encodedImage = "";//TODO
+
+        repo.punchAttendance(getCurrentEmployeeId(), reading, encodedImage, new ApiResponseListener<Attendance, String>() {
+            @Override
+            public void onSuccess(Attendance response) {
+                flag.postValue(new Attendance());
+            }
+
+            @Override
+            public void onFailure(String error) {
+                toastMessage.postValue(error);
+                flag.postValue(null);
+            }
+        });
+
+        return flag;
+    }
+
+//    ----------------------------------------------------------------------------------------------
+
+    public LiveData<Boolean> addDealer(Dealer dealer){
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
+
+        repo.addDealer(getCurrentEmployeeId(), dealer, new ApiResponseListener<Dealer, String>() {
+            @Override
+            public void onSuccess(Dealer response) {
+                flag.postValue(true);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(false);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
     }
 
 //    ----------------------------------------------------------------------------------------------
@@ -94,18 +166,18 @@ public class EmployeeViewModel extends BaseViewModel {
         return currentEmployeeTodaysEod;
     }
 
-    public LiveData<Eod> addEod(Eod eod){
-        MutableLiveData<Eod> flag = new MutableLiveData<>();
+    public LiveData<Boolean> addEod(Eod eod) {
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
-        repo.addEod(eod, new ApiResponseListener<Eod, String>() {
+        repo.addEod( getCurrentEmployeeId(), eod, new ApiResponseListener<Eod, String>() {
             @Override
             public void onSuccess(Eod response) {
-                flag.postValue(response);
+                flag.postValue(true);
             }
 
             @Override
             public void onFailure(String error) {
-                flag.postValue(null);
+                flag.postValue(false);
                 toastMessage.postValue(error);
             }
         });
@@ -188,7 +260,7 @@ public class EmployeeViewModel extends BaseViewModel {
 //    ----------------------------------------------------------------------------------------------
 
     public void onImagePickerResult(int resultCode, ActivityResult result) {
-        if (result.getResultCode()==RESULT_OK) {
+        if (result.getResultCode() == RESULT_OK) {
             imageUri.setValue(result.getData().getData());
         }
     }

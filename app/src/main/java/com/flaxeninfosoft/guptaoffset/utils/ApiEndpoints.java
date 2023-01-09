@@ -46,27 +46,21 @@ public class ApiEndpoints {
 
 //  ----------------------------------------------------------------------------------------------
 
-    public static final String GET_EXPENSE_BY_ID = "expense/getExpenseById.php";
-    public static final String GET_EMPLOYEE_ALL_EXPENSES = "expense/getEmployeeAllExpenses.php";
-    public static final String GET_ALL_EXPENSES = "expense/getAllExpenses.php";
-    public static final String ADD_EXPENSE = "expense/addExpense.php";
-
-//  ----------------------------------------------------------------------------------------------
-
-    public static final String ADD_CLIENT = "client/addClient.php";
-    public static final String GET_CLIENT_BY_ID = "client/getClientById.php";
-    public static final String GET_ALL_CLIENTS = "client/getAllClients.php";
-    public static final String GET_EMPLOYEE_CLIENTS_BY_ID = "client/getEmployeeClients.php";
-    public static final String UPDATE_CLIENT_BY_ID = "client/updateClient.php";
-
-//  ----------------------------------------------------------------------------------------------
-
     public static final String GET_ORDER_BY_ID = "order/getOrderById.php";
     public static final String GET_EMPLOYEE_ORDERS = "order/getEmployeeOrders.php";
     public static final String GET_ALL_ORDERS = "order/getAllOrders.php";
     public static final String ADD_ORDER = "order/addOrder.php";
 
 //    ----------------------------------------------------------------------------------------------
+
+    public static final String ADD_DEALER = "dealer/addDealer.php";
+
+
+//    ----------------------------------------------------------------------------------------------
+
+    public static final String PUNCH_ATTENDANCE = "attendance/punchAttendance.php";
+    public static final String GET_TODAYS_ATTENDANCE = "attendance/getTodaysAttendance.php";
+
 
 
 }

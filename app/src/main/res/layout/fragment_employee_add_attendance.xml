@@ -5,75 +5,91 @@
     <data>
 
         <variable
-            name="eod"
-            type="com.flaxeninfosoft.guptaoffset.models.Eod" />
+            name="attendance"
+            type="com.flaxeninfosoft.guptaoffset.models.Attendance" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/splash_back"
-        tools:context=".views.employee.fragments.EmployeeAddEODFragment">
+        tools:context=".views.employee.fragments.EmployeeAddAttendanceFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="16dp"
+            android:orientation="vertical">
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/employee_add_eod_schools_visits"
+                android:id="@+id/employee_add_attendance_start_meter"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Number of schools visits"
-                    android:inputType="numberSigned"
-                    android:text="@={``+eod.schoolVisits}" />
+                    android:hint="Start meter"
+                    android:inputType="numberSigned" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/employee_add_eod_petrol_expense"
+                android:id="@+id/employee_add_attendance_end_meter"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_margin="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Petrol expense"
-                    android:inputType="numberSigned"
-                    android:text="@={``+eod.petrolExpense}" />
+                    android:hint="End meter"
+                    android:inputType="numberSigned" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/employee_add_eod_other_expense"
+                android:id="@+id/employee_add_attendance_total_meter"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_margin="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Other expense"
-                    android:text="@={eod.otherExpense}" />
+                    android:enabled="false"
+                    android:hint="Total distance covered"
+                    android:inputType="numberSigned" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/employee_add_attendance_start_meter_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/add_image" />
+
+            <ImageView
+                android:id="@+id/employee_add_attendance_end_meter_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/add_image"
+                android:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/employee_add_eod_btn"
+                android:id="@+id/employee_add_attendance_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="8dp"
-                android:text="Add EOD" />
-        </LinearLayout>
+                android:enabled="false"
+                android:text="punch attendance" />
 
+        </LinearLayout>
     </ScrollView>
 </layout>

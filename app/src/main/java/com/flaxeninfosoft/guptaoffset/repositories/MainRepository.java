@@ -5,15 +5,17 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.flaxeninfosoft.guptaoffset.api.AttendanceApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.AuthApiInterface;
-import com.flaxeninfosoft.guptaoffset.api.ClientApiInterface;
+import com.flaxeninfosoft.guptaoffset.api.DealerApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.EmployeeApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.EodApiInterface;
-import com.flaxeninfosoft.guptaoffset.api.ExpensesApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LeaveApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LocationApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.OrderApiInterface;
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
+import com.flaxeninfosoft.guptaoffset.models.Attendance;
+import com.flaxeninfosoft.guptaoffset.models.Dealer;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
@@ -35,12 +37,14 @@ public class MainRepository {
     private static MainRepository instance;
 
     private final AuthApiInterface authApiInterface;
+    private final DealerApiInterface dealerApiInterface;
+
     private final EmployeeApiInterface employeeApiInterface;
     private final LeaveApiInterface leaveApiInterface;
     private final EodApiInterface eodApiInterface;
     private final LocationApiInterface locationApiInterface;
-    private final ExpensesApiInterface expensesApiInterface;
-    private final ClientApiInterface clientApiInterface;
+    private final AttendanceApiInterface attendanceApiInterface;
+
     private final OrderApiInterface orderApiInterface;
 
     private final int STATUS_NOT_FOUND = 404;
@@ -49,12 +53,12 @@ public class MainRepository {
         Retrofit apiClient = RetrofitClient.getClient();
 
         authApiInterface = apiClient.create(AuthApiInterface.class);
+        dealerApiInterface = apiClient.create(DealerApiInterface.class);
+        attendanceApiInterface = apiClient.create(AttendanceApiInterface.class);
         employeeApiInterface = apiClient.create(EmployeeApiInterface.class);
         leaveApiInterface = apiClient.create(LeaveApiInterface.class);
         eodApiInterface = apiClient.create(EodApiInterface.class);
         locationApiInterface = apiClient.create(LocationApiInterface.class);
-        expensesApiInterface = apiClient.create(ExpensesApiInterface.class);
-        clientApiInterface = apiClient.create(ClientApiInterface.class);
         orderApiInterface = apiClient.create(OrderApiInterface.class);
     }
 
@@ -285,8 +289,8 @@ public class MainRepository {
         processEodCall(eodByIdCall, listener);
     }
 
-    public void addEod(Eod eod, ApiResponseListener<Eod, String> listener) {
-        Call<Eod> addEodCall = eodApiInterface.addEod(eod);
+    public void addEod(Long empId, Eod eod, ApiResponseListener<Eod, String> listener) {
+        Call<Eod> addEodCall = eodApiInterface.addEod(empId, eod);
 
         processEodCall(addEodCall, listener);
     }
@@ -483,6 +487,80 @@ public class MainRepository {
             public void onFailure(@NonNull Call<List<Order>> call, @NonNull Throwable t) {
                 t.printStackTrace();
                 listener.onFailure(t.getLocalizedMessage());
+            }
+        });
+    }
+
+//    ----------------------------------------------------------------------------------------------
+
+    public void addDealer(Long empId, Dealer dealer, ApiResponseListener<Dealer, String> listener) {
+        Call<Dealer> call = dealerApiInterface.addDealer(empId, dealer);
+
+        processDealerCall(call, listener);
+    }
+
+    private void processDealerCall(Call<Dealer> call, ApiResponseListener<Dealer, String> listener) {
+        call.enqueue(new Callback<Dealer>() {
+            @Override
+            public void onResponse(@NonNull Call<Dealer> call, @NonNull Response<Dealer> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        listener.onSuccess(response.body());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        listener.onFailure("Invalid response from the server");
+                    }
+                } else {
+                    listener.onFailure(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Dealer> call, @NonNull Throwable t) {
+                t.printStackTrace();
+                listener.onFailure("Unable to connect to server");
+            }
+        });
+    }
+
+
+//    ----------------------------------------------------------------------------------------------
+
+    public void getEmployeeTodaysAttendance(Long empId, ApiResponseListener<Attendance, String> listener) {
+
+        Call<Attendance> call = attendanceApiInterface.getEmployeeTodaysAttendance(empId);
+
+        processAttendanceCall(call, listener);
+    }
+
+    public void punchAttendance(Long empId, Long reading, String encodedImage, ApiResponseListener<Attendance, String> listener) {
+
+        Call<Attendance> call = attendanceApiInterface.punchAttendance(empId, reading, encodedImage);
+
+        processAttendanceCall(call, listener);
+    }
+
+    private void processAttendanceCall(Call<Attendance> call, ApiResponseListener<Attendance, String> listener) {
+
+        call.enqueue(new Callback<Attendance>() {
+            @Override
+            public void onResponse(@NonNull Call<Attendance> call, @NonNull Response<Attendance> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        listener.onSuccess(response.body());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        listener.onFailure("Invalid response from the server");
+                    }
+                } else {
+                    listener.onFailure(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Attendance> call, @NonNull Throwable t) {
+                t.printStackTrace();
+                listener.onFailure("Unable to connect to server");
             }
         });
     }

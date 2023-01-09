@@ -30,7 +30,7 @@ public class Eod {
 
     @SerializedName(Constants.OTHER_EXPENSE)
     @Expose
-    private int otherExpense;
+    private String otherExpense;
 
     public Long getId() {
         return id;
@@ -72,11 +72,11 @@ public class Eod {
         this.petrolExpense = petrolExpense;
     }
 
-    public int getOtherExpense() {
+    public String getOtherExpense() {
         return otherExpense;
     }
 
-    public void setOtherExpense(int otherExpense) {
+    public void setOtherExpense(String otherExpense) {
         this.otherExpense = otherExpense;
     }
 }

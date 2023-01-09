@@ -124,11 +124,6 @@ public class EmployeeAddLeaveFragment extends Fragment {
             return false;
         }
 
-        if (leave.getSubject() == null || leave.getSubject().isEmpty()) {
-            binding.employeeApplyLeaveSubjectTil.setError("Enter subject");
-            return false;
-        }
-
         return true;
     }
 

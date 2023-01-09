@@ -14,7 +14,7 @@ public class Attendance {
 
     @SerializedName(Constants.EMPLOYEE_ID)
     @Expose
-    private int empId;
+    private long empId;
 
     @SerializedName(Constants.TIME_IN)
     @Expose
@@ -36,6 +36,22 @@ public class Attendance {
     @Expose
     private Long date;
 
+    @SerializedName(Constants.START_METER)
+    @Expose
+    private Long startMeter;
+
+    @SerializedName(Constants.END_METER)
+    @Expose
+    private Long endMeter;
+
+    @SerializedName(Constants.TOTAL_DISTANCE)
+    @Expose
+    private Long totalDistance;
+
+    @SerializedName(Constants.PUNCH_STATUS)
+    @Expose
+    private int punchStatus;
+
 
     public int getId() {
         return id;
@@ -45,11 +61,11 @@ public class Attendance {
         this.id = id;
     }
 
-    public int getEmpId() {
+    public long getEmpId() {
         return empId;
     }
 
-    public void setEmpId(int empId) {
+    public void setEmpId(long empId) {
         this.empId = empId;
     }
 
@@ -91,5 +107,37 @@ public class Attendance {
 
     public void setDate(Long date) {
         this.date = date;
+    }
+
+    public Long getStartMeter() {
+        return startMeter;
+    }
+
+    public void setStartMeter(Long startMeter) {
+        this.startMeter = startMeter;
+    }
+
+    public Long getEndMeter() {
+        return endMeter;
+    }
+
+    public void setEndMeter(Long endMeter) {
+        this.endMeter = endMeter;
+    }
+
+    public Long getTotalDistance() {
+        return totalDistance;
+    }
+
+    public void setTotalDistance(Long totalDistance) {
+        this.totalDistance = totalDistance;
+    }
+
+    public int getPunchStatus() {
+        return punchStatus;
+    }
+
+    public void setPunchStatus(int punchStatus) {
+        this.punchStatus = punchStatus;
     }
 }
