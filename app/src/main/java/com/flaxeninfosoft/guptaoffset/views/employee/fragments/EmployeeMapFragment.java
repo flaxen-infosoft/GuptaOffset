@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeMapBinding;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -40,18 +41,12 @@ public class EmployeeMapFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_map, container, false);
 
-        mapReadyCallback = googleMap -> viewModel.getCurrentEmployeeClients().observe(getViewLifecycleOwner(), clients -> {
-            if (clients != null) {
-                for (Client c : clients) {
-                    if (c.getLatitude() != 0d && c.getLongitude() != 0d) {
-                        LatLng latLng = new LatLng(c.getLatitude(), c.getLongitude());
-                        googleMap.addMarker(new MarkerOptions()
-                                .position(latLng)
-                                .title(c.getOrgName()));
-                    }
-                }
+        mapReadyCallback = new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull GoogleMap googleMap) {
+
             }
-        });
+        };
 
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();
         getActivity().getSupportFragmentManager()

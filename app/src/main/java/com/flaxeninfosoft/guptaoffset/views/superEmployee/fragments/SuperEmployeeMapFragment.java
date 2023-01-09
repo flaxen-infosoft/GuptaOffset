@@ -42,19 +42,6 @@ public class SuperEmployeeMapFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_super_employee_map, container, false);
 
         mapReadyCallback = googleMap -> {
-            viewModel.getCurrentEmployeeClients().observe(getViewLifecycleOwner(), clients -> {
-                if (clients != null) {
-                    for (Client c : clients) {
-                        if (c.getLatitude() != 0d && c.getLongitude() != 0d) {
-                            LatLng latLng = new LatLng(c.getLatitude(), c.getLongitude());
-                            googleMap.addMarker(new MarkerOptions()
-                                    .position(latLng)
-                                    .title(c.getOrgName()));
-                        }
-                    }
-                }
-            });
-
             viewModel.getCurrentSuperEmployeeEmployees().observe(getViewLifecycleOwner(), employees -> {
                 if (employees != null) {
                     for (Employee e : employees) {

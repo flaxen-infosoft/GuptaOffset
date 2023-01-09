@@ -128,7 +128,6 @@ public class EmployeeAddLeaveFragment extends Fragment {
     }
 
     private void clearErrors() {
-        binding.employeeApplyLeaveSubjectTil.setError(null);
         binding.employeeApplyLeaveMessageTil.setError(null);
     }
 }

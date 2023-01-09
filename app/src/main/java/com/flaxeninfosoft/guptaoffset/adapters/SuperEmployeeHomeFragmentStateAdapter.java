@@ -6,8 +6,6 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllAttendanceFragment;
-import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllClientsFragment;
-import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllExpenseFragment;
 import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllLeavesFragment;
 import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllOrdersFragment;
 import com.flaxeninfosoft.guptaoffset.views.superEmployee.fragments.SuperEmployeeAllEmployeesFragment;
@@ -24,16 +22,12 @@ public class SuperEmployeeHomeFragmentStateAdapter extends FragmentStateAdapter 
 
         switch (position) {
             case 0:
-                return new EmployeeAllClientsFragment();
-            case 1:
                 return new EmployeeAllOrdersFragment();
-            case 2:
-                return new EmployeeAllExpenseFragment();
-            case 3:
+            case 1:
                 return new EmployeeAllLeavesFragment();
-            case 4:
+            case 2:
                 return new EmployeeAllAttendanceFragment();
-            case 5:
+            case 3:
                 return new SuperEmployeeAllEmployeesFragment();
             default:
                 return null;
@@ -42,6 +36,6 @@ public class SuperEmployeeHomeFragmentStateAdapter extends FragmentStateAdapter 
 
     @Override
     public int getItemCount() {
-        return 6;
+        return 4;
     }
 }

@@ -6,8 +6,6 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllAttendanceFragment;
-import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllClientsFragment;
-import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllExpenseFragment;
 import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllLeavesFragment;
 import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAllOrdersFragment;
 import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeMapFragment;
@@ -27,12 +25,8 @@ public class EmployeeHomeFragmentStateAdapter extends FragmentStateAdapter {
             case 1:
                 return new EmployeeAllLeavesFragment();
             case 2:
-                return new EmployeeAllExpenseFragment();
-            case 3:
-                return new EmployeeAllClientsFragment();
-            case 4:
                 return new EmployeeAllAttendanceFragment();
-            case 5:
+            case 3:
                 return new EmployeeMapFragment();
             default:
                 return null;
@@ -41,6 +35,6 @@ public class EmployeeHomeFragmentStateAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 4;
     }
 }
