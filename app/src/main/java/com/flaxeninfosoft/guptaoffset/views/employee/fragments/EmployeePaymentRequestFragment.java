@@ -21,7 +21,7 @@ public class EmployeePaymentRequestFragment extends Fragment {
     private FragmentEmployeePaymentRequestBinding binding;
     private EmployeeViewModel viewModel;
 
-    public EmployeePaymentRequestFragment() {
+    public EmployeePaymentRequestFragment()    {
         // Required empty public constructor
     }
 

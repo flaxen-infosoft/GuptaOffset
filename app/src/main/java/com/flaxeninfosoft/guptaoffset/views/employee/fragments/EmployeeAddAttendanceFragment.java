@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -57,7 +56,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 
     private void setAttendance(Attendance attendance) {
 
-        switch (attendance.getPunchStatus()){
+        switch (attendance.getPunchStatus()) {
             case 0:
                 binding.employeeAddAttendanceStartMeter.setEnabled(true);
                 binding.employeeAddAttendanceStartMeter.setVisibility(View.VISIBLE);
@@ -72,15 +71,15 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 binding.employeeAddAttendanceBtn.setEnabled(true);
                 binding.employeeAddAttendanceBtn.setOnClickListener(v -> {
                     clearErrors();
-                    if (uri==null){
+                    if (uri == null) {
                         Toast.makeText(getContext(), "Insert image.", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    try{
-                        long  reading = Long.getLong(binding.employeeAddAttendanceStartMeter.getEditText().getText().toString());
-                        punch(reading, uri  );
-                    }catch (Exception e){
+                    try {
+                        long reading = Long.getLong(binding.employeeAddAttendanceStartMeter.getEditText().getText().toString());
+                        punch(reading, uri);
+                    } catch (Exception e) {
                         binding.employeeAddAttendanceStartMeter.setError("Enter valid reading.");
                         return;
                     }
@@ -102,15 +101,15 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 binding.employeeAddAttendanceBtn.setEnabled(true);
                 binding.employeeAddAttendanceBtn.setOnClickListener(v -> {
                     clearErrors();
-                    if (uri==null){
+                    if (uri == null) {
                         Toast.makeText(getContext(), "Insert image.", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    try{
-                        long  reading = Long.getLong(binding.employeeAddAttendanceEndMeter.getEditText().getText().toString());
-                        punch(reading, uri  );
-                    }catch (Exception e){
+                    try {
+                        long reading = Long.getLong(binding.employeeAddAttendanceEndMeter.getEditText().getText().toString());
+                        punch(reading, uri);
+                    } catch (Exception e) {
                         binding.employeeAddAttendanceEndMeter.setError("Enter valid reading.");
                         return;
                     }
@@ -139,7 +138,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 
     private void punch(long reading, Uri uri) {
         viewModel.punchAttendance(reading, uri).observe(getViewLifecycleOwner(), attendance -> {
-            if (attendance!=null){
+            if (attendance != null) {
                 navigateUp();
             }
         });

@@ -50,7 +50,7 @@ public class EmployeeAllOrdersFragment extends Fragment {
             public void onCLickCard(Order order) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(getString(R.string.key_leave_id), order.getId());
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeAllOrdersFragment_to_employeeOrderDetailsFragment, bundle);
+//                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeAllOrdersFragment_to_employeeOrderDetailsFragment, bundle);
             }
         });
         binding.employeeOrderListRecycler.setAdapter(adapter);

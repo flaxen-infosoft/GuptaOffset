@@ -87,7 +87,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
-                    app:srcCompat="@drawable/add_expense_logo" />
+                    app:srcCompat="@drawable/ic_school" />
 
                 <ImageView
                     android:id="@+id/super_employee_home_card_add_leave"
@@ -123,20 +123,6 @@
                     android:layout_height="50dp"
                     android:layout_margin="8dp"
                     app:srcCompat="@drawable/ic_map" />
-
-                <ImageView
-                    android:id="@+id/super_employee_home_card_add_eod"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="8dp"
-                    app:srcCompat="@drawable/img_2" />
-
-                <ImageView
-                    android:id="@+id/super_employee_home_card_add_client"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="8dp"
-                    app:srcCompat="@drawable/img_3" />
 
             </GridLayout>
 
