@@ -14,7 +14,6 @@ import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 import com.flaxeninfosoft.guptaoffset.viewModels.LoginViewModel;
-import com.flaxeninfosoft.guptaoffset.views.admin.AdminMainActivity;
 import com.flaxeninfosoft.guptaoffset.views.employee.EmployeeMainActivity;
 import com.flaxeninfosoft.guptaoffset.views.superEmployee.SuperEmployeeMainActivity;
 
@@ -26,13 +25,13 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView( R.layout.activity_splash);
+        setContentView(R.layout.activity_splash);
 
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(LoginViewModel.class);
         repo = MainRepository.getInstance(getApplicationContext());
 
         boolean isLoggedIn = SharedPrefs.getInstance(getApplicationContext()).isLoggedIn();
-        Log.e("TEST", isLoggedIn+" this is loggedIN");
+        Log.e("TEST", isLoggedIn + " this is loggedIN");
         if (isLoggedIn) {
             viewModel.loginUser(SharedPrefs.getInstance(getApplicationContext()).getCredentials()).observe(this, this::onLoginRequestComplete);
         } else {
@@ -42,9 +41,9 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void onLoginRequestComplete(Boolean isSuccess) {
-        if (isSuccess){
+        if (isSuccess) {
             startHomeActivityByEmployee();
-        }else {
+        } else {
             startLoginActivity();
         }
     }
@@ -57,13 +56,6 @@ public class SplashActivity extends AppCompatActivity {
         switch (employee.getDesignation()) {
             case Constants.DESIGNATION_EMPLOYEE:
                 intent = new Intent(this, EmployeeMainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-                break;
-
-            case Constants.DESIGNATION_ADMIN:
-                intent = new Intent(this, AdminMainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
