@@ -7,6 +7,7 @@ import android.net.Uri;
 
 import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -19,12 +20,14 @@ import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
+import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
-public class EmployeeViewModel extends BaseViewModel {
+public class EmployeeViewModel extends AndroidViewModel {
     private final MainRepository repo;
     private final SharedPrefs sharedPrefs;
 
@@ -35,12 +38,11 @@ public class EmployeeViewModel extends BaseViewModel {
     private final MutableLiveData<String> toastMessage;
     private final MutableLiveData<Uri> imageUri;
 
-
     public EmployeeViewModel(@NonNull Application application) {
         super(application);
         repo = MainRepository.getInstance(application.getApplicationContext());
         sharedPrefs = SharedPrefs.getInstance(application.getApplicationContext());
-        toastMessage = super.getToastMessageLiveData();
+        toastMessage = new MutableLiveData<>();
 
         currentEmployeeAllEods = new MutableLiveData<>();
         currentEmployeeOrders = new MutableLiveData<>();
@@ -53,6 +55,92 @@ public class EmployeeViewModel extends BaseViewModel {
 
     public Employee getCurrentEmployee() {
         return sharedPrefs.getCurrentEmployee();
+    }
+
+    Long getCurrentEmployeeId() {
+        return sharedPrefs.getCurrentEmployee().getId();
+    }
+
+//    ----------------------------------------------------------------------------------------------
+
+    public LiveData<Leave> getLeaveById(Long leaveId) {
+        MutableLiveData<Leave> flag = new MutableLiveData<>();
+
+        repo.getLeaveById(leaveId, new ApiResponseListener<Leave, String>() {
+            @Override
+            public void onSuccess(Leave response) {
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
+    public LiveData<Boolean> addLeave(Leave leave) {
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
+
+        repo.addLeave(leave, new ApiResponseListener<Leave, String>() {
+            @Override
+            public void onSuccess(Leave response) {
+                flag.postValue(true);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(false);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
+//    ----------------------------------------------------------------------------------------------
+
+    public LiveData<Order> getOrderById(Long orderId) {
+        MutableLiveData<Order> flag = new MutableLiveData<>();
+
+        repo.getOrderById(orderId, new ApiResponseListener<Order, String>() {
+            @Override
+            public void onSuccess(Order response) {
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
+    public LiveData<Boolean> addOrder(Order order, Uri uri) throws IOException {
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
+
+        order.setEmpId(getCurrentEmployeeId());
+        order.setSnap(FileEncoder.encodeImage(getApplication().getContentResolver(), uri));
+        repo.addOrder(order, new ApiResponseListener<Order, String>() {
+            @Override
+            public void onSuccess(Order response) {
+                flag.postValue(true);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(false);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
     }
 
 //    ----------------------------------------------------------------------------------------------
@@ -106,7 +194,7 @@ public class EmployeeViewModel extends BaseViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Boolean> addDealer(Dealer dealer){
+    public LiveData<Boolean> addDealer(Dealer dealer) {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
         repo.addDealer(getCurrentEmployeeId(), dealer, new ApiResponseListener<Dealer, String>() {
@@ -169,7 +257,7 @@ public class EmployeeViewModel extends BaseViewModel {
     public LiveData<Boolean> addEod(Eod eod) {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
-        repo.addEod( getCurrentEmployeeId(), eod, new ApiResponseListener<Eod, String>() {
+        repo.addEod(getCurrentEmployeeId(), eod, new ApiResponseListener<Eod, String>() {
             @Override
             public void onSuccess(Eod response) {
                 flag.postValue(true);
@@ -178,6 +266,25 @@ public class EmployeeViewModel extends BaseViewModel {
             @Override
             public void onFailure(String error) {
                 flag.postValue(false);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
+    public LiveData<Eod> getEodById(Long eodId) {
+        MutableLiveData<Eod> flag = new MutableLiveData<>();
+
+        repo.getEodById(eodId, new ApiResponseListener<Eod, String>() {
+            @Override
+            public void onSuccess(Eod response) {
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
                 toastMessage.postValue(error);
             }
         });
@@ -252,7 +359,6 @@ public class EmployeeViewModel extends BaseViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    @Override
     public MutableLiveData<String> getToastMessageLiveData() {
         return toastMessage;
     }

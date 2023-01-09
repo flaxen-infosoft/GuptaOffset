@@ -55,7 +55,6 @@ public class ApiEndpoints {
 
     public static final String ADD_DEALER = "dealer/addDealer.php";
 
-
 //    ----------------------------------------------------------------------------------------------
 
     public static final String PUNCH_ATTENDANCE = "attendance/punchAttendance.php";
