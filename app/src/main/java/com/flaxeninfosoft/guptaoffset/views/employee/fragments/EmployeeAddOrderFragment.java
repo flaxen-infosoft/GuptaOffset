@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddOrderBinding;
 import com.flaxeninfosoft.guptaoffset.models.Order;
@@ -48,6 +49,8 @@ public class EmployeeAddOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_add_order, container, false);
         binding.setOrder(new Order());
+
+        binding.employeeAddOrderImage.setOnClickListener(this::chooseImage);
 
         binding.employeeAddOrderBtn.setOnClickListener(this::onClickAddOrder);
 
@@ -90,7 +93,8 @@ public class EmployeeAddOrderFragment extends Fragment {
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    viewModel.onImagePickerResult(result.getResultCode(), result);
+                    image = result.getData().getData();
+                    Glide.with(getContext()).load(image).into(binding.employeeAddOrderImage);
                 }
             });
 

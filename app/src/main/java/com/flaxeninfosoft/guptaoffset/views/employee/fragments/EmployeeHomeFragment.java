@@ -36,10 +36,11 @@ public class EmployeeHomeFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_home, container, false);
 
         binding.employeeHomeCardAddAttendance.setOnClickListener(this::navigateAddAttendance);
-        binding.employeeHomeCardAddOrder.setOnClickListener(this::navigateToAddOrder);
+        binding.employeeHomeCardAddLeave.setOnClickListener(this::navigateToAddLeave);
         binding.employeeHomeCardAddSchool.setOnClickListener(this::navigateToAddSchool);
         binding.employeeHomeCardAddShop.setOnClickListener(this::navigateToAddShop);
-        binding.employeeHomeCardAddLeave.setOnClickListener(this::navigateToAddLeave);
+        binding.employeeHomeCardAddOrder.setOnClickListener(this::navigateToAddOrder);
+        binding.employeeHomeCardPaymentRequest.setOnClickListener(this::navigateToPaymentRequest);
         binding.employeeHomeCardAddEod.setOnClickListener(this::navigateToAddEod);
         binding.employeeHomeCardMyMap.setOnClickListener(this::navigateToMap);
 
@@ -52,6 +53,10 @@ public class EmployeeHomeFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    private void navigateToPaymentRequest(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeePaymentRequestFragment);
     }
 
     private void navigateToAddEod(View view) {
@@ -71,7 +76,7 @@ public class EmployeeHomeFragment extends Fragment {
     }
 
     private void navigateToAddOrder(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddAttendanceFragment);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddOrderFragment);
     }
 
     private void navigateToMap(View view) {
