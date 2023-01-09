@@ -13,6 +13,7 @@ import com.flaxeninfosoft.guptaoffset.api.EodApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LeaveApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LocationApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.OrderApiInterface;
+import com.flaxeninfosoft.guptaoffset.api.PaymentApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.SchoolApiInterface;
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
@@ -23,6 +24,7 @@ import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.LoginModel;
 import com.flaxeninfosoft.guptaoffset.models.Order;
+import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.utils.RetrofitClient;
@@ -41,6 +43,8 @@ public class MainRepository {
     private final AuthApiInterface authApiInterface;
     private final DealerApiInterface dealerApiInterface;
     private final SchoolApiInterface schoolApiInterface;
+    private final PaymentApiInterface paymentApiInterface;
+
 
     private final EmployeeApiInterface employeeApiInterface;
     private final LeaveApiInterface leaveApiInterface;
@@ -57,6 +61,7 @@ public class MainRepository {
 
         authApiInterface = apiClient.create(AuthApiInterface.class);
         dealerApiInterface = apiClient.create(DealerApiInterface.class);
+        paymentApiInterface=apiClient.create(PaymentApiInterface.class);
         schoolApiInterface=apiClient.create(SchoolApiInterface.class);
         attendanceApiInterface = apiClient.create(AttendanceApiInterface.class);
         employeeApiInterface = apiClient.create(EmployeeApiInterface.class);
@@ -529,6 +534,35 @@ public class MainRepository {
 
 
 //    ----------------------------------------------------------------------------------------------
+    public void addPayment(Long empId, PaymentRequest paymentRequest, ApiResponseListener<PaymentRequest, String> listener) {
+    Call<PaymentRequest> call = paymentApiInterface.addPayment(empId, paymentRequest);
+
+    processPaymentCall(call, listener);
+}
+
+    private void processPaymentCall(Call<PaymentRequest> call, ApiResponseListener<PaymentRequest, String> listener) {
+        call.enqueue(new Callback<PaymentRequest>() {
+            @Override
+            public void onResponse(@NonNull Call<PaymentRequest> call, @NonNull Response<PaymentRequest> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        listener.onSuccess(response.body());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        listener.onFailure("Invalid response from the server");
+                    }
+                } else {
+                    listener.onFailure(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<PaymentRequest> call, @NonNull Throwable t) {
+                t.printStackTrace();
+                listener.onFailure("Unable to connect to server");
+            }
+        });
+    }
 
 //    ----------------------------------------------------------------------------------------------
 

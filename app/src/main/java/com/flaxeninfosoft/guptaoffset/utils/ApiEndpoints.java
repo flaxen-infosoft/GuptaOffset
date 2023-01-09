@@ -57,6 +57,14 @@ public class ApiEndpoints {
 
 //    ----------------------------------------------------------------------------------------------
 
+    public static final String ADD_PAYMENT = "payment/addPayment.php";
+
+//    ----------------------------------------------------------------------------------------------
+
+    public static final String ADD_SCHOOL = "school.addSchool.php";
+
+//    ----------------------------------------------------------------------------------------------
+
     public static final String PUNCH_ATTENDANCE = "attendance/punchAttendance.php";
     public static final String GET_TODAYS_ATTENDANCE = "attendance/getTodaysAttendance.php";
 
