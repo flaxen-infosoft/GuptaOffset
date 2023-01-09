@@ -27,7 +27,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter name"
+                android:hint="Enter Contact"
                 android:text="@={dealer.name}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
