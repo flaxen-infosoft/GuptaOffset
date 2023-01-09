@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="dealer"
-            type="com.flaxeninfosoft.guptaoffset.models.Dealer" />
+            name="school"
+            type="com.flaxeninfosoft.guptaoffset.models.School" />
     </data>
 
     <LinearLayout
@@ -14,11 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/splash_back"
-        tools:context=".views.employee.fragments.EmployeeAddDealerFragment">
+        tools:context=".views.employee.fragments.EmployeeAddSchoolFragment">
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/employee_add_dealer_name"
+            android:id="@+id/employee_add_school_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
@@ -28,11 +28,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter name"
-                android:text="@={dealer.name}"/>
+                android:text="@={school.name}"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/employee_add_school_strength"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="School Strength"
+                android:text="@={school.strength}"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/employee_add_school_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                android:text="@={school.address}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/employee_add_dealer_contact"
+            android:id="@+id/employee_add_school_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
@@ -42,21 +68,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Contact"
-                android:text="@={dealer.contact}"/>
+                android:text="@={school.contact}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
-            android:id="@+id/employee_add_dealer_image"
+            android:id="@+id/employee_add_school_image"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_margin="8dp"
             android:src="@drawable/add_image"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/employee_add_dealer_btn"
+            android:id="@+id/employee_add_school_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Add dealer" />
+            android:text="Add School" />
     </LinearLayout>
 </layout>

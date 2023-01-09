@@ -19,6 +19,7 @@ import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.Order;
+import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
@@ -200,6 +201,28 @@ public class EmployeeViewModel extends AndroidViewModel {
         repo.addDealer(getCurrentEmployeeId(), dealer, new ApiResponseListener<Dealer, String>() {
             @Override
             public void onSuccess(Dealer response) {
+                flag.postValue(true);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(false);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
+//    ----------------------------------------------------------------------------------------------
+//    ----------------------------------------------------------------------------------------------
+
+    public LiveData<Boolean> addSchool(School school){
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
+
+        repo.addSchool(getCurrentEmployeeId(), school, new ApiResponseListener<School, String>() {
+            @Override
+            public void onSuccess(School response) {
                 flag.postValue(true);
             }
 

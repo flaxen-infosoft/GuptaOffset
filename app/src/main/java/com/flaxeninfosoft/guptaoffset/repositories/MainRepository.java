@@ -13,6 +13,7 @@ import com.flaxeninfosoft.guptaoffset.api.EodApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LeaveApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LocationApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.OrderApiInterface;
+import com.flaxeninfosoft.guptaoffset.api.SchoolApiInterface;
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
@@ -22,6 +23,7 @@ import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.LoginModel;
 import com.flaxeninfosoft.guptaoffset.models.Order;
+import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.utils.RetrofitClient;
 
@@ -38,6 +40,7 @@ public class MainRepository {
 
     private final AuthApiInterface authApiInterface;
     private final DealerApiInterface dealerApiInterface;
+    private final SchoolApiInterface schoolApiInterface;
 
     private final EmployeeApiInterface employeeApiInterface;
     private final LeaveApiInterface leaveApiInterface;
@@ -54,6 +57,7 @@ public class MainRepository {
 
         authApiInterface = apiClient.create(AuthApiInterface.class);
         dealerApiInterface = apiClient.create(DealerApiInterface.class);
+        schoolApiInterface=apiClient.create(SchoolApiInterface.class);
         attendanceApiInterface = apiClient.create(AttendanceApiInterface.class);
         employeeApiInterface = apiClient.create(EmployeeApiInterface.class);
         leaveApiInterface = apiClient.create(LeaveApiInterface.class);
@@ -525,6 +529,42 @@ public class MainRepository {
 
 
 //    ----------------------------------------------------------------------------------------------
+
+//    ----------------------------------------------------------------------------------------------
+
+    public void addSchool(Long empId, School school, ApiResponseListener<School, String> listener) {
+        Call<School> call = schoolApiInterface.addSchool(empId, school);
+
+        processSchoolCall(call, listener);
+    }
+
+    private void processSchoolCall(Call<School> call, ApiResponseListener<School, String> listener) {
+        call.enqueue(new Callback<School>() {
+            @Override
+            public void onResponse(@NonNull Call<School> call, @NonNull Response<School> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        listener.onSuccess(response.body());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        listener.onFailure("Invalid response from the server");
+                    }
+                } else {
+                    listener.onFailure(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<School> call, @NonNull Throwable t) {
+                t.printStackTrace();
+                listener.onFailure("Unable to connect to server");
+            }
+        });
+    }
+
+
+//    ----------------------------------------------------------------------------------------------
+
 
     public void getEmployeeTodaysAttendance(Long empId, ApiResponseListener<Attendance, String> listener) {
 
