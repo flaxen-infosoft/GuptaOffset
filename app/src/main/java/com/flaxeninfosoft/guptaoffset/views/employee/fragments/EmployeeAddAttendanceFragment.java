@@ -43,13 +43,14 @@ public class EmployeeAddAttendanceFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_add_attendance, container, false);
         binding.setAttendance(new Attendance());
 
+
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Fetching data...");
         progressDialog.setMessage("Loading");
         progressDialog.setCancelable(false);
-        progressDialog.show();
+       // progressDialog.show();
 
-        viewModel.getCurrentEmployeeTodaysAttendance().observe(getViewLifecycleOwner(), this::setAttendance);
+        //viewModel.getCurrentEmployeeTodaysAttendance().observe(getViewLifecycleOwner(), this::setAttendance);
 
         return binding.getRoot();
     }

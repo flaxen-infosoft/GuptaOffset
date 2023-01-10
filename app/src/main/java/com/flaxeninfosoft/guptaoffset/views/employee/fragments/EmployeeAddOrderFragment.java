@@ -81,11 +81,15 @@ public class EmployeeAddOrderFragment extends Fragment {
     }
 
     public void chooseImage(View view) {
-        Intent pickImageIntent = new Intent(Intent.ACTION_PICK);
+        try {
+            Intent pickImageIntent = new Intent(Intent.ACTION_PICK);
 
-        pickImageIntent.setType("image/*");
+            pickImageIntent.setType("image/*");
 
-        mLauncher.launch(pickImageIntent);
+            mLauncher.launch(pickImageIntent);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     ActivityResultLauncher<Intent> mLauncher = registerForActivityResult(
@@ -93,8 +97,12 @@ public class EmployeeAddOrderFragment extends Fragment {
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    image = result.getData().getData();
-                    Glide.with(getContext()).load(image).into(binding.employeeAddOrderImage);
+                    try {
+                        image = result.getData().getData();
+                        Glide.with(getContext()).load(image).into(binding.employeeAddOrderImage);
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();                    }
                 }
             });
 

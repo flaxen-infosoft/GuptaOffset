@@ -19,11 +19,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddDealerBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddOrderBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddSchoolBinding;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
+import com.flaxeninfosoft.guptaoffset.models.Image;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
@@ -35,6 +37,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
     private FragmentEmployeeAddSchoolBinding binding;
     private EmployeeViewModel viewModel;
+    private Uri image;
 
     public EmployeeAddSchoolFragment() {
         // Required empty public constructor
@@ -53,22 +56,52 @@ public class EmployeeAddSchoolFragment extends Fragment {
         binding.setSchool(new School());
 
         binding.employeeAddSchoolBtn.setOnClickListener(this::onClickAddSchool);
+        binding.employeeAddSchoolImage.setOnClickListener(this::onClickImage);
 
         return binding.getRoot();
     }
 
-    private void onClickAddSchool(View view) {
-        clearErrors();
+    private void onClickImage(View view) {
+        Intent pickImageIntent =new Intent(Intent.ACTION_PICK);
+        pickImageIntent.setType("image/*");
+        mLauncher.launch(pickImageIntent);
+    }
 
-        if (isValidFields()) {
+    ActivityResultLauncher<Intent>mLauncher=registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    try {
+                        image=result.getData().getData();
+                        Glide.with(getContext()).load(image).into(binding.employeeAddSchoolImage);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+    );
+
+
+    private void onClickAddSchool(View view) {
+        if (isValidFields() && isImageAdded()) {
             viewModel.addSchool(binding.getSchool()).observe(getViewLifecycleOwner(), b->{
                 if (b){
+                    clearErrors();
                     navigateUp();
                 }
             });
         }
-
     }
+
+    private boolean isImageAdded() {
+        if(image==null){
+            Toast.makeText(getContext(), "Please Add Image", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
     private void navigateUp() {
         Navigation.findNavController(binding.getRoot()).navigateUp();
     }
@@ -76,20 +109,20 @@ public class EmployeeAddSchoolFragment extends Fragment {
     private boolean isValidFields() {
 
         if (binding.getSchool().getName() == null || binding.getSchool().getName().trim().isEmpty()) {
-            binding.employeeAddSchoolName.setError("Enter name");
+            binding.employeeAddSchoolName.setError("**Enter name");
             return false;
         }
         if (binding.getSchool().getStrength() == null || binding.getSchool().getStrength().trim().isEmpty()) {
-            binding.employeeAddSchoolStrength.setError("Enter strength");
+            binding.employeeAddSchoolStrength.setError("**Enter strength");
             return false;
         }
         if (binding.getSchool().getAddress() == null || binding.getSchool().getAddress().trim().isEmpty()) {
-            binding.employeeAddSchoolAddress.setError("Enter address");
+            binding.employeeAddSchoolAddress.setError("**Enter address");
             return false;
         }
 
         if (binding.getSchool().getContact() == null || binding.getSchool().getContact().trim().isEmpty()) {
-            binding.employeeAddSchoolContact.setError("Enter contact number");
+            binding.employeeAddSchoolContact.setError("**Enter contact number");
             return false;
         }
 

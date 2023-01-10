@@ -1,10 +1,17 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -12,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddDealerBinding;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
@@ -22,10 +30,10 @@ public class EmployeeAddDealerFragment extends Fragment {
 
     private FragmentEmployeeAddDealerBinding binding;
     private EmployeeViewModel viewModel;
+    private Uri image;
 
     public EmployeeAddDealerFragment() {
         // Required empty public constructor
-
     }
 
     @Override
@@ -41,21 +49,51 @@ public class EmployeeAddDealerFragment extends Fragment {
         binding.setDealer(new Dealer());
 
         binding.employeeAddDealerBtn.setOnClickListener(this::onCLickAddDealer);
+        binding.employeeAddDealerImage.setOnClickListener(this::onClickAddImage);
 
         return binding.getRoot();
     }
 
-    private void onCLickAddDealer(View view) {
-        clearErrors();
+    private void onClickAddImage(View view) {
+        Intent intent=new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        mLauncher.launch(intent);
+    }
 
-        if (isValidFields()) {
+    ActivityResultLauncher<Intent> mLauncher=registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    try {
+                        image=result.getData().getData();
+                        Glide.with(getContext()).load(image).into(binding.employeeAddDealerImage);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+    );
+
+    private void onCLickAddDealer(View view) {
+
+        if (isValidFields() && isImageAdd()) {
             viewModel.addDealer(binding.getDealer()).observe(getViewLifecycleOwner(), b->{
                 if (b){
+                    clearErrors();
                     navigateUp();
                 }
             });
         }
 
+    }
+
+    private boolean isImageAdd() {
+        if (image == null) {
+            Toast.makeText(getContext(), "Please Add Image", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private void navigateUp() {
