@@ -54,7 +54,7 @@ public class SuperEmployeeAllEmployeesFragment extends Fragment {
             public void onClickCard(Employee employee) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(getString(R.string.key_employee_id), employee.getId());
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_employeeProfileFragment, bundle);
+               // Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_employeeProfileFragment, bundle);
             }
         });
 

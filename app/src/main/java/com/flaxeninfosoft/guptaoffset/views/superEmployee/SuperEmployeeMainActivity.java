@@ -49,7 +49,7 @@ public class SuperEmployeeMainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_employee_home, menu);
+        getMenuInflater().inflate(R.menu.menu_super_employee_home, menu);
         return true;
     }
 
@@ -57,11 +57,15 @@ public class SuperEmployeeMainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
 
-        if (item.getItemId() == R.id.menu_employee_home_profile) {
+        if (item.getItemId() == R.id.menu_super_employee_home_profile) {
             navController.navigate(R.id.employeeProfileFragment);
             return true;
         }
-        if (item.getItemId() == R.id.menu_employee_home_logout) {
+        if (item.getItemId() == R.id.menu_super_employee_my_employees) {
+            navController.navigate(R.id.superEmployeeAllEmployeesFragment);
+            return true;
+        }
+        if (item.getItemId() == R.id.menu_super_employee_home_logout) {
 
             viewModel.logout();
 

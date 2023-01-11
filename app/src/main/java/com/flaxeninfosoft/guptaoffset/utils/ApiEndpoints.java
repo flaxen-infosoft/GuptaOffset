@@ -61,7 +61,7 @@ public class ApiEndpoints {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public static final String ADD_SCHOOL = "school.addSchool.php";
+    public static final String ADD_SCHOOL = "school/addSchool.php";
 
 //    ----------------------------------------------------------------------------------------------
 

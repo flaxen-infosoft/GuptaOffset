@@ -39,10 +39,14 @@ public class SuperEmployeeHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_super_employee_home, container, false);
 
-        binding.superEmployeeHomeCardAddExpense.setOnClickListener(this::navigateToAddExpense);
+        binding.superEmployeeHomeCardAddAttendance.setOnClickListener(this::navigateToAddAttendance);
         binding.superEmployeeHomeCardAddLeave.setOnClickListener(this::navigateToAddLeave);
+        binding.superEmployeeHomeCardAddSchool.setOnClickListener(this::navigateToAddSchool);
+        binding.superEmployeeHomeCardAddShop.setOnClickListener(this::navigateToAddDealer);
         binding.superEmployeeHomeCardAddOrder.setOnClickListener(this::navigateToAddOrder);
-        binding.superEmployeeHomeCardMap.setOnClickListener(this::navigateToMap);
+        binding.superEmployeeHomeCardPaymentRequest.setOnClickListener(this::navigateToPaymentRequest);
+        binding.superEmployeeHomeCardAddEod.setOnClickListener(this::navigateToAddEod);
+        binding.superEmployeeHomeCardMyMap.setOnClickListener(this::navigateToMap);
 
         binding.superEmployeeHomeViewFab.setOnClickListener(view -> {
             if (binding.superEmployeeHomeCard.getVisibility() == View.VISIBLE) {
@@ -59,17 +63,32 @@ public class SuperEmployeeHomeFragment extends Fragment {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_superEmployeeMapFragment);
     }
 
+    private void navigateToAddEod(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_employeeAddEODFragment);
+    }
+
+    private void navigateToPaymentRequest(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_employeePaymentRequestFragment);
+    }
 
     private void navigateToAddOrder(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_employeeAddOrderFragment);
+    }
+
+    private void navigateToAddDealer(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_employeeAddDealerFragment);
+    }
+
+    private void navigateToAddSchool(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_employeeAddSchoolFragment);
     }
 
     private void navigateToAddLeave(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_employeeAddLeaveFragment);
     }
 
-    private void navigateToAddExpense(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_employeeAddExpenseFragment);
+    private void navigateToAddAttendance(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_employeeAddAttendanceFragment);
     }
 
 }
