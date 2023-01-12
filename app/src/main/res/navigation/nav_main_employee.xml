@@ -78,6 +78,10 @@
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeePaymentRequestFragment"
         android:label="Payment Request"
         tools:layout="@layout/fragment_employee_payment_request" />
+    <fragment
+        android:id="@+id/employeeProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeProfileFragment"
+        android:label="EmployeeProfileFragment" />
 
 
 </navigation>

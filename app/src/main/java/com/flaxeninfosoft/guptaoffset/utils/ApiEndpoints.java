@@ -4,23 +4,23 @@ public class ApiEndpoints {
 
     public static final String BASE_URL = "http://88.99.248.156/~anand/api/";
 
-    public static final String LOGIN = "auth/login.php";
+    public static final String LOGIN = "auth/login.php";    //done
 
 //    ----------------------------------------------------------------------------------------------
 
-    public static final String GET_EMPLOYEE_BY_ID = "employee/getEmployeeById.php";
-    public static final String GET_ALL_EMPLOYEES = "employee/getAllEmployees.php";
-    public static final String GET_ALL_SUPER_EMPLOYEES = "employee/getAllSuperEmployees.php";
-    public static final String GET_EMPLOYEES_OF_SUPER_EMPLOYEE = "employee/getEmployeesOfSuperEmployee.php";
-    public static final String ADD_EMPLOYEE = "employee/addEmployee.php";
-    public static final String ADD_SUPER_EMPLOYEE = "employee/addSuperEmployee.php";
+    public static final String GET_EMPLOYEE_BY_ID = "employee/getEmployeeById.php"; //done
+    public static final String GET_ALL_EMPLOYEES = "employee/getAllEmployees.php";  //done
+    public static final String GET_ALL_SUPER_EMPLOYEES = "employee/getAllSuperEmployees.php";   //done
+    public static final String GET_EMPLOYEES_OF_SUPER_EMPLOYEE = "employee/getEmployeesOfSuperEmployee.php";    //done
+    public static final String ADD_EMPLOYEE = "employee/addEmployee.php";   //--
+    public static final String ADD_SUPER_EMPLOYEE = "employee/addSuperEmployee.php";    //--
     public static final String UPDATE_EMPLOYEE_BY_ID = "employee/updateEmployeesById.php";
     public static final String SUSPEND_EMPLOYEE_BY_ID = "employee/suspendEmployeeById.php";
     public static final String ACTIVATE_EMPLOYEE_BY_ID = "employee/activateEmployeeById.php";
 
 //    ----------------------------------------------------------------------------------------------
 
-    public static final String GET_LEAVE_BY_ID = "leave/getLeaveById.php";
+    public static final String GET_LEAVE_BY_ID = "leave/getLeaveById.php";  //--
     public static final String APPROVE_LEAVE_BY_ID = "leave/approveLeaveById.php";
     public static final String REJECT_LEAVE_BY_ID = "leave/rejectLeaveById.php";
     public static final String GET_ALL_LEAVES = "leave/getAllLeaves.php";
@@ -67,7 +67,5 @@ public class ApiEndpoints {
 
     public static final String PUNCH_ATTENDANCE = "attendance/punchAttendance.php";
     public static final String GET_TODAYS_ATTENDANCE = "attendance/getTodaysAttendance.php";
-
-
 
 }

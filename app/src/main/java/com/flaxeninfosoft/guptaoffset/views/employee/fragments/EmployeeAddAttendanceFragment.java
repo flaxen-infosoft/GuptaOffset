@@ -48,9 +48,9 @@ public class EmployeeAddAttendanceFragment extends Fragment {
         progressDialog.setTitle("Fetching data...");
         progressDialog.setMessage("Loading");
         progressDialog.setCancelable(false);
-       // progressDialog.show();
+        progressDialog.show();
 
-        //viewModel.getCurrentEmployeeTodaysAttendance().observe(getViewLifecycleOwner(), this::setAttendance);
+        viewModel.getCurrentEmployeeTodaysAttendance().observe(getViewLifecycleOwner(), this::setAttendance);
 
         return binding.getRoot();
     }
