@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class EmployeeAddOrderFragment extends Fragment {
     private EmployeeViewModel viewModel;
 
     private Uri image;
+    private ProgressDialog progressDialog;
 
     public EmployeeAddOrderFragment() {
         // Required empty public constructor
@@ -49,6 +51,10 @@ public class EmployeeAddOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_add_order, container, false);
         binding.setOrder(new Order());
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Adding Order...");
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
 
         binding.employeeAddOrderImage.setOnClickListener(this::chooseImage);
 
@@ -62,11 +68,13 @@ public class EmployeeAddOrderFragment extends Fragment {
         if (image == null) {
             Toast.makeText(getContext(), "Please add image.", Toast.LENGTH_SHORT).show();
             return;
-        }
+        }progressDialog.show();
+
 
         try {
             viewModel.addOrder(binding.getOrder(), image).observe(getViewLifecycleOwner(), b -> {
                 if (b) {
+                    progressDialog.dismiss();
                     navigateUp();
                 }
             });

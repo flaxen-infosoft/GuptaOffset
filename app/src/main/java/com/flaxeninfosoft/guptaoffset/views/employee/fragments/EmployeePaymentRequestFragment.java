@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
@@ -20,6 +21,7 @@ public class EmployeePaymentRequestFragment extends Fragment {
 
     private FragmentEmployeePaymentRequestBinding binding;
     private EmployeeViewModel viewModel;
+    private ProgressDialog progressDialog;
 
     public EmployeePaymentRequestFragment()    {
         // Required empty public constructor
@@ -38,14 +40,20 @@ public class EmployeePaymentRequestFragment extends Fragment {
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_employee_payment_request,container,false);
         binding.setPayment(new PaymentRequest());
         binding.employeeAddPaymentBtn.setOnClickListener(this::onClickPayment);
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Add Payment...");
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
         return binding.getRoot();
     }
 
     private void onClickPayment(View view) {
             clearErrors();
             if(validateForm()){
+                progressDialog.show();
                 viewModel.addPayment(binding.getPayment()).observe(getViewLifecycleOwner(),b->{
                     if(b){
+                        progressDialog.dismiss();
                         navigateUp();
                     }
                 });

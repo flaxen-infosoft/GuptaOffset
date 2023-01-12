@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
     private FragmentEmployeeAddSchoolBinding binding;
     private EmployeeViewModel viewModel;
     private Uri image;
+    private ProgressDialog progressDialog;
 
     public EmployeeAddSchoolFragment() {
         // Required empty public constructor
@@ -57,6 +59,10 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
         binding.employeeAddSchoolBtn.setOnClickListener(this::onClickAddSchool);
         binding.employeeAddSchoolImage.setOnClickListener(this::onClickImage);
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Adding School...");
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
 
         return binding.getRoot();
     }
@@ -85,8 +91,10 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
     private void onClickAddSchool(View view) {
         if (isValidFields() && isImageAdded()) {
+            progressDialog.show();
             viewModel.addSchool(binding.getSchool()).observe(getViewLifecycleOwner(), b->{
                 if (b){
+                    progressDialog.dismiss();
                     clearErrors();
                     navigateUp();
                 }

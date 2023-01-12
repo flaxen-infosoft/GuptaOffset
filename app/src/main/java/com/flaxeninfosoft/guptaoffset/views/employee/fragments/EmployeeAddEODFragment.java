@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ public class EmployeeAddEODFragment extends Fragment {
 
     private FragmentEmployeeAddEODBinding binding;
     private EmployeeViewModel viewModel;
+    private ProgressDialog progressDialog;
 
     public EmployeeAddEODFragment() {
         // Required empty public constructor
@@ -39,16 +41,21 @@ public class EmployeeAddEODFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_add_e_o_d, container, false);
 
         binding.employeeAddEodBtn.setOnClickListener(this::onClickAddEod);
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Fetching data...");
+        progressDialog.setMessage("Loading");
+        progressDialog.setCancelable(false);
 
         return binding.getRoot();
     }
 
     private void onClickAddEod(View view) {
         clearErrors();
-
         if (isValidFields()) {
+            progressDialog.show();
             viewModel.addEod(binding.getEod()).observe(getViewLifecycleOwner(), b -> {
                 if (b) {
+                    progressDialog.dismiss();
                     navigateUp();
                 }
             });
@@ -60,7 +67,7 @@ public class EmployeeAddEODFragment extends Fragment {
     }
 
     private boolean isValidFields() {
-        //TODO
+
         return true;
     }
 

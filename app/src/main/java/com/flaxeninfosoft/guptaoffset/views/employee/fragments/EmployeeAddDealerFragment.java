@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class EmployeeAddDealerFragment extends Fragment {
     private FragmentEmployeeAddDealerBinding binding;
     private EmployeeViewModel viewModel;
     private Uri image;
+    private ProgressDialog progressDialog;
 
     public EmployeeAddDealerFragment() {
         // Required empty public constructor
@@ -50,6 +52,10 @@ public class EmployeeAddDealerFragment extends Fragment {
 
         binding.employeeAddDealerBtn.setOnClickListener(this::onCLickAddDealer);
         binding.employeeAddDealerImage.setOnClickListener(this::onClickAddImage);
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Adding Dealer...");
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
 
         return binding.getRoot();
     }
@@ -78,8 +84,10 @@ public class EmployeeAddDealerFragment extends Fragment {
     private void onCLickAddDealer(View view) {
 
         if (isValidFields() && isImageAdd()) {
+            progressDialog.show();
             viewModel.addDealer(binding.getDealer()).observe(getViewLifecycleOwner(), b->{
                 if (b){
+                    progressDialog.dismiss();
                     clearErrors();
                     navigateUp();
                 }
