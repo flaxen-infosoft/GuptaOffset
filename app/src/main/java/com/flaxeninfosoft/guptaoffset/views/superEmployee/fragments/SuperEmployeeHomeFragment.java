@@ -14,10 +14,21 @@ import androidx.navigation.Navigation;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.EmployeeHomeFragmentStateAdapter;
+import com.flaxeninfosoft.guptaoffset.adapters.EmployeeHomeRecyclerAdapter;
 import com.flaxeninfosoft.guptaoffset.adapters.SuperEmployeeHomeFragmentStateAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentSuperEmployeeHomeBinding;
+import com.flaxeninfosoft.guptaoffset.models.Attendance;
+import com.flaxeninfosoft.guptaoffset.models.Dealer;
+import com.flaxeninfosoft.guptaoffset.models.Employee;
+import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
+import com.flaxeninfosoft.guptaoffset.models.Eod;
+import com.flaxeninfosoft.guptaoffset.models.Leave;
+import com.flaxeninfosoft.guptaoffset.models.Order;
+import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.List;
 
 public class SuperEmployeeHomeFragment extends Fragment {
 
@@ -48,6 +59,8 @@ public class SuperEmployeeHomeFragment extends Fragment {
         binding.superEmployeeHomeCardAddEod.setOnClickListener(this::navigateToAddEod);
         binding.superEmployeeHomeCardMyMap.setOnClickListener(this::navigateToMap);
 
+        viewModel.getCurrentEmployeeHistory().observe(getViewLifecycleOwner(), this::setEmployeeHistory);
+
         binding.superEmployeeHomeViewFab.setOnClickListener(view -> {
             if (binding.superEmployeeHomeCard.getVisibility() == View.VISIBLE) {
                 binding.superEmployeeHomeCard.setVisibility(View.GONE);
@@ -57,6 +70,46 @@ public class SuperEmployeeHomeFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    private void setEmployeeHistory(List<EmployeeHistory> historyList) {
+        EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList, new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
+            @Override
+            public void onClickCard(Attendance attendance) {
+                //TODO
+            }
+
+            @Override
+            public void onClickCard(Leave leave) {
+
+            }
+
+            @Override
+            public void onClickCard(School school) {
+
+            }
+
+            @Override
+            public void onClickCard(Dealer dealer) {
+
+            }
+
+            @Override
+            public void onClickCard(Order order) {
+
+            }
+
+            @Override
+            public void onClickCard(Eod eod) {
+
+            }
+
+            @Override
+            public void onCLickCard(Employee employee) {
+
+            }
+        });
+        binding.superEmployeeHomeRecycler.setAdapter(adapter);
     }
 
     private void navigateToMap(View view) {

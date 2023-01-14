@@ -65,6 +65,14 @@ public class ApiEndpoints {
 
 //    ----------------------------------------------------------------------------------------------
 
+    public static final String GET_EMPLOYEE_HISTORY = "history/getEmployeeHistory.php";
+
+//    ----------------------------------------------------------------------------------------------
+
+
+
+//    ----------------------------------------------------------------------------------------------
+
     public static final String PUNCH_ATTENDANCE = "attendance/punchAttendance.php";
     public static final String GET_TODAYS_ATTENDANCE = "attendance/getTodaysAttendance.php";
 

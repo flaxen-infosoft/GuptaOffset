@@ -10,6 +10,7 @@ import com.flaxeninfosoft.guptaoffset.api.AuthApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.DealerApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.EmployeeApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.EodApiInterface;
+import com.flaxeninfosoft.guptaoffset.api.HistoryApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LeaveApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LocationApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.OrderApiInterface;
@@ -19,6 +20,7 @@ import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
+import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Location;
@@ -44,6 +46,7 @@ public class MainRepository {
     private final DealerApiInterface dealerApiInterface;
     private final SchoolApiInterface schoolApiInterface;
     private final PaymentApiInterface paymentApiInterface;
+    private final HistoryApiInterface historyApiInterface;
 
 
     private final EmployeeApiInterface employeeApiInterface;
@@ -69,6 +72,7 @@ public class MainRepository {
         eodApiInterface = apiClient.create(EodApiInterface.class);
         locationApiInterface = apiClient.create(LocationApiInterface.class);
         orderApiInterface = apiClient.create(OrderApiInterface.class);
+        historyApiInterface = apiClient.create(HistoryApiInterface.class);
     }
 
     public static MainRepository getInstance(Context context) {
@@ -596,6 +600,34 @@ public class MainRepository {
         });
     }
 
+
+//    ----------------------------------------------------------------------------------------------
+
+    public void getEmployeeHomeHistory(Long empId, ApiResponseListener<List<EmployeeHistory>, String> listener){
+        Call<List<EmployeeHistory>> historyCall = historyApiInterface.getEmployeeHistory(empId);
+
+        historyCall.enqueue(new Callback<List<EmployeeHistory>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<EmployeeHistory>> call, @NonNull Response<List<EmployeeHistory>> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        listener.onSuccess(response.body());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        listener.onFailure("Invalid response from the server");
+                    }
+                } else {
+                    listener.onFailure(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<EmployeeHistory>> call, @NonNull Throwable t) {
+                t.printStackTrace();
+                listener.onFailure("Unable to connect to server");
+            }
+        });
+    }
 
 //    ----------------------------------------------------------------------------------------------
 

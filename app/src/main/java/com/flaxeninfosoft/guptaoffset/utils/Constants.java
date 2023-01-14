@@ -74,4 +74,23 @@ public class Constants {
     public static final String SCHOOL_ID = "school_id";
     public static final String DEALER_ID = "dealer_id";
     public static final String PUNCH_STATUS = "punchStatus";
+    public static final String ATTENDANCE = "attendance";
+    public static final String DEALER = "dealer";
+    public static final String EMPLOYEE = "employee";
+    public static final String EOD = "eod";
+    public static final String LEAVE = "leave";
+    public static final String LOCATION = "location";
+    public static final String ORDER = "order";
+    public static final String PAYMENT = "payment";
+    public static final String SCHOOL = "school";
+
+    public static final int TYPE_ADD_ATTENDANCE = 1;
+    public static final int TYPE_ADD_LEAVE = 2;
+    public static final int TYPE_ADD_SCHOOL = 3;
+    public static final int TYPE_ADD_DEALER = 4;
+    public static final int TYPE_ADD_ORDER = 5;
+    public static final int TYPE_ADD_PAYMENT = 6;
+    public static final int TYPE_ADD_EOD = 7;
+    public static final int TYPE_ADD_EMPLOYEE = 8;
+
 }

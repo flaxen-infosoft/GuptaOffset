@@ -10,10 +10,22 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.flaxeninfosoft.guptaoffset.R;
+import com.flaxeninfosoft.guptaoffset.adapters.EmployeeHomeRecyclerAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeHomeBinding;
+import com.flaxeninfosoft.guptaoffset.models.Attendance;
+import com.flaxeninfosoft.guptaoffset.models.Dealer;
+import com.flaxeninfosoft.guptaoffset.models.Employee;
+import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
+import com.flaxeninfosoft.guptaoffset.models.Eod;
+import com.flaxeninfosoft.guptaoffset.models.Leave;
+import com.flaxeninfosoft.guptaoffset.models.Order;
+import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+
+import java.util.List;
 
 public class EmployeeHomeFragment extends Fragment {
 
@@ -44,6 +56,10 @@ public class EmployeeHomeFragment extends Fragment {
         binding.employeeHomeCardAddEod.setOnClickListener(this::navigateToAddEod);
         binding.employeeHomeCardMyMap.setOnClickListener(this::navigateToMap);
 
+        binding.employeeHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        viewModel.getCurrentEmployeeHistory().observe(getViewLifecycleOwner(), this::setEmployeeHistory);
+
         binding.employeeHomeViewFab.setOnClickListener(view -> {
             if (binding.employeeHomeCard.getVisibility() == View.VISIBLE) {
                 binding.employeeHomeCard.setVisibility(View.GONE);
@@ -53,6 +69,46 @@ public class EmployeeHomeFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    private void setEmployeeHistory(List<EmployeeHistory> historyList) {
+        EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList, new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
+            @Override
+            public void onClickCard(Attendance attendance) {
+                //TODO
+            }
+
+            @Override
+            public void onClickCard(Leave leave) {
+
+            }
+
+            @Override
+            public void onClickCard(School school) {
+
+            }
+
+            @Override
+            public void onClickCard(Dealer dealer) {
+
+            }
+
+            @Override
+            public void onClickCard(Order order) {
+
+            }
+
+            @Override
+            public void onClickCard(Eod eod) {
+
+            }
+
+            @Override
+            public void onCLickCard(Employee employee) {
+
+            }
+        });
+        binding.employeeHomeRecycler.setAdapter(adapter);
     }
 
     private void navigateToPaymentRequest(View view) {
