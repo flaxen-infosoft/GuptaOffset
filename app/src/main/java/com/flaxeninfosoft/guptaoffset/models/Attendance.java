@@ -26,11 +26,11 @@ public class Attendance {
 
     @SerializedName(Constants.SNAP_IN)
     @Expose
-    private Long snapIn;
+    private String snapIn;
 
     @SerializedName(Constants.SNAP_OUT)
     @Expose
-    private Long snapOut;
+    private String snapOut;
 
     @SerializedName(Constants.DATE)
     @Expose
@@ -38,20 +38,19 @@ public class Attendance {
 
     @SerializedName(Constants.START_METER)
     @Expose
-    private Long startMeter;
+    private String startMeter;
 
     @SerializedName(Constants.END_METER)
     @Expose
-    private Long endMeter;
+    private String endMeter;
 
     @SerializedName(Constants.TOTAL_DISTANCE)
     @Expose
-    private Long totalDistance;
+    private String totalDistance;
 
     @SerializedName(Constants.PUNCH_STATUS)
     @Expose
     private int punchStatus;
-
 
     public int getId() {
         return id;
@@ -85,19 +84,19 @@ public class Attendance {
         this.timeOut = timeOut;
     }
 
-    public Long getSnapIn() {
+    public String getSnapIn() {
         return snapIn;
     }
 
-    public void setSnapIn(Long snapIn) {
+    public void setSnapIn(String snapIn) {
         this.snapIn = snapIn;
     }
 
-    public Long getSnapOut() {
+    public String getSnapOut() {
         return snapOut;
     }
 
-    public void setSnapOut(Long snapOut) {
+    public void setSnapOut(String snapOut) {
         this.snapOut = snapOut;
     }
 
@@ -109,27 +108,27 @@ public class Attendance {
         this.date = date;
     }
 
-    public Long getStartMeter() {
+    public String getStartMeter() {
         return startMeter;
     }
 
-    public void setStartMeter(Long startMeter) {
+    public void setStartMeter(String startMeter) {
         this.startMeter = startMeter;
     }
 
-    public Long getEndMeter() {
+    public String getEndMeter() {
         return endMeter;
     }
 
-    public void setEndMeter(Long endMeter) {
+    public void setEndMeter(String endMeter) {
         this.endMeter = endMeter;
     }
 
-    public Long getTotalDistance() {
+    public String getTotalDistance() {
         return totalDistance;
     }
 
-    public void setTotalDistance(Long totalDistance) {
+    public void setTotalDistance(String totalDistance) {
         this.totalDistance = totalDistance;
     }
 
@@ -139,5 +138,22 @@ public class Attendance {
 
     public void setPunchStatus(int punchStatus) {
         this.punchStatus = punchStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Attendance{" +
+                "id=" + id +
+                ", empId=" + empId +
+                ", timeIn=" + timeIn +
+                ", timeOut=" + timeOut +
+                ", snapIn='" + snapIn + '\'' +
+                ", snapOut='" + snapOut + '\'' +
+                ", date=" + date +
+                ", startMeter='" + startMeter + '\'' +
+                ", endMeter='" + endMeter + '\'' +
+                ", totalDistance='" + totalDistance + '\'' +
+                ", punchStatus=" + punchStatus +
+                '}';
     }
 }

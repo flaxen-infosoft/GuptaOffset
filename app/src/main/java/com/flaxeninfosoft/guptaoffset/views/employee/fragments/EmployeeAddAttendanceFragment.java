@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,16 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddAttendanceBinding;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+
+import java.io.IOException;
 
 public class EmployeeAddAttendanceFragment extends Fragment {
 
@@ -25,7 +33,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
     private EmployeeViewModel viewModel;
 
     private ProgressDialog progressDialog;
-    private Uri uri;
+    private Uri image;
 
     public EmployeeAddAttendanceFragment() {
         // Required empty public constructor
@@ -55,8 +63,14 @@ public class EmployeeAddAttendanceFragment extends Fragment {
         return binding.getRoot();
     }
 
+
     private void setAttendance(Attendance attendance) {
 
+        if (attendance == null){
+            attendance = new Attendance();
+            attendance.setPunchStatus(0);
+        }
+        attendance.toString();
         switch (attendance.getPunchStatus()) {
             case 0:
                 binding.employeeAddAttendanceStartMeter.setEnabled(true);
@@ -69,21 +83,18 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 
                 binding.employeeAddAttendanceTotalMeter.setVisibility(View.GONE);
 
+                binding.employeeAddAttendanceStartMeterImage.setOnClickListener(this::selectStartImage);
+
                 binding.employeeAddAttendanceBtn.setEnabled(true);
                 binding.employeeAddAttendanceBtn.setOnClickListener(v -> {
                     clearErrors();
-                    if (uri == null) {
+                    if (image == null) {
                         Toast.makeText(getContext(), "Insert image.", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    try {
-                        long reading = Long.getLong(binding.employeeAddAttendanceStartMeter.getEditText().getText().toString());
-                        punch(reading, uri);
-                    } catch (Exception e) {
-                        binding.employeeAddAttendanceStartMeter.setError("Enter valid reading.");
-                        return;
-                    }
+                    punch(binding.getAttendance().getStartMeter(), image);
+
                 });
 
                 break;
@@ -99,21 +110,18 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 
                 binding.employeeAddAttendanceTotalMeter.setVisibility(View.GONE);
 
+                binding.employeeAddAttendanceStartMeterImage.setOnClickListener(this::selectEndImage);
+
                 binding.employeeAddAttendanceBtn.setEnabled(true);
                 binding.employeeAddAttendanceBtn.setOnClickListener(v -> {
                     clearErrors();
-                    if (uri == null) {
+                    if (image == null) {
                         Toast.makeText(getContext(), "Insert image.", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    try {
-                        long reading = Long.getLong(binding.employeeAddAttendanceEndMeter.getEditText().getText().toString());
-                        punch(reading, uri);
-                    } catch (Exception e) {
-                        binding.employeeAddAttendanceEndMeter.setError("Enter valid reading.");
-                        return;
-                    }
+                        punch(binding.getAttendance().getEndMeter(), image);
+
                 });
                 break;
             case 2:
@@ -137,12 +145,59 @@ public class EmployeeAddAttendanceFragment extends Fragment {
         progressDialog.dismiss();
     }
 
-    private void punch(long reading, Uri uri) {
-        viewModel.punchAttendance(reading, uri).observe(getViewLifecycleOwner(), attendance -> {
-            if (attendance != null) {
-                navigateUp();
+    private void selectEndImage(View view) {
+        Intent intent=new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        endImage.launch(intent);
+    }
+
+    private void selectStartImage(View view) {
+        Intent intent=new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startImage.launch(intent);
+    }
+
+    ActivityResultLauncher<Intent> startImage=registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    try {
+                        image=result.getData().getData();
+                        Glide.with(getContext()).load(image).into(binding.employeeAddAttendanceStartMeterImage);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
             }
-        });
+    );
+
+    ActivityResultLauncher<Intent> endImage=registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    try {
+                        image=result.getData().getData();
+                        Glide.with(getContext()).load(image).into(binding.employeeAddAttendanceEndMeterImage);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+    );
+
+    private void punch(String reading, Uri uri) {
+        try {
+            viewModel.punchAttendance(reading, uri).observe(getViewLifecycleOwner(), attendance -> {
+                if (attendance != null) {
+                    navigateUp();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void navigateUp() {

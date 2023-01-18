@@ -16,11 +16,11 @@ public class Order {
 
     @SerializedName(Constants.LATITUDE)
     @Expose
-    private double latitude;
+    private Double latitude;
 
     @SerializedName(Constants.LONGITUDE)
     @Expose
-    private double longitude;
+    private Double longitude;
 
     @SerializedName(Constants.IMAGE)
     @Expose

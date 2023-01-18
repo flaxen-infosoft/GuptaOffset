@@ -639,6 +639,19 @@ public class MainRepository {
 
     public void setCoordinates(Location coordinates) {
         coordinatesLiveData.postValue(coordinates);
+
+        Call<Location> call = locationApiInterface.addEmployeeLocation(coordinates);
+        call.enqueue(new Callback<Location>() {
+            @Override
+            public void onResponse(Call<Location> call, Response<Location> response) {
+                // Hello
+            }
+
+            @Override
+            public void onFailure(Call<Location> call, Throwable t) {
+                // There
+            }
+        });
     }
 
     public LiveData<Location> getCoordinates() {
@@ -655,7 +668,7 @@ public class MainRepository {
         processAttendanceCall(call, listener);
     }
 
-    public void punchAttendance(Long empId, Long reading, String encodedImage, ApiResponseListener<Attendance, String> listener) {
+    public void punchAttendance(Long empId, String reading, String encodedImage, ApiResponseListener<Attendance, String> listener) {
 
         Call<Attendance> call = attendanceApiInterface.punchAttendance(empId, reading, encodedImage);
 
@@ -664,27 +677,32 @@ public class MainRepository {
 
     private void processAttendanceCall(Call<Attendance> call, ApiResponseListener<Attendance, String> listener) {
 
-        call.enqueue(new Callback<Attendance>() {
-            @Override
-            public void onResponse(@NonNull Call<Attendance> call, @NonNull Response<Attendance> response) {
-                if (response.isSuccessful()) {
-                    try {
-                        listener.onSuccess(response.body());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        listener.onFailure("Invalid response from the server");
-                    }
-                } else {
-                    listener.onFailure(response.message());
-                }
-            }
+        try {
 
-            @Override
-            public void onFailure(@NonNull Call<Attendance> call, @NonNull Throwable t) {
-                t.printStackTrace();
-                listener.onFailure("Unable to connect to server");
-            }
-        });
+            call.enqueue(new Callback<Attendance>() {
+                @Override
+                public void onResponse(@NonNull Call<Attendance> call, @NonNull Response<Attendance> response) {
+                    if (response.isSuccessful()) {
+                        try {
+                            listener.onSuccess(null);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            listener.onFailure("Invalid response from the server");
+                        }
+                    } else {
+                        listener.onFailure(response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<Attendance> call, @NonNull Throwable t) {
+                    t.printStackTrace();
+                    listener.onFailure("Unable to connect to server");
+                }
+            });
+        }catch (Exception e){
+            listener.onFailure("Something went wrong");
+        }
     }
 
 }

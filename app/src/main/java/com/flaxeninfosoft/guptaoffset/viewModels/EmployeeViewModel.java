@@ -1,11 +1,8 @@
 package com.flaxeninfosoft.guptaoffset.viewModels;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.app.Application;
 import android.net.Uri;
 
-import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -40,6 +37,7 @@ public class EmployeeViewModel extends AndroidViewModel {
     private final MutableLiveData<List<Leave>> currentEmployeeLeaves;
     private final MutableLiveData<String> toastMessage;
     private final MutableLiveData<Uri> imageUri;
+    private final MutableLiveData<Location> currentLocation;
 
     public EmployeeViewModel(@NonNull Application application) {
         super(application);
@@ -52,6 +50,7 @@ public class EmployeeViewModel extends AndroidViewModel {
         currentEmployeeTodaysEod = new MutableLiveData<>();
         currentEmployeeLeaves = new MutableLiveData<>();
         imageUri = new MutableLiveData<>();
+        currentLocation = new MutableLiveData<>(new Location());
     }
 
 //    ----------------------------------------------------------------------------------------------
@@ -127,6 +126,9 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> addOrder(Order order, Uri uri) throws IOException {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
+        Location location = currentLocation.getValue();
+        order.setLatitude(location.getLatitude());
+        order.setLongitude(location.getLongitude());
         order.setEmpId(getCurrentEmployeeId());
         order.setSnap(FileEncoder.encodeImage(getApplication().getContentResolver(), uri));
         repo.addOrder(order, new ApiResponseListener<Order, String>() {
@@ -173,10 +175,10 @@ public class EmployeeViewModel extends AndroidViewModel {
         return flag;
     }
 
-    public LiveData<Attendance> punchAttendance(Long reading, Uri imageUri) {
+    public LiveData<Attendance> punchAttendance(String reading, Uri imageUri) throws IOException {
         MutableLiveData<Attendance> flag = new MutableLiveData<>();
 
-        String encodedImage = "";//TODO
+        String encodedImage = FileEncoder.encodeImage(getApplication().getContentResolver(), imageUri);
 
         repo.punchAttendance(getCurrentEmployeeId(), reading, encodedImage, new ApiResponseListener<Attendance, String>() {
             @Override
@@ -198,6 +200,10 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> addDealer(Dealer dealer,Uri uri) throws IOException{
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
+
+        Location location = currentLocation.getValue();
+        dealer.setLatitude(location.getLatitude());
+        dealer.setLongitude(location.getLongitude());
         dealer.setEmpId(getCurrentEmployeeId());
         dealer.setImage(FileEncoder.encodeImage(getApplication().getContentResolver(),uri));
         repo.addDealer(getCurrentEmployeeId(), dealer, new ApiResponseListener<Dealer, String>() {
@@ -220,7 +226,7 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> addPayment(PaymentRequest paymentRequest){
         MutableLiveData<Boolean>flag=new MutableLiveData<>();
-
+        paymentRequest.setEmpId(getCurrentEmployeeId());
         repo.addPayment(getCurrentEmployeeId(),paymentRequest,new ApiResponseListener<PaymentRequest,String>(){
             @Override
             public void onSuccess(PaymentRequest response){
@@ -240,8 +246,14 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> addSchool(School school, Uri image) throws IOException {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
+
+        Location location = currentLocation.getValue();
+        school.setLatitude(location.getLatitude());
+        school.setLongitude(location.getLongitude());
+
         String encodedImage = FileEncoder.encodeImage(getApplication().getContentResolver(), image);
         school.setImage(encodedImage);
+        school.setEmpId(getCurrentEmployeeId());
         repo.addSchool(getCurrentEmployeeId(), school, new ApiResponseListener<School, String>() {
             @Override
             public void onSuccess(School response) {
@@ -301,7 +313,11 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> addEod(Eod eod) {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
+        Location location = currentLocation.getValue();
+        eod.setLatitude(location.getLatitude());
+        eod.setLongitude(location.getLongitude());
 
+        eod.setEmpId(getCurrentEmployeeId());
         repo.addEod(getCurrentEmployeeId(), eod, new ApiResponseListener<Eod, String>() {
             @Override
             public void onSuccess(Eod response) {
@@ -382,24 +398,22 @@ public class EmployeeViewModel extends AndroidViewModel {
 //    ----------------------------------------------------------------------------------------------
 
     public LiveData<Location> addCurrentEmployeeLocation(Location location) {
-        MutableLiveData<Location> flag = new MutableLiveData<>();
 
         Long empId = getCurrentEmployeeId();
         location.setEmpId(empId);
         repo.addEmployeeLocation(location, new ApiResponseListener<Location, String>() {
             @Override
             public void onSuccess(Location response) {
-                flag.postValue(response);
+                currentLocation.postValue(response);
             }
 
             @Override
             public void onFailure(String error) {
-                flag.postValue(null);
                 toastMessage.postValue(error);
             }
         });
 
-        return flag;
+        return currentLocation;
     }
 
 //    ----------------------------------------------------------------------------------------------
@@ -430,12 +444,6 @@ public class EmployeeViewModel extends AndroidViewModel {
     }
 
 //    ----------------------------------------------------------------------------------------------
-
-    public void onImagePickerResult(int resultCode, ActivityResult result) {
-        if (result.getResultCode() == RESULT_OK) {
-            imageUri.setValue(result.getData().getData());
-        }
-    }
 
     public void logout() {
         SharedPrefs.getInstance(getApplication().getApplicationContext()).clearCredentials();

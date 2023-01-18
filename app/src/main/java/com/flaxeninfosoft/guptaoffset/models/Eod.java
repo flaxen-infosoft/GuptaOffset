@@ -32,6 +32,14 @@ public class Eod {
     @Expose
     private String otherExpense;
 
+    @SerializedName(Constants.LATITUDE)
+    @Expose
+    private Double latitude;
+
+    @SerializedName(Constants.LONGITUDE)
+    @Expose
+    private Double longitude;
+
     public Long getId() {
         return id;
     }
@@ -78,5 +86,21 @@ public class Eod {
 
     public void setOtherExpense(String otherExpense) {
         this.otherExpense = otherExpense;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }
