@@ -21,6 +21,11 @@
         android:theme="@style/Theme.GuptaOffset"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <service
+            android:name=".LocationService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".views.superEmployee.SuperEmployeeMainActivity"
             android:exported="false">

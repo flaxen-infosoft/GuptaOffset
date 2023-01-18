@@ -92,13 +92,18 @@ public class EmployeeAddSchoolFragment extends Fragment {
     private void onClickAddSchool(View view) {
         if (isValidFields() && isImageAdded()) {
             progressDialog.show();
-            viewModel.addSchool(binding.getSchool()).observe(getViewLifecycleOwner(), b->{
-                if (b){
-                    progressDialog.dismiss();
-                    clearErrors();
-                    navigateUp();
-                }
-            });
+            try {
+                viewModel.addSchool(binding.getSchool(), image).observe(getViewLifecycleOwner(), b->{
+                    if (b){
+                        progressDialog.dismiss();
+                        clearErrors();
+                        navigateUp();
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

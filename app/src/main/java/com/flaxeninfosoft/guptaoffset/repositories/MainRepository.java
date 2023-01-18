@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.flaxeninfosoft.guptaoffset.api.AttendanceApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.AuthApiInterface;
@@ -57,6 +59,8 @@ public class MainRepository {
 
     private final OrderApiInterface orderApiInterface;
 
+    private final MutableLiveData<Location> coordinatesLiveData;
+
     private final int STATUS_NOT_FOUND = 404;
 
     private MainRepository(Context context) {
@@ -73,6 +77,8 @@ public class MainRepository {
         locationApiInterface = apiClient.create(LocationApiInterface.class);
         orderApiInterface = apiClient.create(OrderApiInterface.class);
         historyApiInterface = apiClient.create(HistoryApiInterface.class);
+
+        coordinatesLiveData = new MutableLiveData<>();
     }
 
     public static MainRepository getInstance(Context context) {
@@ -627,6 +633,16 @@ public class MainRepository {
                 listener.onFailure("Unable to connect to server");
             }
         });
+    }
+
+//    ----------------------------------------------------------------------------------------------
+
+    public void setCoordinates(Location coordinates) {
+        coordinatesLiveData.postValue(coordinates);
+    }
+
+    public LiveData<Location> getCoordinates() {
+        return coordinatesLiveData;
     }
 
 //    ----------------------------------------------------------------------------------------------

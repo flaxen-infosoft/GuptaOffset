@@ -26,6 +26,8 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddDealerBindi
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
+import java.io.IOException;
+
 
 public class EmployeeAddDealerFragment extends Fragment {
 
@@ -85,13 +87,18 @@ public class EmployeeAddDealerFragment extends Fragment {
 
         if (isValidFields() && isImageAdd()) {
             progressDialog.show();
-            viewModel.addDealer(binding.getDealer()).observe(getViewLifecycleOwner(), b->{
-                if (b){
-                    progressDialog.dismiss();
-                    clearErrors();
-                    navigateUp();
-                }
-            });
+            try {
+                viewModel.addDealer(binding.getDealer(),image).observe(getViewLifecycleOwner(), b->{
+                    if (b){
+                        progressDialog.dismiss();
+                        clearErrors();
+                        navigateUp();
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Something went wrong" , Toast.LENGTH_SHORT).show();
+            }
         }
 
     }

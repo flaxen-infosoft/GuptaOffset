@@ -87,7 +87,7 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> addLeave(Leave leave) {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
-
+        leave.setEmpId(getCurrentEmployeeId());
         repo.addLeave(leave, new ApiResponseListener<Leave, String>() {
             @Override
             public void onSuccess(Leave response) {
@@ -127,7 +127,6 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> addOrder(Order order, Uri uri) throws IOException {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
-
         order.setEmpId(getCurrentEmployeeId());
         order.setSnap(FileEncoder.encodeImage(getApplication().getContentResolver(), uri));
         repo.addOrder(order, new ApiResponseListener<Order, String>() {
@@ -197,9 +196,10 @@ public class EmployeeViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Boolean> addDealer(Dealer dealer) {
+    public LiveData<Boolean> addDealer(Dealer dealer,Uri uri) throws IOException{
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
-
+        dealer.setEmpId(getCurrentEmployeeId());
+        dealer.setImage(FileEncoder.encodeImage(getApplication().getContentResolver(),uri));
         repo.addDealer(getCurrentEmployeeId(), dealer, new ApiResponseListener<Dealer, String>() {
             @Override
             public void onSuccess(Dealer response) {
@@ -238,9 +238,10 @@ public class EmployeeViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Boolean> addSchool(School school) {
+    public LiveData<Boolean> addSchool(School school, Uri image) throws IOException {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
-
+        String encodedImage = FileEncoder.encodeImage(getApplication().getContentResolver(), image);
+        school.setImage(encodedImage);
         repo.addSchool(getCurrentEmployeeId(), school, new ApiResponseListener<School, String>() {
             @Override
             public void onSuccess(School response) {

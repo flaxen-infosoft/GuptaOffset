@@ -10,6 +10,10 @@ public class EmployeeHistory {
     @Expose
     private Long id;
 
+    @SerializedName(Constants.EMPLOYEE_ID)
+    @Expose
+    private Long empId;
+
     @SerializedName(Constants.TYPE)
     @Expose
     private int type;
@@ -60,6 +64,14 @@ public class EmployeeHistory {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(Long empId) {
+        this.empId = empId;
     }
 
     public int getType() {
