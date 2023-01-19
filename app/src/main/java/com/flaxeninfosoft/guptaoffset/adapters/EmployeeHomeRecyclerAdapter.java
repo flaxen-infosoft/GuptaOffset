@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -7,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleAttendanceCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleDealerCardBinding;
@@ -23,6 +25,7 @@ import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.School;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 
 import java.util.List;
@@ -75,7 +78,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         EmployeeHistory history = historyList.get(position);
 
-        switch (history.getType()){
+        switch (history.getType()) {
             case Constants.TYPE_ADD_ATTENDANCE:
                 SingleAttendanceCardViewHolder atnViewHolder = (SingleAttendanceCardViewHolder) holder;
                 atnViewHolder.setData(history.getAttendance());
@@ -255,6 +258,10 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         public void setData(Order order) {
             binding.setOrder(order);
             binding.getRoot().setOnClickListener(v -> onCLickListener.onClickCard(order));
+            String imageLink = ApiEndpoints.BASE_URL + order.getSnap();
+
+            Log.i("CRM-LOG", order.toString());
+            Glide.with(binding.getRoot().getContext()).load(imageLink).into(binding.singleOrderCardOrderImage);
         }
 
         public interface SingleOrderCardClickListener {

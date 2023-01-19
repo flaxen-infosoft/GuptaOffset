@@ -28,7 +28,7 @@ public class Order {
 
     @SerializedName(Constants.DATE)
     @Expose
-    private Long date;
+    private String date;
 
     public Long getId() {
         return id;
@@ -70,11 +70,23 @@ public class Order {
         this.snap = snap;
     }
 
-    public Long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Long date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", empId=" + empId +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", snap='" + snap + '\'' +
+                ", date='" + date + '\'' +
+                '}';
     }
 }

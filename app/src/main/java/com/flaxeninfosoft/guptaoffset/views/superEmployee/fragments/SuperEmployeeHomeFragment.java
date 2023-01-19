@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.EmployeeHomeFragmentStateAdapter;
@@ -58,6 +59,8 @@ public class SuperEmployeeHomeFragment extends Fragment {
         binding.superEmployeeHomeCardPaymentRequest.setOnClickListener(this::navigateToPaymentRequest);
         binding.superEmployeeHomeCardAddEod.setOnClickListener(this::navigateToAddEod);
         binding.superEmployeeHomeCardMyMap.setOnClickListener(this::navigateToMap);
+
+        binding.superEmployeeHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         viewModel.getCurrentEmployeeHistory().observe(getViewLifecycleOwner(), this::setEmployeeHistory);
 

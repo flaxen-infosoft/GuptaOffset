@@ -23,15 +23,15 @@ public class Leave {
 
     @SerializedName(Constants.FROM_DATE)
     @Expose
-    private Date fromDate;
+    private String fromDate;
 
     @SerializedName(Constants.TO_DATE)
     @Expose
-    private Date toDate;
+    private String toDate;
 
     @SerializedName(Constants.APPLY_DATE)
     @Expose
-    private Date applyDate;
+    private String applyDate;
 
     @SerializedName(Constants.MESSAGE)
     @Expose
@@ -57,27 +57,27 @@ public class Leave {
         this.empId = empId;
     }
 
-    public Date getFromDate() {
+    public String getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(Date fromDate) {
+    public void setFromDate(String fromDate) {
         this.fromDate = fromDate;
     }
 
-    public Date getToDate() {
+    public String getToDate() {
         return toDate;
     }
 
-    public void setToDate(Date toDate) {
+    public void setToDate(String toDate) {
         this.toDate = toDate;
     }
 
-    public Date getApplyDate() {
+    public String getApplyDate() {
         return applyDate;
     }
 
-    public void setApplyDate(Date applyDate) {
+    public void setApplyDate(String applyDate) {
         this.applyDate = applyDate;
     }
 
