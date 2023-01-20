@@ -8,82 +8,100 @@
                 type="com.flaxeninfosoft.guptaoffset.models.Employee" />
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/splash_back">
     <LinearLayout
         android:orientation="vertical"
         android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/splash_back"
         tools:context=".views.employee.fragments.EmployeeProfileFragment">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/user_logo"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:text="Name"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+             />
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/employee_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            tools:ignore="MissingConstraints" >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter name"
-                android:text="@={employee.name}"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/employee_profile_designation"
+            android:editable="false"
+            android:text="@={employee.name}"/>
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:text="Designation"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/employee_profile_designation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Designation"
+                android:editable="false"
                 android:text="@{employee.designation}"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/employee_profile_DA"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:text="Daily Allowance"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/employee_profile_DA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="DA"
-                android:text="@{``+employee.dailyAllowance}"/>
+                android:editable="false"
+                android:text="@{employee.dailyAllowance}"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/employee_profile_Area"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:text="Area"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/employee_profile_Area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Area"
+                android:editable="false"
                 android:text="@{employee.area}"/>
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/employee_profile_Manager"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:text="Manager"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/employee_profile_Manager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Manager" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:editable="false" />
 
     </LinearLayout>
+    </ScrollView>
 </layout>
