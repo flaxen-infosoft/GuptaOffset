@@ -117,7 +117,7 @@ public class SuperEmployeeHomeFragment extends Fragment {
     }
 
     private void navigateToAddEmployee(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.superEmployeeAddEmployeeFragment);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_superEmployeeAddEmployeeFragment);
     }
 
     private void navigateToMap(View view) {
