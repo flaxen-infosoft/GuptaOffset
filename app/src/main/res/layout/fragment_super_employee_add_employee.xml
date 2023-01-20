@@ -10,13 +10,13 @@
 
     <ScrollView
         android:layout_width="match_parent"
+        android:background="@drawable/splash_back"
         android:layout_height="match_parent">
         <LinearLayout
             android:orientation="vertical"
             android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/splash_back"
             tools:context=".views.superEmployee.fragments.SuperEmployeeAddEmployeeFragment">
 
 
