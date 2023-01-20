@@ -81,7 +81,7 @@
     <fragment
         android:id="@+id/employeeProfileFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeProfileFragment"
-        android:label="EmployeeProfileFragment" />
+        android:label="Profile" />
 
 
 </navigation>

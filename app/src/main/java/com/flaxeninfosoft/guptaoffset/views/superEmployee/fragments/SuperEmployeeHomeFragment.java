@@ -59,6 +59,7 @@ public class SuperEmployeeHomeFragment extends Fragment {
         binding.superEmployeeHomeCardPaymentRequest.setOnClickListener(this::navigateToPaymentRequest);
         binding.superEmployeeHomeCardAddEod.setOnClickListener(this::navigateToAddEod);
         binding.superEmployeeHomeCardMyMap.setOnClickListener(this::navigateToMap);
+        binding.superEmployeeHomeCardAddEmployee.setOnClickListener(this::navigateToAddEmployee);
 
         binding.superEmployeeHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -113,6 +114,10 @@ public class SuperEmployeeHomeFragment extends Fragment {
             }
         });
         binding.superEmployeeHomeRecycler.setAdapter(adapter);
+    }
+
+    private void navigateToAddEmployee(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.superEmployeeAddEmployeeFragment);
     }
 
     private void navigateToMap(View view) {
