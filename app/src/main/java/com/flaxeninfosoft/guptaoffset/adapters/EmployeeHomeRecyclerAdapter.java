@@ -2,6 +2,7 @@ package com.flaxeninfosoft.guptaoffset.adapters;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.flaxeninfosoft.guptaoffset.databinding.SingleEmployeeCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleEodCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleLeaveCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleOrderCardBinding;
+import com.flaxeninfosoft.guptaoffset.databinding.SinglePaymentRequestCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleSchoolCardBinding;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
@@ -24,6 +26,7 @@ import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Order;
+import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
@@ -70,6 +73,9 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             case Constants.TYPE_ADD_EMPLOYEE:
                 SingleEmployeeCardBinding employeeCardBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.single_employee_card, parent, false);
                 return new SingleEmployeeCardViewHolder(employeeCardBinding, onClickListener::onCLickCard);
+            case Constants.TYPE_ADD_PAYMENT:
+                SinglePaymentRequestCardBinding paymentRequestCardBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.single_payment_request_card, parent, false);
+                return new SinglePaymentCardViewHolder(paymentRequestCardBinding, onClickListener::onClickCard);
         }
         return null;
     }
@@ -133,6 +139,8 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         void onClickCard(Eod eod);
 
         void onCLickCard(Employee employee);
+
+        void onClickCard(PaymentRequest paymentRequest);
     }
 
     public static class SingleAttendanceCardViewHolder extends RecyclerView.ViewHolder {
@@ -150,6 +158,13 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         public void setData(Attendance attendance) {
             binding.setAttendance(attendance);
             binding.getRoot().setOnClickListener(v -> clickListener.onClickCard(attendance));
+
+            String timeInImage = ApiEndpoints.BASE_URL + attendance.getSnapIn();
+            Glide.with(binding.getRoot().getContext()).load(timeInImage).into(binding.singleAttendanceCardTimeInImage);
+
+            String timeOutImage = ApiEndpoints.BASE_URL + attendance.getSnapOut();
+            Glide.with(binding.getRoot().getContext()).load(timeOutImage).into(binding.singleAttendanceCardTimeOutImage);
+
         }
 
         public interface SingleAttendanceCardClickListener {
@@ -172,6 +187,10 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         public void setData(Dealer dealer) {
             binding.setDealer(dealer);
             binding.getRoot().setOnClickListener(v -> onCLickListener.onClickCard(dealer));
+
+            String imageLink = ApiEndpoints.BASE_URL + dealer.getImage();
+
+            Glide.with(binding.getRoot().getContext()).load(imageLink).into(binding.singleDealerCardImage);
         }
 
         public interface SingleDealerCardClickListener {
@@ -283,10 +302,39 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         public void setData(School school) {
             binding.setSchool(school);
             binding.getRoot().setOnClickListener(v -> onClickListener.onClickCard(school));
+
+            try {
+                String image = ApiEndpoints.BASE_URL + school.getImage();
+                Glide.with(binding.getRoot().getContext()).load(image).into(binding.singleSchoolCardImage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         public interface SingleSchoolCardClickListener {
             void onClickCard(School school);
+        }
+    }
+
+    public static class SinglePaymentCardViewHolder extends RecyclerView.ViewHolder {
+
+        private final SinglePaymentRequestCardBinding binding;
+        private final SinglePaymentCardClickListener onClickListener;
+
+        public SinglePaymentCardViewHolder(@NonNull SinglePaymentRequestCardBinding binding, SinglePaymentCardClickListener onClickListener) {
+            super(binding.getRoot());
+            this.binding = binding;
+            this.onClickListener = onClickListener;
+        }
+
+        public void setData(PaymentRequest payment) {
+            binding.setPayment(payment);
+            Log.i("CRM-LOG", payment.toString());
+            binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(payment));
+        }
+
+        public interface SinglePaymentCardClickListener {
+            void onClickCard(PaymentRequest payment);
         }
     }
 

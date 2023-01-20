@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/card"
             android:text="SCHOOL"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold" />
         <TextView
@@ -28,8 +28,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintRight_toRightOf="@id/card"
             app:layout_constraintBottom_toTopOf="@id/card"
-            android:text="Date : "
-            android:textSize="15dp"
+            android:text="@{school.date}"
+            android:textSize="15sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             />
@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:text="Name: "
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -151,12 +151,13 @@
                     app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
 
                 <ImageView
+                    android:id="@+id/single_school_card_image"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="250dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/single_school_card_contact"
                     android:layout_margin="12dp"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

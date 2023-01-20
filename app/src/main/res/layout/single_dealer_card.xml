@@ -107,14 +107,13 @@
                     app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
 
                 <ImageView
+                    android:id="@+id/single_dealer_card_image"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="250dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/single_dealer_card_contact"
                     android:layout_margin="12dp"
-                    android:scaleType="centerCrop"
-                    />
-
+                    android:scaleType="fitXY"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>

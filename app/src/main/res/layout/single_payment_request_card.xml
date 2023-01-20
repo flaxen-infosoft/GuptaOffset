@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="dealer"
-            type="com.flaxeninfosoft.guptaoffset.models.Dealer" />
+            name="payment"
+            type="com.flaxeninfosoft.guptaoffset.models.PaymentRequest" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,30 +16,18 @@
             android:id="@+id/payment_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/card"
             android:text="PAYMENT"
-            android:textSize="20dp"
             android:textColor="@color/black"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/single_payment_card_date_apply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="@id/card"
-            app:layout_constraintBottom_toTopOf="@id/card"
-            android:text="Date : "
-            android:textSize="15dp"
-            android:textColor="@color/black"
+            android:textSize="20sp"
             android:textStyle="bold"
-            />
+            app:layout_constraintLeft_toLeftOf="@id/card9"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card"
+            android:id="@+id/card9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginHorizontal="12dp"
             android:backgroundTint="#9FD1B7"
             android:elevation="@dimen/card_elevation"
             app:cardCornerRadius="@dimen/card_corner"
@@ -48,37 +36,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/payment_text">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="12dp">
+                android:gravity="center_horizontal"
+                android:padding="4dp"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/single_payment_request_card_payment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    android:text="Payment"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"/>
+                    android:layout_gravity="start"
+                    android:text="Payment request"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/single_payment_request_card_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/single_payment_request_card_payment"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    android:text="Status"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    />
+<!--                <TextView-->
+<!--                    android:id="@+id/single_payment_request_card_payment"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="8dp"-->
+<!--                    android:text="@{``+payment.amount}"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

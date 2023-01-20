@@ -61,10 +61,16 @@ public class EmployeePaymentRequestFragment extends Fragment {
     }
 
     private boolean validateForm() {
-        if (binding.getPayment().getAmount()<0) {
+        try{
+            if (Integer.parseInt(binding.getPayment().getAmount())<0) {
+                binding.employeeAddPayment.setError("Enter valid amount");
+                return false;
+            }
+        }catch (Exception e){
             binding.employeeAddPayment.setError("Enter valid amount");
             return false;
         }
+
         return true;
     }
 

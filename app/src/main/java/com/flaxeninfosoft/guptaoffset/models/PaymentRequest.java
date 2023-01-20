@@ -10,7 +10,7 @@ public class PaymentRequest {
 
     @SerializedName(Constants.ID)
     @Expose
-    private int id;
+    private Long id;
 
     @SerializedName(Constants.EMPLOYEE_ID)
     @Expose
@@ -18,7 +18,7 @@ public class PaymentRequest {
 
     @SerializedName(Constants.AMOUNT)
     @Expose
-    private int amount;
+    private String amount;
 
     @SerializedName(Constants.STATUS)
     @Expose
@@ -26,13 +26,13 @@ public class PaymentRequest {
 
     @SerializedName(Constants.DATE)
     @Expose
-    private Date date;
+    private String date;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -44,11 +44,11 @@ public class PaymentRequest {
         this.empId = empId;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -60,11 +60,22 @@ public class PaymentRequest {
         this.status = status;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentRequest{" +
+                "id=" + id +
+                ", empId=" + empId +
+                ", amount='" + amount + '\'' +
+                ", status='" + status + '\'' +
+                ", date='" + date + '\'' +
+                '}';
     }
 }

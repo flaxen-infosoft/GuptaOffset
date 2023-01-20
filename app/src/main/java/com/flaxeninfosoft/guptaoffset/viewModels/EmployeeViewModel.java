@@ -87,6 +87,7 @@ public class EmployeeViewModel extends AndroidViewModel {
     public LiveData<Boolean> addLeave(Leave leave) {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
         leave.setEmpId(getCurrentEmployeeId());
+
         repo.addLeave(leave, new ApiResponseListener<Leave, String>() {
             @Override
             public void onSuccess(Leave response) {
@@ -99,6 +100,7 @@ public class EmployeeViewModel extends AndroidViewModel {
                 toastMessage.postValue(error);
             }
         });
+
 
         return flag;
     }
@@ -198,14 +200,14 @@ public class EmployeeViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Boolean> addDealer(Dealer dealer,Uri uri) throws IOException{
+    public LiveData<Boolean> addDealer(Dealer dealer, Uri uri) throws IOException {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
         Location location = currentLocation.getValue();
         dealer.setLatitude(location.getLatitude());
         dealer.setLongitude(location.getLongitude());
         dealer.setEmpId(getCurrentEmployeeId());
-        dealer.setImage(FileEncoder.encodeImage(getApplication().getContentResolver(),uri));
+        dealer.setImage(FileEncoder.encodeImage(getApplication().getContentResolver(), uri));
         repo.addDealer(getCurrentEmployeeId(), dealer, new ApiResponseListener<Dealer, String>() {
             @Override
             public void onSuccess(Dealer response) {
@@ -224,16 +226,17 @@ public class EmployeeViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Boolean> addPayment(PaymentRequest paymentRequest){
-        MutableLiveData<Boolean>flag=new MutableLiveData<>();
+    public LiveData<Boolean> addPayment(PaymentRequest paymentRequest) {
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
         paymentRequest.setEmpId(getCurrentEmployeeId());
-        repo.addPayment(getCurrentEmployeeId(),paymentRequest,new ApiResponseListener<PaymentRequest,String>(){
+        repo.addPayment(getCurrentEmployeeId(), paymentRequest, new ApiResponseListener<PaymentRequest, String>() {
             @Override
-            public void onSuccess(PaymentRequest response){
+            public void onSuccess(PaymentRequest response) {
                 flag.postValue(true);
             }
+
             @Override
-            public void onFailure(String error){
+            public void onFailure(String error) {
                 flag.postValue(false);
                 toastMessage.postValue(error);
             }
@@ -424,7 +427,7 @@ public class EmployeeViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<List<EmployeeHistory>> getCurrentEmployeeHistory(){
+    public LiveData<List<EmployeeHistory>> getCurrentEmployeeHistory() {
         MutableLiveData<List<EmployeeHistory>> flag = new MutableLiveData<>();
 
         repo.getEmployeeHomeHistory(getCurrentEmployeeId(), new ApiResponseListener<List<EmployeeHistory>, String>() {

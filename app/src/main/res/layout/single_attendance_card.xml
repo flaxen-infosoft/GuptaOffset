@@ -81,10 +81,8 @@
                     android:layout_weight="1"
                     android:layout_marginRight="5dp"
                     android:scaleType="centerCrop"
-
                     app:layout_constraintTop_toBottomOf="@id/start_time_text"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    />
+                    app:layout_constraintLeft_toLeftOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout

@@ -22,6 +22,7 @@ import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Order;
+import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
@@ -105,6 +106,11 @@ public class EmployeeHomeFragment extends Fragment {
 
             @Override
             public void onCLickCard(Employee employee) {
+
+            }
+
+            @Override
+            public void onClickCard(PaymentRequest paymentRequest) {
 
             }
         });

@@ -42,6 +42,10 @@ public class School {
     @Expose
     private String contact;
 
+    @SerializedName(Constants.DATE)
+    @Expose
+    private String date;
+
     public Long getId() {
         return id;
     }
@@ -112,5 +116,13 @@ public class School {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
