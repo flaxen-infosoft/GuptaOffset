@@ -1,19 +1,18 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeProfileBinding;
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 public class EmployeeProfileFragment extends Fragment {
@@ -38,8 +37,26 @@ public class EmployeeProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_profile, container, false);
 
-        binding.setEmployee(viewModel.getCurrentEmployee());
+        try {
+            long empId = getArguments().getLong(Constants.EMPLOYEE_ID, -1);
 
-        return  binding.getRoot();
+            if (empId == -1){
+                setCurrentEmployeeData();
+            }else{
+                setEmployeeData(empId);
+            }
+
+        }catch (Exception e){
+
+        }
+
+        return binding.getRoot();
+    }
+
+    private void setEmployeeData(long empId) {
+    }
+
+    private void setCurrentEmployeeData() {
+        
     }
 }

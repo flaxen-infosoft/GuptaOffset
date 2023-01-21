@@ -14,7 +14,7 @@ public class PaymentRequest {
 
     @SerializedName(Constants.EMPLOYEE_ID)
     @Expose
-    private long empId;
+    private Long empId;
 
     @SerializedName(Constants.AMOUNT)
     @Expose
@@ -36,11 +36,11 @@ public class PaymentRequest {
         this.id = id;
     }
 
-    public long getEmpId() {
+    public Long getEmpId() {
         return empId;
     }
 
-    public void setEmpId(long empId) {
+    public void setEmpId(Long empId) {
         this.empId = empId;
     }
 
