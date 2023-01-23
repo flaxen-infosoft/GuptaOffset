@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Name"
-                    android:inputType="none"
+                    android:enabled="false"
                     android:text="@={employee.name}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Designation"
-                    android:inputType="none"
+                    android:enabled="false"
                     android:text="@={employee.designation}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:inputType="none"
+                    android:enabled="false"
                     android:text="@={employee.email}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Daily allowance"
-                    android:inputType="none"
+                    android:enabled="false"
                     android:text="@={employee.dailyAllowance}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +100,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Area"
-                    android:inputType="none"
+                    android:enabled="false"
                     android:text="@={employee.area}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,6 +108,7 @@
                 android:id="@+id/employee_profile_assigned_to"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="match_parent"
                 android:layout_marginVertical="8dp">
 
@@ -115,7 +116,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Assigned To"
-                    android:inputType="none"
+                    android:enabled="false"
                     android:text="@={``+employee.assignedTo}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,15 +131,17 @@
                 android:gravity="center_horizontal">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/employee_profile_update_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Update"
                     android:layout_marginHorizontal="30dp"/>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/employee_profile_suspend_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delete"
+                    android:text="Suspend"
                     android:layout_marginHorizontal="30dp"/>
 
             </LinearLayout>

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,17 +61,25 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 
         viewModel.getCurrentEmployeeTodaysAttendance().observe(getViewLifecycleOwner(), this::setAttendance);
 
+        viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
+
         return binding.getRoot();
     }
 
+    private void showToast(String s) {
+        if (s != null && !s.isEmpty()) {
+            Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+        }
+    }
 
     private void setAttendance(Attendance attendance) {
 
-        if (attendance == null){
+        if (attendance == null) {
             attendance = new Attendance();
             attendance.setPunchStatus(0);
         }
-        attendance.toString();
+        Log.i("CRM-LOG", attendance.toString());
+
         switch (attendance.getPunchStatus()) {
             case 0:
                 binding.employeeAddAttendanceStartMeter.setEnabled(true);
@@ -120,7 +129,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                         return;
                     }
 
-                        punch(binding.getAttendance().getEndMeter(), image);
+                    punch(binding.getAttendance().getEndMeter(), image);
 
                 });
                 break;
@@ -146,41 +155,41 @@ public class EmployeeAddAttendanceFragment extends Fragment {
     }
 
     private void selectEndImage(View view) {
-        Intent intent=new Intent(Intent.ACTION_PICK);
+        Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         endImage.launch(intent);
     }
 
     private void selectStartImage(View view) {
-        Intent intent=new Intent(Intent.ACTION_PICK);
+        Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startImage.launch(intent);
     }
 
-    ActivityResultLauncher<Intent> startImage=registerForActivityResult(
+    ActivityResultLauncher<Intent> startImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     try {
-                        image=result.getData().getData();
+                        image = result.getData().getData();
                         Glide.with(getContext()).load(image).into(binding.employeeAddAttendanceStartMeterImage);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             }
     );
 
-    ActivityResultLauncher<Intent> endImage=registerForActivityResult(
+    ActivityResultLauncher<Intent> endImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     try {
-                        image=result.getData().getData();
+                        image = result.getData().getData();
                         Glide.with(getContext()).load(image).into(binding.employeeAddAttendanceEndMeterImage);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }

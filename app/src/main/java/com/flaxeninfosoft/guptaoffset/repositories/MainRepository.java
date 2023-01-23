@@ -684,7 +684,7 @@ public class MainRepository {
                 public void onResponse(@NonNull Call<Attendance> call, @NonNull Response<Attendance> response) {
                     if (response.isSuccessful()) {
                         try {
-                            listener.onSuccess(null);
+                            listener.onSuccess(response.body());
                         } catch (Exception e) {
                             e.printStackTrace();
                             listener.onFailure("Invalid response from the server");

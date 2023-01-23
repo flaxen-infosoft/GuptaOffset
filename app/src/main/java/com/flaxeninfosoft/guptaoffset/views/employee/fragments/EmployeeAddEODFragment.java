@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,6 +47,8 @@ public class EmployeeAddEODFragment extends Fragment {
         progressDialog.setMessage("Loading");
         progressDialog.setCancelable(false);
 
+        viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
+
         return binding.getRoot();
     }
 
@@ -59,6 +62,12 @@ public class EmployeeAddEODFragment extends Fragment {
                     navigateUp();
                 }
             });
+        }
+    }
+
+    private void showToast(String s) {
+        if (s != null && !s.isEmpty()){
+            Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
 

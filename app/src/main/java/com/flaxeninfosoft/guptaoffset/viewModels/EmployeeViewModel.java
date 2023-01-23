@@ -2,6 +2,7 @@ package com.flaxeninfosoft.guptaoffset.viewModels;
 
 import android.app.Application;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -157,10 +158,11 @@ public class EmployeeViewModel extends AndroidViewModel {
         repo.getEmployeeTodaysAttendance(getCurrentEmployeeId(), new ApiResponseListener<Attendance, String>() {
             @Override
             public void onSuccess(Attendance response) {
+                Log.i("CRM-LOG", response.toString());
                 if (response == null) {
                     Attendance attendance = new Attendance();
                     attendance.setEmpId(getCurrentEmployeeId());
-                    attendance.setTimeIn(new Date(System.currentTimeMillis()));
+//                    attendance.setTimeIn()(new Date(System.currentTimeMillis()));
                     response = attendance;
                 }
 

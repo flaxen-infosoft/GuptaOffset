@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeePaymentRequestBinding;
@@ -44,7 +45,16 @@ public class EmployeePaymentRequestFragment extends Fragment {
         progressDialog.setTitle("Add Payment...");
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
+
+        viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
+
         return binding.getRoot();
+    }
+
+    private void showToast(String s) {
+        if (s != null && !s.isEmpty()){
+            Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void onClickPayment(View view) {

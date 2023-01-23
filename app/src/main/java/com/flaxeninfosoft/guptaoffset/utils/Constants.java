@@ -33,8 +33,8 @@ public class Constants {
     public static final String TIME_IN = "timeIn";
     public static final String TIME_OUT = "timeOut";
     public static final String DATE = "date";
-    public static final String START_METER = "starting_meter";
-    public static final String END_METER = "ending_meter";
+    public static final String START_METER = "startingMeter";
+    public static final String END_METER = "endMeter";
     public static final String START_METER_IMAGE = "starting_meter_image";
     public static final String END_METER_IMAGE = "ending_meter_image";
     public static final String START_LOCATION = "start_location";

@@ -55,7 +55,15 @@ public class EmployeeAddLeaveFragment extends Fragment {
         binding.employeeApplyLeaveDateFromTv.setOnClickListener(this::selectFromDate);
         binding.employeeApplyLeaveDateToTv.setOnClickListener(this::selectToDate);
 
+        viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
+
         return binding.getRoot();
+    }
+
+    private void showToast(String s) {
+        if (s != null && !s.isEmpty()){
+            Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void selectFromDate(View view) {

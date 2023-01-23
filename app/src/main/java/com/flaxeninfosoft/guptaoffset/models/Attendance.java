@@ -10,19 +10,19 @@ public class Attendance {
 
     @SerializedName(Constants.ID)
     @Expose
-    private int id;
+    private Long id;
 
     @SerializedName(Constants.EMPLOYEE_ID)
     @Expose
-    private long empId;
+    private Long empId;
 
     @SerializedName(Constants.TIME_IN)
     @Expose
-    private Date timeIn;
+    private String timeIn;
 
     @SerializedName(Constants.TIME_OUT)
     @Expose
-    private Date timeOut;
+    private String timeOut;
 
     @SerializedName(Constants.SNAP_IN)
     @Expose
@@ -34,7 +34,7 @@ public class Attendance {
 
     @SerializedName(Constants.DATE)
     @Expose
-    private Long date;
+    private String date;
 
     @SerializedName(Constants.START_METER)
     @Expose
@@ -52,35 +52,35 @@ public class Attendance {
     @Expose
     private int punchStatus;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getEmpId() {
+    public Long getEmpId() {
         return empId;
     }
 
-    public void setEmpId(long empId) {
+    public void setEmpId(Long empId) {
         this.empId = empId;
     }
 
-    public Date getTimeIn() {
+    public String getTimeIn() {
         return timeIn;
     }
 
-    public void setTimeIn(Date timeIn) {
+    public void setTimeIn(String timeIn) {
         this.timeIn = timeIn;
     }
 
-    public Date getTimeOut() {
+    public String getTimeOut() {
         return timeOut;
     }
 
-    public void setTimeOut(Date timeOut) {
+    public void setTimeOut(String timeOut) {
         this.timeOut = timeOut;
     }
 
@@ -100,11 +100,11 @@ public class Attendance {
         this.snapOut = snapOut;
     }
 
-    public Long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

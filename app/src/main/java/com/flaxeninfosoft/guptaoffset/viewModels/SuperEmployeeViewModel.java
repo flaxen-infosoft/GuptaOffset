@@ -28,6 +28,25 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
         currentSuperEmployeeEmployees = new MutableLiveData<>();
     }
 
+    public LiveData<Employee> getEmployeeById(long empId) {
+        MutableLiveData<Employee> flag = new MutableLiveData<>();
+
+        repo.getEmployeeById(empId, new ApiResponseListener<Employee, String>() {
+            @Override
+            public void onSuccess(Employee response) {
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
     public LiveData<List<Employee>> getCurrentSuperEmployeeEmployees() {
         repo.getEmployeesOfSuperEmployee(getCurrentEmployeeId(), new ApiResponseListener<List<Employee>, String>() {
             @Override
@@ -67,4 +86,42 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
         return flag;
     }
 
+    public LiveData<Employee> updateEmployee(Employee employee) {
+
+        MutableLiveData<Employee> flag = new MutableLiveData<>();
+
+        repo.updateEmployee(employee, new ApiResponseListener<Employee, String>() {
+            @Override
+            public void onSuccess(Employee response) {
+                flag.postValue(new Employee());
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
+    public LiveData<Employee> suspendEmployee(Employee employee) {
+        MutableLiveData<Employee> flag = new MutableLiveData<>();
+
+        repo.suspendEmployeeById(employee.getId(), new ApiResponseListener<Employee, String>() {
+            @Override
+            public void onSuccess(Employee response) {
+                flag.postValue(new Employee());
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
+    }
 }
