@@ -3,6 +3,7 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -75,7 +76,7 @@ public class EmployeeAddDealerFragment extends Fragment {
 
     private void onClickAddImage(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, image);
+//        intent.putExtra(MediaStore.EXTRA_OUTPUT, image);
 //        intent.setType("image/*");
         mLauncher.launch(intent);
     }
@@ -88,7 +89,15 @@ public class EmployeeAddDealerFragment extends Fragment {
 
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         try {
-                            Glide.with(getContext()).load(image).into(binding.employeeAddDealerImage);
+
+                                Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
+                                Glide.with(getContext()).load(bitmap).into(binding.employeeAddDealerImage);
+
+
+                           // binding.employeeAddDealerImage.setImageURI(result.getData().getData());
+                                               //         Toast.makeText(getContext(), result.getData().getData().toString(), Toast.LENGTH_SHORT).show();
+
+//                            Glide.with(getContext()).load(image).into(binding.employeeAddDealerImage);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
