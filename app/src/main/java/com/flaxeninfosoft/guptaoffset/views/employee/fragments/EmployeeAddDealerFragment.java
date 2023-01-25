@@ -1,9 +1,11 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddDealerBinding;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
+import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.io.IOException;
@@ -65,28 +68,34 @@ public class EmployeeAddDealerFragment extends Fragment {
     }
 
     private void showToast(String s) {
-        if (s != null && !s.isEmpty()){
+        if (s != null && !s.isEmpty()) {
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
 
     private void onClickAddImage(View view) {
-        Intent intent=new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, image);
+//        intent.setType("image/*");
         mLauncher.launch(intent);
     }
 
-    ActivityResultLauncher<Intent> mLauncher=registerForActivityResult(
+    ActivityResultLauncher<Intent> mLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    try {
-                        image=result.getData().getData();
-                        Glide.with(getContext()).load(image).into(binding.employeeAddDealerImage);
-                    }catch (Exception e){
-                        e.printStackTrace();
+
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        try {
+                            Glide.with(getContext()).load(image).into(binding.employeeAddDealerImage);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Toast.makeText(getContext(), "Action cancelled", Toast.LENGTH_SHORT).show();
                     }
+
                 }
             }
     );
@@ -96,8 +105,17 @@ public class EmployeeAddDealerFragment extends Fragment {
         if (isValidFields() && isImageAdd()) {
             progressDialog.show();
             try {
-                viewModel.addDealer(binding.getDealer(),image).observe(getViewLifecycleOwner(), b->{
-                    if (b){
+                Location location = viewModel.getCurrentEmployeeLocation().getValue();
+
+                if (location.getLatitude() == 0 || location.getLongitude() == 0) {
+                    Toast.makeText(getContext(), "Fetching location", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    binding.getDealer().setLatitude(location.getLatitude());
+                    binding.getDealer().setLongitude(location.getLongitude());
+                }
+                viewModel.addDealer(binding.getDealer(), image).observe(getViewLifecycleOwner(), b -> {
+                    if (b) {
                         progressDialog.dismiss();
                         clearErrors();
                         navigateUp();
@@ -105,7 +123,7 @@ public class EmployeeAddDealerFragment extends Fragment {
                 });
             } catch (IOException e) {
                 e.printStackTrace();
-                Toast.makeText(getContext(), "Something went wrong" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         }
 

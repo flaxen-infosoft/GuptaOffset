@@ -84,6 +84,9 @@ public class Constants {
     public static final String PAYMENT = "payment";
     public static final String SCHOOL = "school";
 
+    public static final String SENDER_ID = "sender_id";
+    public static final String RECEIVER_ID = "receiver_id";
+
     public static final int TYPE_ADD_ATTENDANCE = 1;
     public static final int TYPE_ADD_LEAVE = 2;
     public static final int TYPE_ADD_SCHOOL = 3;

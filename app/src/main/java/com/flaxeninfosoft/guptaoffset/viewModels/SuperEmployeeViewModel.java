@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
+import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 
@@ -119,6 +120,25 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
             public void onFailure(String error) {
                 flag.postValue(null);
                 toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
+    public LiveData<List<EmployeeHistory>> getEmployeeHistoryById(Long empId) {
+        MutableLiveData<List<EmployeeHistory>> flag = new MutableLiveData<>();
+
+        repo.getEmployeeHomeHistory(empId, new ApiResponseListener<List<EmployeeHistory>, String>() {
+            @Override
+            public void onSuccess(List<EmployeeHistory> response) {
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                toastMessage.postValue(error);
+                flag.postValue(null);
             }
         });
 

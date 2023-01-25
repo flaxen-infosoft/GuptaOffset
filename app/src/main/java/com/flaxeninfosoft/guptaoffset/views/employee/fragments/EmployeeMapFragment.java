@@ -1,5 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -42,11 +45,13 @@ public class EmployeeMapFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_map, container, false);
 
-        mapReadyCallback = new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(@NonNull GoogleMap googleMap) {
+        mapReadyCallback = googleMap -> {
 
+            if (ActivityCompat.checkSelfPermission(EmployeeMapFragment.this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getContext(), "Location permission denied.", Toast.LENGTH_LONG).show();
+                return;
             }
+            googleMap.setMyLocationEnabled(true);
         };
 
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();

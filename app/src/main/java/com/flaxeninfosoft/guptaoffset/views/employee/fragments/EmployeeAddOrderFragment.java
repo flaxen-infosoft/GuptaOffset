@@ -22,6 +22,7 @@ import androidx.navigation.Navigation;
 import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddOrderBinding;
+import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
@@ -67,7 +68,7 @@ public class EmployeeAddOrderFragment extends Fragment {
     }
 
     private void showToast(String s) {
-        if (s != null && !s.isEmpty()){
+        if (s != null && !s.isEmpty()) {
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
@@ -76,8 +77,14 @@ public class EmployeeAddOrderFragment extends Fragment {
         if (image == null) {
             Toast.makeText(getContext(), "Please add image.", Toast.LENGTH_SHORT).show();
             return;
-        }progressDialog.show();
+        }
 
+        Location location = viewModel.getCurrentEmployeeLocation().getValue();
+        if (location.getLongitude()==0d || location.getLatitude()==0d){
+            Toast.makeText(getContext(),"Fetching location.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        progressDialog.show();
 
         try {
             viewModel.addOrder(binding.getOrder(), image).observe(getViewLifecycleOwner(), b -> {
@@ -103,7 +110,7 @@ public class EmployeeAddOrderFragment extends Fragment {
             pickImageIntent.setType("image/*");
 
             mLauncher.launch(pickImageIntent);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -116,9 +123,9 @@ public class EmployeeAddOrderFragment extends Fragment {
                     try {
                         image = result.getData().getData();
                         Glide.with(getContext()).load(image).into(binding.employeeAddOrderImage);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    catch (Exception e){
-                        e.printStackTrace();                    }
                 }
             });
 

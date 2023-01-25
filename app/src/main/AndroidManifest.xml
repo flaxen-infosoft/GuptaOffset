@@ -21,11 +21,19 @@
         android:theme="@style/Theme.GuptaOffset"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".views.admin.AdminMainActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <service
             android:name=".services.LocationService"
             android:enabled="true"
             android:exported="true"
-            android:foregroundServiceType="location"/>
+            android:foregroundServiceType="location" />
 
         <activity
             android:name=".views.superEmployee.SuperEmployeeMainActivity"

@@ -13,15 +13,13 @@
     <RelativeLayout
         android:id="@+id/layout_employee_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/whatsapp_b"
-        android:layout_marginTop="20dp">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/message_send_for_employee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginVertical="4dp"
             android:layout_toLeftOf="@id/test_arrow"
             android:background="@drawable/bg_msg_right"
             android:paddingLeft="15dp"

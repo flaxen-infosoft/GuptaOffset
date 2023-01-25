@@ -17,6 +17,7 @@ import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Location;
+import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
@@ -421,6 +422,11 @@ public class EmployeeViewModel extends AndroidViewModel {
         return currentLocation;
     }
 
+    public LiveData<Location> getCurrentEmployeeLocation(){
+
+        return currentLocation;
+    }
+
 //    ----------------------------------------------------------------------------------------------
 
     public MutableLiveData<String> getToastMessageLiveData() {
@@ -442,6 +448,27 @@ public class EmployeeViewModel extends AndroidViewModel {
             public void onFailure(String error) {
                 toastMessage.postValue(error);
                 flag.postValue(null);
+            }
+        });
+
+        return flag;
+    }
+
+//    ----------------------------------------------------------------------------------------------
+
+    public LiveData<Message> sendMessage(Message message){
+        MutableLiveData<Message> flag = new MutableLiveData<>();
+
+        repo.sendMessage(getCurrentEmployeeId(), message, new ApiResponseListener<Message, String>() {
+            @Override
+            public void onSuccess(Message response) {
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
+                toastMessage.postValue(error);
             }
         });
 

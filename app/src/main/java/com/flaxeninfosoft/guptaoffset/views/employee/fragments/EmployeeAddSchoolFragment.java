@@ -27,6 +27,7 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddOrderBindin
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddSchoolBinding;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
 import com.flaxeninfosoft.guptaoffset.models.Image;
+import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
@@ -99,6 +100,13 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
     private void onClickAddSchool(View view) {
         if (isValidFields() && isImageAdded()) {
+
+            Location location = viewModel.getCurrentEmployeeLocation().getValue();
+            if (location.getLongitude()==0d || location.getLatitude()==0d){
+                Toast.makeText(getContext(),"Fetching location.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             progressDialog.show();
             try {
                 viewModel.addSchool(binding.getSchool(), image).observe(getViewLifecycleOwner(), b->{

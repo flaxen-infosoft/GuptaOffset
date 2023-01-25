@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddAttendanceBinding;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
+import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.io.IOException;
@@ -197,6 +198,13 @@ public class EmployeeAddAttendanceFragment extends Fragment {
     );
 
     private void punch(String reading, Uri uri) {
+
+        Location location = viewModel.getCurrentEmployeeLocation().getValue();
+
+        if(location.getLatitude()==0 || location.getLongitude()==0){
+            Toast.makeText(getContext(), "Fetching location", Toast.LENGTH_SHORT).show();
+            return;
+        }
         try {
             viewModel.punchAttendance(reading, uri).observe(getViewLifecycleOwner(), attendance -> {
                 if (attendance != null) {

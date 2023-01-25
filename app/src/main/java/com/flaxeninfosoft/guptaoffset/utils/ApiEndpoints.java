@@ -69,7 +69,8 @@ public class ApiEndpoints {
 
 //    ----------------------------------------------------------------------------------------------
 
-
+    public static final String SEND_MESSAGE = "message/sendMessage.php";
+    public static final String GET_MESSAGES = "message/getMessages/php";
 
 //    ----------------------------------------------------------------------------------------------
 

@@ -15,6 +15,7 @@ import com.flaxeninfosoft.guptaoffset.api.EodApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.HistoryApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LeaveApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LocationApiInterface;
+import com.flaxeninfosoft.guptaoffset.api.MessageApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.OrderApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.PaymentApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.SchoolApiInterface;
@@ -27,6 +28,7 @@ import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.LoginModel;
+import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
@@ -56,6 +58,7 @@ public class MainRepository {
     private final EodApiInterface eodApiInterface;
     private final LocationApiInterface locationApiInterface;
     private final AttendanceApiInterface attendanceApiInterface;
+    private final MessageApiInterface messageApiInterface;
 
     private final OrderApiInterface orderApiInterface;
 
@@ -68,8 +71,8 @@ public class MainRepository {
 
         authApiInterface = apiClient.create(AuthApiInterface.class);
         dealerApiInterface = apiClient.create(DealerApiInterface.class);
-        paymentApiInterface=apiClient.create(PaymentApiInterface.class);
-        schoolApiInterface=apiClient.create(SchoolApiInterface.class);
+        paymentApiInterface = apiClient.create(PaymentApiInterface.class);
+        schoolApiInterface = apiClient.create(SchoolApiInterface.class);
         attendanceApiInterface = apiClient.create(AttendanceApiInterface.class);
         employeeApiInterface = apiClient.create(EmployeeApiInterface.class);
         leaveApiInterface = apiClient.create(LeaveApiInterface.class);
@@ -77,6 +80,7 @@ public class MainRepository {
         locationApiInterface = apiClient.create(LocationApiInterface.class);
         orderApiInterface = apiClient.create(OrderApiInterface.class);
         historyApiInterface = apiClient.create(HistoryApiInterface.class);
+        messageApiInterface = apiClient.create(MessageApiInterface.class);
 
         coordinatesLiveData = new MutableLiveData<>();
     }
@@ -180,8 +184,8 @@ public class MainRepository {
 
     private void processEmployeeListCall(Call<List<Employee>> call, ApiResponseListener<List<Employee>, String> listener) {
         call.enqueue(new Callback<List<Employee>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<Employee>> call, @NonNull Response<List<Employee>> response) {
+                @Override
+                public void onResponse(@NonNull Call<List<Employee>> call, @NonNull Response<List<Employee>> response) {
                 if (response.isSuccessful()) {
                     listener.onSuccess(response.body());
                 } else if (response.code() == STATUS_NOT_FOUND) {
@@ -543,12 +547,12 @@ public class MainRepository {
     }
 
 
-//    ----------------------------------------------------------------------------------------------
+    //    ----------------------------------------------------------------------------------------------
     public void addPayment(Long empId, PaymentRequest paymentRequest, ApiResponseListener<PaymentRequest, String> listener) {
-    Call<PaymentRequest> call = paymentApiInterface.addPayment(empId, paymentRequest);
+        Call<PaymentRequest> call = paymentApiInterface.addPayment(empId, paymentRequest);
 
-    processPaymentCall(call, listener);
-}
+        processPaymentCall(call, listener);
+    }
 
     private void processPaymentCall(Call<PaymentRequest> call, ApiResponseListener<PaymentRequest, String> listener) {
         call.enqueue(new Callback<PaymentRequest>() {
@@ -606,10 +610,64 @@ public class MainRepository {
         });
     }
 
+//    ----------------------------------------------------------------------------------------------
+
+    public void sendMessage(Long empId, Message message, ApiResponseListener<Message, String> listener) {
+
+        Call<Message> sendMessageCall = messageApiInterface.sendMessage(empId, message);
+
+        processMessageCall(sendMessageCall, listener);
+    }
+
+    public void getMessage(Long empId, ApiResponseListener<List<Message>, String> listener) {
+
+        Call<List<Message>> getMessagesCall = messageApiInterface.getMessages(empId);
+
+        processMessageListCall(getMessagesCall, listener);
+    }
+
+    private void processMessageListCall(Call<List<Message>> getMessagesCall, ApiResponseListener<List<Message>, String> listener) {
+        getMessagesCall.enqueue(new Callback<List<Message>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Message>> call, @NonNull Response<List<Message>> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    listener.onFailure(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Message>> call, @NonNull Throwable t) {
+                t.printStackTrace();
+                listener.onFailure(t.getLocalizedMessage());
+            }
+        });
+    }
+
+    private void processMessageCall(Call<Message> messageCall, ApiResponseListener<Message, String> listener) {
+
+        messageCall.enqueue(new Callback<Message>() {
+            @Override
+            public void onResponse(@NonNull Call<Message> call, @NonNull Response<Message> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    listener.onFailure(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Message> call, @NonNull Throwable t) {
+                t.printStackTrace();
+                listener.onFailure(t.getLocalizedMessage());
+            }
+        });
+    }
 
 //    ----------------------------------------------------------------------------------------------
 
-    public void getEmployeeHomeHistory(Long empId, ApiResponseListener<List<EmployeeHistory>, String> listener){
+    public void getEmployeeHomeHistory(Long empId, ApiResponseListener<List<EmployeeHistory>, String> listener) {
         Call<List<EmployeeHistory>> historyCall = historyApiInterface.getEmployeeHistory(empId);
 
         historyCall.enqueue(new Callback<List<EmployeeHistory>>() {
@@ -700,7 +758,7 @@ public class MainRepository {
                     listener.onFailure("Unable to connect to server");
                 }
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             listener.onFailure("Something went wrong");
         }
     }

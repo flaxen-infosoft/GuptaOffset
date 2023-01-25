@@ -107,11 +107,11 @@ public class EmployeeMainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
 
-        if (item.getItemId() == R.id.menu_employee_home_profile){
+        if (item.getItemId() == R.id.menu_employee_home_profile) {
             navController.navigate(R.id.employeeProfileFragment);
             return true;
         }
-        if (item.getItemId() == R.id.menu_employee_home_logout){
+        if (item.getItemId() == R.id.menu_employee_home_logout) {
 
             viewModel.logout();
             stopLocationService();

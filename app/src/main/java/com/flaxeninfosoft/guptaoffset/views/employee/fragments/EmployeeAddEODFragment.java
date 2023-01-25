@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddEODBinding;
+import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 
@@ -55,11 +56,21 @@ public class EmployeeAddEODFragment extends Fragment {
     private void onClickAddEod(View view) {
         clearErrors();
         if (isValidFields()) {
+
+            Location location = viewModel.getCurrentEmployeeLocation().getValue();
+
+            if (location.getLongitude()==0d || location.getLatitude()==0d){
+                Toast.makeText(getContext(),"Fetching location.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             progressDialog.show();
             viewModel.addEod(binding.getEod()).observe(getViewLifecycleOwner(), b -> {
                 if (b) {
                     progressDialog.dismiss();
                     navigateUp();
+                }else {
+                    progressDialog.dismiss();
                 }
             });
         }
