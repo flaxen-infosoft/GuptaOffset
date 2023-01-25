@@ -62,6 +62,18 @@ public class Employee {
     @Expose
     private Double longitude;
 
+    @SerializedName(Constants.DATE)
+    @Expose
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public Long getId() {
         return id;
     }

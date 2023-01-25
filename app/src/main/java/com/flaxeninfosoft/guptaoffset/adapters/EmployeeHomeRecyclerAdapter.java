@@ -280,7 +280,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             String imageLink = ApiEndpoints.BASE_URL + order.getSnap();
 
             Log.i("CRM-LOG", order.toString());
-            Glide.with(binding.getRoot().getContext()).load(imageLink).into(binding.singleOrderCardOrderImage);
+            Glide.with(binding.getRoot().getContext()).load(imageLink).into(binding.singleOrderCardImage);
         }
 
         public interface SingleOrderCardClickListener {
@@ -328,7 +328,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         }
 
         public void setData(PaymentRequest payment) {
-            binding.setPayment(payment);
+            binding.setPaymentRequest(payment);
             Log.i("CRM-LOG", payment.toString());
             binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(payment));
         }

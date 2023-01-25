@@ -1,166 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="school"
             type="com.flaxeninfosoft.guptaoffset.models.School" />
+
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
+        android:id="@+id/layout_school_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/whatsapp_b"
+        android:layout_marginTop="20dp">
 
-        <TextView
-            android:id="@+id/school_text"
+        <RelativeLayout
+            android:id="@+id/message_send_for_school"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/card"
-            android:text="SCHOOL"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/single_school_card_date_apply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="@id/card"
-            app:layout_constraintBottom_toTopOf="@id/card"
-            android:text="@{school.date}"
-            android:textSize="15sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            />
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@id/test_arrow"
+            android:background="@drawable/bg_msg_right"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="7dp"
+            tools:ignore="UselessParent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:backgroundTint="#9FD1B7"
-            android:elevation="@dimen/card_elevation"
-            app:cardCornerRadius="@dimen/card_corner"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/school_text">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/school_card"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:padding="12dp">
+                android:orientation="vertical"
+                android:layout_marginEnd="10dp"
+                android:maxWidth="200dp"
+                android:layout_marginRight="10dp">
 
                 <TextView
-                    android:id="@+id/single_school_card_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginStart="20dp"
-                    android:text="Name: "
-                    android:textSize="16sp"
+                    android:id="@+id/school"
+                    android:text="School "
+                    android:textColor="#222"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-                <TextView
-                    android:id="@+id/single_school_card_strength"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="Strength: "
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/single_school_card_name" />
-                <TextView
-                    android:id="@+id/single_school_card_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="Address: "
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/single_school_card_strength" />
-                <TextView
-                    android:id="@+id/single_school_card_contact"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="Contact: "
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/single_school_card_address" />
+                    android:textSize="20sp" />
 
-                <androidx.constraintlayout.widget.Barrier
-                    android:id="@+id/single_eod_card_barrier1"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:barrierDirection="end"
-                    app:constraint_referenced_ids="single_school_card_name,single_school_card_strength,single_school_card_address,single_school_card_contact" />
+                    android:layout_marginTop="8dp">
 
-                <TextView
-                    android:id="@+id/single_school_card_name_empty"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/s_date"
+                        android:text="Date : "
+                        android:textColor="#222"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/single_school_card_date"
+                        android:text="@{school.date}"
+                        android:textColor="#222"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="@{school.name}"
-                    android:textSize="16sp"
-                    app:layout_constraintBaseline_toBaselineOf="@id/single_school_card_name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
-                <TextView
-                    android:id="@+id/single_school_card_strength_empty"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/name"
+                        android:text="Name : "
+                        android:textColor="#222"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/single_school_card_name"
+                        android:text="@{school.name}"
+                        android:textColor="#222"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="@{school.strength}"
-                    android:textSize="16sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/single_school_card_strength"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
-                <TextView
-                    android:id="@+id/single_school_card_address_empty"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/strength"
+                        android:text="Strength : "
+                        android:textColor="#222"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/single_school_card_strength"
+                        android:text="@{school.strength}"
+                        android:textColor="#222"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="@{school.address}"
-                    android:textSize="16sp"
-                    app:layout_constraintBaseline_toBaselineOf="@id/single_school_card_address"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
-                <TextView
-                    android:id="@+id/single_school_card_contact_empty"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/address"
+                        android:text="Address : "
+                        android:textColor="#222"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/single_school_card_address"
+                        android:text="@{school.address}"
+                        android:textColor="#222"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="@{school.contact}"
-                    android:textSize="16sp"
-                    app:layout_constraintBaseline_toBaselineOf="@id/single_school_card_contact"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/contact"
+                        android:text="Contact : "
+                        android:textColor="#222"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/single_school_card_contact"
+                        android:text="@{school.contact}"
+                        android:textColor="#222"
+                        android:textSize="17sp" />
+                </LinearLayout>
 
                 <ImageView
                     android:id="@+id/single_school_card_image"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/single_school_card_contact"
-                    android:layout_margin="12dp"
-                    android:scaleType="fitXY"
-                    />
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/person_vector"
+                    android:scaleType="fitXY" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <TextClock
+                android:id="@+id/msg_time_payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/school_card"
+                android:layout_toEndOf="@+id/school_card"
+                android:text="1:30 P.M."
+                android:textColor="#888"
+                android:layout_toRightOf="@+id/school_card" />
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/test_arrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="-6dp"
+            android:layout_marginTop="0.6dp"
+            android:background="@null"
+            android:scaleX="1.5"
+            android:src="@drawable/v_bubble_corner_right" />
+    </RelativeLayout>
 </layout>

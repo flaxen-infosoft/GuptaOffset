@@ -34,6 +34,20 @@ public class Dealer {
     @Expose
     private String image;
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    @SerializedName(Constants.DATE)
+    @Expose
+    private String date;
+
+
+
     public Long getId() {
         return id;
     }
