@@ -2,8 +2,10 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ import com.flaxeninfosoft.guptaoffset.models.Image;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.School;
+import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.io.IOException;
@@ -77,9 +80,8 @@ public class EmployeeAddSchoolFragment extends Fragment {
     }
 
     private void onClickImage(View view) {
-        Intent pickImageIntent =new Intent(Intent.ACTION_PICK);
-        pickImageIntent.setType("image/*");
-        mLauncher.launch(pickImageIntent);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        mLauncher.launch(intent);
     }
 
     ActivityResultLauncher<Intent>mLauncher=registerForActivityResult(
@@ -88,8 +90,10 @@ public class EmployeeAddSchoolFragment extends Fragment {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     try {
-                        image=result.getData().getData();
-                        Glide.with(getContext()).load(image).into(binding.employeeAddSchoolImage);
+                        Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
+                        Glide.with(getContext()).load(bitmap).into(binding.employeeAddSchoolImage);
+
+                        image = FileEncoder.getImageUri(getContext(), bitmap);
                     }catch (Exception e){
                         e.printStackTrace();
                     }

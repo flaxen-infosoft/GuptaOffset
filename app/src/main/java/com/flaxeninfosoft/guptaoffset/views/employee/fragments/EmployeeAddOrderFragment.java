@@ -2,8 +2,10 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddOrderBinding;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.Order;
+import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.io.IOException;
@@ -105,11 +108,8 @@ public class EmployeeAddOrderFragment extends Fragment {
 
     public void chooseImage(View view) {
         try {
-            Intent pickImageIntent = new Intent(Intent.ACTION_PICK);
-
-            pickImageIntent.setType("image/*");
-
-            mLauncher.launch(pickImageIntent);
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            mLauncher.launch(intent);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -121,8 +121,10 @@ public class EmployeeAddOrderFragment extends Fragment {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     try {
-                        image = result.getData().getData();
-                        Glide.with(getContext()).load(image).into(binding.employeeAddOrderImage);
+                        Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
+                        Glide.with(getContext()).load(bitmap).into(binding.employeeAddOrderImage);
+
+                        image = FileEncoder.getImageUri(getContext(), bitmap);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
