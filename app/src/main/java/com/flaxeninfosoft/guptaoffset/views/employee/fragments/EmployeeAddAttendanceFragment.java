@@ -2,8 +2,10 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,8 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddAttendanceBinding;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
 import com.flaxeninfosoft.guptaoffset.models.Location;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
+import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.io.IOException;
@@ -78,8 +82,9 @@ public class EmployeeAddAttendanceFragment extends Fragment {
         if (attendance == null) {
             attendance = new Attendance();
             attendance.setPunchStatus(0);
+        }else{
+            binding.setAttendance(attendance);
         }
-        Log.i("CRM-LOG", attendance.toString());
 
         switch (attendance.getPunchStatus()) {
             case 0:
@@ -114,13 +119,16 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 binding.employeeAddAttendanceStartMeter.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
 
+                String imageLink = ApiEndpoints.BASE_URL + attendance.getSnapIn();
+                Glide.with(binding.getRoot().getContext()).load(imageLink).into(binding.employeeAddAttendanceStartMeterImage);
+
                 binding.employeeAddAttendanceEndMeter.setEnabled(true);
                 binding.employeeAddAttendanceEndMeter.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceEndMeterImage.setVisibility(View.VISIBLE);
 
                 binding.employeeAddAttendanceTotalMeter.setVisibility(View.GONE);
 
-                binding.employeeAddAttendanceStartMeterImage.setOnClickListener(this::selectEndImage);
+                binding.employeeAddAttendanceEndMeterImage.setOnClickListener(this::selectEndImage);
 
                 binding.employeeAddAttendanceBtn.setEnabled(true);
                 binding.employeeAddAttendanceBtn.setOnClickListener(v -> {
@@ -139,6 +147,12 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 binding.employeeAddAttendanceStartMeter.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
 
+                String imageLink1 = ApiEndpoints.BASE_URL + attendance.getSnapOut();
+                Glide.with(binding.getRoot().getContext()).load(imageLink1).into(binding.employeeAddAttendanceEndMeterImage);
+
+                String imageLink2 = ApiEndpoints.BASE_URL + attendance.getSnapIn();
+                Glide.with(binding.getRoot().getContext()).load(imageLink2).into(binding.employeeAddAttendanceStartMeterImage);
+
                 binding.employeeAddAttendanceEndMeter.setEnabled(false);
                 binding.employeeAddAttendanceEndMeter.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceEndMeterImage.setVisibility(View.VISIBLE);
@@ -156,14 +170,14 @@ public class EmployeeAddAttendanceFragment extends Fragment {
     }
 
     private void selectEndImage(View view) {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        intent.setType("image/*");
         endImage.launch(intent);
     }
 
     private void selectStartImage(View view) {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        intent.setType("image/*");
         startImage.launch(intent);
     }
 
@@ -173,8 +187,11 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     try {
-                        image = result.getData().getData();
-                        Glide.with(getContext()).load(image).into(binding.employeeAddAttendanceStartMeterImage);
+                        Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
+                        Glide.with(getContext()).load(bitmap).into(binding.employeeAddAttendanceStartMeterImage);
+
+                        image = FileEncoder.getImageUri(getContext(), bitmap);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -188,8 +205,11 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     try {
-                        image = result.getData().getData();
-                        Glide.with(getContext()).load(image).into(binding.employeeAddAttendanceEndMeterImage);
+                        Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
+                        Glide.with(getContext()).load(bitmap).into(binding.employeeAddAttendanceEndMeterImage);
+
+                        image = FileEncoder.getImageUri(getContext(), bitmap);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -199,12 +219,6 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 
     private void punch(String reading, Uri uri) {
 
-        Location location = viewModel.getCurrentEmployeeLocation().getValue();
-
-        if(location.getLatitude()==0 || location.getLongitude()==0){
-            Toast.makeText(getContext(), "Fetching location", Toast.LENGTH_SHORT).show();
-            return;
-        }
         try {
             viewModel.punchAttendance(reading, uri).observe(getViewLifecycleOwner(), attendance -> {
                 if (attendance != null) {

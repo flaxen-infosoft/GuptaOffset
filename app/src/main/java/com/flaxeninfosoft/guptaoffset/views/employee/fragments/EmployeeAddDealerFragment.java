@@ -28,6 +28,7 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddDealerBinding;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
 import com.flaxeninfosoft.guptaoffset.models.Location;
+import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.io.IOException;
@@ -76,8 +77,6 @@ public class EmployeeAddDealerFragment extends Fragment {
 
     private void onClickAddImage(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        intent.putExtra(MediaStore.EXTRA_OUTPUT, image);
-//        intent.setType("image/*");
         mLauncher.launch(intent);
     }
 
@@ -93,11 +92,7 @@ public class EmployeeAddDealerFragment extends Fragment {
                                 Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
                                 Glide.with(getContext()).load(bitmap).into(binding.employeeAddDealerImage);
 
-
-                           // binding.employeeAddDealerImage.setImageURI(result.getData().getData());
-                                               //         Toast.makeText(getContext(), result.getData().getData().toString(), Toast.LENGTH_SHORT).show();
-
-//                            Glide.with(getContext()).load(image).into(binding.employeeAddDealerImage);
+                                image = FileEncoder.getImageUri(getContext(), bitmap);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -116,13 +111,13 @@ public class EmployeeAddDealerFragment extends Fragment {
             try {
                 Location location = viewModel.getCurrentEmployeeLocation().getValue();
 
-                if (location.getLatitude() == 0 || location.getLongitude() == 0) {
-                    Toast.makeText(getContext(), "Fetching location", Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    binding.getDealer().setLatitude(location.getLatitude());
-                    binding.getDealer().setLongitude(location.getLongitude());
-                }
+//                if (location.getLatitude() == 0 || location.getLongitude() == 0) {
+//                    Toast.makeText(getContext(), "Fetching location", Toast.LENGTH_SHORT).show();
+//                    return;
+//                } else {
+//                    binding.getDealer().setLatitude(location.getLatitude());
+//                    binding.getDealer().setLongitude(location.getLongitude());
+//                }
                 viewModel.addDealer(binding.getDealer(), image).observe(getViewLifecycleOwner(), b -> {
                     if (b) {
                         progressDialog.dismiss();

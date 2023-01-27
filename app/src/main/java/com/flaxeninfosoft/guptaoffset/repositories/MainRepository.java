@@ -701,12 +701,12 @@ public class MainRepository {
         Call<Location> call = locationApiInterface.addEmployeeLocation(coordinates);
         call.enqueue(new Callback<Location>() {
             @Override
-            public void onResponse(Call<Location> call, Response<Location> response) {
+            public void onResponse(@NonNull Call<Location> call, @NonNull Response<Location> response) {
                 // Hello
             }
 
             @Override
-            public void onFailure(Call<Location> call, Throwable t) {
+            public void onFailure(@NonNull Call<Location> call, @NonNull Throwable t) {
                 // There
             }
         });
@@ -728,6 +728,7 @@ public class MainRepository {
 
     public void punchAttendance(Long empId, String reading, String encodedImage, ApiResponseListener<Attendance, String> listener) {
 
+        Log.i("CRM-LOG-1", reading +" "+empId+" "+encodedImage);
         Call<Attendance> call = attendanceApiInterface.punchAttendance(empId, reading, encodedImage);
 
         processAttendanceCall(call, listener);

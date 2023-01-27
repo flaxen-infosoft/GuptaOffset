@@ -80,15 +80,6 @@
 
             </LinearLayout>
 
-            <TextClock
-                android:id="@+id/msg_time_payment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/order_card"
-                android:layout_toEndOf="@+id/order_card"
-                android:text="1:30 P.M."
-                android:textColor="#888"
-                android:layout_toRightOf="@+id/order_card" />
 
 
         </RelativeLayout>

@@ -34,13 +34,13 @@ public class Constants {
     public static final String TIME_OUT = "timeOut";
     public static final String DATE = "date";
     public static final String START_METER = "startingMeter";
-    public static final String END_METER = "endMeter";
+    public static final String END_METER = "endingMeter";
     public static final String START_METER_IMAGE = "starting_meter_image";
     public static final String END_METER_IMAGE = "ending_meter_image";
     public static final String START_LOCATION = "start_location";
     public static final String END_LOCATION = "end_location";
     public static final String TOTAL_METER = "total_meter";
-    public static final String TOTAL_DISTANCE = "total_distance";
+    public static final String TOTAL_DISTANCE = "totalDistance";
     public static final String FUEL_COST = "fuel_cost";
     public static final String EXTRA_EXPENSE = "extra_expenses";
     public static final String TOTAL_EXPENSE = "total_expenses";

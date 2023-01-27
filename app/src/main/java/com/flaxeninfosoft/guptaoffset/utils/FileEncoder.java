@@ -1,7 +1,10 @@
 package com.flaxeninfosoft.guptaoffset.utils;
 
 import android.content.ContentResolver;
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 
@@ -26,7 +29,13 @@ public class FileEncoder {
         byte[] bytes = byteBuffer.toByteArray();
 
         String encode = Base64.encodeToString(bytes, Base64.DEFAULT);
-        Log.i("CRM-LOG-ENCODED", encode);
         return encode;
+    }
+
+    public static Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Image", null);
+        return Uri.parse(path);
     }
 }
