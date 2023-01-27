@@ -16,6 +16,7 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.EmployeeRecyclerAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentSuperEmployeeAllEmployeesBinding;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
 
 import java.util.List;
@@ -49,13 +50,10 @@ public class SuperEmployeeAllEmployeesFragment extends Fragment {
     }
 
     private void setEmployees(List<Employee> employees) {
-        EmployeeRecyclerAdapter adapter = new EmployeeRecyclerAdapter(employees, new EmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
-            @Override
-            public void onClickCard(Employee employee) {
-                Bundle bundle = new Bundle();
-                bundle.putLong(getString(R.string.key_employee_id), employee.getId());
-               // Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_employeeProfileFragment, bundle);
-            }
+        EmployeeRecyclerAdapter adapter = new EmployeeRecyclerAdapter(employees, employee -> {
+            Bundle bundle = new Bundle();
+            bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeAllEmployeesFragment_to_adminEmployeeActivityFragment2, bundle);
         });
 
         binding.superEmployeeAllEmployeesRecycler.setAdapter(adapter);

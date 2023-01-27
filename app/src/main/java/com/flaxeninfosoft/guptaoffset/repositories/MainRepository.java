@@ -128,7 +128,6 @@ public class MainRepository {
     }
 
     public void addEmployee(Employee employee, ApiResponseListener<Employee, String> listener) {
-        employee.setDesignation(Constants.DESIGNATION_EMPLOYEE);
         Call<Employee> addEmployeeCall = employeeApiInterface.addEmployee(employee);
 
         processEmployeeCall(addEmployeeCall, listener);

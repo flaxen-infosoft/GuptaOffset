@@ -124,6 +124,10 @@ public class EmployeeHomeFragment extends Fragment {
             }
         });
         binding.employeeHomeRecycler.setAdapter(adapter);
+
+        if (historyList != null && historyList.size() >1){
+            binding.employeeHomeRecycler.scrollToPosition(historyList.size()-1);
+        }
     }
 
     private void navigateToPaymentRequest(View view) {

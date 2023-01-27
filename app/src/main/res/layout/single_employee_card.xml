@@ -157,7 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/single_employee_card_contact"
-                        android:text="@{employee.phone"
+                        android:text="@{employee.phone}"
                         android:textColor="#222"
                         android:textSize="17sp" />
                 </LinearLayout>

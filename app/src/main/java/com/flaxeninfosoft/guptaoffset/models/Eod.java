@@ -18,15 +18,15 @@ public class Eod {
 
     @SerializedName(Constants.DATE)
     @Expose
-    private Date date;
+    private String date;
 
     @SerializedName(Constants.SCHOOL_VISITS)
     @Expose
-    private int schoolVisits;
+    private String schoolVisits;
 
     @SerializedName(Constants.PETROL_EXPENSE)
     @Expose
-    private int petrolExpense;
+    private String petrolExpense;
 
     @SerializedName(Constants.OTHER_EXPENSE)
     @Expose
@@ -56,27 +56,27 @@ public class Eod {
         this.empId = empId;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public int getSchoolVisits() {
+    public String getSchoolVisits() {
         return schoolVisits;
     }
 
-    public void setSchoolVisits(int schoolVisits) {
+    public void setSchoolVisits(String schoolVisits) {
         this.schoolVisits = schoolVisits;
     }
 
-    public int getPetrolExpense() {
+    public String getPetrolExpense() {
         return petrolExpense;
     }
 
-    public void setPetrolExpense(int petrolExpense) {
+    public void setPetrolExpense(String petrolExpense) {
         this.petrolExpense = petrolExpense;
     }
 

@@ -73,7 +73,11 @@
     <fragment
         android:id="@+id/superEmployeeAllEmployeesFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.superEmployee.fragments.SuperEmployeeAllEmployeesFragment"
-        android:label="My Employees" />
+        android:label="My Employees" >
+        <action
+            android:id="@+id/action_superEmployeeAllEmployeesFragment_to_adminEmployeeActivityFragment2"
+            app:destination="@id/adminEmployeeActivityFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/employeeProfileFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeProfileFragment"
@@ -82,4 +86,8 @@
         android:id="@+id/superEmployeeAddEmployeeFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.superEmployee.fragments.SuperEmployeeAddEmployeeFragment"
         android:label="Add Employee" />
+    <fragment
+        android:id="@+id/adminEmployeeActivityFragment2"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminEmployeeActivityFragment"
+        android:label="AdminEmployeeActivityFragment" />
 </navigation>

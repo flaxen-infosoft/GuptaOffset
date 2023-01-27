@@ -319,9 +319,9 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> addEod(Eod eod) {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
-        Location location = currentLocation.getValue();
-        eod.setLatitude(location.getLatitude());
-        eod.setLongitude(location.getLongitude());
+//        Location location = currentLocation.getValue();
+//        eod.setLatitude(location.getLatitude());
+//        eod.setLongitude(location.getLongitude());
 
         eod.setEmpId(getCurrentEmployeeId());
         repo.addEod(getCurrentEmployeeId(), eod, new ApiResponseListener<Eod, String>() {

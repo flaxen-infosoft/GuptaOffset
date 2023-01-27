@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Number of schools visits"
                     android:inputType="numberSigned"
-                    android:text="@={``+eod.schoolVisits}" />
+                    android:text="@={eod.schoolVisits}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Petrol expense"
                     android:inputType="numberSigned"
-                    android:text="@={``+eod.petrolExpense}" />
+                    android:text="@={eod.petrolExpense}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

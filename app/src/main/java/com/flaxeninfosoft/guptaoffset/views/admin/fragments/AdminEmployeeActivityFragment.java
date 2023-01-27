@@ -109,5 +109,8 @@ public class AdminEmployeeActivityFragment extends Fragment {
         });
 
         binding.adminEmployeeActivityRecycler.setAdapter(adapter);
+        if (historyList != null && historyList.size() >1){
+            binding.adminEmployeeActivityRecycler.scrollToPosition(historyList.size()-1);
+        }
     }
 }
