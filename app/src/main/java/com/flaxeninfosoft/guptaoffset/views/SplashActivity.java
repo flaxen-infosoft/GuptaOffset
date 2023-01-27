@@ -18,6 +18,7 @@ import com.flaxeninfosoft.guptaoffset.utils.Connection;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 import com.flaxeninfosoft.guptaoffset.viewModels.LoginViewModel;
+import com.flaxeninfosoft.guptaoffset.views.admin.AdminMainActivity;
 import com.flaxeninfosoft.guptaoffset.views.employee.EmployeeMainActivity;
 import com.flaxeninfosoft.guptaoffset.views.superEmployee.SuperEmployeeMainActivity;
 
@@ -99,7 +100,12 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
                 break;
-
+            case Constants.DESIGNATION_ADMIN:
+                intent = new Intent(this, AdminMainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+                break;
             default:
                 SharedPrefs.getInstance(getApplication().getApplicationContext()).clearCredentials();
                 Toast.makeText(getApplicationContext(), "Department is not supported", Toast.LENGTH_SHORT).show();

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleEmployeeCardBinding;
+import com.flaxeninfosoft.guptaoffset.databinding.SingleEmployeeItemCardBinding;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
     @NonNull
     @Override
     public EmployeeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        SingleEmployeeCardBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.single_employee_card, parent, false);
+        SingleEmployeeItemCardBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.single_employee_item_card, parent, false);
 
         return new EmployeeViewHolder(binding, onClickListener);
     }
@@ -48,11 +49,11 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
 
     public static class EmployeeViewHolder extends RecyclerView.ViewHolder {
 
-        private final SingleEmployeeCardBinding binding;
+        private final SingleEmployeeItemCardBinding binding;
 
         private final SingleEmployeeCardOnClickListener onClickListener;
 
-        public EmployeeViewHolder(@NonNull SingleEmployeeCardBinding binding, SingleEmployeeCardOnClickListener onClickListener) {
+        public EmployeeViewHolder(@NonNull SingleEmployeeItemCardBinding binding, SingleEmployeeCardOnClickListener onClickListener) {
             super(binding.getRoot());
             this.binding = binding;
             this.onClickListener = onClickListener;
