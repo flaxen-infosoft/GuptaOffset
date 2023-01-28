@@ -458,7 +458,7 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     public LiveData<Message> sendMessage(Message message){
         MutableLiveData<Message> flag = new MutableLiveData<>();
-
+        message.setSenderId(getCurrentEmployeeId());
         repo.sendMessage(getCurrentEmployeeId(), message, new ApiResponseListener<Message, String>() {
             @Override
             public void onSuccess(Message response) {

@@ -58,6 +58,10 @@ public class EmployeeHistory {
     @Expose
     private School school;
 
+    @SerializedName(Constants.MESSAGE)
+    @Expose
+    private Message message;
+
     public Long getId() {
         return id;
     }
@@ -160,5 +164,13 @@ public class EmployeeHistory {
 
     public void setSchool(School school) {
         this.school = school;
+    }
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
     }
 }

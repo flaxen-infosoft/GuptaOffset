@@ -21,6 +21,7 @@ import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
+import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
@@ -47,6 +48,7 @@ public class SuperEmployeeHomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_super_employee_home, container, false);
+        binding.setMessage(new Message());
 
         binding.superEmployeeHomeCardAddAttendance.setOnClickListener(this::navigateToAddAttendance);
         binding.superEmployeeHomeCardAddLeave.setOnClickListener(this::navigateToAddLeave);
@@ -59,6 +61,7 @@ public class SuperEmployeeHomeFragment extends Fragment {
         binding.superEmployeeHomeCardAddEmployee.setOnClickListener(this::navigateToAddEmployee);
 
         binding.superEmployeeHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.superEmployeeHomeSendMessageFab.setOnClickListener(this::sendMessage);
 
         viewModel.getCurrentEmployeeHistory().observe(getViewLifecycleOwner(), this::setEmployeeHistory);
 
@@ -73,8 +76,16 @@ public class SuperEmployeeHomeFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private void sendMessage(View view) {
+        if (!binding.getMessage().getMessage().trim().isEmpty()){
+            binding.getMessage().setReceiverId(viewModel.getCurrentEmployee().getId());
+            viewModel.sendMessage(binding.getMessage());
+            binding.setMessage(new Message());
+        }
+    }
+
     private void setEmployeeHistory(List<EmployeeHistory> historyList) {
-        EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList, new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
+        EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList,getActivity().getApplication(), new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
             @Override
             public void onClickCard(Attendance attendance) {
                 //TODO
@@ -112,6 +123,11 @@ public class SuperEmployeeHomeFragment extends Fragment {
 
             @Override
             public void onClickCard(PaymentRequest paymentRequest) {
+
+            }
+
+            @Override
+            public void onClickCard(Message message) {
 
             }
         });

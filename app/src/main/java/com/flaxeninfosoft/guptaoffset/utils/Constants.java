@@ -95,5 +95,8 @@ public class Constants {
     public static final int TYPE_ADD_PAYMENT = 6;
     public static final int TYPE_ADD_EOD = 7;
     public static final int TYPE_ADD_EMPLOYEE = 8;
+    public static final int TYPE_MESSAGE = 9;
+    public static final int TYPE_MESSAGE_SENT = 10;
+    public static final int TYPE_MESSAGE_RECEIVED = 11;
 
 }

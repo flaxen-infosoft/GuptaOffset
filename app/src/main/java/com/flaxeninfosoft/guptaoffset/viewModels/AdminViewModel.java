@@ -68,4 +68,26 @@ public class AdminViewModel extends SuperEmployeeViewModel{
 
         return employeeList;
     }
+
+    public LiveData<Boolean> addSuperEmployee(Employee employee) {
+        employee.setAssignedTo(getCurrentEmployeeId());
+        employee.setDesignation(Constants.DESIGNATION_SUPER_EMPLOYEE);
+
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
+
+        repo.addEmployee(employee, new ApiResponseListener<Employee, String>() {
+            @Override
+            public void onSuccess(Employee response) {
+                flag.postValue(true);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                getToastMessageLiveData().postValue(error);
+                flag.postValue(false);
+            }
+        });
+
+        return flag;
+    }
 }

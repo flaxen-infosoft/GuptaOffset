@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="message"
+            type="com.flaxeninfosoft.guptaoffset.models.Message" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -236,7 +238,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/send_message_fab"
+            android:id="@+id/employee_home_send_message_fab"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:foregroundGravity="center"
@@ -257,7 +259,7 @@
             android:paddingHorizontal="12dp"
             android:background="@drawable/input_background"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/send_message_fab">
+            app:layout_constraintEnd_toStartOf="@id/employee_home_send_message_fab">
 
             <EditText
                 android:id="@+id/messageInput"
@@ -265,6 +267,9 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:hint="Type a message"
+                android:text="@={message.message}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/employee_home_view_fab" />
 

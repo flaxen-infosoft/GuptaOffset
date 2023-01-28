@@ -22,6 +22,7 @@ import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
+import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
@@ -34,6 +35,7 @@ public class AdminEmployeeActivityFragment extends Fragment {
 
     private AdminViewModel viewModel;
     private FragmentAdminEmployeeActivityBinding binding;
+    private Long empId;
 
     public AdminEmployeeActivityFragment() {
         // Required empty public constructor
@@ -49,10 +51,12 @@ public class AdminEmployeeActivityFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_employee_activity, container, false);
+        binding.setMessage(new Message());
 
         binding.adminEmployeeActivityRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        Long empId = getArguments().getLong(Constants.EMPLOYEE_ID, 0);
+        empId = getArguments().getLong(Constants.EMPLOYEE_ID, 0);
+        binding.adminEmployeeActivitySendMessageFab.setOnClickListener(this::sendMessage);
 
         if (empId == 0) {
             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -65,8 +69,16 @@ public class AdminEmployeeActivityFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private void sendMessage(View view) {
+        if (!binding.getMessage().getMessage().trim().isEmpty()){
+            binding.getMessage().setReceiverId(empId);
+            viewModel.sendMessage(binding.getMessage());
+            binding.setMessage(new Message());
+        }
+    }
+
     private void setHistory(List<EmployeeHistory> historyList) {
-        EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList, new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
+        EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList,getActivity().getApplication(), new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
             @Override
             public void onClickCard(Attendance attendance) {
 
@@ -104,6 +116,11 @@ public class AdminEmployeeActivityFragment extends Fragment {
 
             @Override
             public void onClickCard(PaymentRequest paymentRequest) {
+
+            }
+
+            @Override
+            public void onClickCard(Message message) {
 
             }
         });

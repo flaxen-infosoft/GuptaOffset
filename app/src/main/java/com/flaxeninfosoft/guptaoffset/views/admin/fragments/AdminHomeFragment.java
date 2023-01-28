@@ -45,8 +45,13 @@ public class AdminHomeFragment extends Fragment {
         binding.adminHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         viewModel.getAllEmployees().observe(getViewLifecycleOwner(), this::onChange);
+        binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
 
         return binding.getRoot();
+    }
+
+    private void navigateToAddEmployee(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_adminAddSuperEmployeeFragment);
     }
 
     private void onChange(List<Employee> employees) {

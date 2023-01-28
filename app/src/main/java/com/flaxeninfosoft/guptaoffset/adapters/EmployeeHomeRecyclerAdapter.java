@@ -1,8 +1,8 @@
 package com.flaxeninfosoft.guptaoffset.adapters;
 
+import android.app.Application;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
+import com.flaxeninfosoft.guptaoffset.databinding.LayoutChatLeftBinding;
+import com.flaxeninfosoft.guptaoffset.databinding.LayoutChatRightBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleAttendanceCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleDealerCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleEmployeeCardBinding;
@@ -25,11 +27,13 @@ import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
+import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
+import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 
 import java.util.List;
 
@@ -37,15 +41,28 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
     private final List<EmployeeHistory> historyList;
     private final EmployeeHomeClickListener onClickListener;
+    private final Application application;
 
-    public EmployeeHomeRecyclerAdapter(List<EmployeeHistory> historyList, EmployeeHomeClickListener onClickListener) {
+    public EmployeeHomeRecyclerAdapter(List<EmployeeHistory> historyList, Application application, EmployeeHomeClickListener onClickListener) {
         this.historyList = historyList;
         this.onClickListener = onClickListener;
+        this.application = application;
     }
 
     @Override
     public int getItemViewType(int position) {
-        return historyList.get(position).getType();
+        int type = historyList.get(position).getType();
+
+        if (type == 9) {
+            Message message = historyList.get(position).getMessage();
+            if (message.getSenderId() == SharedPrefs.getInstance(application.getApplicationContext()).getCurrentEmployee().getId()) {
+                return 10;
+            } else {
+                return 11;
+            }
+        } else {
+            return type;
+        }
     }
 
     @NonNull
@@ -76,6 +93,13 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             case Constants.TYPE_ADD_PAYMENT:
                 SinglePaymentRequestCardBinding paymentRequestCardBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.single_payment_request_card, parent, false);
                 return new SinglePaymentCardViewHolder(paymentRequestCardBinding, onClickListener::onClickCard);
+            case Constants.TYPE_MESSAGE_SENT:
+                LayoutChatRightBinding sendMessageBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.layout_chat_right, parent, false);
+                return new SingleMessageSentCardViewHolder(sendMessageBinding, onClickListener::onClickCard);
+            case Constants.TYPE_MESSAGE_RECEIVED:
+                LayoutChatLeftBinding receivedMessageBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.layout_chat_left, parent, false);
+                return new SingleMessageReceivedCardViewHolder(receivedMessageBinding, onClickListener::onClickCard);
+
         }
         return null;
     }
@@ -113,6 +137,10 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
                 SingleEmployeeCardViewHolder employeeCardViewHolder = (SingleEmployeeCardViewHolder) holder;
                 employeeCardViewHolder.setData(history.getEmployee());
                 break;
+            case Constants.TYPE_ADD_PAYMENT:
+                SinglePaymentCardViewHolder paymentCardViewHolder = (SinglePaymentCardViewHolder) holder;
+                paymentCardViewHolder.setData(history.getPayment());
+                break;
         }
     }
 
@@ -141,6 +169,8 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         void onCLickCard(Employee employee);
 
         void onClickCard(PaymentRequest paymentRequest);
+
+        void onClickCard(Message message);
     }
 
     public static class SingleAttendanceCardViewHolder extends RecyclerView.ViewHolder {
@@ -335,6 +365,48 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
         public interface SinglePaymentCardClickListener {
             void onClickCard(PaymentRequest payment);
+        }
+    }
+
+    public static class SingleMessageSentCardViewHolder extends RecyclerView.ViewHolder {
+
+        private final LayoutChatRightBinding binding;
+        private final SingleMessageCardClickListener onClickListener;
+
+        public SingleMessageSentCardViewHolder(@NonNull LayoutChatRightBinding binding, SingleMessageCardClickListener onClickListener) {
+            super(binding.getRoot());
+            this.binding = binding;
+            this.onClickListener = onClickListener;
+        }
+
+        public void setData(Message message) {
+            binding.setMessage(message);
+            binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(message));
+        }
+
+        public interface SingleMessageCardClickListener {
+            void onClickCard(Message message);
+        }
+    }
+
+    public static class SingleMessageReceivedCardViewHolder extends RecyclerView.ViewHolder {
+
+        private final LayoutChatLeftBinding binding;
+        private final SingleMessageCardClickListener onClickListener;
+
+        public SingleMessageReceivedCardViewHolder(@NonNull LayoutChatLeftBinding binding, SingleMessageCardClickListener onClickListener) {
+            super(binding.getRoot());
+            this.binding = binding;
+            this.onClickListener = onClickListener;
+        }
+
+        public void setData(Message message) {
+            binding.setMessage(message);
+            binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(message));
+        }
+
+        public interface SingleMessageCardClickListener {
+            void onClickCard(Message message);
         }
     }
 

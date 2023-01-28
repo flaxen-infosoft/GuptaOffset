@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_adminEmployeeActivityFragment"
             app:destination="@id/adminEmployeeActivityFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_adminAddSuperEmployeeFragment"
+            app:destination="@id/adminAddSuperEmployeeFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminEmployeeActivityFragment"
         android:label="Employee Activity"
         tools:layout="@layout/fragment_admin_employee_activity" />
+    <fragment
+        android:id="@+id/adminAddSuperEmployeeFragment"
+        tools:layout="@layout/fragment_admin_add_super_employee"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAddSuperEmployeeFragment"
+        android:label="AdminAddSuperEmployeeFragment" />
 </navigation>
