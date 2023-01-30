@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,129 +10,132 @@
             type="com.flaxeninfosoft.guptaoffset.models.Eod" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
+        android:id="@+id/layout_leave_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/eod_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/card"
-        android:text="EOD"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        />
-    <TextView
-        android:id="@+id/single_eod_card_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="@id/card"
-        android:text="Date"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        <RelativeLayout
+            android:id="@+id/message_send_for_leave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:layout_toLeftOf="@id/test_arrow"
+            android:background="@drawable/bg_msg_right"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="7dp"
+            tools:ignore="UselessParent">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:backgroundTint="#9FD1B7"
-        android:elevation="@dimen/card_elevation"
-        app:cardCornerRadius="@dimen/card_corner"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eod_text">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/leav_card"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginEnd="10dp"
+                android:maxWidth="200dp"
+                android:layout_marginRight="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="12dp">
+                    android:id="@+id/dealer"
+                    android:text="Eod "
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/single_eod_card_no_of_school_visits"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="5dp"
-                        android:layout_marginLeft="20dp"
-                        android:text="Schools Visit: "
-                        android:textSize="16sp"
+                        android:id="@+id/apply_date"
+                        android:text="Schools Visit  : "
+                        android:textColor="#222"
                         android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                    <TextView
-                        android:id="@+id/single_eod_card_petrol_expense"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="5dp"
-                        android:layout_marginLeft="20dp"
-                        android:text="Petrol: "
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/single_eod_card_no_of_school_visits" />
-                    <TextView
-                        android:id="@+id/single_eod_card_other_expense"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="5dp"
-                        android:layout_marginLeft="20dp"
-                        android:text="Other Expanses: "
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/single_eod_card_petrol_expense" />
-
-                    <androidx.constraintlayout.widget.Barrier
-                        android:id="@+id/single_eod_card_barrier1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:barrierDirection="end"
-                        app:constraint_referenced_ids="single_eod_card_no_of_school_visits,single_eod_card_petrol_expense,single_eod_card_other_expense" />
+                        android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/single_eod_card_no_of_school_visits_empty"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:id="@+id/single_leave_card_date"
                         android:text="@{eod.schoolVisits}"
-                        android:textSize="16sp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/single_eod_card_no_of_school_visits"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
+                        android:textColor="#222"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
                     <TextView
-                        android:id="@+id/single_eod_card_petrol_expense_empty"
+                        android:id="@+id/leave_from"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Petrol : "
+                        android:textColor="#222"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:id="@+id/single_leave_card_from_date"
                         android:text="@{eod.petrolExpense}"
-                        android:textSize="16sp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/single_eod_card_petrol_expense"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
+                        android:textColor="#222"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
                     <TextView
-                        android:id="@+id/single_eod_card_other_expense_empty"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:id="@+id/leave_to"
+                        android:text="Other Expanses      : "
+                        android:textColor="#222"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/single_leave_card_to_date"
                         android:text="@{eod.otherExpense}"
-                        android:textSize="16sp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/single_eod_card_other_expense"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@id/single_eod_card_barrier1" />
+                        android:textColor="#222"
+                        android:textSize="17sp" />
+                </LinearLayout>
+            </LinearLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextClock
+                android:id="@+id/msg_time_leave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/leav_card"
+                android:layout_toEndOf="@+id/leav_card"
+                android:text="1:30 P.M."
+                android:textColor="#888"
+                android:layout_toRightOf="@+id/leav_card" />
 
 
-    </com.google.android.material.card.MaterialCardView>
-  </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/test_arrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="-6dp"
+            android:layout_marginTop="0.6dp"
+            android:background="@null"
+            android:scaleX="1.5"
+            android:src="@drawable/v_bubble_corner_right" />
+    </RelativeLayout>
 </layout>
