@@ -55,7 +55,7 @@ public class LocationService extends Service {
 
                 locationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
                         .addOnCompleteListener(task -> {
-                            Toast.makeText(LocationService.this, "Updating location", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(LocationService.this, "Updating location", Toast.LENGTH_SHORT).show();
                             Log.i("LocationUpdate", "Updating location");
                         });
             }

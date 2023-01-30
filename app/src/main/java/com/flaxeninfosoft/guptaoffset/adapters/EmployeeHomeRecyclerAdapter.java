@@ -53,12 +53,12 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
     public int getItemViewType(int position) {
         int type = historyList.get(position).getType();
 
-        if (type == 9) {
+        if (type == Constants.TYPE_MESSAGE) {
             Message message = historyList.get(position).getMessage();
             if (message.getSenderId() == SharedPrefs.getInstance(application.getApplicationContext()).getCurrentEmployee().getId()) {
-                return 10;
+                return Constants.TYPE_MESSAGE_SENT;
             } else {
-                return 11;
+                return Constants.TYPE_MESSAGE_RECEIVED;
             }
         } else {
             return type;
@@ -107,7 +107,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         EmployeeHistory history = historyList.get(position);
-
+        Log.i("CRM-LOG", history.getType() + "");
         switch (history.getType()) {
             case Constants.TYPE_ADD_ATTENDANCE:
                 SingleAttendanceCardViewHolder atnViewHolder = (SingleAttendanceCardViewHolder) holder;
@@ -140,6 +140,19 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             case Constants.TYPE_ADD_PAYMENT:
                 SinglePaymentCardViewHolder paymentCardViewHolder = (SinglePaymentCardViewHolder) holder;
                 paymentCardViewHolder.setData(history.getPayment());
+                break;
+            case Constants.TYPE_MESSAGE:
+                Message message = historyList.get(position).getMessage();
+                if (message.getSenderId() == SharedPrefs.getInstance(application.getApplicationContext()).getCurrentEmployee().getId()) {
+                    SingleMessageSentCardViewHolder sendMessageCardViewHolder = (SingleMessageSentCardViewHolder) holder;
+                    sendMessageCardViewHolder.setData(history.getMessage());
+                    Log.i("CRM-LOG", history.getMessage().toString());
+                } else {
+                    SingleMessageReceivedCardViewHolder receivedCardViewHolder = (SingleMessageReceivedCardViewHolder) holder;
+                    Log.i("CRM-LOG", history.getMessage().toString());
+                    receivedCardViewHolder.setData(history.getMessage());
+                }
+
                 break;
         }
     }
@@ -381,6 +394,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
         public void setData(Message message) {
             binding.setMessage(message);
+            Log.i("CRM-LOG", message.toString());
             binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(message));
         }
 
@@ -402,6 +416,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
         public void setData(Message message) {
             binding.setMessage(message);
+            Log.i("CRM-LOG", message.toString());
             binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(message));
         }
 

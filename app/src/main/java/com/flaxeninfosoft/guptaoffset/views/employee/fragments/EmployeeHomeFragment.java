@@ -81,15 +81,20 @@ public class EmployeeHomeFragment extends Fragment {
     }
 
     private void sendMessage(View view) {
-         if (!binding.getMessage().getMessage().trim().isEmpty()){
-             binding.getMessage().setReceiverId(viewModel.getCurrentEmployee().getId());
-             viewModel.sendMessage(binding.getMessage());
-             binding.setMessage(new Message());
-         }
+        if (!binding.getMessage().getMessage().trim().isEmpty()) {
+            binding.getMessage().setReceiverId(viewModel.getCurrentEmployee().getId());
+            viewModel.sendMessage(binding.getMessage()).observe(getViewLifecycleOwner(), message -> {
+                if (message != null) {
+                    viewModel.getCurrentEmployeeHistory();
+                }
+            });
+            binding.setMessage(new Message());
+
+        }
     }
 
     private void showToast(String s) {
-        if (s != null && !s.isEmpty()){
+        if (s != null && !s.isEmpty()) {
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
@@ -143,8 +148,8 @@ public class EmployeeHomeFragment extends Fragment {
         });
         binding.employeeHomeRecycler.setAdapter(adapter);
 
-        if (historyList != null && historyList.size() >1){
-            binding.employeeHomeRecycler.scrollToPosition(historyList.size()-1);
+        if (historyList != null && historyList.size() > 1) {
+            binding.employeeHomeRecycler.scrollToPosition(historyList.size() - 1);
         }
     }
 

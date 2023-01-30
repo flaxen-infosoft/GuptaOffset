@@ -435,23 +435,23 @@ public class EmployeeViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
+    private final MutableLiveData<List<EmployeeHistory>> history = new MutableLiveData<>();
     public LiveData<List<EmployeeHistory>> getCurrentEmployeeHistory() {
-        MutableLiveData<List<EmployeeHistory>> flag = new MutableLiveData<>();
 
         repo.getEmployeeHomeHistory(getCurrentEmployeeId(), new ApiResponseListener<List<EmployeeHistory>, String>() {
             @Override
             public void onSuccess(List<EmployeeHistory> response) {
-                flag.postValue(response);
+                history.postValue(response);
             }
 
             @Override
             public void onFailure(String error) {
                 toastMessage.postValue(error);
-                flag.postValue(null);
+                history.postValue(null);
             }
         });
 
-        return flag;
+        return history;
     }
 
 //    ----------------------------------------------------------------------------------------------
