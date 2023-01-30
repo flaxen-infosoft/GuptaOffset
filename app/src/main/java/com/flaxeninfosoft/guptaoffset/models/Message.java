@@ -22,6 +22,10 @@ public class Message {
     @Expose
     private long receiverId;
 
+    public Message(){
+        message = "";
+    }
+
     public long getId() {
         return id;
     }
