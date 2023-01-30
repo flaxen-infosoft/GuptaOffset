@@ -89,6 +89,21 @@ public class EmployeeAddEODFragment extends Fragment {
     }
 
     private boolean isValidFields() {
+        if (binding.getEod().getSchoolVisits()==null)
+        {
+            binding.employeeAddEodSchoolsVisits.setError("**enter schools visits");
+            return false;
+        }
+        if (binding.getEod().getPetrolExpense()==null)
+        {
+            binding.employeeAddEodPetrolExpense.setError("**enter petrol expense");
+            return false;
+        }
+        if (binding.getEod().getOtherExpense()==null)
+        {
+            binding.employeeAddEodOtherExpense.setError("**enter other expenses");
+            return false;
+        }
 
         return true;
     }
