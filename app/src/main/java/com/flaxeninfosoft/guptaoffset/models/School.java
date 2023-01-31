@@ -38,6 +38,10 @@ public class School {
     @Expose
     private String image;
 
+    @SerializedName(Constants.SPECIMEN)
+    @Expose
+    private String specimen;
+
     @SerializedName(Constants.PHONE)
     @Expose
     private String contact;
@@ -108,6 +112,14 @@ public class School {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getSpecimen() {
+        return specimen;
+    }
+
+    public void setSpecimen(String specimen) {
+        this.specimen = specimen;
     }
 
     public String getContact() {

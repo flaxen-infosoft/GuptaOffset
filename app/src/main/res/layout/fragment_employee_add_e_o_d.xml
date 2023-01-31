@@ -67,6 +67,28 @@
                     android:text="@={eod.otherExpense}" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/employee_add_eod_daily_allowance"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Daily allowance"
+                    android:inputType="numberSigned"
+                    android:text="@={eod.dailyAllowance}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/employee_add_eod_expense_image"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:src="@drawable/ic_add_image"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/employee_add_eod_btn"
                 android:layout_width="wrap_content"

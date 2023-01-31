@@ -25,6 +25,7 @@ import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
@@ -250,15 +251,19 @@ public class EmployeeViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Boolean> addSchool(School school, Uri image) throws IOException {
+    public LiveData<Boolean> addSchool(School school, Uri specimenImage, Uri hoadingImage) throws IOException {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
         Location location = currentLocation.getValue();
         school.setLatitude(location.getLatitude());
         school.setLongitude(location.getLongitude());
 
-        String encodedImage = FileEncoder.encodeImage(getApplication().getContentResolver(), image);
+        String encodedImage = FileEncoder.encodeImage(getApplication().getContentResolver(), specimenImage);
         school.setImage(encodedImage);
+
+        String encodedSpecimen = FileEncoder.encodeImage(getApplication().getContentResolver(), hoadingImage);
+        school.setSpecimen(encodedSpecimen);
+
         school.setEmpId(getCurrentEmployeeId());
         repo.addSchool(getCurrentEmployeeId(), school, new ApiResponseListener<School, String>() {
             @Override

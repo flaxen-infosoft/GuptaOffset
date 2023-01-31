@@ -99,4 +99,5 @@ public class Constants {
     public static final int TYPE_MESSAGE_SENT = 10;
     public static final int TYPE_MESSAGE_RECEIVED = 11;
 
+    public static final String SPECIMEN = "specimen";
 }

@@ -24,13 +24,8 @@ import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddDealerBinding;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddOrderBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddSchoolBinding;
-import com.flaxeninfosoft.guptaoffset.models.Dealer;
-import com.flaxeninfosoft.guptaoffset.models.Image;
 import com.flaxeninfosoft.guptaoffset.models.Location;
-import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
@@ -42,7 +37,8 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
     private FragmentEmployeeAddSchoolBinding binding;
     private EmployeeViewModel viewModel;
-    private Uri image;
+    private Uri specimenImage;
+    private Uri hoadingImage;
     private ProgressDialog progressDialog;
 
     public EmployeeAddSchoolFragment() {
@@ -62,7 +58,8 @@ public class EmployeeAddSchoolFragment extends Fragment {
         binding.setSchool(new School());
 
         binding.employeeAddSchoolBtn.setOnClickListener(this::onClickAddSchool);
-        binding.employeeAddSchoolImage.setOnClickListener(this::onClickImage);
+        binding.employeeAddSchoolSpecimenImage.setOnClickListener(this::onClickSpecimenImage);
+        binding.employeeAddSchoolHoadingImage.setOnClickListener(this::onClickHoadingImage);
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Adding School...");
         progressDialog.setMessage("Loading...");
@@ -73,27 +70,48 @@ public class EmployeeAddSchoolFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private void onClickHoadingImage(View view) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        hoadingImageIntent.launch(intent);
+    }
+
     private void showToast(String s) {
         if (s != null && !s.isEmpty()){
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void onClickImage(View view) {
+    private void onClickSpecimenImage(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        mLauncher.launch(intent);
+        specimenImageIntent.launch(intent);
     }
 
-    ActivityResultLauncher<Intent>mLauncher=registerForActivityResult(
+    ActivityResultLauncher<Intent> specimenImageIntent = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     try {
                         Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
-                        Glide.with(getContext()).load(bitmap).into(binding.employeeAddSchoolImage);
+                        Glide.with(getContext()).load(bitmap).into(binding.employeeAddSchoolSpecimenImage);
 
-                        image = FileEncoder.getImageUri(getContext(), bitmap);
+                        specimenImage = FileEncoder.getImageUri(getContext(), bitmap);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+    );
+    ActivityResultLauncher<Intent> hoadingImageIntent = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    try {
+                        Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
+                        Glide.with(getContext()).load(bitmap).into(binding.employeeAddSchoolHoadingImage);
+
+                        hoadingImage = FileEncoder.getImageUri(getContext(), bitmap);
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -113,7 +131,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
             progressDialog.show();
             try {
-                viewModel.addSchool(binding.getSchool(), image).observe(getViewLifecycleOwner(), b->{
+                viewModel.addSchool(binding.getSchool(), specimenImage, hoadingImage).observe(getViewLifecycleOwner(), b->{
                     if (b){
                         progressDialog.dismiss();
                         clearErrors();
@@ -128,8 +146,12 @@ public class EmployeeAddSchoolFragment extends Fragment {
     }
 
     private boolean isImageAdded() {
-        if(image==null){
-            Toast.makeText(getContext(), "Please Add Image", Toast.LENGTH_SHORT).show();
+        if(specimenImage ==null){
+            Toast.makeText(getContext(), "Add Specimen Image", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (hoadingImage==null){
+            Toast.makeText(getContext(), "Add School Image", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

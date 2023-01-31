@@ -4,8 +4,6 @@ import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.sql.Date;
-
 public class Eod {
 
     @SerializedName(Constants.ID)
@@ -31,6 +29,14 @@ public class Eod {
     @SerializedName(Constants.OTHER_EXPENSE)
     @Expose
     private String otherExpense;
+
+    @SerializedName(Constants.IMAGE)
+    @Expose
+    private String expenseImage;
+
+    @SerializedName(Constants.DAILY_ALLOWANCE)
+    @Expose
+    private String dailyAllowance;
 
     @SerializedName(Constants.LATITUDE)
     @Expose
@@ -86,6 +92,22 @@ public class Eod {
 
     public void setOtherExpense(String otherExpense) {
         this.otherExpense = otherExpense;
+    }
+
+    public String getExpenseImage() {
+        return expenseImage;
+    }
+
+    public void setExpenseImage(String expenseImage) {
+        this.expenseImage = expenseImage;
+    }
+
+    public String getDailyAllowance() {
+        return dailyAllowance;
+    }
+
+    public void setDailyAllowance(String dailyAllowance) {
+        this.dailyAllowance = dailyAllowance;
     }
 
     public Double getLatitude() {

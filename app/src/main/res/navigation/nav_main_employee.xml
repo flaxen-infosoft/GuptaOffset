@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_employeeHomeFragment_to_employeePaymentRequestFragment"
             app:destination="@id/employeePaymentRequestFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_eodProfileFragment"
+            app:destination="@id/eodProfileFragment" />
     </fragment>
 
     <fragment
@@ -82,6 +85,10 @@
         android:id="@+id/employeeProfileFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeProfileFragment"
         android:label="Profile" />
+    <fragment
+        android:id="@+id/eodProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.EodProfileFragment"
+        android:label="EodProfileFragment" />
 
 
 </navigation>
