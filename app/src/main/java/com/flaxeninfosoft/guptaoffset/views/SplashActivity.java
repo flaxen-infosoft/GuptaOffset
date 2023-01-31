@@ -48,40 +48,40 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 //--------------------------------------Notification Code-----------------------------
-
-        Drawable drawable= ResourcesCompat.getDrawable(getResources(),R.drawable.splash_logo,null);
-        BitmapDrawable bitmapDrawable= (BitmapDrawable) drawable;
-        Bitmap bitmap=bitmapDrawable.getBitmap();
-
-        NotificationManager notificationManager= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        Notification notification;
-        Intent intent=new Intent(getApplicationContext(),SplashActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent=PendingIntent.getActivity(this,100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
-            notification=new Notification.Builder(this)
-                    .setLargeIcon(bitmap)
-                    .setSmallIcon(R.drawable.splash_logo)
-                    .setContentText("Application Running")
-                    .setSubText("New Message")
-                    .setContentIntent(pendingIntent)
-                    .setChannelId(CHANNEL_ID)
-                    .build();
-            notificationManager.createNotificationChannel(new NotificationChannel(CHANNEL_ID,"GuptaJI Channel",NotificationManager.IMPORTANCE_HIGH)
-            );
-        }
-        else{
-            notification=new Notification.Builder(this)
-                    .setLargeIcon(bitmap)
-                    .setSmallIcon(R.drawable.splash_logo)
-                    .setContentText("New Message")
-                    .setSubText("Message From Employees")
-                    .setContentIntent(pendingIntent)
-                    .build();
-        }
-        notificationManager.notify(NOTIFICATION_ID,notification);
-
+//
+//        Drawable drawable= ResourcesCompat.getDrawable(getResources(),R.drawable.splash_logo,null);
+//        BitmapDrawable bitmapDrawable= (BitmapDrawable) drawable;
+//        Bitmap bitmap=bitmapDrawable.getBitmap();
+//
+//        NotificationManager notificationManager= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//        Notification notification;
+//        Intent intent=new Intent(getApplicationContext(),SplashActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        PendingIntent pendingIntent=PendingIntent.getActivity(this,100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+//            notification=new Notification.Builder(this)
+//                    .setLargeIcon(bitmap)
+//                    .setSmallIcon(R.drawable.splash_logo)
+//                    .setContentText("Application Running")
+//                    .setSubText("New Message")
+//                    .setContentIntent(pendingIntent)
+//                    .setChannelId(CHANNEL_ID)
+//                    .build();
+//            notificationManager.createNotificationChannel(new NotificationChannel(CHANNEL_ID,"GuptaJI Channel",NotificationManager.IMPORTANCE_HIGH)
+//            );
+//        }
+//        else{
+//            notification=new Notification.Builder(this)
+//                    .setLargeIcon(bitmap)
+//                    .setSmallIcon(R.drawable.splash_logo)
+//                    .setContentText("New Message")
+//                    .setSubText("Message From Employees")
+//                    .setContentIntent(pendingIntent)
+//                    .build();
+//        }
+//        notificationManager.notify(NOTIFICATION_ID,notification);
+//
 //--------------------------------------Notification Code-----------------------------
 
 

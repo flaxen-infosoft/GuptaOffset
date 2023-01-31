@@ -61,7 +61,7 @@ public class Constants {
     public static final String EMPLOYEE_STATUS_ACTIVE = "active";
     public static final String EMPLOYEE_STATUS_SUSPENDED = "suspended";
 
-    public static final String SCHOOL_VISITS = "school_visits";
+    public static final String SCHOOL_VISITS = "schoolVisits";
     public static final String PETROL_EXPENSE = "petrolExpenses";
     public static final String OTHER_EXPENSE = "otherExpenses";
 

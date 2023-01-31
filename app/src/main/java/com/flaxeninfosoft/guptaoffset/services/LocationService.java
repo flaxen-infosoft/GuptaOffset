@@ -8,7 +8,10 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -18,8 +21,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
@@ -108,6 +113,10 @@ public class LocationService extends Service {
     }
 
     private void startMyOwnForeground() {
+        Drawable drawable= ResourcesCompat.getDrawable(getResources(), R.drawable.splash_logo,null);
+        BitmapDrawable bitmapDrawable= (BitmapDrawable) drawable;
+        Bitmap bitmap=bitmapDrawable.getBitmap();
+
         String NOTIFICATION_CHANNEL_ID = "com.flaxeninfosoft";
         String channelName = "Background Service";
         NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_NONE);
@@ -121,6 +130,8 @@ public class LocationService extends Service {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
         Notification notification = notificationBuilder.setOngoing(true)
                 .setContentTitle("App is running in background")
+                .setLargeIcon(bitmap)
+                .setSmallIcon(R.drawable.splash_logo)
                 .setPriority(NotificationManager.IMPORTANCE_MIN)
                 .setCategory(Notification.CATEGORY_SERVICE)
                 .build();
