@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentSchoolProfileBinding;
 import com.flaxeninfosoft.guptaoffset.models.School;
@@ -56,6 +57,9 @@ public class SchoolProfileFragment extends Fragment {
 
     private void setSchool(School school) {
         binding.setSchool(school);
+
+        Glide.with(getContext()).load(school.getSpecimen()).into(binding.schoolProfileSpecimenImage);
+        Glide.with(getContext()).load(school.getImage()).into(binding.schoolProfileHoadingImage);
 
         mapReadyCallback = googleMap -> {
             LatLng latLng = new LatLng(school.getLatitude(), school.getLongitude());

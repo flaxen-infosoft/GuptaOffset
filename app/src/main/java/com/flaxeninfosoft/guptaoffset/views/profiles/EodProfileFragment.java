@@ -65,9 +65,9 @@ public class EodProfileFragment extends Fragment {
         binding.setEod(eod);
 
         mapReadyCallback = googleMap -> {
-            LatLng latLng = new LatLng(eod.getLatitude(), eod.getLongitude());
-            googleMap.addMarker(new MarkerOptions()
-                    .position(latLng));
+//            LatLng latLng = new LatLng(eod.getLatitude(), eod.getLongitude());
+//            googleMap.addMarker(new MarkerOptions()
+//                    .position(latLng));
         };
 
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();

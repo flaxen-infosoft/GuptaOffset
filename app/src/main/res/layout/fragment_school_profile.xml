@@ -4,6 +4,7 @@
     xmlns:map="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="school"
             type="com.flaxeninfosoft.guptaoffset.models.School" />
@@ -21,14 +22,6 @@
             android:padding="16dp"
             tools:context=".views.profiles.SchoolProfileFragment">
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginVertical="30dp"
-                android:contentDescription="User profile image"
-                android:src="@drawable/account_circle" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/school_profile_name_til"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -39,10 +32,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="School Name"
                     android:enabled="false"
+                    android:hint="School Name"
                     android:text="@={school.name}" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/school_profile_strength_til"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -53,24 +47,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Student Strength"
                     android:enabled="false"
+                    android:hint="Student Strength"
                     android:text="@={school.strength}" />
             </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/school_profile_address_til"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="8dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Address"
-                    android:enabled="false"
-                    android:text="@={school.address}" />
-            </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/school_profile_phone_til"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -81,10 +62,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone"
                     android:enabled="false"
+                    android:hint="Phone"
                     android:text="@={school.contact}" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/school_profile_date_til"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -95,52 +77,59 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Date"
                     android:enabled="false"
+                    android:hint="Date"
                     android:text="@={school.date}" />
             </com.google.android.material.textfield.TextInputLayout>
-            <ImageView
-                android:id="@id/school_profile_image_img"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:scaleType="centerCrop"
-                />
 
-            <fragment
-                android:id="@+id/school_profile_map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
+            <ImageView
+                android:id="@+id/school_profile_hoading_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                map:layout_constraintTop_toTopOf="parent"
-                map:layout_constraintStart_toStartOf="parent"
-                map:layout_constraintEnd_toEndOf="parent"
-                map:layout_constraintBottom_toBottomOf="parent" />
+                android:layout_height="150dp"
+                android:layout_margin="20dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/school_profile_specimen_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="20dp"
+                android:scaleType="centerCrop" />
+
+                        <fragment
+                            android:id="@+id/school_profile_map"
+                            android:name="com.google.android.gms.maps.SupportMapFragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            map:layout_constraintBottom_toBottomOf="parent"
+                            map:layout_constraintEnd_toEndOf="parent"
+                            map:layout_constraintStart_toStartOf="parent"
+                            map:layout_constraintTop_toTopOf="parent" />
 
 
             <LinearLayout
                 android:id="@+id/employee_profile_update_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone"
                 android:layout_marginVertical="20dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
                 android:padding="8dp"
-                android:gravity="center_horizontal">
+                android:visibility="gone">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/employee_profile_update_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Update"
-                    android:layout_marginHorizontal="30dp"/>
+                    android:layout_marginHorizontal="30dp"
+                    android:text="Update" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/employee_profile_suspend_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Suspend"
-                    android:layout_marginHorizontal="30dp"/>
+                    android:layout_marginHorizontal="30dp"
+                    android:text="Suspend" />
 
             </LinearLayout>
         </LinearLayout>

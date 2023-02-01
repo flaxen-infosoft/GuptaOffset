@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_employeeHomeFragment_to_eodProfileFragment"
             app:destination="@id/eodProfileFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_schoolProfileFragment"
+            app:destination="@id/schoolProfileFragment" />
     </fragment>
 
     <fragment
@@ -84,11 +87,18 @@
     <fragment
         android:id="@+id/employeeProfileFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeProfileFragment"
-        android:label="Profile" />
+        android:label="Profile"
+        tools:layout="@layout/fragment_employee_profile"/>
     <fragment
         android:id="@+id/eodProfileFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.profiles.EodProfileFragment"
-        android:label="EodProfileFragment" />
+        android:label="EodProfileFragment"
+        tools:layout="@layout/fragment_eod_profile"/>
+    <fragment
+        android:id="@+id/schoolProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.SchoolProfileFragment"
+        android:label="SchoolProfileFragment"
+        tools:layout="@layout/fragment_school_profile"/>
 
 
 </navigation>
