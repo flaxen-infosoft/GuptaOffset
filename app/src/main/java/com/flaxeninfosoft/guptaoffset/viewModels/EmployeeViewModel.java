@@ -476,7 +476,7 @@ public class EmployeeViewModel extends AndroidViewModel {
                 toastMessage.postValue(error);
             }
         });
-
+        getCurrentEmployeeHistory();
         return flag;
     }
 
