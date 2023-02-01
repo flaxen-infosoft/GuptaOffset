@@ -169,6 +169,13 @@
                     android:layout_marginTop="5dp"
                     android:src="@drawable/person_vector"
                     android:scaleType="fitXY" />
+                <ImageView
+                    android:id="@+id/single_school_card_image2"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/person_vector"
+                    android:scaleType="fitXY" />
 
             </LinearLayout>
 
