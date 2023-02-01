@@ -545,6 +545,12 @@ public class MainRepository {
         });
     }
 
+    public void getDealerById(Long dealerId, ApiResponseListener<Dealer, String> listener) {
+        Call<Dealer> dealerByIdCall = dealerApiInterface.getDealerById(dealerId);
+
+        processDealerCall(dealerByIdCall, listener);
+    }
+
 
     //    ----------------------------------------------------------------------------------------------
     public void addPayment(Long empId, PaymentRequest paymentRequest, ApiResponseListener<PaymentRequest, String> listener) {
