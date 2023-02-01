@@ -221,14 +221,28 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 
         try {
             viewModel.punchAttendance(reading, uri).observe(getViewLifecycleOwner(), attendance -> {
-                if (attendance != null) {
-                    navigateUp();
+                if(validFilds()){
+                    if (attendance != null) {
+                        navigateUp();
+                    }
                 }
             });
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private boolean validFilds() {
+        if(binding.getAttendance().getStartMeter()==null){
+            binding.employeeAddAttendanceStartMeter.setError("**Enter Starting Meter");
+            return false;
+        }
+        if(binding.getAttendance().getEndMeter()==null){
+            binding.employeeAddAttendanceEndMeter.setError("**Enter Ending Meter");
+            return false;
+        }
+        return true;
     }
 
     private void navigateUp() {

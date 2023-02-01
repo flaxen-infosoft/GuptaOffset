@@ -609,6 +609,12 @@ public class MainRepository {
         });
     }
 
+    public void getSchoolById(Long schoolId, ApiResponseListener<School, String> listener) {
+        Call<School> schoolByIdCall = schoolApiInterface.getSchoolById(schoolId);
+
+        processSchoolCall(schoolByIdCall, listener);
+    }
+
 //    ----------------------------------------------------------------------------------------------
 
     public void sendMessage(Long empId, Message message, ApiResponseListener<Message, String> listener) {

@@ -252,6 +252,7 @@ public class EmployeeViewModel extends AndroidViewModel {
 //    ----------------------------------------------------------------------------------------------
 
     public LiveData<Boolean> addSchool(School school, Uri specimenImage, Uri hoadingImage) throws IOException {
+
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
         Location location = currentLocation.getValue();
@@ -281,6 +282,23 @@ public class EmployeeViewModel extends AndroidViewModel {
         return flag;
     }
 
+    public LiveData<School> getSchoolById(Long schoolId) {
+        MutableLiveData<School> flag = new MutableLiveData<>();
+
+        repo.getSchoolById(schoolId, new ApiResponseListener<School, String>() {
+            @Override
+            public void onSuccess(School response) {
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
+                toastMessage.postValue(error);
+            }
+        });
+        return flag;
+    }
 //    ----------------------------------------------------------------------------------------------
 
     public LiveData<List<Eod>> getCurrentEmployeeAllEods() {
