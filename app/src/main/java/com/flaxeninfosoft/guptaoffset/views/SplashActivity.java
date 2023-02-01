@@ -1,23 +1,14 @@
 package com.flaxeninfosoft.guptaoffset.views;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
@@ -29,16 +20,15 @@ import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 import com.flaxeninfosoft.guptaoffset.viewModels.LoginViewModel;
 import com.flaxeninfosoft.guptaoffset.views.admin.AdminMainActivity;
 import com.flaxeninfosoft.guptaoffset.views.employee.EmployeeMainActivity;
-import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeHomeFragment;
 import com.flaxeninfosoft.guptaoffset.views.superEmployee.SuperEmployeeMainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
     private MainRepository repo;
     private LoginViewModel viewModel;
-//--------------------------------------Notification-----------------------------
-    private static final String CHANNEL_ID="Only For New Message";
-    private static final int NOTIFICATION_ID=100;
+    //--------------------------------------Notification-----------------------------
+    private static final String CHANNEL_ID = "Only For New Message";
+    private static final int NOTIFICATION_ID = 100;
 //--------------------------------------Notification-----------------------------
 
 
@@ -88,12 +78,7 @@ public class SplashActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(LoginViewModel.class);
         repo = MainRepository.getInstance(getApplicationContext());
 
-        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            checkGps(manager);
-        } else {
-            continueFlow();
-        }
+        checkGps();
     }
 
     private void continueFlow() {
@@ -111,17 +96,27 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    private void checkGps(LocationManager manager) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Please enable Gps.")
-                .setCancelable(false)
-                .setPositiveButton("Yes", (dialog, id) -> {
-                    startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                    continueFlow();
-                })
-                .setNegativeButton("No", (dialog, id) -> checkGps(manager));
-        final AlertDialog alert = builder.create();
-        alert.show();
+    private void checkGps() {
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Please enable Gps.")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", (dialog, id) -> {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    })
+                    .setNegativeButton("No", (dialog, id) -> checkGps());
+            final AlertDialog alert = builder.create();
+            alert.show();
+        } else {
+            continueFlow();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkGps();
     }
 
     private void onLoginRequestComplete(Boolean isSuccess) {
@@ -139,7 +134,6 @@ public class SplashActivity extends AppCompatActivity {
 
         switch (employee.getDesignation()) {
             case Constants.DESIGNATION_EMPLOYEE:
-                startLocationService();
                 intent = new Intent(this, EmployeeMainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
@@ -147,7 +141,6 @@ public class SplashActivity extends AppCompatActivity {
                 break;
 
             case Constants.DESIGNATION_SUPER_EMPLOYEE:
-                startLocationService();
                 intent = new Intent(this, SuperEmployeeMainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
@@ -164,10 +157,6 @@ public class SplashActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Department is not supported", Toast.LENGTH_SHORT).show();
                 startLoginActivity();
         }
-    }
-
-    private void startLocationService() {
-
     }
 
     private void startLoginActivity() {

@@ -123,12 +123,6 @@ public class EmployeeAddSchoolFragment extends Fragment {
     private void onClickAddSchool(View view) {
         if (isValidFields() && isImageAdded()) {
 
-            Location location = viewModel.getCurrentEmployeeLocation().getValue();
-            if (location.getLongitude()==0d || location.getLatitude()==0d){
-                Toast.makeText(getContext(),"Fetching location.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
             progressDialog.show();
             try {
                 viewModel.addSchool(binding.getSchool(), specimenImage, hoadingImage).observe(getViewLifecycleOwner(), b->{
