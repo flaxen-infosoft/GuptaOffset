@@ -53,6 +53,7 @@ public class EmployeeAddEODFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_add_e_o_d, container, false);
         binding.setEod(new Eod());
+        binding.getEod().setDailyAllowance(viewModel.getCurrentEmployee().getDailyAllowance());
 
         binding.employeeAddEodBtn.setOnClickListener(this::onClickAddEod);
         progressDialog = new ProgressDialog(getContext());
