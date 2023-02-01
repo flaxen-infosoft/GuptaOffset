@@ -228,6 +228,25 @@ public class EmployeeViewModel extends AndroidViewModel {
         return flag;
     }
 
+    public LiveData<Dealer> getDealerById(Long dealerId) {
+        MutableLiveData<Dealer> flag = new MutableLiveData<>();
+
+        repo.getDealerById(dealerId, new ApiResponseListener<Dealer, String>() {
+            @Override
+            public void onSuccess(Dealer response) {
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
 //    ----------------------------------------------------------------------------------------------
 
     public LiveData<Boolean> addPayment(PaymentRequest paymentRequest) {
