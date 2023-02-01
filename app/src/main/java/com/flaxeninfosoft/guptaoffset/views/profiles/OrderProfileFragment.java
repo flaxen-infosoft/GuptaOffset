@@ -1,10 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.profiles;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,8 +13,8 @@ import android.view.ViewGroup;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEodProfileBinding;
-
-import com.flaxeninfosoft.guptaoffset.models.Eod;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentOrderProfileBinding;
+import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -25,15 +22,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class EodProfileFragment extends Fragment {
-
-    private FragmentEodProfileBinding binding;
+public class OrderProfileFragment extends Fragment {
+    private FragmentOrderProfileBinding binding;
     private EmployeeViewModel viewModel;
 
     private OnMapReadyCallback mapReadyCallback;
 
-    public EodProfileFragment() {
-        // Required empty public constructor
+    public OrderProfileFragment() {
+
     }
 
     @Override
@@ -43,26 +39,26 @@ public class EodProfileFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_eod_profile, container, false);
 
-        long eodId = getArguments().getLong(Constants.EOD_ID, -1);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_profile, container, false);
 
-        if (eodId == -1){
+        long orderId = getArguments().getLong(Constants.ORDER_ID, -1);
+
+        if (orderId == -1){
             Navigation.findNavController(binding.getRoot()).navigateUp();
         }
 
-        viewModel.getEodById(eodId).observe(getViewLifecycleOwner(), this::setEod);
+        viewModel.getOrderById(orderId).observe(getViewLifecycleOwner(), this::setOrder);
 
-        return binding.getRoot();
-    }
+        return binding.getRoot();   }
 
-    private void setEod(Eod eod) {
-        binding.setEod(eod);
+    private void setOrder(Order order) {
+        binding.setOrder(order);
 
         mapReadyCallback = googleMap -> {
-            LatLng latLng = new LatLng(eod.getLatitude(), eod.getLongitude());
+            LatLng latLng = new LatLng(order.getLatitude(), order.getLongitude());
             googleMap.addMarker(new MarkerOptions()
                     .position(latLng));
         };
@@ -70,7 +66,7 @@ public class EodProfileFragment extends Fragment {
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.eod_profile_map, mapFragment)
+                .add(R.id.order_profile_map, mapFragment)
                 .commit();
         mapFragment.getMapAsync(mapReadyCallback);
     }
