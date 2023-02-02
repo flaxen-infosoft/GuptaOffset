@@ -66,7 +66,15 @@ public class AdminEmployeeActivityFragment extends Fragment {
             viewModel.getEmployeeHistoryById(empId).observe(getViewLifecycleOwner(), this::setHistory);
         }
 
+        viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
+
         return binding.getRoot();
+    }
+
+    private void showToast(String s) {
+        if (!s.isEmpty()){
+            Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void sendMessage(View view) {

@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentSuperEmployeeAddEmployeeBinding;
@@ -40,7 +41,15 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
 
         binding.superEmployeeAddEmployeeBtn.setOnClickListener(this::onClickAddButton);
 
+        viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
+
         return binding.getRoot();
+    }
+
+    private void showToast(String s) {
+        if (!s.isEmpty()){
+            Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void onClickAddButton(View view) {
@@ -58,7 +67,7 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
     }
 
     private boolean isValidInput() {
-        //TODO
+        //TODO add validation
         return true;
     }
 }

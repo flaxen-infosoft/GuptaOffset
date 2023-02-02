@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -39,7 +40,15 @@ public class AdminAddSuperEmployeeFragment extends Fragment {
 
         binding.adminAddSuperEmployeeBtn.setOnClickListener(this::onClickAddButton);
 
+        viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
+
         return binding.getRoot();
+    }
+
+    private void showToast(String s) {
+        if (!s.isEmpty()){
+            Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void onClickAddButton(View view) {
@@ -57,6 +66,7 @@ public class AdminAddSuperEmployeeFragment extends Fragment {
     }
 
     private boolean isValidInput() {
+        //TODO add validation
         return true;
     }
 }

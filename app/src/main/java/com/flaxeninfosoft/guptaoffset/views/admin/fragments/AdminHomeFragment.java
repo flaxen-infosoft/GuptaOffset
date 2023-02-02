@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -47,7 +48,15 @@ public class AdminHomeFragment extends Fragment {
         viewModel.getAllEmployees().observe(getViewLifecycleOwner(), this::onChange);
         binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
 
+        viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
+
         return binding.getRoot();
+    }
+
+    private void showToast(String s) {
+        if (!s.isEmpty()){
+            Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void navigateToAddEmployee(View view) {

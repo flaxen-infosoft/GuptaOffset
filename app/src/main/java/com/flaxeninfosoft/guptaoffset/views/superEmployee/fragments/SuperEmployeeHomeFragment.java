@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -74,7 +75,15 @@ public class SuperEmployeeHomeFragment extends Fragment {
             }
         });
 
+        viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
+
         return binding.getRoot();
+    }
+
+    private void showToast(String s) {
+        if (!s.isEmpty()){
+            Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void sendMessage(View view) {
