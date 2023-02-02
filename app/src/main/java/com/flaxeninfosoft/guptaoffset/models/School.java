@@ -36,7 +36,7 @@ public class School {
 
     @SerializedName(Constants.IMAGE)
     @Expose
-    private String image;
+    private String snap;
 
     @SerializedName(Constants.SPECIMEN)
     @Expose
@@ -106,12 +106,12 @@ public class School {
         this.address = address;
     }
 
-    public String getImage() {
-        return image;
+    public String getSnap() {
+        return snap;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setSnap(String snap) {
+        this.snap = snap;
     }
 
     public String getSpecimen() {

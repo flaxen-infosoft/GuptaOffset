@@ -1,5 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.profiles;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
@@ -16,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentSchoolProfileBinding;
 import com.flaxeninfosoft.guptaoffset.models.School;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -64,13 +67,18 @@ public class SchoolProfileFragment extends Fragment {
             return;
         }
 
-//        Glide.with(getContext()).load(school.getSpecimen()).into(binding.schoolProfileSpecimenImage);
-//        Glide.with(getContext()).load(school.getImage()).into(binding.schoolProfileHoadingImage);
+        String image = ApiEndpoints.BASE_URL + school.getSnap();
+        Glide.with(getContext()).load(image).into(binding.schoolProfileHoadingImage);
+
+        String image1 = ApiEndpoints.BASE_URL + school.getSpecimen();
+        Glide.with(getContext()).load(image1).into(binding.schoolProfileSpecimenImage);
+
+
 
         mapReadyCallback = googleMap -> {
-//            LatLng latLng = new LatLng(school.getLatitude(), school.getLongitude());
-//            googleMap.addMarker(new MarkerOptions()
-//                    .position(latLng));
+            LatLng latLng = new LatLng(school.getLatitude(), school.getLongitude());
+            googleMap.addMarker(new MarkerOptions()
+                    .position(latLng));
         };
 
 

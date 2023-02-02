@@ -347,7 +347,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             binding.getRoot().setOnClickListener(v -> onClickListener.onClickCard(school));
 
             try {
-                String image = ApiEndpoints.BASE_URL + school.getImage();
+                String image = ApiEndpoints.BASE_URL + school.getSnap();
                 Glide.with(binding.getRoot().getContext()).load(image).into(binding.singleSchoolCardImage);
             } catch (Exception e) {
                 e.printStackTrace();

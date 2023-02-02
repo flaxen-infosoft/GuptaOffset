@@ -25,9 +25,7 @@ import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 
-import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.List;
 
 public class EmployeeViewModel extends AndroidViewModel {
@@ -279,7 +277,7 @@ public class EmployeeViewModel extends AndroidViewModel {
         school.setLongitude(location.getLongitude());
 
         String encodedImage = FileEncoder.encodeImage(getApplication().getContentResolver(), specimenImage);
-        school.setImage(encodedImage);
+        school.setSnap(encodedImage);
 
         String encodedSpecimen = FileEncoder.encodeImage(getApplication().getContentResolver(), hoadingImage);
         school.setSpecimen(encodedSpecimen);
