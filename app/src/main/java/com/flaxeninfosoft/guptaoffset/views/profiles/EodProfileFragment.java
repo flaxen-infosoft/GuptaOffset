@@ -21,6 +21,7 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentEodProfileBinding;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -72,6 +73,7 @@ public class EodProfileFragment extends Fragment {
             LatLng latLng = new LatLng(eod.getLatitude(), eod.getLongitude());
             googleMap.addMarker(new MarkerOptions()
                     .position(latLng));
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
         };
 
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();

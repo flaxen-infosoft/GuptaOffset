@@ -22,6 +22,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class EmployeeMapFragment extends Fragment {
@@ -49,9 +50,9 @@ public class EmployeeMapFragment extends Fragment {
         mapReadyCallback = googleMap -> {
 
             viewModel.getCurrentEmployeeOrders().observe(getViewLifecycleOwner(), orders -> {
-                for (Order order: orders){
+               if (orders!= null){
 
-                }
+               }
             });
 
             if (ActivityCompat.checkSelfPermission(EmployeeMapFragment.this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

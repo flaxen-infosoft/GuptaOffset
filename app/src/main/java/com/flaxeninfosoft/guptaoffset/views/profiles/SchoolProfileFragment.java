@@ -21,6 +21,7 @@ import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -79,6 +80,7 @@ public class SchoolProfileFragment extends Fragment {
             LatLng latLng = new LatLng(school.getLatitude(), school.getLongitude());
             googleMap.addMarker(new MarkerOptions()
                     .position(latLng));
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
         };
 
 

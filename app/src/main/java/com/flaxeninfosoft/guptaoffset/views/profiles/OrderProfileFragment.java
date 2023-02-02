@@ -10,11 +10,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentOrderProfileBinding;
 import com.flaxeninfosoft.guptaoffset.models.Order;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -61,10 +64,14 @@ public class OrderProfileFragment extends Fragment {
             return;
         }
 
+        String image = ApiEndpoints.BASE_URL+order.getSnap();
+        Glide.with(getContext()).load(image).into(binding.orderProfileSpecimenImage);
+
         mapReadyCallback = googleMap -> {
             LatLng latLng = new LatLng(order.getLatitude(), order.getLongitude());
             googleMap.addMarker(new MarkerOptions()
                     .position(latLng));
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
         };
 
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();

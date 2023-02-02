@@ -162,15 +162,30 @@
                         android:textSize="17sp" />
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Specimen order"
+                    android:layout_margin="4dp"
+                    android:textSize="12sp"/>
+
                 <ImageView
-                    android:id="@+id/single_school_card_image"
+                    android:id="@+id/single_school_card_specimen_order_image"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_marginTop="5dp"
                     android:src="@drawable/person_vector"
                     android:scaleType="fitXY" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="School image"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp"/>
+
                 <ImageView
-                    android:id="@+id/single_school_card_image2"
+                    android:id="@+id/single_school_card_school_image"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_marginTop="5dp"
