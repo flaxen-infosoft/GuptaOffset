@@ -58,13 +58,19 @@ public class SchoolProfileFragment extends Fragment {
     private void setSchool(School school) {
         binding.setSchool(school);
 
-        Glide.with(getContext()).load(school.getSpecimen()).into(binding.schoolProfileSpecimenImage);
-        Glide.with(getContext()).load(school.getImage()).into(binding.schoolProfileHoadingImage);
+        if (school == null){
+            Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            Navigation.findNavController(binding.getRoot()).navigateUp();
+            return;
+        }
+
+//        Glide.with(getContext()).load(school.getSpecimen()).into(binding.schoolProfileSpecimenImage);
+//        Glide.with(getContext()).load(school.getImage()).into(binding.schoolProfileHoadingImage);
 
         mapReadyCallback = googleMap -> {
-            LatLng latLng = new LatLng(school.getLatitude(), school.getLongitude());
-            googleMap.addMarker(new MarkerOptions()
-                    .position(latLng));
+//            LatLng latLng = new LatLng(school.getLatitude(), school.getLongitude());
+//            googleMap.addMarker(new MarkerOptions()
+//                    .position(latLng));
         };
 
 

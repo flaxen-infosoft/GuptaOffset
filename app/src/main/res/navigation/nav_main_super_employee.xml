@@ -37,6 +37,21 @@
         <action
             android:id="@+id/action_superEmployeeHomeFragment_to_superEmployeeAddEmployeeFragment"
             app:destination="@id/superEmployeeAddEmployeeFragment" />
+        <action
+            android:id="@+id/action_superEmployeeHomeFragment_self"
+            app:destination="@id/superEmployeeHomeFragment" />
+        <action
+            android:id="@+id/action_superEmployeeHomeFragment_to_eodProfileFragment"
+            app:destination="@id/eodProfileFragment" />
+        <action
+            android:id="@+id/action_superEmployeeHomeFragment_to_dealerProfileFragment"
+            app:destination="@id/dealerProfileFragment" />
+        <action
+            android:id="@+id/action_superEmployeeHomeFragment_to_orderProfileFragment"
+            app:destination="@id/orderProfileFragment" />
+        <action
+            android:id="@+id/action_superEmployeeHomeFragment_to_schoolProfileFragment"
+            app:destination="@id/schoolProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/employeeAddAttendanceFragment"
@@ -90,4 +105,20 @@
         android:id="@+id/adminEmployeeActivityFragment2"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminEmployeeActivityFragment"
         android:label="AdminEmployeeActivityFragment" />
+    <fragment
+        android:id="@+id/eodProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.EodProfileFragment"
+        android:label="EodProfileFragment" />
+    <fragment
+        android:id="@+id/dealerProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.DealerProfileFragment"
+        android:label="DealerProfileFragment" />
+    <fragment
+        android:id="@+id/orderProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.OrderProfileFragment"
+        android:label="OrderProfileFragment" />
+    <fragment
+        android:id="@+id/schoolProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.SchoolProfileFragment"
+        android:label="SchoolProfileFragment" />
 </navigation>

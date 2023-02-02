@@ -127,14 +127,14 @@ public class EmployeeHomeFragment extends Fragment {
             public void onClickCard(Dealer dealer) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(Constants.DEALER_ID, dealer.getId());
-//                Navigation.findNavController(binding.getRoot()).navigate(  ,bundle);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_dealerProfileFragment, bundle);
             }
 
             @Override
             public void onClickCard(Order order) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(Constants.ORDER_ID, order.getId());
-//                Navigation.findNavController(binding.getRoot()).navigate(  ,bundle);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_orderProfileFragment, bundle);
             }
 
             @Override
@@ -148,7 +148,7 @@ public class EmployeeHomeFragment extends Fragment {
             public void onCLickCard(Employee employee) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
-//                Navigation.findNavController(binding.getRoot()).navigate(  ,bundle);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.employeeProfileFragment, bundle);
             }
 
             @Override

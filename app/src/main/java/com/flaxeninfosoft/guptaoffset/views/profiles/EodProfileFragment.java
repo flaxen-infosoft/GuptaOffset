@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEodProfileBinding;
@@ -50,7 +51,7 @@ public class EodProfileFragment extends Fragment {
         long eodId = getArguments().getLong(Constants.EOD_ID, -1);
 
         if (eodId == -1){
-            Navigation.findNavController(binding.getRoot()).navigateUp();
+            navigateUp();
         }
 
         viewModel.getEodById(eodId).observe(getViewLifecycleOwner(), this::setEod);
@@ -60,6 +61,12 @@ public class EodProfileFragment extends Fragment {
 
     private void setEod(Eod eod) {
         binding.setEod(eod);
+
+        if (eod==null){
+            Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            navigateUp();
+            return;
+        }
 
         mapReadyCallback = googleMap -> {
             LatLng latLng = new LatLng(eod.getLatitude(), eod.getLongitude());
@@ -73,5 +80,9 @@ public class EodProfileFragment extends Fragment {
                 .add(R.id.eod_profile_map, mapFragment)
                 .commit();
         mapFragment.getMapAsync(mapReadyCallback);
+    }
+
+    private void navigateUp() {
+        Navigation.findNavController(binding.getRoot()).navigateUp();
     }
 }

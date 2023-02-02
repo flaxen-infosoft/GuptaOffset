@@ -1,18 +1,16 @@
 package com.flaxeninfosoft.guptaoffset.views.profiles;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentEodProfileBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentOrderProfileBinding;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
@@ -28,10 +26,6 @@ public class OrderProfileFragment extends Fragment {
 
     private OnMapReadyCallback mapReadyCallback;
 
-    public OrderProfileFragment() {
-
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,16 +40,26 @@ public class OrderProfileFragment extends Fragment {
 
         long orderId = getArguments().getLong(Constants.ORDER_ID, -1);
 
-        if (orderId == -1){
-            Navigation.findNavController(binding.getRoot()).navigateUp();
+        if (orderId == -1) {
+            navigateUp();
         }
 
         viewModel.getOrderById(orderId).observe(getViewLifecycleOwner(), this::setOrder);
 
-        return binding.getRoot();   }
+        return binding.getRoot();
+    }
+
+    private void navigateUp() {
+        Navigation.findNavController(binding.getRoot()).navigateUp();
+    }
 
     private void setOrder(Order order) {
         binding.setOrder(order);
+
+        if (order == null) {
+            navigateUp();
+            return;
+        }
 
         mapReadyCallback = googleMap -> {
             LatLng latLng = new LatLng(order.getLatitude(), order.getLongitude());

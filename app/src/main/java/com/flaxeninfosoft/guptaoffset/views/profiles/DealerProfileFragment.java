@@ -1,15 +1,16 @@
 package com.flaxeninfosoft.guptaoffset.views.profiles;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentDealerProfileBinding;
@@ -29,43 +30,49 @@ public class DealerProfileFragment extends Fragment {
 
     private OnMapReadyCallback mapReadyCallBack;
 
-    public DealerProfileFragment() {
-
-    }
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel=new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeViewModel.class);
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(EmployeeViewModel.class);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_dealer_profile,container,false);
-        long dealerId=getArguments().getLong(Constants.DEALER_ID,-1);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dealer_profile, container, false);
+        long dealerId = getArguments().getLong(Constants.DEALER_ID, -1);
 
-        if(dealerId==-1){
-            Navigation.findNavController(binding.getRoot()).navigateUp();
+        if (dealerId == -1) {
+            Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            navigateUp();
         }
 
-        viewModel.getDealerById(dealerId).observe(getViewLifecycleOwner(),this::setDealer);
+        viewModel.getDealerById(dealerId).observe(getViewLifecycleOwner(), this::setDealer);
         return binding.getRoot();
     }
 
-    private void setDealer(Dealer dealer){
+    private void navigateUp() {
+        Navigation.findNavController(binding.getRoot()).navigateUp();
+    }
+
+    private void setDealer(Dealer dealer) {
         binding.setDealer(dealer);
 
-        mapReadyCallBack=googleMap ->{
-            LatLng latLng=new LatLng(dealer.getLatitude(),dealer.getLongitude());
+        if (dealer == null) {
+            Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            navigateUp();
+            return;
+        }
+
+        mapReadyCallBack = googleMap -> {
+            LatLng latLng = new LatLng(dealer.getLatitude(), dealer.getLongitude());
             googleMap.addMarker(new MarkerOptions()
                     .position(latLng));
         };
-        SupportMapFragment mapFragment=SupportMapFragment.newInstance();
+        SupportMapFragment mapFragment = SupportMapFragment.newInstance();
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.dealer_profile_map,mapFragment)
+                .add(R.id.dealer_profile_map, mapFragment)
                 .commit();
         mapFragment.getMapAsync(mapReadyCallBack);
     }

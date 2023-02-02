@@ -41,6 +41,12 @@
         <action
             android:id="@+id/action_employeeHomeFragment_to_schoolProfileFragment"
             app:destination="@id/schoolProfileFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_dealerProfileFragment"
+            app:destination="@id/dealerProfileFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_orderProfileFragment"
+            app:destination="@id/orderProfileFragment" />
     </fragment>
 
     <fragment
@@ -99,6 +105,16 @@
         android:name="com.flaxeninfosoft.guptaoffset.views.profiles.SchoolProfileFragment"
         android:label="SchoolProfileFragment"
         tools:layout="@layout/fragment_school_profile"/>
+    <fragment
+        android:id="@+id/dealerProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.DealerProfileFragment"
+        android:label="DealerProfileFragment"
+        tools:layout="@layout/fragment_dealer_profile"/>
+    <fragment
+        android:id="@+id/orderProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.OrderProfileFragment"
+        android:label="OrderProfileFragment"
+        tools:layout="@layout/fragment_order_profile"/>
 
 
 </navigation>

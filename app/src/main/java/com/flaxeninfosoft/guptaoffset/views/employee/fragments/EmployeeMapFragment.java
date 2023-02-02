@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeMapBinding;
+import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -46,6 +47,12 @@ public class EmployeeMapFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_map, container, false);
 
         mapReadyCallback = googleMap -> {
+
+            viewModel.getCurrentEmployeeOrders().observe(getViewLifecycleOwner(), orders -> {
+                for (Order order: orders){
+
+                }
+            });
 
             if (ActivityCompat.checkSelfPermission(EmployeeMapFragment.this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(getContext(), "Location permission denied.", Toast.LENGTH_LONG).show();
