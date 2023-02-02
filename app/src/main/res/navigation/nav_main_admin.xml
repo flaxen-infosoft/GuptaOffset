@@ -21,10 +21,43 @@
         android:id="@+id/adminEmployeeActivityFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminEmployeeActivityFragment"
         android:label="Employee Activity"
-        tools:layout="@layout/fragment_admin_employee_activity" />
+        tools:layout="@layout/fragment_admin_employee_activity" >
+        <action
+            android:id="@+id/action_adminEmployeeActivityFragment_to_dealerProfileFragment"
+            app:destination="@id/dealerProfileFragment" />
+        <action
+            android:id="@+id/action_adminEmployeeActivityFragment_to_eodProfileFragment"
+            app:destination="@id/eodProfileFragment" />
+        <action
+            android:id="@+id/action_adminEmployeeActivityFragment_to_orderProfileFragment"
+            app:destination="@id/orderProfileFragment" />
+        <action
+            android:id="@+id/action_adminEmployeeActivityFragment_to_schoolProfileFragment"
+            app:destination="@id/schoolProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/adminAddSuperEmployeeFragment"
         tools:layout="@layout/fragment_admin_add_super_employee"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAddSuperEmployeeFragment"
         android:label="AdminAddSuperEmployeeFragment" />
+    <fragment
+        android:id="@+id/dealerProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.DealerProfileFragment"
+        android:label="DealerProfileFragment"
+        tools:layout="@layout/fragment_dealer_profile"/>
+    <fragment
+        android:id="@+id/eodProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.EodProfileFragment"
+        android:label="EodProfileFragment"
+        tools:layout="@layout/fragment_eod_profile"/>
+    <fragment
+        android:id="@+id/orderProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.OrderProfileFragment"
+        android:label="OrderProfileFragment"
+        tools:layout="@layout/fragment_order_profile"/>
+    <fragment
+        android:id="@+id/schoolProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.SchoolProfileFragment"
+        android:label="SchoolProfileFragment"
+        tools:layout="@layout/fragment_school_profile"/>
 </navigation>

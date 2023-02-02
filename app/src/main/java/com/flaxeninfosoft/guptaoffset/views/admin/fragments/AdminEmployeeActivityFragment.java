@@ -70,7 +70,7 @@ public class AdminEmployeeActivityFragment extends Fragment {
     }
 
     private void sendMessage(View view) {
-        if (!binding.getMessage().getMessage().trim().isEmpty()){
+        if (!binding.getMessage().getMessage().trim().isEmpty()) {
             binding.getMessage().setReceiverId(empId);
             viewModel.sendMessage(binding.getMessage());
             binding.setMessage(new Message());
@@ -78,7 +78,7 @@ public class AdminEmployeeActivityFragment extends Fragment {
     }
 
     private void setHistory(List<EmployeeHistory> historyList) {
-        EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList,getActivity().getApplication(), new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
+        EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList, getActivity().getApplication(), new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
             @Override
             public void onClickCard(Attendance attendance) {
 
@@ -91,22 +91,30 @@ public class AdminEmployeeActivityFragment extends Fragment {
 
             @Override
             public void onClickCard(School school) {
-
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.SCHOOL_ID, school.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminEmployeeActivityFragment_to_schoolProfileFragment, bundle);
             }
 
             @Override
             public void onClickCard(Dealer dealer) {
-
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.DEALER_ID, dealer.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminEmployeeActivityFragment_to_dealerProfileFragment, bundle);
             }
 
             @Override
             public void onClickCard(Order order) {
-
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.ORDER_ID, order.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminEmployeeActivityFragment_to_orderProfileFragment, bundle);
             }
 
             @Override
             public void onClickCard(Eod eod) {
-
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.EOD_ID, eod.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminEmployeeActivityFragment_to_eodProfileFragment, bundle);
             }
 
             @Override
@@ -126,8 +134,8 @@ public class AdminEmployeeActivityFragment extends Fragment {
         });
 
         binding.adminEmployeeActivityRecycler.setAdapter(adapter);
-        if (historyList != null && historyList.size() >1){
-            binding.adminEmployeeActivityRecycler.scrollToPosition(historyList.size()-1);
+        if (historyList != null && historyList.size() > 1) {
+            binding.adminEmployeeActivityRecycler.scrollToPosition(historyList.size() - 1);
         }
     }
 }

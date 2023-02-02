@@ -25,6 +25,7 @@ import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
 
 import java.util.List;
@@ -98,22 +99,30 @@ public class SuperEmployeeHomeFragment extends Fragment {
 
             @Override
             public void onClickCard(School school) {
-
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.SCHOOL_ID, school.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminEmployeeActivityFragment_to_schoolProfileFragment, bundle);
             }
 
             @Override
             public void onClickCard(Dealer dealer) {
-
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.DEALER_ID, dealer.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminEmployeeActivityFragment_to_dealerProfileFragment, bundle);
             }
 
             @Override
             public void onClickCard(Order order) {
-
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.ORDER_ID, order.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminEmployeeActivityFragment_to_orderProfileFragment, bundle);
             }
 
             @Override
             public void onClickCard(Eod eod) {
-
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.EOD_ID, eod.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminEmployeeActivityFragment_to_eodProfileFragment, bundle);
             }
 
             @Override
