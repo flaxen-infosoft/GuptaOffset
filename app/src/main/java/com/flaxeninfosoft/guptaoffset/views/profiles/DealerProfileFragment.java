@@ -12,9 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentDealerProfileBinding;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -63,6 +65,9 @@ public class DealerProfileFragment extends Fragment {
             navigateUp();
             return;
         }
+
+        String image=ApiEndpoints.BASE_URL+dealer.getImage();
+        Glide.with(getContext()).load(image).into(binding.dealerProfileSpecimenImage);
 
         mapReadyCallBack = googleMap -> {
             LatLng latLng = new LatLng(dealer.getLatitude(), dealer.getLongitude());
