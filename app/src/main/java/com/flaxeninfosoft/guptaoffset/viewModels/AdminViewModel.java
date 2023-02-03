@@ -17,15 +17,11 @@ public class AdminViewModel extends SuperEmployeeViewModel{
 
     private final MainRepository repo;
 
-
     private final MutableLiveData<List<Employee>> employeeList;
-
 
     public AdminViewModel(@NonNull Application application){
         super(application);
         repo = MainRepository.getInstance(application.getApplicationContext());
-
-
         employeeList = new MutableLiveData<>();
     }
 

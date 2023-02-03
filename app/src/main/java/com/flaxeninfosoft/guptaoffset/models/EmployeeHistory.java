@@ -34,10 +34,6 @@ public class EmployeeHistory {
     @Expose
     private Eod eod;
 
-    @SerializedName(Constants.IMAGE)
-    @Expose
-    private Image image;
-
     @SerializedName(Constants.LEAVE)
     @Expose
     private Leave leave;
@@ -118,14 +114,6 @@ public class EmployeeHistory {
         this.eod = eod;
     }
 
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
     public Leave getLeave() {
         return leave;
     }
@@ -172,5 +160,24 @@ public class EmployeeHistory {
 
     public void setMessage(Message message) {
         this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeHistory{" +
+                "id=" + id +
+                ", empId=" + empId +
+                ", type=" + type +
+                ", attendance=" + attendance +
+                ", dealer=" + dealer +
+                ", employee=" + employee +
+                ", eod=" + eod +
+                ", leave=" + leave +
+                ", location=" + location +
+                ", order=" + order +
+                ", payment=" + payment +
+                ", school=" + school +
+                ", message=" + message +
+                '}';
     }
 }

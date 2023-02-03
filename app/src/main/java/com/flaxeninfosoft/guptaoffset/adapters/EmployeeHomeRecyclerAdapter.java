@@ -1,7 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.adapters;
 
 import android.app.Application;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -107,7 +106,6 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         EmployeeHistory history = historyList.get(position);
-        Log.i("CRM-LOG", history.getType() + "");
         switch (history.getType()) {
             case Constants.TYPE_ADD_ATTENDANCE:
                 SingleAttendanceCardViewHolder atnViewHolder = (SingleAttendanceCardViewHolder) holder;
@@ -146,10 +144,8 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
                 if (message.getSenderId() == SharedPrefs.getInstance(application.getApplicationContext()).getCurrentEmployee().getId()) {
                     SingleMessageSentCardViewHolder sendMessageCardViewHolder = (SingleMessageSentCardViewHolder) holder;
                     sendMessageCardViewHolder.setData(history.getMessage());
-                    Log.i("CRM-LOG", history.getMessage().toString());
                 } else {
                     SingleMessageReceivedCardViewHolder receivedCardViewHolder = (SingleMessageReceivedCardViewHolder) holder;
-                    Log.i("CRM-LOG", history.getMessage().toString());
                     receivedCardViewHolder.setData(history.getMessage());
                 }
 
@@ -322,7 +318,6 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             binding.getRoot().setOnClickListener(v -> onCLickListener.onClickCard(order));
             String imageLink = ApiEndpoints.BASE_URL + order.getSnap();
 
-            Log.i("CRM-LOG", order.toString());
             Glide.with(binding.getRoot().getContext()).load(imageLink).into(binding.singleOrderCardImage);
         }
 
@@ -375,7 +370,6 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
         public void setData(PaymentRequest payment) {
             binding.setPaymentRequest(payment);
-            Log.i("CRM-LOG", payment.toString());
             binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(payment));
         }
 
@@ -397,7 +391,6 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
         public void setData(Message message) {
             binding.setMessage(message);
-            Log.i("CRM-LOG", message.toString());
             binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(message));
         }
 
@@ -419,7 +412,6 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
         public void setData(Message message) {
             binding.setMessage(message);
-            Log.i("CRM-LOG", message.toString());
             binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(message));
         }
 

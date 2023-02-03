@@ -37,7 +37,6 @@ public class EmployeeViewModel extends AndroidViewModel {
     private final MutableLiveData<Eod> currentEmployeeTodaysEod;
     private final MutableLiveData<List<Leave>> currentEmployeeLeaves;
     private final MutableLiveData<String> toastMessage;
-    private final MutableLiveData<Uri> imageUri;
     private final MutableLiveData<Location> currentLocation;
 
     public EmployeeViewModel(@NonNull Application application) {
@@ -50,7 +49,6 @@ public class EmployeeViewModel extends AndroidViewModel {
         currentEmployeeOrders = new MutableLiveData<>();
         currentEmployeeTodaysEod = new MutableLiveData<>();
         currentEmployeeLeaves = new MutableLiveData<>();
-        imageUri = new MutableLiveData<>();
         currentLocation = new MutableLiveData<>(new Location());
     }
 
@@ -359,9 +357,6 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> addEod(Eod eod) {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
-//        Location location = currentLocation.getValue();
-//        eod.setLatitude(location.getLatitude());
-//        eod.setLongitude(location.getLongitude());
 
         eod.setEmpId(getCurrentEmployeeId());
         repo.addEod(getCurrentEmployeeId(), eod, new ApiResponseListener<Eod, String>() {

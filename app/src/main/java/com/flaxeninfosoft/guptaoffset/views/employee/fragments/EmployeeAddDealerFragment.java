@@ -109,15 +109,7 @@ public class EmployeeAddDealerFragment extends Fragment {
         if (isValidFields() && isImageAdd()) {
             progressDialog.show();
             try {
-                Location location = viewModel.getCurrentEmployeeLocation().getValue();
 
-//                if (location.getLatitude() == 0 || location.getLongitude() == 0) {
-//                    Toast.makeText(getContext(), "Fetching location", Toast.LENGTH_SHORT).show();
-//                    return;
-//                } else {
-//                    binding.getDealer().setLatitude(location.getLatitude());
-//                    binding.getDealer().setLongitude(location.getLongitude());
-//                }
                 viewModel.addDealer(binding.getDealer(), image).observe(getViewLifecycleOwner(), b -> {
                     if (b) {
                         progressDialog.dismiss();

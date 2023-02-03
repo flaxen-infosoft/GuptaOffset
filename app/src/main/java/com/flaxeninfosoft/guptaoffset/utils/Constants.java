@@ -87,6 +87,9 @@ public class Constants {
     public static final String SENDER_ID = "sender_id";
     public static final String RECEIVER_ID = "receiver_id";
 
+    public static final String SPECIMEN = "specimen";
+    public static final String READING = "reading";
+
     public static final int TYPE_ADD_ATTENDANCE = 1;
     public static final int TYPE_ADD_LEAVE = 2;
     public static final int TYPE_ADD_SCHOOL = 3;
@@ -99,5 +102,4 @@ public class Constants {
     public static final int TYPE_MESSAGE_SENT = 10;
     public static final int TYPE_MESSAGE_RECEIVED = 11;
 
-    public static final String SPECIMEN = "specimen";
 }

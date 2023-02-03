@@ -137,4 +137,21 @@ public class School {
     public void setDate(String date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "School{" +
+                "id=" + id +
+                ", empId=" + empId +
+                ", name='" + name + '\'' +
+                ", strength='" + strength + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", address='" + address + '\'' +
+                ", snap='" + snap + '\'' +
+                ", specimen='" + specimen + '\'' +
+                ", contact='" + contact + '\'' +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

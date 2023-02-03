@@ -59,10 +59,7 @@ public class LocationService extends Service {
                     Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
                 locationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
-                        .addOnCompleteListener(task -> {
-//                            Toast.makeText(LocationService.this, "Updating location", Toast.LENGTH_SHORT).show();
-                            Log.i("LocationUpdate", "Updating location");
-                        });
+                        .addOnCompleteListener(task -> {});
             }
         }
     };

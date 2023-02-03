@@ -51,19 +51,13 @@ public class MainRepository {
     private final SchoolApiInterface schoolApiInterface;
     private final PaymentApiInterface paymentApiInterface;
     private final HistoryApiInterface historyApiInterface;
-
-
     private final EmployeeApiInterface employeeApiInterface;
     private final LeaveApiInterface leaveApiInterface;
     private final EodApiInterface eodApiInterface;
     private final LocationApiInterface locationApiInterface;
     private final AttendanceApiInterface attendanceApiInterface;
     private final MessageApiInterface messageApiInterface;
-
     private final OrderApiInterface orderApiInterface;
-
-    private final MutableLiveData<Location> coordinatesLiveData;
-
     private final int STATUS_NOT_FOUND = 404;
 
     private MainRepository(Context context) {
@@ -82,7 +76,6 @@ public class MainRepository {
         historyApiInterface = apiClient.create(HistoryApiInterface.class);
         messageApiInterface = apiClient.create(MessageApiInterface.class);
 
-        coordinatesLiveData = new MutableLiveData<>();
     }
 
     public static MainRepository getInstance(Context context) {
@@ -131,13 +124,6 @@ public class MainRepository {
         Call<Employee> addEmployeeCall = employeeApiInterface.addEmployee(employee);
 
         processEmployeeCall(addEmployeeCall, listener);
-    }
-
-    public void addSuperEmployee(Employee employee, ApiResponseListener<Employee, String> listener) {
-        employee.setDesignation(Constants.DESIGNATION_SUPER_EMPLOYEE);
-        Call<Employee> addSuperEmployeeCall = employeeApiInterface.addSuperEmployee(employee);
-
-        processEmployeeCall(addSuperEmployeeCall, listener);
     }
 
     public void updateEmployee(Employee employee, ApiResponseListener<Employee, String> listener) {
@@ -702,29 +688,6 @@ public class MainRepository {
                 listener.onFailure("Unable to connect to server");
             }
         });
-    }
-
-//    ----------------------------------------------------------------------------------------------
-
-    public void setCoordinates(Location coordinates) {
-        coordinatesLiveData.postValue(coordinates);
-
-        Call<Location> call = locationApiInterface.addEmployeeLocation(coordinates);
-        call.enqueue(new Callback<Location>() {
-            @Override
-            public void onResponse(@NonNull Call<Location> call, @NonNull Response<Location> response) {
-                // Hello
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<Location> call, @NonNull Throwable t) {
-                // There
-            }
-        });
-    }
-
-    public LiveData<Location> getCoordinates() {
-        return coordinatesLiveData;
     }
 
 //    ----------------------------------------------------------------------------------------------

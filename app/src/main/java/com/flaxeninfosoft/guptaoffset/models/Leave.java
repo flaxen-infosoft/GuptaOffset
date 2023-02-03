@@ -121,4 +121,18 @@ public class Leave {
             return "";
         }
     }
+
+    @Override
+    public String toString() {
+        return "Leave{" +
+                "id=" + id +
+                ", empId=" + empId +
+                ", fromDate='" + fromDate + '\'' +
+                ", toDate='" + toDate + '\'' +
+                ", applyDate='" + applyDate + '\'' +
+                ", message='" + message + '\'' +
+                ", status='" + status + '\'' +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

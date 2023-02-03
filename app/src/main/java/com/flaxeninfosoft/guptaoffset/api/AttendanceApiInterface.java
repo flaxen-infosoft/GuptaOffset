@@ -19,5 +19,5 @@ public interface AttendanceApiInterface {
 
     @POST(ApiEndpoints.PUNCH_ATTENDANCE)
     @FormUrlEncoded
-    Call<Attendance> punchAttendance(@Query("empId") Long empId,@Field("reading") String reading, @Field("snap") String encodedImage);
+    Call<Attendance> punchAttendance(@Query(Constants.EMPLOYEE_ID) Long empId,@Field(Constants.READING) String reading, @Field(Constants.IMAGE) String encodedImage);
 }

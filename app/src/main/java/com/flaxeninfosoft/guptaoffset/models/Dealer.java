@@ -102,4 +102,18 @@ public class Dealer {
     public void setDate(String date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "Dealer{" +
+                "id=" + id +
+                ", empId=" + empId +
+                ", name='" + name + '\'' +
+                ", contact='" + contact + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", image='" + image + '\'' +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

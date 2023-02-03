@@ -185,4 +185,25 @@ public class Employee {
     public void setAssignedTo(Long assignedTo) {
         this.assignedTo = assignedTo;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", designation='" + designation + '\'' +
+                ", area='" + area + '\'' +
+                ", dailyAllowance='" + dailyAllowance + '\'' +
+                ", status='" + status + '\'' +
+                ", phone='" + phone + '\'' +
+                ", salary='" + salary + '\'' +
+                ", token='" + token + '\'' +
+                ", assignedTo=" + assignedTo +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

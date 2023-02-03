@@ -125,4 +125,20 @@ public class Eod {
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
+
+    @Override
+    public String toString() {
+        return "Eod{" +
+                "id=" + id +
+                ", empId=" + empId +
+                ", date='" + date + '\'' +
+                ", schoolVisits='" + schoolVisits + '\'' +
+                ", petrolExpense='" + petrolExpense + '\'' +
+                ", otherExpense='" + otherExpense + '\'' +
+                ", expenseImage='" + expenseImage + '\'' +
+                ", dailyAllowance='" + dailyAllowance + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
 }

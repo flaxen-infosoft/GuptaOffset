@@ -171,13 +171,11 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 
     private void selectEndImage(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        intent.setType("image/*");
         endImage.launch(intent);
     }
 
     private void selectStartImage(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        intent.setType("image/*");
         startImage.launch(intent);
     }
 
