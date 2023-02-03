@@ -130,14 +130,14 @@ public class EmployeeAddEODFragment extends Fragment {
             binding.employeeAddEodPetrolExpense.setError("Enter petrol expense");
             return false;
         }
-        if (binding.getEod().getOtherExpense() == null) {
-            binding.employeeAddEodOtherExpense.setError("Enter other expenses");
-            return false;
-        }
-        if (image == null) {
-            Toast.makeText(getContext(), "Add Image", Toast.LENGTH_LONG).show();
-            return false;
-        }
+//        if (binding.getEod().getOtherExpense() == null) {
+//            binding.employeeAddEodOtherExpense.setError("Enter other expenses");
+//            return false;
+//        }
+//        if (image == null) {
+//            Toast.makeText(getContext(), "Add Image", Toast.LENGTH_LONG).show();
+//            return false;
+//        }
 
         return true;
     }

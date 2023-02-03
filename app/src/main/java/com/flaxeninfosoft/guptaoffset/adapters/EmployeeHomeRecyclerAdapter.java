@@ -1,7 +1,9 @@
 package com.flaxeninfosoft.guptaoffset.adapters;
 
 import android.app.Application;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -273,6 +275,16 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
         public void setData(Eod eod) {
             binding.setEod(eod);
+            if (eod.getOtherExpense() == null) {
+                eod.setOtherExpense("0");
+            }
+            if (eod.getExpenseImage() != null) {
+                String url = ApiEndpoints.BASE_URL + eod.getExpenseImage();
+                Log.i(Constants.LOG_TAG, url);
+                Glide.with(binding.getRoot().getContext()).load(url).into(binding.eodCardImage);
+            } else {
+                binding.eodCardImage.setVisibility(View.GONE);
+            }
             binding.getRoot().setOnClickListener(v -> onCLickListener.onClickCard(eod));
         }
 

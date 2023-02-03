@@ -1,8 +1,10 @@
 package com.flaxeninfosoft.guptaoffset.views.profiles;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -10,15 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
+import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEodProfileBinding;
-
 import com.flaxeninfosoft.guptaoffset.models.Eod;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -51,7 +49,7 @@ public class EodProfileFragment extends Fragment {
 
         long eodId = getArguments().getLong(Constants.EOD_ID, -1);
 
-        if (eodId == -1){
+        if (eodId == -1) {
             navigateUp();
         }
 
@@ -63,10 +61,17 @@ public class EodProfileFragment extends Fragment {
     private void setEod(Eod eod) {
         binding.setEod(eod);
 
-        if (eod==null){
+        if (eod == null) {
             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
             navigateUp();
             return;
+        }
+
+        if (eod.getExpenseImage() != null && !eod.getExpenseImage().isEmpty()) {
+            String image = ApiEndpoints.BASE_URL + eod.getExpenseImage();
+            Glide.with(getContext()).load(image).into(binding.eodProfileImage);
+        } else {
+            binding.eodProfileImage.setVisibility(View.GONE);
         }
 
         mapReadyCallback = googleMap -> {
