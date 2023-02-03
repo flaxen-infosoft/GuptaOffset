@@ -31,13 +31,15 @@ import java.util.List;
 public class EmployeeViewModel extends AndroidViewModel {
     private final MainRepository repo;
     private final SharedPrefs sharedPrefs;
-
     private final MutableLiveData<List<Eod>> currentEmployeeAllEods;
     private final MutableLiveData<List<Order>> currentEmployeeOrders;
     private final MutableLiveData<Eod> currentEmployeeTodaysEod;
     private final MutableLiveData<List<Leave>> currentEmployeeLeaves;
     private final MutableLiveData<String> toastMessage;
     private final MutableLiveData<Location> currentLocation;
+
+    private final MutableLiveData<Uri> addSchoolHoadingUri;
+    private final MutableLiveData<Uri> addSchoolSpecimenUri;
 
     public EmployeeViewModel(@NonNull Application application) {
         super(application);
@@ -50,6 +52,9 @@ public class EmployeeViewModel extends AndroidViewModel {
         currentEmployeeTodaysEod = new MutableLiveData<>();
         currentEmployeeLeaves = new MutableLiveData<>();
         currentLocation = new MutableLiveData<>(new Location());
+
+        addSchoolHoadingUri = new MutableLiveData<>();
+        addSchoolSpecimenUri = new MutableLiveData<>();
     }
 
 //    ----------------------------------------------------------------------------------------------
@@ -266,7 +271,7 @@ public class EmployeeViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Boolean> addSchool(School school, Uri specimenImage, Uri hoadingImage) throws IOException {
+    public LiveData<Boolean> addSchool(School school) throws IOException {
 
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
@@ -274,10 +279,10 @@ public class EmployeeViewModel extends AndroidViewModel {
         school.setLatitude(location.getLatitude());
         school.setLongitude(location.getLongitude());
 
-        String encodedImage = FileEncoder.encodeImage(getApplication().getContentResolver(), specimenImage);
+        String encodedImage = FileEncoder.encodeImage(getApplication().getContentResolver(), school.getHoadingImageUri());
         school.setSnap(encodedImage);
 
-        String encodedSpecimen = FileEncoder.encodeImage(getApplication().getContentResolver(), hoadingImage);
+        String encodedSpecimen = FileEncoder.encodeImage(getApplication().getContentResolver(), school.getSpecimenImageUri());
         school.setSpecimen(encodedSpecimen);
 
         school.setEmpId(getCurrentEmployeeId());
@@ -285,6 +290,7 @@ public class EmployeeViewModel extends AndroidViewModel {
             @Override
             public void onSuccess(School response) {
                 flag.postValue(true);
+                repo.resetNewSchool();
             }
 
             @Override
@@ -295,6 +301,26 @@ public class EmployeeViewModel extends AndroidViewModel {
         });
 
         return flag;
+    }
+
+    public void setAddSchoolHoadingUri(Uri uri){
+        try {
+            addSchoolHoadingUri.setValue(uri);
+        }catch (Exception e){
+            addSchoolHoadingUri.postValue(uri);
+        }
+    }
+
+    public void setAddSchoolSpecimenUri(Uri uri){
+        try{
+            addSchoolSpecimenUri.setValue(uri);
+        }catch (Exception e){
+            addSchoolSpecimenUri.postValue(uri);
+        }
+    }
+
+    public School getNewSchool(){
+        return repo.getNewSchool();
     }
 
     public LiveData<School> getSchoolById(Long schoolId) {
@@ -514,5 +540,13 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     public void logout() {
         SharedPrefs.getInstance(getApplication().getApplicationContext()).clearCredentials();
+    }
+
+    public void setNewSchoolSpecimenImageUri(Uri specimenImageUri) {
+        repo.getNewSchool().setSpecimenImageUri(specimenImageUri);
+    }
+
+    public void setNewSchoolHoadingImageUri(Uri uri){
+        repo.getNewSchool().setHoadingImageUri(uri);
     }
 }

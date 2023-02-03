@@ -36,6 +36,18 @@
                     android:text="@={school.name}" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="School Image"/>
+
+            <ImageView
+                android:id="@+id/employee_add_school_hoading_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_add_image" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/employee_add_school_strength"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -87,18 +99,6 @@
 
             <ImageView
                 android:id="@+id/employee_add_school_specimen_image"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_margin="8dp"
-                android:src="@drawable/ic_add_image" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="School Image"/>
-
-            <ImageView
-                android:id="@+id/employee_add_school_hoading_image"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_margin="8dp"

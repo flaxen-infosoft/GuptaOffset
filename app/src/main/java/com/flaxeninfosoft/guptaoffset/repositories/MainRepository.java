@@ -60,6 +60,8 @@ public class MainRepository {
     private final OrderApiInterface orderApiInterface;
     private final int STATUS_NOT_FOUND = 404;
 
+    private School newSchool;
+
     private MainRepository(Context context) {
         Retrofit apiClient = RetrofitClient.getClient();
 
@@ -76,6 +78,7 @@ public class MainRepository {
         historyApiInterface = apiClient.create(HistoryApiInterface.class);
         messageApiInterface = apiClient.create(MessageApiInterface.class);
 
+        newSchool = new School();
     }
 
     public static MainRepository getInstance(Context context) {
@@ -738,4 +741,12 @@ public class MainRepository {
         }
     }
 
+
+    public School getNewSchool(){
+        return newSchool;
+    }
+
+    public void resetNewSchool() {
+        newSchool = new School();
+    }
 }

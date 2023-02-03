@@ -1,5 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.models;
 
+import android.net.Uri;
+
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -49,6 +51,9 @@ public class School {
     @SerializedName(Constants.DATE)
     @Expose
     private String date;
+
+    private Uri hoadingImageUri;
+    private Uri specimenImageUri;
 
     public Long getId() {
         return id;
@@ -136,6 +141,22 @@ public class School {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public Uri getHoadingImageUri() {
+        return hoadingImageUri;
+    }
+
+    public void setHoadingImageUri(Uri hoadingImageUri) {
+        this.hoadingImageUri = hoadingImageUri;
+    }
+
+    public Uri getSpecimenImageUri() {
+        return specimenImageUri;
+    }
+
+    public void setSpecimenImageUri(Uri specimenImageUri) {
+        this.specimenImageUri = specimenImageUri;
     }
 
     @Override

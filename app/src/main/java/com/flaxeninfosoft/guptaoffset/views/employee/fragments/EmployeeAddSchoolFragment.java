@@ -3,7 +3,6 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -25,8 +24,6 @@ import androidx.navigation.Navigation;
 import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddSchoolBinding;
-import com.flaxeninfosoft.guptaoffset.models.Location;
-import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
@@ -37,8 +34,6 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
     private FragmentEmployeeAddSchoolBinding binding;
     private EmployeeViewModel viewModel;
-    private Uri specimenImage;
-    private Uri hoadingImage;
     private ProgressDialog progressDialog;
 
     public EmployeeAddSchoolFragment() {
@@ -55,7 +50,6 @@ public class EmployeeAddSchoolFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_add_school, container, false);
-        binding.setSchool(new School());
 
         binding.employeeAddSchoolBtn.setOnClickListener(this::onClickAddSchool);
         binding.employeeAddSchoolSpecimenImage.setOnClickListener(this::onClickSpecimenImage);
@@ -67,7 +61,23 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
+        binding.setSchool(viewModel.getNewSchool());
+        setHoadingImage();
+        setSpecimenImage();
+
         return binding.getRoot();
+    }
+
+    private void setHoadingImage() {
+        if (viewModel.getNewSchool().getHoadingImageUri() != null)
+            Glide.with(getContext()).load(viewModel.getNewSchool().getHoadingImageUri()).into(binding.employeeAddSchoolHoadingImage);
+
+    }
+
+    public void setSpecimenImage() {
+        if (viewModel.getNewSchool().getSpecimenImageUri() != null)
+            Glide.with(getContext()).load(viewModel.getNewSchool().getSpecimenImageUri()).into(binding.employeeAddSchoolSpecimenImage);
+
     }
 
     private void onClickHoadingImage(View view) {
@@ -76,7 +86,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
     }
 
     private void showToast(String s) {
-        if (s != null && !s.isEmpty()){
+        if (s != null && !s.isEmpty()) {
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
@@ -95,8 +105,9 @@ public class EmployeeAddSchoolFragment extends Fragment {
                         Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
                         Glide.with(getContext()).load(bitmap).into(binding.employeeAddSchoolSpecimenImage);
 
-                        specimenImage = FileEncoder.getImageUri(getContext(), bitmap);
-                    }catch (Exception e){
+                        binding.getSchool().setSpecimenImageUri(FileEncoder.getImageUri(getContext(), bitmap));
+                        viewModel.setNewSchoolSpecimenImageUri(binding.getSchool().getSpecimenImageUri());
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -111,8 +122,9 @@ public class EmployeeAddSchoolFragment extends Fragment {
                         Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
                         Glide.with(getContext()).load(bitmap).into(binding.employeeAddSchoolHoadingImage);
 
-                        hoadingImage = FileEncoder.getImageUri(getContext(), bitmap);
-                    }catch (Exception e){
+                        binding.getSchool().setHoadingImageUri(FileEncoder.getImageUri(getContext(), bitmap));
+                        viewModel.setNewSchoolHoadingImageUri(binding.getSchool().getHoadingImageUri());
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -125,8 +137,8 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
             progressDialog.show();
             try {
-                viewModel.addSchool(binding.getSchool(), specimenImage, hoadingImage).observe(getViewLifecycleOwner(), b->{
-                    if (b){
+                viewModel.addSchool(binding.getSchool()).observe(getViewLifecycleOwner(), b -> {
+                    if (b) {
                         progressDialog.dismiss();
                         clearErrors();
                         navigateUp();
@@ -140,11 +152,11 @@ public class EmployeeAddSchoolFragment extends Fragment {
     }
 
     private boolean isImageAdded() {
-        if(specimenImage ==null){
+        if (binding.getSchool().getSpecimenImageUri() == null) {
             Toast.makeText(getContext(), "Add Specimen Image", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (hoadingImage==null){
+        if (binding.getSchool().getHoadingImageUri() == null) {
             Toast.makeText(getContext(), "Add School Image", Toast.LENGTH_SHORT).show();
             return false;
         }
