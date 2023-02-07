@@ -16,8 +16,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeMapBinding;
+import com.flaxeninfosoft.guptaoffset.models.Dealer;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -51,13 +53,25 @@ public class EmployeeMapFragment extends Fragment {
 
             viewModel.getCurrentEmployeeOrders().observe(getViewLifecycleOwner(), orders -> {
                if (orders!= null){
+                   for (Order a:orders){
+                       LatLng latLng = new LatLng(a.getLatitude(), a.getLongitude());
+                       googleMap.addMarker(new MarkerOptions()
+                               .position(latLng));
 
+                       googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+                   }
                }
             });
 
             viewModel.getCurrentEmployeeDealers().observe(getViewLifecycleOwner(), dealers -> {
                 if (dealers!= null){
+                    for (Dealer d:dealers){
+                        LatLng latLng = new LatLng(d.getLatitude(), d.getLongitude());
+                        googleMap.addMarker(new MarkerOptions()
+                                .position(latLng));
 
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+                    }
                 }
             });
 
