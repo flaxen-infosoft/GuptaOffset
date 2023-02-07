@@ -4,8 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.flaxeninfosoft.guptaoffset.api.AttendanceApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.AuthApiInterface;
@@ -172,8 +170,8 @@ public class MainRepository {
 
     private void processEmployeeListCall(Call<List<Employee>> call, ApiResponseListener<List<Employee>, String> listener) {
         call.enqueue(new Callback<List<Employee>>() {
-                @Override
-                public void onResponse(@NonNull Call<List<Employee>> call, @NonNull Response<List<Employee>> response) {
+            @Override
+            public void onResponse(@NonNull Call<List<Employee>> call, @NonNull Response<List<Employee>> response) {
                 if (response.isSuccessful()) {
                     listener.onSuccess(response.body());
                 } else if (response.code() == STATUS_NOT_FOUND) {
@@ -510,6 +508,18 @@ public class MainRepository {
         processDealerCall(call, listener);
     }
 
+    public void getDealerById(Long dealerId, ApiResponseListener<Dealer, String> listener) {
+        Call<Dealer> dealerByIdCall = dealerApiInterface.getDealerById(dealerId);
+
+        processDealerCall(dealerByIdCall, listener);
+    }
+
+    public void getDealerByEmpId(Long empId, ApiResponseListener<List<Dealer>, String> listener) {
+        Call<List<Dealer>> employeeDealersCall = dealerApiInterface.getEmployeeDealers(empId);
+
+        processDealerListCall(employeeDealersCall, listener);
+    }
+
     private void processDealerCall(Call<Dealer> call, ApiResponseListener<Dealer, String> listener) {
         call.enqueue(new Callback<Dealer>() {
             @Override
@@ -534,10 +544,28 @@ public class MainRepository {
         });
     }
 
-    public void getDealerById(Long dealerId, ApiResponseListener<Dealer, String> listener) {
-        Call<Dealer> dealerByIdCall = dealerApiInterface.getDealerById(dealerId);
+    private void processDealerListCall(Call<List<Dealer>> call, ApiResponseListener<List<Dealer>, String> listener) {
+        call.enqueue(new Callback<List<Dealer>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Dealer>> call, @NonNull Response<List<Dealer>> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        listener.onSuccess(response.body());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        listener.onFailure("Invalid response from the server");
+                    }
+                } else {
+                    listener.onFailure(response.message());
+                }
+            }
 
-        processDealerCall(dealerByIdCall, listener);
+            @Override
+            public void onFailure(@NonNull Call<List<Dealer>> call, @NonNull Throwable t) {
+                t.printStackTrace();
+                listener.onFailure("Unable to connect to server");
+            }
+        });
     }
 
 
@@ -705,7 +733,7 @@ public class MainRepository {
 
     public void punchAttendance(Long empId, String reading, String encodedImage, ApiResponseListener<Attendance, String> listener) {
 
-        Log.i("CRM-LOG-1", reading +" "+empId+" "+encodedImage);
+        Log.i("CRM-LOG-1", reading + " " + empId + " " + encodedImage);
         Call<Attendance> call = attendanceApiInterface.punchAttendance(empId, reading, encodedImage);
 
         processAttendanceCall(call, listener);
@@ -742,7 +770,7 @@ public class MainRepository {
     }
 
 
-    public School getNewSchool(){
+    public School getNewSchool() {
         return newSchool;
     }
 

@@ -1,5 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,6 +19,11 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeProfileBinding;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class EmployeeProfileFragment extends Fragment {
 
@@ -96,11 +104,51 @@ public class EmployeeProfileFragment extends Fragment {
                 Navigation.findNavController(binding.getRoot()).navigateUp();
             } else {
                 binding.setEmployee(employee);
+
+                OnMapReadyCallback mapReadyCallback = googleMap -> {
+                    LatLng latLng = new LatLng(employee.getLatitude(), employee.getLongitude());
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(latLng));
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+                };
+
+
+                SupportMapFragment mapFragment = SupportMapFragment.newInstance();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.employee_profile_map, mapFragment)
+                        .commit();
+                mapFragment.getMapAsync(mapReadyCallback);
+
             }
         });
     }
 
     private void setCurrentEmployeeData() {
         binding.setEmployee(viewModel.getCurrentEmployee());
+
+        OnMapReadyCallback mapReadyCallback = googleMap -> {
+//            LatLng latLng = new LatLng(employee.getLatitude(), employee.getLongitude());
+//            googleMap.addMarker(new MarkerOptions()
+//                    .position(latLng));
+
+            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            googleMap.setMyLocationEnabled(true);
+//            LatLng latLng = new LatLng(googleMap.getMyLocation().getLatitude(), googleMap.getMyLocation().getLongitude());
+//            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+
+
+        };
+
+
+        SupportMapFragment mapFragment = SupportMapFragment.newInstance();
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.employee_profile_map, mapFragment)
+                .commit();
+        mapFragment.getMapAsync(mapReadyCallback);
     }
 }

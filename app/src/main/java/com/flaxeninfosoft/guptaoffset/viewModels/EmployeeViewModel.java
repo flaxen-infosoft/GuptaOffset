@@ -33,6 +33,7 @@ public class EmployeeViewModel extends AndroidViewModel {
     private final SharedPrefs sharedPrefs;
     private final MutableLiveData<List<Eod>> currentEmployeeAllEods;
     private final MutableLiveData<List<Order>> currentEmployeeOrders;
+    private final MutableLiveData<List<Dealer>> currentEmployeeDealers;
     private final MutableLiveData<Eod> currentEmployeeTodaysEod;
     private final MutableLiveData<List<Leave>> currentEmployeeLeaves;
     private final MutableLiveData<String> toastMessage;
@@ -49,6 +50,7 @@ public class EmployeeViewModel extends AndroidViewModel {
 
         currentEmployeeAllEods = new MutableLiveData<>();
         currentEmployeeOrders = new MutableLiveData<>();
+        currentEmployeeDealers = new MutableLiveData<>();
         currentEmployeeTodaysEod = new MutableLiveData<>();
         currentEmployeeLeaves = new MutableLiveData<>();
         currentLocation = new MutableLiveData<>(new Location());
@@ -246,6 +248,24 @@ public class EmployeeViewModel extends AndroidViewModel {
         });
 
         return flag;
+    }
+    
+    public LiveData<List<Dealer>> getCurrentEmployeeDealers(){
+        Long empId = getCurrentEmployeeId();
+        repo.getDealerByEmpId(empId, new ApiResponseListener<List<Dealer>, String>() {
+            @Override
+            public void onSuccess(List<Dealer> response) {
+                currentEmployeeDealers.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                currentEmployeeDealers.postValue(null);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return currentEmployeeDealers;
     }
 
 //    ----------------------------------------------------------------------------------------------

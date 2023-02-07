@@ -56,6 +56,7 @@ public class ApiEndpoints {
     public static final String ADD_DEALER = "dealer/addDealer.php";
 
     public static  final String GET_DEALER_BY_ID="dealer/getDealerById.php";
+    public static final String GET_EMPLOYEE_DEALER = "dealer/getDealerByEmployee.php";
 
 //    ----------------------------------------------------------------------------------------------
 

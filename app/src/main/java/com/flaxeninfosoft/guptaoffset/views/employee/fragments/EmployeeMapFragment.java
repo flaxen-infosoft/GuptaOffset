@@ -55,6 +55,12 @@ public class EmployeeMapFragment extends Fragment {
                }
             });
 
+            viewModel.getCurrentEmployeeDealers().observe(getViewLifecycleOwner(), dealers -> {
+                if (dealers!= null){
+
+                }
+            });
+
             if (ActivityCompat.checkSelfPermission(EmployeeMapFragment.this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(getContext(), "Location permission denied.", Toast.LENGTH_LONG).show();
                 return;

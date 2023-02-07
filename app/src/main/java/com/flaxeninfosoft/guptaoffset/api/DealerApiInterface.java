@@ -5,6 +5,8 @@ import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -18,5 +20,8 @@ public interface DealerApiInterface {
 
     @GET(ApiEndpoints.GET_DEALER_BY_ID)
     Call<Dealer>getDealerById(@Query(Constants.DEALER_ID) Long dealerId);
+
+    @GET(ApiEndpoints.GET_EMPLOYEE_DEALER)
+    Call<List<Dealer>> getEmployeeDealers(@Query(Constants.EMPLOYEE_ID) Long empId);
 
 }

@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +25,6 @@ import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddAttendanceBinding;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
-import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
@@ -82,7 +80,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
         if (attendance == null) {
             attendance = new Attendance();
             attendance.setPunchStatus(0);
-        }else{
+        } else {
             binding.setAttendance(attendance);
         }
 
@@ -105,6 +103,10 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                     clearErrors();
                     if (image == null) {
                         Toast.makeText(getContext(), "Insert image.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (binding.getAttendance().getStartMeter() == null) {
+                        binding.employeeAddAttendanceStartMeter.setError("**Enter Starting Meter");
                         return;
                     }
 
@@ -138,6 +140,12 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                         return;
                     }
 
+                    if (binding.getAttendance().getEndMeter() == null) {
+                        binding.employeeAddAttendanceEndMeter.setError("**Enter Ending Meter");
+                        return;
+                    }
+
+                    binding.employeeAddAttendanceBtn.setEnabled(false);
                     punch(binding.getAttendance().getEndMeter(), image);
 
                 });
@@ -216,31 +224,19 @@ public class EmployeeAddAttendanceFragment extends Fragment {
     );
 
     private void punch(String reading, Uri uri) {
-
+        binding.employeeAddAttendanceBtn.setEnabled(false);
         try {
             viewModel.punchAttendance(reading, uri).observe(getViewLifecycleOwner(), attendance -> {
-                if(validFilds()){
-                    if (attendance != null) {
-                        navigateUp();
-                    }
+                if (attendance != null) {
+                    navigateUp();
+                } else {
+                    binding.employeeAddAttendanceBtn.setEnabled(true);
                 }
             });
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private boolean validFilds() {
-        if(binding.getAttendance().getStartMeter()==null){
-            binding.employeeAddAttendanceStartMeter.setError("**Enter Starting Meter");
-            return false;
-        }
-        if(binding.getAttendance().getEndMeter()==null){
-            binding.employeeAddAttendanceEndMeter.setError("**Enter Ending Meter");
-            return false;
-        }
-        return true;
     }
 
     private void navigateUp() {

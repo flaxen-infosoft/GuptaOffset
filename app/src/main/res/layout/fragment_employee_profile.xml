@@ -104,6 +104,12 @@
                     android:text="@={employee.area}" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <fragment
+                android:id="@+id/employee_profile_map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/employee_profile_assigned_to"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
