@@ -30,6 +30,8 @@ import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
+import java.io.IOException;
+
 public class EmployeeAddEODFragment extends Fragment {
 
     private FragmentEmployeeAddEODBinding binding;
@@ -100,14 +102,18 @@ public class EmployeeAddEODFragment extends Fragment {
         clearErrors();
         if (isValidFields()) {
             progressDialog.show();
-            viewModel.addEod(binding.getEod()).observe(getViewLifecycleOwner(), b -> {
-                if (b) {
-                    progressDialog.dismiss();
-                    navigateUp();
-                } else {
-                    progressDialog.dismiss();
-                }
-            });
+            try {
+                viewModel.addEod(binding.getEod(), image).observe(getViewLifecycleOwner(), b -> {
+                    if (b) {
+                        progressDialog.dismiss();
+                        navigateUp();
+                    } else {
+                        progressDialog.dismiss();
+                    }
+                });
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

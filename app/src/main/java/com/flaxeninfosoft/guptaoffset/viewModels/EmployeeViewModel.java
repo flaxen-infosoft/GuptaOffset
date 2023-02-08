@@ -401,11 +401,12 @@ public class EmployeeViewModel extends AndroidViewModel {
         return currentEmployeeTodaysEod;
     }
 
-    public LiveData<Boolean> addEod(Eod eod) {
+    public LiveData<Boolean> addEod(Eod eod, Uri image) throws IOException {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
         eod.setEmpId(getCurrentEmployeeId());
-        repo.addEod(getCurrentEmployeeId(), eod, new ApiResponseListener<Eod, String>() {
+        eod.setExpenseImage(FileEncoder.encodeImage(getApplication().getContentResolver(), image));
+         repo.addEod(getCurrentEmployeeId(), eod, new ApiResponseListener<Eod, String>() {
             @Override
             public void onSuccess(Eod response) {
                 flag.postValue(true);

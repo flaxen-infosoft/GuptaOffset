@@ -286,6 +286,9 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         }
 
         public void setData(Eod eod) {
+            if (eod==null){
+                return;
+            }
             binding.setEod(eod);
             if (eod.getOtherExpense() == null) {
                 eod.setOtherExpense("0");
@@ -293,9 +296,9 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             if (eod.getExpenseImage() != null) {
                 String url = ApiEndpoints.BASE_URL + eod.getExpenseImage();
                 Log.i(Constants.LOG_TAG, url);
-                Glide.with(binding.getRoot().getContext()).load(url).into(binding.eodCardImage);
+                Glide.with(binding.getRoot().getContext()).load(url).into(binding.eodCardExpenseImage);
             } else {
-                binding.eodCardImage.setVisibility(View.GONE);
+                binding.eodCardExpenseImage.setVisibility(View.GONE);
             }
             binding.getRoot().setOnClickListener(v -> onCLickListener.onClickCard(eod));
         }
