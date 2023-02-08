@@ -1,8 +1,13 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -16,6 +21,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -26,8 +32,15 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddSchoolBinding;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 
 public class EmployeeAddSchoolFragment extends Fragment {
@@ -64,8 +77,43 @@ public class EmployeeAddSchoolFragment extends Fragment {
         binding.setSchool(viewModel.getNewSchool());
         setHoadingImage();
         setSpecimenImage();
+        setAddress();
 
         return binding.getRoot();
+    }
+
+    private void setAddress() {
+        FusedLocationProviderClient mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
+
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mFusedLocationClient.getLocationAvailability().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                mFusedLocationClient.getLastLocation().addOnCompleteListener(fusedLocationTask -> {
+                    Location location = fusedLocationTask.getResult();
+                    if (location != null) {
+
+                        try {
+                            Geocoder geocoder = new Geocoder(EmployeeAddSchoolFragment.this.getContext(), Locale.getDefault());
+                            // initialising address list
+                            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                            Address currentAddress = addresses.get(0);
+                            binding.getSchool().setAddress(currentAddress.getAddressLine(0));
+                            binding.employeeAddSchoolAddress.getEditText().setText(currentAddress.getAddressLine(0));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+
     }
 
     private void setHoadingImage() {
