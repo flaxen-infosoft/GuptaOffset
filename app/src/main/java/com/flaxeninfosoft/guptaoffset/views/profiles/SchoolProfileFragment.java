@@ -78,7 +78,7 @@ public class SchoolProfileFragment extends Fragment {
 
 
         mapReadyCallback = googleMap -> {
-            LatLng latLng = new LatLng(school.getLatitude(), school.getLongitude());
+            LatLng latLng = new LatLng(school.getLocation().getLatitude(), school.getLocation().getLongitude());
             googleMap.addMarker(new MarkerOptions()
                     .position(latLng));
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));

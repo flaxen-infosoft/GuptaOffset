@@ -14,14 +14,6 @@ public class Order {
     @Expose
     private Long empId;
 
-    @SerializedName(Constants.LATITUDE)
-    @Expose
-    private Double latitude;
-
-    @SerializedName(Constants.LONGITUDE)
-    @Expose
-    private Double longitude;
-
     @SerializedName(Constants.IMAGE)
     @Expose
     private String snap;
@@ -29,6 +21,10 @@ public class Order {
     @SerializedName(Constants.DATE)
     @Expose
     private String date;
+
+    @SerializedName(Constants.LOCATION)
+    @Expose
+    private Location location;
 
     public Long getId() {
         return id;
@@ -44,22 +40,6 @@ public class Order {
 
     public void setEmpId(Long empId) {
         this.empId = empId;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
     }
 
     public String getSnap() {
@@ -78,15 +58,22 @@ public class Order {
         this.date = date;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
                 ", empId=" + empId +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
                 ", snap='" + snap + '\'' +
                 ", date='" + date + '\'' +
+                ", location=" + location +
                 '}';
     }
 }

@@ -33,6 +33,10 @@ public class Location {
     @Expose
     private double longitude;
 
+    @SerializedName(Constants.ADDRESS)
+    @Expose
+    private String address;
+
     public Long getId() {
         return id;
     }
@@ -81,6 +85,14 @@ public class Location {
         this.longitude = longitude;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Location{" +
@@ -90,6 +102,7 @@ public class Location {
                 ", time=" + time +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

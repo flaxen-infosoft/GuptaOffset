@@ -102,4 +102,6 @@ public class Constants {
     public static final int TYPE_MESSAGE_SENT = 10;
     public static final int TYPE_MESSAGE_RECEIVED = 11;
 
+    public static final String START_ADDRESS = "start_address";
+    public static final String END_ADDRESS = "end_address";
 }

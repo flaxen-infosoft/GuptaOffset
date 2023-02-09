@@ -54,25 +54,13 @@ public class Employee {
     @Expose
     private Long assignedTo;
 
-    @SerializedName(Constants.LATITUDE)
-    @Expose
-    private Double latitude;
-
-    @SerializedName(Constants.LONGITUDE)
-    @Expose
-    private Double longitude;
-
     @SerializedName(Constants.DATE)
     @Expose
     private String date;
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
+    @SerializedName(Constants.LOCATION)
+    @Expose
+    private String currentLocation;
 
     public Long getId() {
         return id;
@@ -162,28 +150,28 @@ public class Employee {
         this.token = token;
     }
 
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
     public Long getAssignedTo() {
         return assignedTo;
     }
 
     public void setAssignedTo(Long assignedTo) {
         this.assignedTo = assignedTo;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(String currentLocation) {
+        this.currentLocation = currentLocation;
     }
 
     @Override
@@ -201,9 +189,8 @@ public class Employee {
                 ", salary='" + salary + '\'' +
                 ", token='" + token + '\'' +
                 ", assignedTo=" + assignedTo +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
                 ", date='" + date + '\'' +
+                ", currentLocation='" + currentLocation + '\'' +
                 '}';
     }
 }

@@ -71,7 +71,7 @@ public class DealerProfileFragment extends Fragment {
         Glide.with(getContext()).load(image).into(binding.dealerProfileSpecimenImage);
 
         mapReadyCallBack = googleMap -> {
-            LatLng latLng = new LatLng(dealer.getLatitude(), dealer.getLongitude());
+            LatLng latLng = new LatLng(dealer.getLocation().getLatitude(), dealer.getLocation().getLongitude());
             googleMap.addMarker(new MarkerOptions()
                     .position(latLng));
 

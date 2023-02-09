@@ -75,7 +75,7 @@ public class EodProfileFragment extends Fragment {
         }
 
         mapReadyCallback = googleMap -> {
-            LatLng latLng = new LatLng(eod.getLatitude(), eod.getLongitude());
+            LatLng latLng = new LatLng(eod.getLocation().getLatitude(), eod.getLocation().getLongitude());
             googleMap.addMarker(new MarkerOptions()
                     .position(latLng));
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));

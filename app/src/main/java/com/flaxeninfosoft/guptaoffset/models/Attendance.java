@@ -40,9 +40,17 @@ public class Attendance {
     @Expose
     private String startMeter;
 
+    @SerializedName(Constants.START_LOCATION)
+    @Expose
+    private Location startLocation;
+
     @SerializedName(Constants.END_METER)
     @Expose
     private String endMeter;
+
+    @SerializedName(Constants.END_LOCATION)
+    @Expose
+    private Location endLocation;
 
     @SerializedName(Constants.TOTAL_DISTANCE)
     @Expose
@@ -116,12 +124,28 @@ public class Attendance {
         this.startMeter = startMeter;
     }
 
+    public Location getStartLocation() {
+        return startLocation;
+    }
+
+    public void setStartLocation(Location startLocation) {
+        this.startLocation = startLocation;
+    }
+
     public String getEndMeter() {
         return endMeter;
     }
 
     public void setEndMeter(String endMeter) {
         this.endMeter = endMeter;
+    }
+
+    public Location getEndLocation() {
+        return endLocation;
+    }
+
+    public void setEndLocation(Location endLocation) {
+        this.endLocation = endLocation;
     }
 
     public String getTotalDistance() {

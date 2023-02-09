@@ -22,14 +22,6 @@ public class Dealer {
     @Expose
     private String contact;
 
-    @SerializedName(Constants.LATITUDE)
-    @Expose
-    private Double latitude;
-
-    @SerializedName(Constants.LONGITUDE)
-    @Expose
-    private Double longitude;
-
     @SerializedName(Constants.IMAGE)
     @Expose
     private String image;
@@ -38,6 +30,9 @@ public class Dealer {
     @Expose
     private String date;
 
+    @SerializedName(Constants.LOCATION)
+    @Expose
+    private Location location;
 
     public Long getId() {
         return id;
@@ -71,22 +66,6 @@ public class Dealer {
         this.contact = contact;
     }
 
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
     public String getImage() {
         return image;
     }
@@ -103,6 +82,14 @@ public class Dealer {
         this.date = date;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     @Override
     public String toString() {
         return "Dealer{" +
@@ -110,10 +97,9 @@ public class Dealer {
                 ", empId=" + empId +
                 ", name='" + name + '\'' +
                 ", contact='" + contact + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
                 ", image='" + image + '\'' +
                 ", date='" + date + '\'' +
+                ", location=" + location +
                 '}';
     }
 }

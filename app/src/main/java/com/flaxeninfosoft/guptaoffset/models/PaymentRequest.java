@@ -28,6 +28,10 @@ public class PaymentRequest {
     @Expose
     private String date;
 
+    @SerializedName(Constants.LOCATION)
+    @Expose
+    private Location location;
+
     public Long getId() {
         return id;
     }
@@ -68,6 +72,14 @@ public class PaymentRequest {
         this.date = date;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     @Override
     public String toString() {
         return "PaymentRequest{" +
@@ -76,6 +88,7 @@ public class PaymentRequest {
                 ", amount='" + amount + '\'' +
                 ", status='" + status + '\'' +
                 ", date='" + date + '\'' +
+                ", location=" + location +
                 '}';
     }
 }

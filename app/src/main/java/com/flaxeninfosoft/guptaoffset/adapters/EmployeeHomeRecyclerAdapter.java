@@ -203,13 +203,14 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             String timeInImage = ApiEndpoints.BASE_URL + attendance.getSnapIn();
             Glide.with(binding.getRoot().getContext()).load(timeInImage).into(binding.singleAttendanceCardTimeInImage);
 
+            String timeOutImage = ApiEndpoints.BASE_URL + attendance.getSnapOut();
+            Glide.with(binding.getRoot().getContext()).load(timeOutImage).into(binding.singleAttendanceCardTimeOutImage);
+
             switch (attendance.getPunchStatus()) {
                 case 0:
                     binding.attendanceCardStartTime.setVisibility(View.GONE);
                     binding.attendanceCardEndTime.setVisibility(View.GONE);
                 case 1:
-                    String timeOutImage = ApiEndpoints.BASE_URL + attendance.getSnapOut();
-                    Glide.with(binding.getRoot().getContext()).load(timeOutImage).into(binding.singleAttendanceCardTimeOutImage);
                     binding.attendanceCardStartTime.setVisibility(View.VISIBLE);
                     binding.attendanceCardEndTime.setVisibility(View.GONE);
                     break;

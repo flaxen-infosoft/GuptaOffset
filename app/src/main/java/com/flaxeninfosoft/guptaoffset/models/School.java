@@ -24,18 +24,6 @@ public class School {
     @Expose
     private String strength;
 
-    @SerializedName(Constants.LATITUDE)
-    @Expose
-    private Double latitude;
-
-    @SerializedName(Constants.LONGITUDE)
-    @Expose
-    private Double longitude;
-
-    @SerializedName(Constants.ADDRESS)
-    @Expose
-    private String address;
-
     @SerializedName(Constants.IMAGE)
     @Expose
     private String snap;
@@ -51,6 +39,10 @@ public class School {
     @SerializedName(Constants.DATE)
     @Expose
     private String date;
+
+    @SerializedName(Constants.ADDRESS)
+    @Expose
+    private Location location;
 
     private Uri hoadingImageUri;
     private Uri specimenImageUri;
@@ -87,30 +79,6 @@ public class School {
         this.strength = strength;
     }
 
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getSnap() {
         return snap;
     }
@@ -143,6 +111,14 @@ public class School {
         this.date = date;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     public Uri getHoadingImageUri() {
         return hoadingImageUri;
     }
@@ -166,13 +142,13 @@ public class School {
                 ", empId=" + empId +
                 ", name='" + name + '\'' +
                 ", strength='" + strength + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", address='" + address + '\'' +
                 ", snap='" + snap + '\'' +
                 ", specimen='" + specimen + '\'' +
                 ", contact='" + contact + '\'' +
                 ", date='" + date + '\'' +
+                ", location=" + location +
+                ", hoadingImageUri=" + hoadingImageUri +
+                ", specimenImageUri=" + specimenImageUri +
                 '}';
     }
 }

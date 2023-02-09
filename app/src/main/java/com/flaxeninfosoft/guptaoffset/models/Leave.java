@@ -41,17 +41,9 @@ public class Leave {
     @Expose
     private String status;
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    @SerializedName(Constants.DATE)
+    @SerializedName(Constants.LOCATION)
     @Expose
-    private String date;
+    private Location location;
 
     public Long getId() {
         return id;
@@ -109,30 +101,24 @@ public class Leave {
         this.status = status;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     @BindingAdapter("android:text")
-    public static String setText(TextView textView, Date date){
-        if (date != null){
+    public static String setText(TextView textView, Date date) {
+        if (date != null) {
             Log.d("CRM-LOG", date.toString());
             String dateText = date.toString();
             textView.setText(dateText);
             return dateText;
-        }else{
+        } else {
             Log.d("CRM-LOG", "Date is null");
             return "";
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Leave{" +
-                "id=" + id +
-                ", empId=" + empId +
-                ", fromDate='" + fromDate + '\'' +
-                ", toDate='" + toDate + '\'' +
-                ", applyDate='" + applyDate + '\'' +
-                ", message='" + message + '\'' +
-                ", status='" + status + '\'' +
-                ", date='" + date + '\'' +
-                '}';
     }
 }

@@ -69,7 +69,7 @@ public class OrderProfileFragment extends Fragment {
         Glide.with(getContext()).load(image).into(binding.orderProfileSpecimenImage);
 
         mapReadyCallback = googleMap -> {
-            LatLng latLng = new LatLng(order.getLatitude(), order.getLongitude());
+            LatLng latLng = new LatLng(order.getLocation().getLatitude(), order.getLocation().getLongitude());
             googleMap.addMarker(new MarkerOptions()
                     .position(latLng));
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));

@@ -12,6 +12,8 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -28,12 +30,15 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddSchoolFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class LocationService extends Service {
@@ -91,7 +96,18 @@ public class LocationService extends Service {
                 location.setLatitude(locationResult.getLastLocation().getLatitude());
                 location.setLongitude(locationResult.getLastLocation().getLongitude());
 
-                viewModel.addCurrentEmployeeLocation(location);
+                try {
+                    Geocoder geocoder = new Geocoder(getApplication().getApplicationContext(), Locale.getDefault());
+                    // initialising address list
+                    List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                    Address currentAddress = addresses.get(0);
+                    location.setAddress(currentAddress.getAddressLine(0));
+
+                    viewModel.addCurrentEmployeeLocation(location);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         };
     }

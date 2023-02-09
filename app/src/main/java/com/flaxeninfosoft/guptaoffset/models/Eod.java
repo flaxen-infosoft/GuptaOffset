@@ -38,13 +38,9 @@ public class Eod {
     @Expose
     private String dailyAllowance;
 
-    @SerializedName(Constants.LATITUDE)
+    @SerializedName(Constants.LOCATION)
     @Expose
-    private Double latitude;
-
-    @SerializedName(Constants.LONGITUDE)
-    @Expose
-    private Double longitude;
+    private Location location;
 
     public Long getId() {
         return id;
@@ -110,20 +106,12 @@ public class Eod {
         this.dailyAllowance = dailyAllowance;
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     @Override
@@ -137,8 +125,7 @@ public class Eod {
                 ", otherExpense='" + otherExpense + '\'' +
                 ", expenseImage='" + expenseImage + '\'' +
                 ", dailyAllowance='" + dailyAllowance + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
+                ", location=" + location +
                 '}';
     }
 }

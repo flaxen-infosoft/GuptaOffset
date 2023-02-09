@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:hint="Address"
-                    android:text="@={school.address}" />
+                    android:text="@={school.location.address}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

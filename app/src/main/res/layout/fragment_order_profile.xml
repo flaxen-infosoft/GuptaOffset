@@ -37,6 +37,21 @@
                     android:text="@={order.date}" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/order_profile_address_til"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="Address"
+                    android:text="@={order.location.address}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <ImageView
                 android:id="@+id/order_profile_specimen_image"
                 android:layout_width="match_parent"
