@@ -104,4 +104,5 @@ public class Constants {
 
     public static final String START_ADDRESS = "start_address";
     public static final String END_ADDRESS = "end_address";
+    public static final String EXPENSE_DESCRIPTION = "expense_description";
 }

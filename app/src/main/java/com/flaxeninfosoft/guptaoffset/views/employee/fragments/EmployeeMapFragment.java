@@ -53,8 +53,8 @@ public class EmployeeMapFragment extends Fragment {
 
             viewModel.getCurrentEmployeeOrders().observe(getViewLifecycleOwner(), orders -> {
                if (orders!= null){
-                   for (Order a:orders){
-                       LatLng latLng = new LatLng(a.getLatitude(), a.getLongitude());
+                   for (Order order:orders){
+                       LatLng latLng = new LatLng(order.getLocation().getLatitude(), order.getLocation().getLongitude());
                        googleMap.addMarker(new MarkerOptions()
                                .position(latLng));
 
@@ -65,8 +65,8 @@ public class EmployeeMapFragment extends Fragment {
 
             viewModel.getCurrentEmployeeDealers().observe(getViewLifecycleOwner(), dealers -> {
                 if (dealers!= null){
-                    for (Dealer d:dealers){
-                        LatLng latLng = new LatLng(d.getLatitude(), d.getLongitude());
+                    for (Dealer dealer:dealers){
+                        LatLng latLng = new LatLng(dealer.getLocation().getLatitude(), dealer.getLocation().getLongitude());
                         googleMap.addMarker(new MarkerOptions()
                                 .position(latLng));
 

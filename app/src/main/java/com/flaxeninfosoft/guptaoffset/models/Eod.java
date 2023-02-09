@@ -30,6 +30,10 @@ public class Eod {
     @Expose
     private String otherExpense;
 
+    @SerializedName(Constants.EXPENSE_DESCRIPTION)
+    @Expose
+    private String expenseDescription;
+
     @SerializedName(Constants.IMAGE)
     @Expose
     private String expenseImage;
@@ -41,6 +45,10 @@ public class Eod {
     @SerializedName(Constants.LOCATION)
     @Expose
     private Location location;
+
+    public Eod() {
+        location = new Location();
+    }
 
     public Long getId() {
         return id;
@@ -88,6 +96,14 @@ public class Eod {
 
     public void setOtherExpense(String otherExpense) {
         this.otherExpense = otherExpense;
+    }
+
+    public String getExpenseDescription() {
+        return expenseDescription;
+    }
+
+    public void setExpenseDescription(String expenseDescription) {
+        this.expenseDescription = expenseDescription;
     }
 
     public String getExpenseImage() {

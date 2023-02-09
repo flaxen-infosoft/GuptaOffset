@@ -134,7 +134,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/single_school_card_address"
-                        android:text="@{school.address}"
+                        android:text="@{school.location.address}"
                         android:textColor="#222"
                         android:textSize="17sp" />
                 </LinearLayout>

@@ -26,6 +26,10 @@ public class Order {
     @Expose
     private Location location;
 
+    public Order() {
+        location = new Location();
+    }
+
     public Long getId() {
         return id;
     }

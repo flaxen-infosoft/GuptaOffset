@@ -74,6 +74,27 @@
                             android:textSize="17sp" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="start address : "
+                            android:textColor="#222"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{attendance.startLocation.address}"
+                            android:textColor="#222"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
                     <ImageView
                         android:id="@+id/single_attendance_card_time_in_image"
                         android:layout_width="match_parent"
@@ -110,6 +131,28 @@
                           android:textColor="#222"
                           android:textSize="17sp" />
                   </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="8dp">
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="end address : "
+                          android:textColor="#222"
+                          android:textSize="18sp"
+                          android:textStyle="bold" />
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@{attendance.endLocation.address}"
+                          android:textColor="#222"
+                          android:textSize="17sp" />
+                  </LinearLayout>
+
                   <ImageView
                       android:id="@+id/single_attendance_card_time_out_image"
                       android:layout_width="match_parent"

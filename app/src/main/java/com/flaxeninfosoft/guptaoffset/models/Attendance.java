@@ -60,6 +60,11 @@ public class Attendance {
     @Expose
     private int punchStatus;
 
+    public Attendance() {
+        startLocation = new Location();
+        endLocation = new Location();
+    }
+
     public Long getId() {
         return id;
     }

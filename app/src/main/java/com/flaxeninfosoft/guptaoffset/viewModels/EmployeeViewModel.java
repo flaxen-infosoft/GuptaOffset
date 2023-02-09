@@ -134,9 +134,6 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> addOrder(Order order, Uri uri) throws IOException {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
-        Location location = currentLocation.getValue();
-        order.setLatitude(location.getLatitude());
-        order.setLongitude(location.getLongitude());
         order.setEmpId(getCurrentEmployeeId());
         order.setSnap(FileEncoder.encodeImage(getApplication().getContentResolver(), uri));
         repo.addOrder(order, new ApiResponseListener<Order, String>() {
@@ -211,8 +208,6 @@ public class EmployeeViewModel extends AndroidViewModel {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
         Location location = currentLocation.getValue();
-        dealer.setLatitude(location.getLatitude());
-        dealer.setLongitude(location.getLongitude());
         dealer.setEmpId(getCurrentEmployeeId());
         dealer.setImage(FileEncoder.encodeImage(getApplication().getContentResolver(), uri));
         repo.addDealer(getCurrentEmployeeId(), dealer, new ApiResponseListener<Dealer, String>() {
@@ -295,9 +290,6 @@ public class EmployeeViewModel extends AndroidViewModel {
 
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
-        Location location = currentLocation.getValue();
-        school.setLatitude(location.getLatitude());
-        school.setLongitude(location.getLongitude());
 
         String encodedImage = FileEncoder.encodeImage(getApplication().getContentResolver(), school.getHoadingImageUri());
         school.setSnap(encodedImage);

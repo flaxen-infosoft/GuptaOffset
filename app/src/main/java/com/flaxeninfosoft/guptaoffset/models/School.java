@@ -47,6 +47,10 @@ public class School {
     private Uri hoadingImageUri;
     private Uri specimenImageUri;
 
+    public School() {
+        location = new Location();
+    }
+
     public Long getId() {
         return id;
     }

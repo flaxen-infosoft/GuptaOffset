@@ -32,6 +32,10 @@ public class PaymentRequest {
     @Expose
     private Location location;
 
+    public PaymentRequest() {
+        location = new Location();
+    }
+
     public Long getId() {
         return id;
     }

@@ -104,7 +104,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
                             // initialising address list
                             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                             Address currentAddress = addresses.get(0);
-                            binding.getSchool().setAddress(currentAddress.getAddressLine(0));
+                            binding.getSchool().getLocation().setAddress(currentAddress.getAddressLine(0));
                             binding.employeeAddSchoolAddress.getEditText().setText(currentAddress.getAddressLine(0));
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -225,7 +225,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
             binding.employeeAddSchoolStrength.setError("**Enter strength");
             return false;
         }
-        if (binding.getSchool().getAddress() == null || binding.getSchool().getAddress().trim().isEmpty()) {
+        if (binding.getSchool().getLocation().getAddress() == null || binding.getSchool().getLocation().getAddress().trim().isEmpty()) {
             binding.employeeAddSchoolAddress.setError("**Enter address");
             return false;
         }

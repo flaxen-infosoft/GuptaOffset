@@ -46,6 +46,21 @@
                 android:text="@={dealer.contact}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/employee_add_dealer_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                android:inputType="phone"
+                android:text="@={dealer.location.address}"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
         <ImageView
             android:id="@+id/employee_add_dealer_image"
             android:layout_width="match_parent"

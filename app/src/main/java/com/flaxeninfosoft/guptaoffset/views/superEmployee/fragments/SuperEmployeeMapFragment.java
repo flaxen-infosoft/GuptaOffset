@@ -46,8 +46,8 @@ public class SuperEmployeeMapFragment extends Fragment {
             viewModel.getCurrentSuperEmployeeEmployees().observe(getViewLifecycleOwner(), employees -> {
                 if (employees != null) {
                     for (Employee e : employees) {
-                        if (e.getLatitude() != 0d && e.getLongitude() != 0d) {
-                            LatLng latLng = new LatLng(e.getLatitude(), e.getLongitude());
+                        if (e.getCurrentLocation().getLatitude() != 0d && e.getCurrentLocation().getLongitude() != 0d) {
+                            LatLng latLng = new LatLng(e.getCurrentLocation().getLatitude(), e.getCurrentLocation().getLongitude());
                             googleMap.addMarker(new MarkerOptions()
                                     .position(latLng)
                                     .title(e.getName()));

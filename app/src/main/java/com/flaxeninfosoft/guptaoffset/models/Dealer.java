@@ -34,6 +34,10 @@ public class Dealer {
     @Expose
     private Location location;
 
+    public Dealer() {
+        location = new Location();
+    }
+
     public Long getId() {
         return id;
     }

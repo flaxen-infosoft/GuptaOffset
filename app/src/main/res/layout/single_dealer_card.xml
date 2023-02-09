@@ -115,6 +115,27 @@
                         android:textSize="17sp" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address : "
+                        android:textColor="#222"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{dealer.location.address}"
+                        android:textColor="#222"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
                 <ImageView
                     android:id="@+id/single_dealer_card_image"
                     android:layout_width="match_parent"
@@ -123,17 +144,9 @@
                     android:src="@drawable/person_vector"
                     android:scaleType="fitXY" />
 
-            </LinearLayout>
 
-            <TextClock
-                android:id="@+id/msg_time_payment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/dealer_card"
-                android:layout_toEndOf="@+id/dealer_card"
-                android:text="1:30 P.M."
-                android:textColor="#888"
-                android:layout_toRightOf="@+id/dealer_card" />
+
+            </LinearLayout>
 
 
         </RelativeLayout>

@@ -60,7 +60,11 @@ public class Employee {
 
     @SerializedName(Constants.LOCATION)
     @Expose
-    private String currentLocation;
+    private Location currentLocation;
+
+    public Employee() {
+        currentLocation = new Location();
+    }
 
     public Long getId() {
         return id;
@@ -166,11 +170,11 @@ public class Employee {
         this.date = date;
     }
 
-    public String getCurrentLocation() {
+    public Location getCurrentLocation() {
         return currentLocation;
     }
 
-    public void setCurrentLocation(String currentLocation) {
+    public void setCurrentLocation(Location currentLocation) {
         this.currentLocation = currentLocation;
     }
 

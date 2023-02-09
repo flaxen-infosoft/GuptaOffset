@@ -106,7 +106,7 @@ public class EmployeeProfileFragment extends Fragment {
                 binding.setEmployee(employee);
 
                 OnMapReadyCallback mapReadyCallback = googleMap -> {
-                    LatLng latLng = new LatLng(employee.getLatitude(), employee.getLongitude());
+                    LatLng latLng = new LatLng(employee.getCurrentLocation().getLatitude(), employee.getCurrentLocation().getLongitude());
                     googleMap.addMarker(new MarkerOptions()
                             .position(latLng));
                     googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));

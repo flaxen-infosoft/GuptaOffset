@@ -45,6 +45,10 @@ public class Leave {
     @Expose
     private Location location;
 
+    public Leave() {
+        location = new Location();
+    }
+
     public Long getId() {
         return id;
     }
