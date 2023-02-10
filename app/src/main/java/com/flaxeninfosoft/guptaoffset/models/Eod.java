@@ -26,6 +26,10 @@ public class Eod {
     @Expose
     private String petrolExpense;
 
+    @SerializedName(Constants.PETROL_EXPENSE_IMAGE)
+    @Expose
+    private String petrolExpenseImage;
+
     @SerializedName(Constants.OTHER_EXPENSE)
     @Expose
     private String otherExpense;
@@ -34,7 +38,7 @@ public class Eod {
     @Expose
     private String expenseDescription;
 
-    @SerializedName(Constants.IMAGE)
+    @SerializedName(Constants.EXPENSE_IMAGE)
     @Expose
     private String expenseImage;
 
@@ -88,6 +92,14 @@ public class Eod {
 
     public void setPetrolExpense(String petrolExpense) {
         this.petrolExpense = petrolExpense;
+    }
+
+    public String getPetrolExpenseImage() {
+        return petrolExpenseImage;
+    }
+
+    public void setPetrolExpenseImage(String petrolExpenseImage) {
+        this.petrolExpenseImage = petrolExpenseImage;
     }
 
     public String getOtherExpense() {

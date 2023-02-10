@@ -40,7 +40,7 @@ public class School {
     @Expose
     private String date;
 
-    @SerializedName(Constants.ADDRESS)
+    @SerializedName(Constants.LOCATION)
     @Expose
     private Location location;
 

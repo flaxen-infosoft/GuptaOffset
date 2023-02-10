@@ -25,6 +25,7 @@ import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -393,11 +394,12 @@ public class EmployeeViewModel extends AndroidViewModel {
         return currentEmployeeTodaysEod;
     }
 
-    public LiveData<Boolean> addEod(Eod eod, Uri image) throws IOException {
+    public LiveData<Boolean> addEod(Eod eod, Uri expenseImage, Uri petrolImage) throws IOException {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
         eod.setEmpId(getCurrentEmployeeId());
-        eod.setExpenseImage(FileEncoder.encodeImage(getApplication().getContentResolver(), image));
+        eod.setExpenseImage(FileEncoder.encodeImage(getApplication().getContentResolver(), expenseImage));
+        eod.setPetrolExpenseImage(FileEncoder.encodeImage(getApplication().getContentResolver(), petrolImage));
          repo.addEod(getCurrentEmployeeId(), eod, new ApiResponseListener<Eod, String>() {
             @Override
             public void onSuccess(Eod response) {

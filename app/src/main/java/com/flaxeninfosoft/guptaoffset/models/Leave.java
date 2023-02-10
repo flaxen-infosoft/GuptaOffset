@@ -33,6 +33,10 @@ public class Leave {
     @Expose
     private String applyDate;
 
+    @SerializedName(Constants.DAYS_LEAVE)
+    @Expose
+    private String daysLeave;
+
     @SerializedName(Constants.MESSAGE)
     @Expose
     private String message;
@@ -111,6 +115,14 @@ public class Leave {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public String getDaysLeave() {
+        return daysLeave;
+    }
+
+    public void setDaysLeave(String daysLeave) {
+        this.daysLeave = daysLeave;
     }
 
     @BindingAdapter("android:text")

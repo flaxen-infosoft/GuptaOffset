@@ -19,11 +19,7 @@ public class Location {
 
     @SerializedName(Constants.DATE)
     @Expose
-    private Date date;
-
-    @SerializedName(Constants.TIME)
-    @Expose
-    private Time time;
+    private String date;
 
     @SerializedName(Constants.LATITUDE)
     @Expose
@@ -53,20 +49,12 @@ public class Location {
         this.empId = empId;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
-    }
-
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
     }
 
     public double getLatitude() {
@@ -99,7 +87,6 @@ public class Location {
                 "id=" + id +
                 ", empId=" + empId +
                 ", date=" + date +
-                ", time=" + time +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", address='" + address + '\'' +

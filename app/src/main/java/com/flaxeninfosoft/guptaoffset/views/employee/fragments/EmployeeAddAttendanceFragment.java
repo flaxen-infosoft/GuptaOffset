@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,10 +89,12 @@ public class EmployeeAddAttendanceFragment extends Fragment {
             case 0:
                 binding.employeeAddAttendanceStartMeter.setEnabled(true);
                 binding.employeeAddAttendanceStartMeter.setVisibility(View.VISIBLE);
+                binding.employeeAddAttendanceStartAddress.setVisibility(View.GONE);
                 binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
 
                 binding.employeeAddAttendanceEndMeter.setEnabled(false);
                 binding.employeeAddAttendanceEndMeter.setVisibility(View.GONE);
+                binding.employeeAddAttendanceEndAddress.setVisibility(View.GONE);
                 binding.employeeAddAttendanceEndMeterImage.setVisibility(View.GONE);
 
                 binding.employeeAddAttendanceTotalMeter.setVisibility(View.GONE);
@@ -119,6 +122,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
             case 1:
                 binding.employeeAddAttendanceStartMeter.setEnabled(false);
                 binding.employeeAddAttendanceStartMeter.setVisibility(View.VISIBLE);
+                binding.employeeAddAttendanceStartAddress.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
 
                 String imageLink = ApiEndpoints.BASE_URL + attendance.getSnapIn();
@@ -126,6 +130,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 
                 binding.employeeAddAttendanceEndMeter.setEnabled(true);
                 binding.employeeAddAttendanceEndMeter.setVisibility(View.VISIBLE);
+                binding.employeeAddAttendanceEndAddress.setVisibility(View.GONE);
                 binding.employeeAddAttendanceEndMeterImage.setVisibility(View.VISIBLE);
 
                 binding.employeeAddAttendanceTotalMeter.setVisibility(View.GONE);
@@ -153,6 +158,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
             case 2:
                 binding.employeeAddAttendanceStartMeter.setEnabled(false);
                 binding.employeeAddAttendanceStartMeter.setVisibility(View.VISIBLE);
+                binding.employeeAddAttendanceStartAddress.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
 
                 String imageLink1 = ApiEndpoints.BASE_URL + attendance.getSnapOut();
@@ -163,6 +169,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 
                 binding.employeeAddAttendanceEndMeter.setEnabled(false);
                 binding.employeeAddAttendanceEndMeter.setVisibility(View.VISIBLE);
+                binding.employeeAddAttendanceEndAddress.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceEndMeterImage.setVisibility(View.VISIBLE);
 
                 binding.employeeAddAttendanceTotalMeter.setVisibility(View.VISIBLE);
@@ -197,6 +204,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                         Glide.with(getContext()).load(bitmap).into(binding.employeeAddAttendanceStartMeterImage);
 
                         image = FileEncoder.getImageUri(getContext(), bitmap);
+                        Log.i("CRM_LOG", "image set");
 
                     } catch (Exception e) {
                         e.printStackTrace();

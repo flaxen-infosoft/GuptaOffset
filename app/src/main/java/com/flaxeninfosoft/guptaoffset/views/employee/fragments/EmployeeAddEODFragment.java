@@ -38,7 +38,8 @@ public class EmployeeAddEODFragment extends Fragment {
     private EmployeeViewModel viewModel;
     private ProgressDialog progressDialog;
 
-    private Uri image;
+    private Uri expenseImage;
+    private Uri petrolImage;
 
     public EmployeeAddEODFragment() {
         // Required empty public constructor
@@ -51,8 +52,7 @@ public class EmployeeAddEODFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_add_e_o_d, container, false);
         binding.setEod(new Eod());
         binding.getEod().setDailyAllowance(viewModel.getCurrentEmployee().getDailyAllowance());
@@ -65,37 +65,60 @@ public class EmployeeAddEODFragment extends Fragment {
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
-        binding.employeeAddEodExpenseImage.setOnClickListener(this::onClickImage);
+        binding.employeeAddEodExpenseImage.setOnClickListener(this::onClickExpenseImage);
+        binding.employeeAddEodPetrolImage.setOnClickListener(this::onClickPetrolImage);
 
         return binding.getRoot();
     }
 
-    ActivityResultLauncher<Intent> mLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
+    ActivityResultLauncher<Intent> expenseImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
 
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        try {
+            if (result.getResultCode() == Activity.RESULT_OK) {
+                try {
 
-                            Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
-                            Glide.with(getContext()).load(bitmap).into(binding.employeeAddEodExpenseImage);
+                    Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
+                    Glide.with(getContext()).load(bitmap).into(binding.employeeAddEodExpenseImage);
 
-                            image = FileEncoder.getImageUri(getContext(), bitmap);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        Toast.makeText(getContext(), "Action cancelled", Toast.LENGTH_SHORT).show();
-                    }
+                    expenseImage = FileEncoder.getImageUri(getContext(), bitmap);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+            } else {
+                Toast.makeText(getContext(), "Action cancelled", Toast.LENGTH_SHORT).show();
             }
-    );
+        }
+    });
 
-    private void onClickImage(View view) {
+    ActivityResultLauncher<Intent> petrolImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+
+            if (result.getResultCode() == Activity.RESULT_OK) {
+                try {
+
+                    Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
+                    Glide.with(getContext()).load(bitmap).into(binding.employeeAddEodPetrolImage);
+
+                    petrolImage = FileEncoder.getImageUri(getContext(), bitmap);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Toast.makeText(getContext(), "Action cancelled", Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
+
+    private void onClickPetrolImage(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        mLauncher.launch(intent);
+        petrolImageLauncher.launch(intent);
+    }
+
+    private void onClickExpenseImage(View view) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        expenseImageLauncher.launch(intent);
     }
 
     private void onClickAddEod(View view) {
@@ -103,7 +126,7 @@ public class EmployeeAddEODFragment extends Fragment {
         if (isValidFields()) {
             progressDialog.show();
             try {
-                viewModel.addEod(binding.getEod(), image).observe(getViewLifecycleOwner(), b -> {
+                viewModel.addEod(binding.getEod(), expenseImage,petrolImage).observe(getViewLifecycleOwner(), b -> {
                     if (b) {
                         progressDialog.dismiss();
                         navigateUp();
@@ -135,6 +158,12 @@ public class EmployeeAddEODFragment extends Fragment {
         if (binding.getEod().getPetrolExpense() == null) {
             binding.employeeAddEodPetrolExpense.setError("Enter petrol expense");
             return false;
+        }
+        if (binding.getEod().getOtherExpense() != null && !binding.getEod().getOtherExpense().isEmpty()){
+            if (binding.getEod().getExpenseDescription() == null || binding.getEod().getExpenseDescription().isEmpty()){
+                binding.employeeAddEodExpenseDescription.setError("Enter expense description");
+                return false;
+            }
         }
 //        if (binding.getEod().getOtherExpense() == null) {
 //            binding.employeeAddEodOtherExpense.setError("Enter other expenses");

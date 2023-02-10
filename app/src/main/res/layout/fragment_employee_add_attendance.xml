@@ -18,8 +18,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -33,41 +33,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Start meter"
-                    android:text="@={attendance.startMeter}"
-                    android:inputType="numberSigned" />
+                    android:inputType="numberSigned"
+                    android:text="@={attendance.startMeter}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/employee_add_attendance_end_meter"
+                android:id="@+id/employee_add_attendance_start_address"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:enabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="End meter"
-                    android:text="@={attendance.endMeter}"
-                    android:inputType="numberSigned" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/employee_add_attendance_total_meter"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_margin="8dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:hint="Total distance covered"
-                    android:text="@{attendance.totalDistance}"
-                    android:inputType="numberSigned" />
+                    android:hint="Starting address"
+                    android:inputType="numberSigned"
+                    android:text="@={attendance.startLocation.address}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
@@ -77,13 +60,62 @@
                 android:layout_margin="8dp"
                 android:src="@drawable/ic_add_image" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/employee_add_attendance_end_meter"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:visibility="visible">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="End meter"
+                    android:inputType="numberSigned"
+                    android:text="@={attendance.endMeter}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/employee_add_attendance_end_address"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:enabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ending address"
+                    android:inputType="numberSigned"
+                    android:text="@={attendance.endLocation.address}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <ImageView
                 android:id="@+id/employee_add_attendance_end_meter_image"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_margin="8dp"
                 android:src="@drawable/ic_add_image"
-                android:visibility="gone" />
+                android:visibility="visible" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/employee_add_attendance_total_meter"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:visibility="visible">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="Total distance covered"
+                    android:inputType="numberSigned"
+                    android:text="@{attendance.totalDistance}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/employee_add_attendance_btn"

@@ -52,6 +52,19 @@
                     android:text="@={eod.petrolExpense}" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:textSize="18sp"
+                android:text="petrol expense snap"/>
+
+            <ImageView
+                android:id="@+id/employee_add_eod_petrol_image"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:src="@drawable/ic_add_image"/>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/employee_add_eod_other_expense"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -83,6 +96,27 @@
                     android:text="@={eod.dailyAllowance}" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/employee_add_eod_expense_description"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Expense description"
+                    android:text="@={eod.expenseDescription}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:textSize="18sp"
+                android:text="other expense snap"/>
+
             <ImageView
                 android:id="@+id/employee_add_eod_expense_image"
                 android:layout_width="match_parent"
@@ -95,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="8dp"
-                android:text="Add EOD" />
+                android:text="Add Report" />
         </LinearLayout>
 
     </ScrollView>
