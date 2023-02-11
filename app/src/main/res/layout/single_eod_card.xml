@@ -10,25 +10,21 @@
     </data>
 
     <RelativeLayout
-        android:id="@+id/layout_leave_card"
+        android:id="@+id/layout_eod_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:id="@+id/message_send_for_leave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
             android:layout_toLeftOf="@id/test_arrow"
             android:background="@drawable/bg_msg_right"
-            android:paddingLeft="15dp"
-            android:paddingTop="5dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="7dp"
+            android:padding="8dp"
             tools:ignore="UselessParent">
 
             <LinearLayout
-                android:id="@+id/leav_card"
+                android:id="@+id/eod_card"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -37,7 +33,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/dealer"
+                    android:id="@+id/eod_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Daily report"
@@ -50,7 +46,6 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/apply_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Schools Visit  : "
@@ -59,7 +54,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/single_leave_card_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{eod.schoolVisits}"
@@ -72,7 +66,6 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/leave_from"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="Petrol : "
@@ -81,7 +74,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/single_leave_card_from_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{eod.petrolExpense}"
@@ -94,7 +86,6 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/daily_allowance"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="DA : "
@@ -103,7 +94,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/single_leave_card_daily_allowance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{eod.dailyAllowance}"
@@ -116,10 +106,29 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/leave_to"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Other Expanses      : "
+                        android:text="Other Expanses : "
+                        android:textColor="#222"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{eod.otherExpense}"
+                        android:textColor="#222"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expanses description :"
                         android:textColor="#222"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -128,7 +137,7 @@
                         android:id="@+id/single_leave_card_to_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{eod.otherExpense}"
+                        android:text="@{eod.expenseDescription}"
                         android:textColor="#222"
                         android:textSize="17sp" />
                 </LinearLayout>
@@ -154,12 +163,6 @@
                         android:textSize="17sp" />
                 </LinearLayout>
 
-
-                <ImageView
-                    android:id="@+id/eod_card_expense_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:src="@drawable/person_vector" />
             </LinearLayout>
         </RelativeLayout>
 

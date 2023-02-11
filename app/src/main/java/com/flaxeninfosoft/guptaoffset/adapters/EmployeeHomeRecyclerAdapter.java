@@ -297,9 +297,9 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             if (eod.getExpenseImage() != null) {
                 String url = ApiEndpoints.BASE_URL + eod.getExpenseImage();
                 Log.i(Constants.LOG_TAG, url);
-                Glide.with(binding.getRoot().getContext()).load(url).into(binding.eodCardExpenseImage);
+              //  Glide.with(binding.getRoot().getContext()).load(url).into(binding.eodCardExpenseImage);
             } else {
-                binding.eodCardExpenseImage.setVisibility(View.GONE);
+                //binding.eodCardExpenseImage.setVisibility(View.GONE);
             }
             binding.getRoot().setOnClickListener(v -> onCLickListener.onClickCard(eod));
         }
