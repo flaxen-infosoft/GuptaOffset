@@ -739,6 +739,12 @@ public class MainRepository {
         processAttendanceCall(call, listener);
     }
 
+    public void getAttendanceById(Long atnId, ApiResponseListener<Attendance, String> listener){
+        Call<Attendance> call = attendanceApiInterface.getAttendanceById(atnId);
+
+        processAttendanceCall(call, listener);
+    }
+
     private void processAttendanceCall(Call<Attendance> call, ApiResponseListener<Attendance, String> listener) {
 
         try {

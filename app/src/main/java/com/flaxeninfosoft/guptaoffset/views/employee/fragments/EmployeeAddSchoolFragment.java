@@ -33,10 +33,7 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddSchoolBindi
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationAvailability;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
 import java.util.List;
@@ -221,7 +218,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
             binding.employeeAddSchoolName.setError("**Enter name");
             return false;
         }
-        if (binding.getSchool().getStrength() == null || binding.getSchool().getStrength().trim().isEmpty()) {
+        if (binding.getSchool().getTotalStudentStrength() == null || binding.getSchool().getTotalStudentStrength().trim().isEmpty()) {
             binding.employeeAddSchoolStrength.setError("**Enter strength");
             return false;
         }

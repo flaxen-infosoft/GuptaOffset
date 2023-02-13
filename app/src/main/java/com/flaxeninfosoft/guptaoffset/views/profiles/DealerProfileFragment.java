@@ -48,9 +48,10 @@ public class DealerProfileFragment extends Fragment {
         if (dealerId == -1) {
             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
             navigateUp();
+        }else {
+            viewModel.getDealerById(dealerId).observe(getViewLifecycleOwner(), this::setDealer);
         }
 
-        viewModel.getDealerById(dealerId).observe(getViewLifecycleOwner(), this::setDealer);
         return binding.getRoot();
     }
 
@@ -69,6 +70,12 @@ public class DealerProfileFragment extends Fragment {
 
         String image=ApiEndpoints.BASE_URL+dealer.getImage();
         Glide.with(getContext()).load(image).into(binding.dealerProfileSpecimenImage);
+
+        binding.dealerProfileSpecimenImage.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("IMAGE", image);
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
+        });
 
         mapReadyCallBack = googleMap -> {
             LatLng latLng = new LatLng(dealer.getLocation().getLatitude(), dealer.getLocation().getLongitude());

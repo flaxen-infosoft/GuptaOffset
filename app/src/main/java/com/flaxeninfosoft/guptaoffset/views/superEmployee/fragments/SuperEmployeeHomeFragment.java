@@ -98,7 +98,9 @@ public class SuperEmployeeHomeFragment extends Fragment {
         EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList,getActivity().getApplication(), new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
             @Override
             public void onClickCard(Attendance attendance) {
-                //TODO
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.ATN_ID, attendance.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_attendanceProfileFragment, bundle);
             }
 
             @Override

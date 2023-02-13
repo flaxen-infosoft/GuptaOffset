@@ -102,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/strength"
-                        android:text="Strength : "
+                        android:text="Total strength : "
                         android:textColor="#222"
                         android:textStyle="bold"
                         android:textSize="18sp" />
@@ -111,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/single_school_card_strength"
-                        android:text="@{school.strength}"
+                        android:text="@{school.totalStudentStrength}"
                         android:textColor="#222"
                         android:textSize="17sp" />
                 </LinearLayout>

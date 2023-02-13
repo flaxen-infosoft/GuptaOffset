@@ -46,9 +46,10 @@ public class OrderProfileFragment extends Fragment {
 
         if (orderId == -1) {
             navigateUp();
+        }else{
+            viewModel.getOrderById(orderId).observe(getViewLifecycleOwner(), this::setOrder);
         }
 
-        viewModel.getOrderById(orderId).observe(getViewLifecycleOwner(), this::setOrder);
 
         return binding.getRoot();
     }
@@ -67,6 +68,12 @@ public class OrderProfileFragment extends Fragment {
 
         String image = ApiEndpoints.BASE_URL+order.getSnap();
         Glide.with(getContext()).load(image).into(binding.orderProfileSpecimenImage);
+
+        binding.orderProfileSpecimenImage.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("IMAGE", image);
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
+        });
 
         mapReadyCallback = googleMap -> {
             LatLng latLng = new LatLng(order.getLocation().getLatitude(), order.getLocation().getLongitude());

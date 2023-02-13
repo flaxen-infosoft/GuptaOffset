@@ -51,9 +51,11 @@ public class EodProfileFragment extends Fragment {
 
         if (eodId == -1) {
             navigateUp();
+        }else {
+
+            viewModel.getEodById(eodId).observe(getViewLifecycleOwner(), this::setEod);
         }
 
-        viewModel.getEodById(eodId).observe(getViewLifecycleOwner(), this::setEod);
 
         return binding.getRoot();
     }
@@ -70,6 +72,12 @@ public class EodProfileFragment extends Fragment {
         if (eod.getExpenseImage() != null && !eod.getExpenseImage().isEmpty()) {
             String image = ApiEndpoints.BASE_URL + eod.getExpenseImage();
             Glide.with(getContext()).load(image).into(binding.eodProfileImage);
+
+            binding.eodProfileImage.setOnClickListener(view->{
+                Bundle bundle = new Bundle();
+                bundle.putString("IMAGE", image);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
+            });
         } else {
             binding.eodProfileImage.setVisibility(View.GONE);
         }

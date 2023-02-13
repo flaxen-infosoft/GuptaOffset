@@ -106,7 +106,7 @@ public class EmployeeHomeFragment extends Fragment {
             public void onClickCard(Attendance attendance) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(Constants.ATN_ID, attendance.getId());
-//                Navigation.findNavController(binding.getRoot()).navigate(  ,bundle);
+                Navigation.findNavController(binding.getRoot()).navigate( R.id.action_employeeHomeFragment_to_attendanceProfileFragment,bundle);
             }
 
             @Override

@@ -17,12 +17,14 @@ import androidx.lifecycle.ViewModelProvider;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeMapBinding;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
+import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -55,8 +57,12 @@ public class EmployeeMapFragment extends Fragment {
                if (orders!= null){
                    for (Order order:orders){
                        LatLng latLng = new LatLng(order.getLocation().getLatitude(), order.getLocation().getLongitude());
-                       googleMap.addMarker(new MarkerOptions()
-                               .position(latLng));
+                       googleMap.addMarker(
+                               new MarkerOptions()
+                                       .position(latLng)
+                                       .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                                       .title("Order id: "+ order.getId())
+                       );
 
                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
                    }
@@ -67,8 +73,28 @@ public class EmployeeMapFragment extends Fragment {
                 if (dealers!= null){
                     for (Dealer dealer:dealers){
                         LatLng latLng = new LatLng(dealer.getLocation().getLatitude(), dealer.getLocation().getLongitude());
-                        googleMap.addMarker(new MarkerOptions()
-                                .position(latLng));
+                        googleMap.addMarker(
+                                new MarkerOptions()
+                                        .position(latLng)
+                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                                        .title(dealer.getName())
+                        );
+
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+                    }
+                }
+            });
+
+            viewModel.getCurrentEmployeeLeaves().observe(getViewLifecycleOwner(), leaves -> {
+                if (leaves!=null){
+                    for (Leave leave: leaves){
+                        LatLng latLng = new LatLng(leave.getLocation().getLatitude(), leave.getLocation().getLongitude());
+                        googleMap.addMarker(
+                                new MarkerOptions()
+                                        .position(latLng)
+                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
+                                        .title("Leave id: "+ leave.getId())
+                        );
 
                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
                     }

@@ -20,13 +20,46 @@ public class School {
     @Expose
     private String name;
 
-    @SerializedName(Constants.STUDENT_STRENGTH)
+    @SerializedName(Constants.TOTAL_STUDENT_STRENGTH)
     @Expose
-    private String strength;
+    private String totalStudentStrength;
+
+    @SerializedName(Constants.NINTH_STUDENT_STRENGTH)
+    @Expose
+    private String ninthStudentStrength;
+
+    @SerializedName(Constants.TENTH_STUDENT_STRENGTH)
+    @Expose
+    private String tenthStudentStrength;
+
+    @SerializedName(Constants.ELEVENTH_SCIENCE_STUDENT_STRENGTH)
+    @Expose
+    private String eleventhScienceStudentStrength;
+
+    @SerializedName(Constants.ELEVENTH_COMMERCE_STUDENT_STRENGTH)
+    @Expose
+    private String eleventhCommerceStudentStrength;
+
+    @SerializedName(Constants.ELEVENTH_ARTS_STUDENT_STRENGTH)
+    @Expose
+    private String eleventhArtsStudentStrength;
+
+    @SerializedName(Constants.TWELFTH_SCIENCE_STUDENT_STRENGTH)
+    @Expose
+    private String twelfthScienceStudentStrength;
+
+    @SerializedName(Constants.TWELFTH_COMMERCE_STUDENT_STRENGTH)
+    @Expose
+    private String twelfthCommerceStudentStrength;
+
+    @SerializedName(Constants.TWELFTH_ARTS_STUDENT_STRENGTH)
+    @Expose
+    private String twelfthArtsStudentStrength;
 
     @SerializedName(Constants.IMAGE)
     @Expose
     private String snap;
+
 
     @SerializedName(Constants.SPECIMEN)
     @Expose
@@ -75,12 +108,76 @@ public class School {
         this.name = name;
     }
 
-    public String getStrength() {
-        return strength;
+    public String getTotalStudentStrength() {
+        return totalStudentStrength;
     }
 
-    public void setStrength(String strength) {
-        this.strength = strength;
+    public void setTotalStudentStrength(String totalStudentStrength) {
+        this.totalStudentStrength = totalStudentStrength;
+    }
+
+    public String getNinthStudentStrength() {
+        return ninthStudentStrength;
+    }
+
+    public void setNinthStudentStrength(String ninthStudentStrength) {
+        this.ninthStudentStrength = ninthStudentStrength;
+    }
+
+    public String getTenthStudentStrength() {
+        return tenthStudentStrength;
+    }
+
+    public void setTenthStudentStrength(String tenthStudentStrength) {
+        this.tenthStudentStrength = tenthStudentStrength;
+    }
+
+    public String getEleventhScienceStudentStrength() {
+        return eleventhScienceStudentStrength;
+    }
+
+    public void setEleventhScienceStudentStrength(String eleventhScienceStudentStrength) {
+        this.eleventhScienceStudentStrength = eleventhScienceStudentStrength;
+    }
+
+    public String getEleventhCommerceStudentStrength() {
+        return eleventhCommerceStudentStrength;
+    }
+
+    public void setEleventhCommerceStudentStrength(String eleventhCommerceStudentStrength) {
+        this.eleventhCommerceStudentStrength = eleventhCommerceStudentStrength;
+    }
+
+    public String getEleventhArtsStudentStrength() {
+        return eleventhArtsStudentStrength;
+    }
+
+    public void setEleventhArtsStudentStrength(String eleventhArtsStudentStrength) {
+        this.eleventhArtsStudentStrength = eleventhArtsStudentStrength;
+    }
+
+    public String getTwelfthScienceStudentStrength() {
+        return twelfthScienceStudentStrength;
+    }
+
+    public void setTwelfthScienceStudentStrength(String twelfthScienceStudentStrength) {
+        this.twelfthScienceStudentStrength = twelfthScienceStudentStrength;
+    }
+
+    public String getTwelfthCommerceStudentStrength() {
+        return twelfthCommerceStudentStrength;
+    }
+
+    public void setTwelfthCommerceStudentStrength(String twelfthCommerceStudentStrength) {
+        this.twelfthCommerceStudentStrength = twelfthCommerceStudentStrength;
+    }
+
+    public String getTwelfthArtsStudentStrength() {
+        return twelfthArtsStudentStrength;
+    }
+
+    public void setTwelfthArtsStudentStrength(String twelfthArtsStudentStrength) {
+        this.twelfthArtsStudentStrength = twelfthArtsStudentStrength;
     }
 
     public String getSnap() {
@@ -145,7 +242,7 @@ public class School {
                 "id=" + id +
                 ", empId=" + empId +
                 ", name='" + name + '\'' +
-                ", strength='" + strength + '\'' +
+                ", strength='" + totalStudentStrength + '\'' +
                 ", snap='" + snap + '\'' +
                 ", specimen='" + specimen + '\'' +
                 ", contact='" + contact + '\'' +

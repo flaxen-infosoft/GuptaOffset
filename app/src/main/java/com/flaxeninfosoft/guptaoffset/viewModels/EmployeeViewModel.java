@@ -203,6 +203,25 @@ public class EmployeeViewModel extends AndroidViewModel {
         return flag;
     }
 
+    public LiveData<Attendance> getAttendanceById(Long atnId){
+        MutableLiveData<Attendance> flag = new MutableLiveData<>();
+
+        repo.getAttendanceById(atnId, new ApiResponseListener<Attendance, String>() {
+            @Override
+            public void onSuccess(Attendance response) {
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
 //    ----------------------------------------------------------------------------------------------
 
     public LiveData<Boolean> addDealer(Dealer dealer, Uri uri) throws IOException {

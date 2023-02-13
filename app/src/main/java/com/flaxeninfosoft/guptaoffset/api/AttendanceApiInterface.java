@@ -3,6 +3,7 @@ package com.flaxeninfosoft.guptaoffset.api;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
+import com.google.android.gms.common.api.Api;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -20,4 +21,7 @@ public interface AttendanceApiInterface {
     @POST(ApiEndpoints.PUNCH_ATTENDANCE)
     @FormUrlEncoded
     Call<Attendance> punchAttendance(@Query(Constants.EMPLOYEE_ID) Long empId,@Field(Constants.READING) String reading, @Field(Constants.IMAGE) String encodedImage);
+
+    @GET(ApiEndpoints.GET_ATTENDANCE_BY_ID)
+    Call<Attendance> getAttendanceById(@Query(Constants.ATN_ID) Long atnId);
 }

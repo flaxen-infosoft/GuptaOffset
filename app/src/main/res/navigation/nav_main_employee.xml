@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_employeeHomeFragment_to_orderProfileFragment"
             app:destination="@id/orderProfileFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_attendanceProfileFragment"
+            app:destination="@id/attendanceProfileFragment" />
     </fragment>
 
     <fragment
@@ -115,6 +118,16 @@
         android:name="com.flaxeninfosoft.guptaoffset.views.profiles.OrderProfileFragment"
         android:label="OrderProfileFragment"
         tools:layout="@layout/fragment_order_profile"/>
+    <fragment
+        android:id="@+id/imageViewFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.ImageViewFragment"
+        android:label="ImageViewFragment"
+        tools:layout="@layout/fragment_image_view"/>
+    <fragment
+        android:id="@+id/attendanceProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.AttendanceProfileFragment"
+        android:label="AttendanceProfileFragment"
+        tools:layout="@layout/fragment_attendance_profile"/>
 
 
 </navigation>
