@@ -69,17 +69,30 @@ public class EodProfileFragment extends Fragment {
             return;
         }
 
-        if (eod.getExpenseImage() != null && !eod.getExpenseImage().isEmpty()) {
-            String image = ApiEndpoints.BASE_URL + eod.getExpenseImage();
-            Glide.with(getContext()).load(image).into(binding.eodProfileImage);
+        if (eod.getPetrolExpenseImage() != null && !eod.getPetrolExpenseImage().isEmpty()) {
+            String image = ApiEndpoints.BASE_URL + eod.getPetrolExpenseImage();
+            Glide.with(getContext()).load(image).into(binding.eodProfilePetrolExpenseImage);
 
-            binding.eodProfileImage.setOnClickListener(view->{
+            binding.eodProfilePetrolExpenseImage.setOnClickListener(view->{
                 Bundle bundle = new Bundle();
                 bundle.putString("IMAGE", image);
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
             });
         } else {
-            binding.eodProfileImage.setVisibility(View.GONE);
+            binding.eodProfilePetrolExpenseImage.setVisibility(View.GONE);
+        }
+
+        if (eod.getExpenseImage() != null && !eod.getExpenseImage().isEmpty()) {
+            String image = ApiEndpoints.BASE_URL + eod.getExpenseImage();
+            Glide.with(getContext()).load(image).into(binding.eodProfileOtherExpenseImage);
+
+            binding.eodProfileOtherExpenseImage.setOnClickListener(view->{
+                Bundle bundle = new Bundle();
+                bundle.putString("IMAGE", image);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
+            });
+        } else {
+            binding.eodProfileOtherExpenseImage.setVisibility(View.GONE);
         }
 
         mapReadyCallback = googleMap -> {

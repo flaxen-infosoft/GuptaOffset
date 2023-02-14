@@ -142,6 +142,4 @@ public class EmployeeAddOrderFragment extends Fragment {
                     }
                 }
             });
-
-
 }
