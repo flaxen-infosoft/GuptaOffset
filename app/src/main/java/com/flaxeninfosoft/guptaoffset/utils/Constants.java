@@ -70,14 +70,14 @@ public class Constants {
 
     public static final String SNAP_OUT = "snapOut";
     public static final String TOTAL_STUDENT_STRENGTH = "totalStudentStrength";
-    public static final String NINTH_STUDENT_STRENGTH = "9thStudentStrength";
-    public static final String TENTH_STUDENT_STRENGTH = "10thStudentStrength";
-    public static final String ELEVENTH_SCIENCE_STUDENT_STRENGTH = "11thScienceStudentStrength";
-    public static final String ELEVENTH_COMMERCE_STUDENT_STRENGTH = "11thCommerceStudentStrength";
-    public static final String ELEVENTH_ARTS_STUDENT_STRENGTH = "11thArtsStudentStrength";
-    public static final String TWELFTH_SCIENCE_STUDENT_STRENGTH = "12thScienceStudentStrength";
-    public static final String TWELFTH_COMMERCE_STUDENT_STRENGTH = "12thCommerceStudentStrength";
-    public static final String TWELFTH_ARTS_STUDENT_STRENGTH = "12thArtsStudentStrength";
+    public static final String NINTH_STUDENT_STRENGTH = "a9thStudentStrength";
+    public static final String TENTH_STUDENT_STRENGTH = "a10thStudentStrength";
+    public static final String ELEVENTH_SCIENCE_STUDENT_STRENGTH = "a11thScienceStudentStrength";
+    public static final String ELEVENTH_COMMERCE_STUDENT_STRENGTH = "a11thCommerceStudentStrength";
+    public static final String ELEVENTH_ARTS_STUDENT_STRENGTH = "a11thArtsStudentStrength";
+    public static final String TWELFTH_SCIENCE_STUDENT_STRENGTH = "a12thScienceStudentStrength";
+    public static final String TWELFTH_COMMERCE_STUDENT_STRENGTH = "a12thCommerceStudentStrength";
+    public static final String TWELFTH_ARTS_STUDENT_STRENGTH = "a12thArtsStudentStrength";
     public static final String ATN_ID = "atn_id";
     public static final String SCHOOL_ID = "school_id";
     public static final String DEALER_ID = "dealer_id";
