@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_superEmployeeHomeFragment_to_attendanceProfileFragment"
             app:destination="@id/attendanceProfileFragment" />
+        <action
+            android:id="@+id/action_superEmployeeHomeFragment_to_employeeDailyReportsFragment"
+            app:destination="@id/employeeDailyReportsFragment" />
     </fragment>
     <fragment
         android:id="@+id/employeeAddAttendanceFragment"
@@ -164,4 +167,9 @@
         android:name="com.flaxeninfosoft.guptaoffset.views.profiles.AttendanceProfileFragment"
         android:label="AttendanceProfileFragment"
         tools:layout="@layout/fragment_attendance_profile"/>
+    <fragment
+        android:id="@+id/employeeDailyReportsFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeDailyReportsFragment"
+        android:label="EmployeeDailyReportsFragment"
+        tools:layout="@layout/fragment_employee_daily_reports"/>
 </navigation>

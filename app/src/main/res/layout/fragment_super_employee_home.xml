@@ -205,7 +205,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        android:text="Add EOD"
+                        android:text="Add Daily report"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -252,6 +252,30 @@
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
                         android:text="Add Employee"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/super_employee_home_card_daily_reports"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_attendance" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="4dp"
+                        android:gravity="center_horizontal"
+                        android:text="Daily\nReports"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>

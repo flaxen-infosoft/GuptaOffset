@@ -83,7 +83,7 @@ public class AttendanceProfileFragment extends Fragment {
                     break;
                 case 2:
                     binding.attendanceProfileOutLayout.setVisibility(View.VISIBLE);
-                    String outImage = ApiEndpoints.BASE_URL + attendance.getSnapIn();
+                    String outImage = ApiEndpoints.BASE_URL + attendance.getSnapOut();
                     Glide.with(binding.getRoot().getContext()).load(outImage).into(binding.employeeAttendanceProfileEndMeterImage);
 
                     binding.employeeAttendanceProfileEndMeterImage.setOnClickListener(view -> {

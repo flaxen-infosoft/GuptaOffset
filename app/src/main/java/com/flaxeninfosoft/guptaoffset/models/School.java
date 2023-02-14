@@ -59,8 +59,6 @@ public class School {
     @SerializedName(Constants.IMAGE)
     @Expose
     private String snap;
-
-
     @SerializedName(Constants.SPECIMEN)
     @Expose
     private String specimen;
