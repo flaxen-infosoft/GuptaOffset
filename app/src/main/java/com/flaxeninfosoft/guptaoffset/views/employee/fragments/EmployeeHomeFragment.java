@@ -61,6 +61,7 @@ public class EmployeeHomeFragment extends Fragment {
         binding.employeeHomeCardPaymentRequest.setOnClickListener(this::navigateToPaymentRequest);
         binding.employeeHomeCardAddEod.setOnClickListener(this::navigateToAddEod);
         binding.employeeHomeCardMyMap.setOnClickListener(this::navigateToMap);
+        binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
 
         binding.employeeHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -198,5 +199,9 @@ public class EmployeeHomeFragment extends Fragment {
 
     private void navigateToAddLeave(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddLeaveFragment);
+    }
+
+    private void navigateToDailyReports(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeDailyReportsFragment);
     }
 }

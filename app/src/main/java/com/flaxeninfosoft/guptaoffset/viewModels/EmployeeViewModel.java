@@ -394,6 +394,25 @@ public class EmployeeViewModel extends AndroidViewModel {
         return currentEmployeeAllEods;
     }
 
+    public LiveData<List<Eod>> getEmployeeAllEods(Long empId) {
+        MutableLiveData<List<Eod>> flag = new MutableLiveData<>();
+
+        repo.getEmployeeAllEodsByEmpId(empId, new ApiResponseListener<List<Eod>, String>() {
+            @Override
+            public void onSuccess(List<Eod> response) {
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
+                toastMessage.postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
     public LiveData<Eod> getCurrentEmployeeTodaysEod() {
 
         Long empId = getCurrentEmployeeId();
