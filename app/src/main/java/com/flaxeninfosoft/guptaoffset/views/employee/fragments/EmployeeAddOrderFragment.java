@@ -3,12 +3,15 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -16,12 +19,14 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
+import com.flaxeninfosoft.guptaoffset.BuildConfig;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddOrderBinding;
 import com.flaxeninfosoft.guptaoffset.models.Location;
@@ -29,7 +34,10 @@ import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class EmployeeAddOrderFragment extends Fragment {
 
@@ -100,14 +108,19 @@ public class EmployeeAddOrderFragment extends Fragment {
     private void navigateUp() {
         Navigation.findNavController(binding.getRoot()).navigateUp();
     }
-
+    private String pictureImagePath = "";
     public void chooseImage(View view) {
-        try {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            mLauncher.launch(intent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = timeStamp + ".jpg";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        pictureImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
+        File file = new File(pictureImagePath);
+        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",file);
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        mLauncher.launch(cameraIntent);
     }
 
     ActivityResultLauncher<Intent> mLauncher = registerForActivityResult(
@@ -116,10 +129,14 @@ public class EmployeeAddOrderFragment extends Fragment {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     try {
-                        Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
-                        Glide.with(getContext()).load(bitmap).into(binding.employeeAddOrderImage);
 
-                        image = FileEncoder.getImageUri(getContext(), bitmap);
+                        File imgFile = new  File(pictureImagePath);
+                        if(imgFile.exists()){
+                            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                            binding.employeeAddOrderImage.setImageBitmap(myBitmap);
+                            image = FileEncoder.getImageUri(getContext(), myBitmap);
+                        }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
