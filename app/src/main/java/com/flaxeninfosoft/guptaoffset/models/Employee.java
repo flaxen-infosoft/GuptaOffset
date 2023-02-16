@@ -62,6 +62,10 @@ public class Employee {
     @Expose
     private Location currentLocation;
 
+    @SerializedName(Constants.FIRM)
+    @Expose
+    private String firm;
+
     public Employee() {
         currentLocation = new Location();
     }
@@ -178,6 +182,14 @@ public class Employee {
         this.currentLocation = currentLocation;
     }
 
+    public String getFirm() {
+        return firm;
+    }
+
+    public void setFirm(String firm) {
+        this.firm = firm;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -194,7 +206,8 @@ public class Employee {
                 ", token='" + token + '\'' +
                 ", assignedTo=" + assignedTo +
                 ", date='" + date + '\'' +
-                ", currentLocation='" + currentLocation + '\'' +
+                ", currentLocation=" + currentLocation +
+                ", firm='" + firm + '\'' +
                 '}';
     }
 }
