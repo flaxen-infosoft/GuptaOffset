@@ -28,7 +28,16 @@
             android:id="@+id/admin_home_add_employee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Employee"
+            android:text="Add employee"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/admin_home_add_super_employee"
+            android:layout_margin="16dp"/>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/admin_home_add_super_employee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add super employee"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_margin="16dp"/>

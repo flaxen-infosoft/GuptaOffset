@@ -48,9 +48,9 @@ public class EmployeeProfileFragment extends Fragment {
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
-        if (viewModel.getCurrentEmployee().getDesignation().equals(Constants.DESIGNATION_SUPER_EMPLOYEE) || viewModel.getCurrentEmployee().getDesignation().equals(Constants.DESIGNATION_ADMIN)) {
-            enableAdminView();
-        }
+//        if (viewModel.getCurrentEmployee().getDesignation().equals(Constants.DESIGNATION_SUPER_EMPLOYEE) || viewModel.getCurrentEmployee().getDesignation().equals(Constants.DESIGNATION_ADMIN)) {
+//            enableAdminView();
+//        }
 
         try {
             long empId = getArguments().getLong(Constants.EMPLOYEE_ID, -1);
@@ -68,13 +68,13 @@ public class EmployeeProfileFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void enableAdminView() {
-        binding.employeeProfileUpdateLayout.setVisibility(View.VISIBLE);
-
-        binding.employeeProfileUpdateBtn.setOnClickListener(this::updateEmployee);
-
-        binding.employeeProfileSuspendBtn.setOnClickListener(this::suspendEmployee);
-    }
+//    private void enableAdminView() {
+//        binding.employeeProfileUpdateLayout.setVisibility(View.VISIBLE);
+//
+//        binding.employeeProfileUpdateBtn.setOnClickListener(this::updateEmployee);
+//
+//        binding.employeeProfileSuspendBtn.setOnClickListener(this::suspendEmployee);
+//    }
 
     private void suspendEmployee(View view) {
         viewModel.suspendEmployee(binding.getEmployee()).observe(getViewLifecycleOwner(), employee -> {

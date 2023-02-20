@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_adminAddSuperEmployeeFragment"
             app:destination="@id/adminAddSuperEmployeeFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_superEmployeeAddEmployeeFragment"
+            app:destination="@id/superEmployeeAddEmployeeFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
@@ -60,4 +63,9 @@
         android:name="com.flaxeninfosoft.guptaoffset.views.profiles.SchoolProfileFragment"
         android:label="SchoolProfileFragment"
         tools:layout="@layout/fragment_school_profile"/>
+    <fragment
+        android:id="@+id/superEmployeeAddEmployeeFragment"
+        tools:layout="@layout/fragment_super_employee_add_employee"
+        android:name="com.flaxeninfosoft.guptaoffset.views.superEmployee.fragments.SuperEmployeeAddEmployeeFragment"
+        android:label="SuperEmployeeAddEmployeeFragment" />
 </navigation>

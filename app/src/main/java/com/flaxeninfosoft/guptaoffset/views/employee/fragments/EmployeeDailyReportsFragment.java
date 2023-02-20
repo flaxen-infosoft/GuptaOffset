@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.flaxeninfosoft.guptaoffset.R;
@@ -62,6 +63,9 @@ public class EmployeeDailyReportsFragment extends Fragment {
     private void setEods(List<Eod> eods) {
         DailyReportRecyclerAdapter adapter = new DailyReportRecyclerAdapter(eods, eod -> {
             // Ignored
+            Bundle bundle = new Bundle();
+            bundle.putLong(Constants.EOD_ID, eod.getId());
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.eodProfileFragment, bundle);
         });
 
         binding.employeeDailyReportsRecycler.setAdapter(adapter);

@@ -60,7 +60,7 @@ public class SuperEmployeeHomeFragment extends Fragment {
         binding.superEmployeeHomeCardPaymentRequest.setOnClickListener(this::navigateToPaymentRequest);
         binding.superEmployeeHomeCardAddEod.setOnClickListener(this::navigateToAddEod);
         binding.superEmployeeHomeCardMyMap.setOnClickListener(this::navigateToMap);
-        binding.superEmployeeHomeCardAddEmployee.setOnClickListener(this::navigateToAddEmployee);
+//        binding.superEmployeeHomeCardAddEmployee.setOnClickListener(this::navigateToAddEmployee);
         binding.superEmployeeHomeCardDailyReports.setOnClickListener(this::navigateToDailyReports);
 
         binding.superEmployeeHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));

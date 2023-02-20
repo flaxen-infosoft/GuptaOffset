@@ -135,7 +135,8 @@
         android:id="@+id/employeeDailyReportsFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeDailyReportsFragment"
         android:label="EmployeeDailyReportsFragment"
-        tools:layout="@layout/fragment_employee_daily_reports"/>
+        tools:layout="@layout/fragment_employee_daily_reports">
+    </fragment>
 
 
 </navigation>

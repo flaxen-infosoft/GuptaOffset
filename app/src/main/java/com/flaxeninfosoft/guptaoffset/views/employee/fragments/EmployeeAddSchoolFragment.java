@@ -260,10 +260,10 @@ public class EmployeeAddSchoolFragment extends Fragment {
             return false;
         }
 
-        if (binding.getSchool().getContact() == null || binding.getSchool().getContact().trim().isEmpty()) {
-            binding.employeeAddSchoolContact.setError("**Enter contact number");
-            return false;
-        }
+//        if (binding.getSchool().getContact() == null || binding.getSchool().getContact().trim().isEmpty()) {
+//            binding.employeeAddSchoolContact.setError("**Enter contact number");
+//            return false;
+//        }
 
         return true;
     }

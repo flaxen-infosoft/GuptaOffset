@@ -642,7 +642,8 @@ public class MainRepository {
 
     public void sendMessage(Long empId, Message message, ApiResponseListener<Message, String> listener) {
 
-        Call<Message> sendMessageCall = messageApiInterface.sendMessage(empId, message);
+//        Call<Message> sendMessageCall = messageApiInterface.sendMessage(empId, message);
+        Call<Message> sendMessageCall = messageApiInterface.sendMessage(message.getReceiverId(), message);
 
         processMessageCall(sendMessageCall, listener);
     }

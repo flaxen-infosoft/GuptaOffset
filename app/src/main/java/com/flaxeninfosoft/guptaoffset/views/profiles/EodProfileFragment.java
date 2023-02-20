@@ -52,7 +52,6 @@ public class EodProfileFragment extends Fragment {
         if (eodId == -1) {
             navigateUp();
         }else {
-
             viewModel.getEodById(eodId).observe(getViewLifecycleOwner(), this::setEod);
         }
 
@@ -96,10 +95,14 @@ public class EodProfileFragment extends Fragment {
         }
 
         mapReadyCallback = googleMap -> {
-            LatLng latLng = new LatLng(eod.getLocation().getLatitude(), eod.getLocation().getLongitude());
-            googleMap.addMarker(new MarkerOptions()
-                    .position(latLng));
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+            try {
+                LatLng latLng = new LatLng(eod.getLocation().getLatitude(), eod.getLocation().getLongitude());
+                googleMap.addMarker(new MarkerOptions()
+                        .position(latLng));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         };
 
         SupportMapFragment mapFragment = SupportMapFragment.newInstance();

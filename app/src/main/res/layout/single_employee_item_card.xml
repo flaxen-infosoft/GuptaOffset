@@ -48,6 +48,15 @@
                         android:textSize="20sp" />
 
                     <TextView
+                        android:id="@+id/employee_card_item_card_firm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="@{employee.firm}"
+                        android:textColor="@color/black"
+                        android:textSize="28sp" />
+
+                    <TextView
                         android:id="@+id/earea"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

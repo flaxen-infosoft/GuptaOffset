@@ -46,11 +46,16 @@ public class AdminHomeFragment extends Fragment {
         binding.adminHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         viewModel.getAllEmployees().observe(getViewLifecycleOwner(), this::onChange);
+        binding.adminHomeAddSuperEmployee.setOnClickListener(this::navigateToAddSuperEmployee);
         binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
         return binding.getRoot();
+    }
+
+    private void navigateToAddEmployee(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_superEmployeeAddEmployeeFragment);
     }
 
     private void showToast(String s) {
@@ -59,7 +64,7 @@ public class AdminHomeFragment extends Fragment {
         }
     }
 
-    private void navigateToAddEmployee(View view) {
+    private void navigateToAddSuperEmployee(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_adminAddSuperEmployeeFragment);
     }
 

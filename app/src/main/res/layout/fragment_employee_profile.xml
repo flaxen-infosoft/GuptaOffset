@@ -126,31 +126,6 @@
                     android:text="@={``+employee.assignedTo}" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
-                android:id="@+id/employee_profile_update_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone"
-                android:layout_marginVertical="20dp"
-                android:padding="8dp"
-                android:gravity="center_horizontal">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/employee_profile_update_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Update"
-                    android:layout_marginHorizontal="30dp"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/employee_profile_suspend_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Suspend"
-                    android:layout_marginHorizontal="30dp"/>
-
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </layout>

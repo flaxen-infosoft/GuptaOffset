@@ -49,10 +49,6 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_super_employee_add_employee, container, false);
         binding.setEmployee(new Employee());
 
-        binding.superEmployeeAddEmployeeFirmAutocomplete.setAdapter(
-                new ArrayAdapter<>(getContext(), R.layout.layout_dropdown, Constants.FIRMS)
-        );
-
         binding.superEmployeeAddEmployeeBtn.setOnClickListener(this::onClickAddButton);
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
@@ -154,12 +150,6 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
             }
         }catch (Exception e){
             Toast.makeText(getContext(), "Enter valid Salary", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        List<String> firms = Arrays.asList(Constants.FIRMS);
-        if (!firms.contains(employee.getFirm().trim().toUpperCase())){
-            Toast.makeText(getContext(), "Enter valid firm", Toast.LENGTH_SHORT).show();
             return false;
         }
 

@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -80,7 +81,8 @@ public class AdminEmployeeActivityFragment extends Fragment {
     private void sendMessage(View view) {
         if (!binding.getMessage().getMessage().trim().isEmpty()) {
             binding.getMessage().setReceiverId(empId);
-            viewModel.sendMessage(binding.getMessage());
+            viewModel.sendMessage(binding.getMessage()).observe(getViewLifecycleOwner(),
+                    message -> viewModel.getEmployeeHistoryById(empId).observe(getViewLifecycleOwner(), employeeHistories -> setHistory(employeeHistories)));
             binding.setMessage(new Message());
         }
     }
