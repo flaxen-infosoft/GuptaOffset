@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
             android:layout_toLeftOf="@id/test_arrow"
-            android:background="@drawable/bg_msg_right"
+            android:background="@drawable/bg_dealer_card"
             android:paddingLeft="15dp"
             android:paddingTop="5dp"
             android:paddingRight="15dp"
