@@ -18,6 +18,7 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeMapBinding;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
+import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -55,48 +56,57 @@ public class EmployeeMapFragment extends Fragment {
 
             viewModel.getCurrentEmployeeOrders().observe(getViewLifecycleOwner(), orders -> {
                if (orders!= null){
-                   for (Order order:orders){
-                       LatLng latLng = new LatLng(order.getLocation().getLatitude(), order.getLocation().getLongitude());
-                       googleMap.addMarker(
-                               new MarkerOptions()
-                                       .position(latLng)
-                                       .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-                                       .title("Order id: "+ order.getId())
-                       );
+                   for (Order order:orders) {
+                       Location location = order.getLocation();
+                       if (location != null) {
+                           LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                           googleMap.addMarker(
+                                   new MarkerOptions()
+                                           .position(latLng)
+                                           .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                                           .title("Order id: " + order.getId())
+                           );
 
-                       googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+                           googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+                       }
                    }
                }
             });
 
             viewModel.getCurrentEmployeeDealers().observe(getViewLifecycleOwner(), dealers -> {
                 if (dealers!= null){
-                    for (Dealer dealer:dealers){
-                        LatLng latLng = new LatLng(dealer.getLocation().getLatitude(), dealer.getLocation().getLongitude());
-                        googleMap.addMarker(
-                                new MarkerOptions()
-                                        .position(latLng)
-                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                                        .title(dealer.getName())
-                        );
+                    for (Dealer dealer:dealers) {
+                        Location location = dealer.getLocation();
+                        if (location != null) {
+                            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                            googleMap.addMarker(
+                                    new MarkerOptions()
+                                            .position(latLng)
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                                            .title(dealer.getName())
+                            );
 
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+                        }
                     }
                 }
             });
 
             viewModel.getCurrentEmployeeLeaves().observe(getViewLifecycleOwner(), leaves -> {
                 if (leaves!=null){
-                    for (Leave leave: leaves){
-                        LatLng latLng = new LatLng(leave.getLocation().getLatitude(), leave.getLocation().getLongitude());
-                        googleMap.addMarker(
-                                new MarkerOptions()
-                                        .position(latLng)
-                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
-                                        .title("Leave id: "+ leave.getId())
-                        );
+                    for (Leave leave: leaves) {
+                        Location location = leave.getLocation();
+                        if (location != null) {
+                            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                            googleMap.addMarker(
+                                    new MarkerOptions()
+                                            .position(latLng)
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
+                                            .title("Leave id: " + leave.getId())
+                            );
 
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+                        }
                     }
                 }
             });
