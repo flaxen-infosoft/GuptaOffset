@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.views.superEmployee.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +30,8 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
 
     private SuperEmployeeViewModel viewModel;
     private FragmentSuperEmployeeAddEmployeeBinding binding;
+
+    private ProgressDialog progressDialog;
 
     public SuperEmployeeAddEmployeeFragment() {
         // Required empty public constructor
@@ -53,6 +57,11 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Adding Employee...");
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+
         return binding.getRoot();
     }
 
@@ -63,18 +72,37 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
     }
 
     private void onClickAddButton(View view) {
-        if(isValidInput()){
-            viewModel.addEmployee(binding.getEmployee()).observe(getViewLifecycleOwner(), isAdded->{
-                if(isAdded){
-                    navigateUp();
-                }
-            });
+        if (isValidInput()) {
+            progressDialog.show();
+            try {
+                viewModel.addEmployee(binding.getEmployee()).observe(getViewLifecycleOwner(), isAdded -> {
+                    if (isAdded) {
+                        progressDialog.dismiss();
+                        clearErrors();
+                        navigateUp();
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
-    private void navigateUp() {
+       private void navigateUp() {
         Navigation.findNavController(binding.getRoot()).navigateUp();
-    }
+     }
+
+        private void clearErrors() {
+            binding.superEmployeeAddEmployeeName.setError(null);
+            binding.superEmployeeAddEmployeeEmail.setError(null);
+            binding.superEmployeeAddEmployeePassword.setError(null);
+            binding.superEmployeeAddEmployeeDailyAllowance.setError(null);
+            binding.superEmployeeAddEmployeePhone.setError(null);
+            binding.superEmployeeAddEmployeeSalary.setError(null);
+            binding.superEmployeeAddEmployeeFirm.setError(null);
+            binding.superEmployeeAddEmployeeArea.setError(null);
+        }
 
     private boolean isValidInput() {
         Employee employee = binding.getEmployee();
