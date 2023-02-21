@@ -20,12 +20,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="2dp"
-            android:weightSum="3">
+            android:weightSum="5">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="4dp"
                 android:orientation="vertical"
                 android:layout_gravity="center">
 
@@ -41,6 +42,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Petrol Expense"
+                    android:textSize="16sp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/daily_report_petrol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@{eod.petrolExpense}"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Other Expense"
+                    android:textSize="16sp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/daily_report_other"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@{eod.otherExpense}"
+                    android:gravity="center" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -62,6 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="4dp"
                 android:orientation="vertical">
 
                 <TextView

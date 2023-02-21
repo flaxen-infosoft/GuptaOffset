@@ -66,7 +66,6 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
     }
 
     public LiveData<Boolean> addEmployee(Employee employee) {
-        employee.setAssignedTo(getCurrentEmployeeId());
         employee.setDesignation(Constants.DESIGNATION_EMPLOYEE);
 
         MutableLiveData<Boolean> flag = new MutableLiveData<>();

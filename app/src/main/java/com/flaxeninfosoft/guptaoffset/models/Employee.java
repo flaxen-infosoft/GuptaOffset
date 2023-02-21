@@ -52,7 +52,7 @@ public class Employee {
 
     @SerializedName(Constants.ASSIGNED_TO)
     @Expose
-    private Long assignedTo;
+    private String assignedTo;
 
     @SerializedName(Constants.DATE)
     @Expose
@@ -158,11 +158,11 @@ public class Employee {
         this.token = token;
     }
 
-    public Long getAssignedTo() {
+    public String getAssignedTo() {
         return assignedTo;
     }
 
-    public void setAssignedTo(Long assignedTo) {
+    public void setAssignedTo(String assignedTo) {
         this.assignedTo = assignedTo;
     }
 
