@@ -21,7 +21,8 @@
             android:layout_margin="20dp"
             android:textColor="@color/black"
             android:inputType="phone"
-            android:hint="Amount" />
+            android:hint="Amount"
+            android:text="@={payment.received}"/>
 
         <EditText
             android:id="@+id/layout_custom_dialog_message_edit_text"
@@ -29,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:textColor="@color/black"
-            android:hint="Message" />
+            android:hint="Message"
+            android:text="@={payment.message}"/>
 
         <LinearLayout
             android:layout_width="match_parent"

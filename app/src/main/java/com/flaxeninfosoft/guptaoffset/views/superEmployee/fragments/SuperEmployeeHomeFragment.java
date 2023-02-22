@@ -197,6 +197,8 @@ public class SuperEmployeeHomeFragment extends Fragment {
     }
 
     private void navigateToPaymentRequests(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.pendingPaymentRequestsFragment);
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID, viewModel.getCurrentEmployee().getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.pendingPaymentRequestsFragment, bundle);
     }
 }

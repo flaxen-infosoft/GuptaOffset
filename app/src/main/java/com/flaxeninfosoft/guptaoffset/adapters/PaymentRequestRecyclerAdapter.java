@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.SinglePaymentRequestCardBinding;
+import com.flaxeninfosoft.guptaoffset.databinding.SinglePaymentRequestIndividualCardBinding;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class PaymentRequestRecyclerAdapter extends RecyclerView.Adapter<PaymentR
     @NonNull
     @Override
     public PaymentRequestCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        SinglePaymentRequestCardBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.single_payment_request_individual_card, parent, false);
+        SinglePaymentRequestIndividualCardBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.single_payment_request_individual_card, parent, false);
         return new PaymentRequestCardViewHolder(binding, listener);
     }
 
@@ -47,17 +48,17 @@ public class PaymentRequestRecyclerAdapter extends RecyclerView.Adapter<PaymentR
 
     public static class PaymentRequestCardViewHolder extends RecyclerView.ViewHolder{
 
-        private final SinglePaymentRequestCardBinding binding;
+        private final SinglePaymentRequestIndividualCardBinding binding;
         private final SinglePaymentRequestIndividualCardListener listener;
 
-        public PaymentRequestCardViewHolder(@NonNull SinglePaymentRequestCardBinding binding, SinglePaymentRequestIndividualCardListener listener) {
+        public PaymentRequestCardViewHolder(@NonNull SinglePaymentRequestIndividualCardBinding binding, SinglePaymentRequestIndividualCardListener listener) {
             super(binding.getRoot());
             this.binding = binding;
             this.listener = listener;
         }
 
         public void setData(PaymentRequest request){
-            binding.setPaymentRequest(request);
+            binding.setPayment(request);
             binding.getRoot().setOnClickListener(view -> listener.onCardClick(request));
         }
     }

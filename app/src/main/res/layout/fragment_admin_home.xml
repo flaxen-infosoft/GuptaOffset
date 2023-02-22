@@ -39,14 +39,14 @@
             android:layout_height="wrap_content"
             android:text="Add super employee"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/admin_home_payment_requests"
             android:layout_margin="16dp"/>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/admin_home_payment_requests"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add super employee"
+            android:text="Payment requests"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_margin="16dp"/>

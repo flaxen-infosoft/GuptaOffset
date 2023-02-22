@@ -23,4 +23,6 @@ public interface PaymentApiInterface {
     @GET(ApiEndpoints.GET_PENDING_REQUESTS_TO_EMPLOYEE)
     Call<List<PaymentRequest>> getPendingRequestsToEmployee(@Query(Constants.EMPLOYEE_ID) Long empId);
 
+    @POST(ApiEndpoints.UPDATE_PAYMENT_REQUEST)
+    Call<PaymentRequest> updatePaymentRequest(@Query(Constants.PAYMENT_REQUEST_ID) Long id, @Body PaymentRequest payment);
 }

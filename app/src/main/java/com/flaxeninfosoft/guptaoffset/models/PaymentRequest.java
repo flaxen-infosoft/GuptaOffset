@@ -36,7 +36,7 @@ public class PaymentRequest {
     @Expose
     private Employee employee;
 
-    @SerializedName(Constants.RECEIVED_AMOUNT)
+    @SerializedName(Constants.AMOUNT_PAID)
     @Expose
     private String received;
 

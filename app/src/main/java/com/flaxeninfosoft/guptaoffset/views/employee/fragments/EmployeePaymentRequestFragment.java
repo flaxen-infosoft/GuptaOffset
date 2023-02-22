@@ -61,8 +61,6 @@ public class EmployeePaymentRequestFragment extends Fragment {
 
     private void onClickPayment(View view) {
             clearErrors();
-//        CustomDialogFragment dialog = new CustomDialogFragment();
-//        dialog.show(requireActivity().getSupportFragmentManager(), "CustomDialogFragment");
 
         if(validateForm()){
                 progressDialog.show();

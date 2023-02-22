@@ -145,12 +145,33 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
         return flag;
     }
 
-    public LiveData<List<PaymentRequest>> getAllPendingPaymentRequests() {
+    public LiveData<List<PaymentRequest>> getAllPendingPaymentRequestsToEmployee() {
         MutableLiveData<List<PaymentRequest>> flag = new MutableLiveData<>();
 
         repo.getPendingRequestsToEmployee(getCurrentEmployeeId(), new ApiResponseListener<List<PaymentRequest>, String>() {
             @Override
             public void onSuccess(List<PaymentRequest> response) {
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
+                getToastMessageLiveData().postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
+    public LiveData<PaymentRequest> updatePaymentRequest(PaymentRequest payment) {
+
+        MutableLiveData<PaymentRequest> flag = new MutableLiveData<>();
+
+        repo.updatePaymentRequest(payment, new ApiResponseListener<PaymentRequest, String>(){
+
+            @Override
+            public void onSuccess(PaymentRequest response) {
                 flag.postValue(response);
             }
 

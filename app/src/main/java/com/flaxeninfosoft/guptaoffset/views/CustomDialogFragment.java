@@ -22,18 +22,25 @@ import com.flaxeninfosoft.guptaoffset.databinding.LayoutCustomDialogBinding;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.viewModels.AdminViewModel;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
 
 public class CustomDialogFragment extends DialogFragment {
 
-    private AdminViewModel viewModel;
+    private SuperEmployeeViewModel viewModel;
     private LayoutCustomDialogBinding binding;
+
+    private PaymentRequest request;
+
+    public CustomDialogFragment(PaymentRequest request){
+        this.request = request;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.layout_custom_dialog, null, false);
         //setContentView(binding.getRoot());
-        viewModel = new ViewModelProvider(this).get(AdminViewModel.class);
+        viewModel = new ViewModelProvider(this).get(SuperEmployeeViewModel.class);
     }
 
     @NonNull
@@ -43,30 +50,16 @@ public class CustomDialogFragment extends DialogFragment {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.layout_custom_dialog, null);
         binding.setPayment(new PaymentRequest());
-//        final String amount= binding.layoutCustomDialogAmountEditText.getText().toString();
-//        final String message= binding.layoutCustomDialogAmountEditText.getText().toString();
-
-//        editText.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                viewModel.getEditTextValue().setValue(s.toString());
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {}
-//        });
 
         builder.setView(dialogView);
 
         binding.customDialogOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //TODO
                 if(validateFields()){
-                    Toast.makeText(getContext(), "OK Button Clicked", Toast.LENGTH_SHORT).show();
+                    binding.getPayment().setId(request.getId());
+                    viewModel.updatePaymentRequest(binding.getPayment());
+                    dismiss();
                 }
             }
         });
@@ -82,12 +75,8 @@ public class CustomDialogFragment extends DialogFragment {
     }
 
     private boolean validateFields(){
-        if (binding.getPayment().getAmount() == null || binding.getPayment().getAmount().trim().isEmpty()) {
+        if (binding.getPayment().getReceived() == null || binding.getPayment().getReceived().trim().isEmpty()) {
             binding.layoutCustomDialogAmountEditText.setError("**Enter Amount");
-            return false;
-        }
-        if (binding.getPayment() == null||binding.getPayment().getMessage() == null || binding.getPayment().getMessage().trim().isEmpty()) {
-            binding.layoutCustomDialogMessageEditText.setError("**Enter Message");
             return false;
         }
         return true;

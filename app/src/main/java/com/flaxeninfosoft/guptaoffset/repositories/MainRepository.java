@@ -830,4 +830,10 @@ public class MainRepository {
             }
         });
     }
+
+    public void updatePaymentRequest(PaymentRequest payment, ApiResponseListener<PaymentRequest, String> listener) {
+        Call<PaymentRequest> call = paymentApiInterface.updatePaymentRequest(payment.getId(), payment);
+
+        processPaymentCall(call, listener);
+    }
 }

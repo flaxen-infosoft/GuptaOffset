@@ -49,7 +49,7 @@ public class Constants {
     public static final String TO_DATE = "to_date";
     public static final String APPLY_DATE = "apply_date";
     public static final String SUBJECT = "subject";
-    public static final String MESSAGE = "message";
+    public static final String MESSAGE = "paid_message";
 
     public static final String TIME = "time";
     public static final String IMAGE = "snap";
@@ -115,7 +115,8 @@ public class Constants {
     public static final String EXPENSE_IMAGE = "expense_snap";
     public static final String PETROL_EXPENSE_IMAGE = "petrol_expense_snap";
     public static final String FIRM = "firm";
-    public static final String[] FIRMS = {"GBI", "GPH"};
     public static final String BATTERY_STATUS = "battery_status";
-    public static final String RECEIVED_AMOUNT = "received_amount";
+    public static final String PAYMENT_REQUEST_ID = "pay_id";
+    public static final String AMOUNT_PAID = "amount_paid";
+
 }
