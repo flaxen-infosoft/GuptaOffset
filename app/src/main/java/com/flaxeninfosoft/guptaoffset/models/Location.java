@@ -4,9 +4,6 @@ import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.sql.Date;
-import java.sql.Time;
-
 public class Location {
 
     @SerializedName(Constants.ID)
@@ -32,6 +29,10 @@ public class Location {
     @SerializedName(Constants.ADDRESS)
     @Expose
     private String address;
+
+    @SerializedName(Constants.BATTERY_STATUS)
+    @Expose
+    private String batteryStatus;
 
     public Long getId() {
         return id;
@@ -81,15 +82,24 @@ public class Location {
         this.address = address;
     }
 
+    public String getBatteryStatus() {
+        return batteryStatus;
+    }
+
+    public void setBatteryStatus(String batteryStatus) {
+        this.batteryStatus = batteryStatus;
+    }
+
     @Override
     public String toString() {
         return "Location{" +
                 "id=" + id +
                 ", empId=" + empId +
-                ", date=" + date +
+                ", date='" + date + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", address='" + address + '\'' +
+                ", batteryStatus='" + batteryStatus + '\'' +
                 '}';
     }
 }

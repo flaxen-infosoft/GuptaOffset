@@ -103,7 +103,7 @@ public class LocationService extends Service {
                     List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     Address currentAddress = addresses.get(0);
                     location.setAddress(currentAddress.getAddressLine(0));
-
+                    location.setBatteryStatus(""+Utilities.getBatteryLevel(LocationService.this));
                     viewModel.addCurrentEmployeeLocation(location);
                     viewModel.updateCurrentEmployeeBatteryStatus(Utilities.getBatteryLevel(LocationService.this));
 
