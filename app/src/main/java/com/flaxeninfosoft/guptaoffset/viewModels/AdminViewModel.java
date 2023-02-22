@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
+import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 
@@ -86,4 +87,24 @@ public class AdminViewModel extends SuperEmployeeViewModel{
 
         return flag;
     }
+
+    public LiveData<List<PaymentRequest>> getAllPendingPaymentRequests() {
+        MutableLiveData<List<PaymentRequest>> flag = new MutableLiveData<>();
+
+        repo.getAllPendingPaymentRequests(new ApiResponseListener<List<PaymentRequest>, String>() {
+            @Override
+            public void onSuccess(List<PaymentRequest> response) {
+                flag.postValue(response);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                flag.postValue(null);
+                getToastMessageLiveData().postValue(error);
+            }
+        });
+
+        return flag;
+    }
+
 }

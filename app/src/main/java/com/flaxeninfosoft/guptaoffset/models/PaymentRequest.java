@@ -32,6 +32,14 @@ public class PaymentRequest {
     @Expose
     private Location location;
 
+    @SerializedName(Constants.EMPLOYEE)
+    @Expose
+    private Employee employee;
+
+    @SerializedName(Constants.RECEIVED_AMOUNT)
+    @Expose
+    private String received;
+
     public PaymentRequest() {
         location = new Location();
     }
@@ -84,6 +92,22 @@ public class PaymentRequest {
         this.location = location;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public String getReceived() {
+        return received;
+    }
+
+    public void setReceived(String received) {
+        this.received = received;
+    }
+
     @Override
     public String toString() {
         return "PaymentRequest{" +
@@ -93,6 +117,8 @@ public class PaymentRequest {
                 ", status='" + status + '\'' +
                 ", date='" + date + '\'' +
                 ", location=" + location +
+                ", employee=" + employee +
+                ", received='" + received + '\'' +
                 '}';
     }
 }

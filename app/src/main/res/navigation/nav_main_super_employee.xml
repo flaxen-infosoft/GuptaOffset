@@ -172,4 +172,9 @@
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeDailyReportsFragment"
         android:label="EmployeeDailyReportsFragment"
         tools:layout="@layout/fragment_employee_daily_reports"/>
+    <fragment
+        android:id="@+id/pendingPaymentRequestsFragment"
+        tools:layout="@layout/fragment_pending_payment_requests"
+        android:name="com.flaxeninfosoft.guptaoffset.views.PendingPaymentRequestsFragment"
+        android:label="Pending Requests" />
 </navigation>

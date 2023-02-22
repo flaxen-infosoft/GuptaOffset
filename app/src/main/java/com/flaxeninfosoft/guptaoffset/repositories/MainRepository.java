@@ -740,7 +740,7 @@ public class MainRepository {
         processAttendanceCall(call, listener);
     }
 
-    public void getAttendanceById(Long atnId, ApiResponseListener<Attendance, String> listener){
+    public void getAttendanceById(Long atnId, ApiResponseListener<Attendance, String> listener) {
         Call<Attendance> call = attendanceApiInterface.getAttendanceById(atnId);
 
         processAttendanceCall(call, listener);
@@ -796,6 +796,37 @@ public class MainRepository {
             @Override
             public void onFailure(@NonNull Call<Object> call, @NonNull Throwable t) {
                 //Ignored
+            }
+        });
+    }
+
+    public void getAllPendingPaymentRequests(ApiResponseListener<List<PaymentRequest>, String> listener) {
+        Call<List<PaymentRequest>> call = paymentApiInterface.getAllPendingPaymentRequests();
+
+        processRequestsListCall(call, listener);
+    }
+
+    public void getPendingRequestsToEmployee(Long empId, ApiResponseListener<List<PaymentRequest>, String> listener) {
+        Call<List<PaymentRequest>> call = paymentApiInterface.getPendingRequestsToEmployee(empId);
+
+        processRequestsListCall(call, listener);
+    }
+
+    public void processRequestsListCall(Call<List<PaymentRequest>> call, ApiResponseListener<List<PaymentRequest>, String> listener) {
+        call.enqueue(new Callback<List<PaymentRequest>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<PaymentRequest>> call, @NonNull Response<List<PaymentRequest>> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    listener.onFailure(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<PaymentRequest>> call, @NonNull Throwable t) {
+                t.printStackTrace();
+                listener.onFailure("Unable to connect to server");
             }
         });
     }

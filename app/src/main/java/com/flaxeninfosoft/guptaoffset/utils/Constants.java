@@ -117,4 +117,5 @@ public class Constants {
     public static final String FIRM = "firm";
     public static final String[] FIRMS = {"GBI", "GPH"};
     public static final String BATTERY_STATUS = "battery_status";
+    public static final String RECEIVED_AMOUNT = "received_amount";
 }

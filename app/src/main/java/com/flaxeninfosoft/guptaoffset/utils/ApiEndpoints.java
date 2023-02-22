@@ -62,6 +62,8 @@ public class ApiEndpoints {
 //    ----------------------------------------------------------------------------------------------
 
     public static final String ADD_PAYMENT = "payment/addPayment.php";
+    public static final String GET_ALL_PENDING_REQUESTS = "payment/getAllPendingPayments.php";
+    public static final String GET_PENDING_REQUESTS_TO_EMPLOYEE = "payment/getPendingRequestsToEmployee.php";
 
 //    ----------------------------------------------------------------------------------------------
 
