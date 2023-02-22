@@ -40,6 +40,10 @@ public class PaymentRequest {
     @Expose
     private String received;
 
+    @SerializedName(Constants.MESSAGE)
+    @Expose
+    private String message;
+
     public PaymentRequest() {
         location = new Location();
     }
@@ -106,6 +110,14 @@ public class PaymentRequest {
 
     public void setReceived(String received) {
         this.received = received;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     @Override

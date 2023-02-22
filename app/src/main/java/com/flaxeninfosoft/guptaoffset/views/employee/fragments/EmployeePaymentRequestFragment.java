@@ -18,6 +18,7 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeePaymentRequestBinding;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.flaxeninfosoft.guptaoffset.views.CustomDialogFragment;
 
 public class EmployeePaymentRequestFragment extends Fragment {
 
@@ -60,7 +61,10 @@ public class EmployeePaymentRequestFragment extends Fragment {
 
     private void onClickPayment(View view) {
             clearErrors();
-            if(validateForm()){
+//        CustomDialogFragment dialog = new CustomDialogFragment();
+//        dialog.show(requireActivity().getSupportFragmentManager(), "CustomDialogFragment");
+
+        if(validateForm()){
                 progressDialog.show();
                 viewModel.addPayment(binding.getPayment()).observe(getViewLifecycleOwner(),b->{
                     if(b){

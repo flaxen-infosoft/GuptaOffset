@@ -606,4 +606,6 @@ public class EmployeeViewModel extends AndroidViewModel {
     public void updateCurrentEmployeeBatteryStatus(float batteryLevel) {
         repo.updateEmployeeBatteryStatus(getCurrentEmployeeId(), batteryLevel+"");
     }
-}
+
+
+  }
