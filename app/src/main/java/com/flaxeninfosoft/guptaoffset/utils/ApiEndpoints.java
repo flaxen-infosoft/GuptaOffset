@@ -17,6 +17,7 @@ public class ApiEndpoints {
     public static final String UPDATE_EMPLOYEE_BY_ID = "employee/updateEmployeesById.php";
     public static final String SUSPEND_EMPLOYEE_BY_ID = "employee/suspendEmployeeById.php";
     public static final String ACTIVATE_EMPLOYEE_BY_ID = "employee/activateEmployeeById.php";
+    public static final String UPDATE_EMPLOYEE_BATTERY_STATUS = "employee/updateEmployeeBatteryStatus.php";
 
 //    ----------------------------------------------------------------------------------------------
 

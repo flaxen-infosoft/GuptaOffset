@@ -116,4 +116,5 @@ public class Constants {
     public static final String PETROL_EXPENSE_IMAGE = "petrol_expense_snap";
     public static final String FIRM = "firm";
     public static final String[] FIRMS = {"GBI", "GPH"};
+    public static final String BATTERY_STATUS = "battery_status";
 }

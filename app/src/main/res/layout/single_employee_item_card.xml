@@ -23,7 +23,7 @@
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp">
@@ -32,12 +32,29 @@
                     android:id="@+id/person"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/account_circle" />
+                    android:src="@drawable/account_circle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:gravity="end"
+                    android:layout_gravity="end"
+                    android:text="@{employee.batteryStatus+'%'}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/person"
+                    app:layout_constraintEnd_toEndOf="parent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -65,29 +82,30 @@
 
                     </LinearLayout>
 
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:orientation="horizontal">
-                       <TextView
-                           android:id="@+id/employee_card_item_card_firm"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginLeft="15dp"
-                           android:text="@{employee.firm + '-'}"
-                           android:textColor="@color/black"
-                           android:textSize="18sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                       <TextView
-                           android:id="@+id/employee_card_item_card_designation"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginLeft="8dp"
-                           android:text="@{employee.designation}"
-                           android:textColor="@color/black"
-                           android:textSize="18sp" />
+                        <TextView
+                            android:id="@+id/employee_card_item_card_firm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:text="@{employee.firm + '-'}"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
 
-                   </LinearLayout>
+                        <TextView
+                            android:id="@+id/employee_card_item_card_designation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@{employee.designation}"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/earea"
@@ -97,7 +115,7 @@
                         android:text="@{employee.currentLocation.address}"
                         android:textSize="16sp" />
                 </LinearLayout>
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 

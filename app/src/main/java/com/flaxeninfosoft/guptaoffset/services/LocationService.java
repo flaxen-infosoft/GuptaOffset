@@ -29,6 +29,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
+import com.flaxeninfosoft.guptaoffset.utils.Utilities;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddSchoolFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -104,6 +105,7 @@ public class LocationService extends Service {
                     location.setAddress(currentAddress.getAddressLine(0));
 
                     viewModel.addCurrentEmployeeLocation(location);
+                    viewModel.updateCurrentEmployeeBatteryStatus(Utilities.getBatteryLevel(LocationService.this));
 
                 } catch (Exception e) {
                     e.printStackTrace();

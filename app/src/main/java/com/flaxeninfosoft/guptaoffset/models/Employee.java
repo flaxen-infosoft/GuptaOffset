@@ -66,6 +66,10 @@ public class Employee {
     @Expose
     private String firm;
 
+    @SerializedName(Constants.BATTERY_STATUS)
+    @Expose
+    private String batteryStatus;
+
     public Employee() {
         currentLocation = new Location();
     }
@@ -190,6 +194,14 @@ public class Employee {
         this.firm = firm;
     }
 
+    public String getBatteryStatus() {
+        return batteryStatus;
+    }
+
+    public void setBatteryStatus(String batteryStatus) {
+        this.batteryStatus = batteryStatus;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -204,10 +216,11 @@ public class Employee {
                 ", phone='" + phone + '\'' +
                 ", salary='" + salary + '\'' +
                 ", token='" + token + '\'' +
-                ", assignedTo=" + assignedTo +
+                ", assignedTo='" + assignedTo + '\'' +
                 ", date='" + date + '\'' +
                 ", currentLocation=" + currentLocation +
                 ", firm='" + firm + '\'' +
+                ", batteryStatus='" + batteryStatus + '\'' +
                 '}';
     }
 }

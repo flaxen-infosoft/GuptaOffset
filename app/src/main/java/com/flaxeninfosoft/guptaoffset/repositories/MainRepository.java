@@ -784,4 +784,19 @@ public class MainRepository {
     public void resetNewSchool() {
         newSchool = new School();
     }
+
+    public void updateEmployeeBatteryStatus(Long currentEmployeeId, String status) {
+        Call<Object> call = employeeApiInterface.updateEmployeeBatteryStatus(currentEmployeeId, status);
+        call.enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(@NonNull Call<Object> call, @NonNull Response<Object> response) {
+                //Ignored
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Object> call, @NonNull Throwable t) {
+                //Ignored
+            }
+        });
+    }
 }

@@ -3,6 +3,7 @@ package com.flaxeninfosoft.guptaoffset.api;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
+import com.google.android.gms.common.api.Api;
 
 import java.util.List;
 
@@ -41,4 +42,6 @@ public interface EmployeeApiInterface {
     @GET(ApiEndpoints.ACTIVATE_EMPLOYEE_BY_ID)
     Call<Employee> activateEmployeeById(@Query(Constants.EMPLOYEE_ID) Long empId);
 
+    @GET(ApiEndpoints.UPDATE_EMPLOYEE_BATTERY_STATUS)
+    Call<Object> updateEmployeeBatteryStatus(@Query(Constants.EMPLOYEE_ID) Long currentEmployeeId,@Query(Constants.BATTERY_STATUS) String status);
 }

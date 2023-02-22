@@ -602,4 +602,8 @@ public class EmployeeViewModel extends AndroidViewModel {
     public void setNewSchoolHoadingImageUri(Uri uri){
         repo.getNewSchool().setHoadingImageUri(uri);
     }
+
+    public void updateCurrentEmployeeBatteryStatus(float batteryLevel) {
+        repo.updateEmployeeBatteryStatus(getCurrentEmployeeId(), batteryLevel+"");
+    }
 }
