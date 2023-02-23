@@ -116,6 +116,54 @@
                             android:textColor="#222"
                             android:textSize="17sp" />
                     </LinearLayout>
+                   <LinearLayout
+                       android:id="@+id/payment_request_received_layout"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:visibility="visible"
+                       android:orientation="vertical">
+
+                       <LinearLayout
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="8dp">
+
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="Received : "
+                               android:textColor="#222"
+                               android:textSize="18sp"
+                               android:textStyle="bold" />
+
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="@{paymentRequest.received}"
+                               android:textColor="#222"
+                               android:textSize="17sp" />
+                       </LinearLayout>
+                       <LinearLayout
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="8dp">
+
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="Message : "
+                               android:textColor="#222"
+                               android:textSize="18sp"
+                               android:textStyle="bold" />
+
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="@{paymentRequest.message}"
+                               android:textColor="#222"
+                               android:textSize="17sp" />
+                       </LinearLayout>
+                   </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>

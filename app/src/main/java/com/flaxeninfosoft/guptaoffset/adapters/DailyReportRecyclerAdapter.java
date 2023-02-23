@@ -18,7 +18,7 @@ public class DailyReportRecyclerAdapter extends RecyclerView.Adapter<DailyReport
     private List<Eod> eodList;
     private SingleDailyReportOnClickListener listener;
 
-    public DailyReportRecyclerAdapter(List<Eod> eodList, SingleDailyReportOnClickListener listener){
+    public DailyReportRecyclerAdapter(List<Eod> eodList, SingleDailyReportOnClickListener listener) {
         this.eodList = eodList;
         this.listener = listener;
     }
@@ -37,10 +37,10 @@ public class DailyReportRecyclerAdapter extends RecyclerView.Adapter<DailyReport
 
     @Override
     public int getItemCount() {
-       if (eodList == null){
-           return 0;
-       }
-       return eodList.size();
+        if (eodList == null) {
+            return 0;
+        }
+        return eodList.size();
     }
 
     public static class DailyReportViewHolder extends RecyclerView.ViewHolder {
@@ -60,13 +60,13 @@ public class DailyReportRecyclerAdapter extends RecyclerView.Adapter<DailyReport
             binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(eod));
             long ta = 0;
             try {
-                ta+= Integer.parseInt(eod.getPetrolExpense());
-                ta+= Integer.parseInt(eod.getOtherExpense());
-            }catch (Exception e){
+                ta += Integer.parseInt(eod.getPetrolExpense());
+                ta += Integer.parseInt(eod.getOtherExpense());
+            } catch (Exception e) {
                 //ignored
             }
 
-            binding.dailyReportTa.setText(ta+"");
+            binding.dailyReportTa.setText(ta + "");
         }
     }
 

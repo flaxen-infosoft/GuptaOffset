@@ -25,6 +25,8 @@ public class PendingPaymentRequestsFragment extends Fragment {
     private FragmentPendingPaymentRequestsBinding binding;
     private AdminViewModel viewModel;
 
+    private long superEmployeeId;
+
     public PendingPaymentRequestsFragment() {
         // Required empty public constructor
     }
@@ -40,7 +42,6 @@ public class PendingPaymentRequestsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_pending_payment_requests, container, false);
 
-        long superEmployeeId;
         binding.pendingPaymentRequestsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         try {
@@ -49,18 +50,24 @@ public class PendingPaymentRequestsFragment extends Fragment {
             superEmployeeId = -1;
         }
 
+        loadRequests();
+
+        return binding.getRoot();
+    }
+
+    private void loadRequests() {
         if (superEmployeeId != -1) {
             viewModel.getAllPendingPaymentRequests().observe(getViewLifecycleOwner(), this::setRequestsList);
         } else {
             viewModel.getAllPendingPaymentRequestsToEmployee().observe(getViewLifecycleOwner(), this::setRequestsList);
         }
-
-        return binding.getRoot();
     }
 
     private void setRequestsList(List<PaymentRequest> paymentRequests) {
         PaymentRequestRecyclerAdapter adapter = new PaymentRequestRecyclerAdapter(paymentRequests, request -> {
-            CustomDialogFragment dialog = new CustomDialogFragment(request);
+            CustomDialogFragment dialog = new CustomDialogFragment(request, () -> {
+                loadRequests();
+            });
             dialog.show(requireActivity().getSupportFragmentManager(), "CustomDialogFragment");
         });
 

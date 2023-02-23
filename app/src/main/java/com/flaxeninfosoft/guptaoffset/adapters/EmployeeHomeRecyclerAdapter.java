@@ -399,6 +399,12 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         public void setData(PaymentRequest payment) {
             binding.setPaymentRequest(payment);
             binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(payment));
+
+            if (payment.getStatus().equals(Constants.PAYMENT_RECEIVED)){
+                binding.paymentRequestReceivedLayout.setVisibility(View.VISIBLE);
+            }else {
+                binding.paymentRequestReceivedLayout.setVisibility(View.GONE);
+            }
         }
 
         public interface SinglePaymentCardClickListener {

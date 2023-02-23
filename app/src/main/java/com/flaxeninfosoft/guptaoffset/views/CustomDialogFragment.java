@@ -30,9 +30,11 @@ public class CustomDialogFragment extends DialogFragment {
     private LayoutCustomDialogBinding binding;
 
     private PaymentRequest request;
+    private OnCompleteListener listener;
 
-    public CustomDialogFragment(PaymentRequest request){
+    public CustomDialogFragment(PaymentRequest request, OnCompleteListener listener){
         this.request = request;
+        this.listener = listener;
     }
 
     @Override
@@ -59,6 +61,7 @@ public class CustomDialogFragment extends DialogFragment {
                 if(validateFields()){
                     binding.getPayment().setId(request.getId());
                     viewModel.updatePaymentRequest(binding.getPayment());
+                    listener.onComplete();
                     dismiss();
                 }
             }
@@ -80,5 +83,8 @@ public class CustomDialogFragment extends DialogFragment {
             return false;
         }
         return true;
+    }
+    public interface OnCompleteListener{
+        void onComplete();
     }
 }

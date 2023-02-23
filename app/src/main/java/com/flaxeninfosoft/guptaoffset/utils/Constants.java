@@ -119,4 +119,5 @@ public class Constants {
     public static final String PAYMENT_REQUEST_ID = "pay_id";
     public static final String AMOUNT_PAID = "amount_paid";
 
+    public static final String PAYMENT_RECEIVED = "received";
 }
