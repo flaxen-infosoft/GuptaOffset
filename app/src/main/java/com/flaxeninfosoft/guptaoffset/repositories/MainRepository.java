@@ -66,6 +66,7 @@ public class MainRepository {
         authApiInterface = apiClient.create(AuthApiInterface.class);
         dealerApiInterface = apiClient.create(DealerApiInterface.class);
         paymentApiInterface = apiClient.create(PaymentApiInterface.class);
+//        Yeah Boii!
         schoolApiInterface = apiClient.create(SchoolApiInterface.class);
         attendanceApiInterface = apiClient.create(AttendanceApiInterface.class);
         employeeApiInterface = apiClient.create(EmployeeApiInterface.class);

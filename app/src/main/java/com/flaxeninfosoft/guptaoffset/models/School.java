@@ -66,7 +66,7 @@ public class School {
     @SerializedName(Constants.PHONE)
     @Expose
     private String contact;
-
+//    Yeah Boiii!!!
     @SerializedName(Constants.DATE)
     @Expose
     private String date;

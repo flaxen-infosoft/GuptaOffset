@@ -66,6 +66,7 @@ public class Employee {
     @Expose
     private String firm;
 
+//    Yeah Boiii!!!
     @SerializedName(Constants.BATTERY_STATUS)
     @Expose
     private String batteryStatus;

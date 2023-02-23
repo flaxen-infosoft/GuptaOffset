@@ -66,6 +66,7 @@ public class Leave {
     }
 
     public void setEmpId(Long empId) {
+//        Yeah Boiii!!!
         this.empId = empId;
     }
 

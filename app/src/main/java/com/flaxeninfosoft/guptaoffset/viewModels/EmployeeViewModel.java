@@ -66,6 +66,7 @@ public class EmployeeViewModel extends AndroidViewModel {
         return sharedPrefs.getCurrentEmployee();
     }
 
+//    Yeah Boiii!!!
     Long getCurrentEmployeeId() {
         return sharedPrefs.getCurrentEmployee().getId();
     }

@@ -66,6 +66,7 @@ public class DailyReportRecyclerAdapter extends RecyclerView.Adapter<DailyReport
                 //ignored
             }
 
+//            Yeah Boiii!!!
             binding.dailyReportTa.setText(ta + "");
         }
     }

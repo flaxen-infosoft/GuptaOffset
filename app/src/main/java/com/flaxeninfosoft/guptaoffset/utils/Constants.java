@@ -66,6 +66,7 @@ public class Constants {
     public static final String OTHER_EXPENSE = "otherExpenses";
 
     public static final String AMOUNT = "amount";
+//    Yeah Boiii!!!
     public static final String SNAP_IN = "snapIn";
 
     public static final String SNAP_OUT = "snapOut";

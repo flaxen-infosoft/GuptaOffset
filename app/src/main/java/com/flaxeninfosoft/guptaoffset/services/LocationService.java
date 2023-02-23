@@ -66,6 +66,7 @@ public class LocationService extends Service {
 
                 locationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
                         .addOnCompleteListener(task -> {});
+//                Yeah Boiii!!!
             }
         }
     };

@@ -66,6 +66,7 @@ public class Dealer {
         return contact;
     }
 
+//    Yeah Boiii!!!
     public void setContact(String contact) {
         this.contact = contact;
     }

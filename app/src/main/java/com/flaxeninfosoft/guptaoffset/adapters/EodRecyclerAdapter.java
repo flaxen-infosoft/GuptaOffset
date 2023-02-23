@@ -66,6 +66,7 @@ public class EodRecyclerAdapter extends RecyclerView.Adapter<EodRecyclerAdapter.
                 }
             });
         }
+//        Yeah Boiii!!!
     }
 
     public interface SingleEodCardOnClickListener {

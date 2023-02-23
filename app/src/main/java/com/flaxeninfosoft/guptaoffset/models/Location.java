@@ -66,6 +66,7 @@ public class Location {
         return latitude;
     }
 
+//    Yeah Boiii!!!
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }

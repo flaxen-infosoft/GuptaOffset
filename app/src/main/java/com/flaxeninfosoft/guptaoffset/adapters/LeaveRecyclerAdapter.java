@@ -66,4 +66,5 @@ public class LeaveRecyclerAdapter extends RecyclerView.Adapter<LeaveRecyclerAdap
 
         void onClickCard(Leave leave);
     }
+//    Yeah Boiii!!!
 }
