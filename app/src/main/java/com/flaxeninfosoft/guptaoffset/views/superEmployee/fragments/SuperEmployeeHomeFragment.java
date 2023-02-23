@@ -83,13 +83,13 @@ public class SuperEmployeeHomeFragment extends Fragment {
     }
 
     private void showToast(String s) {
-        if (!s.isEmpty()){
+        if (!s.isEmpty()) {
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
 
     private void sendMessage(View view) {
-        if (!binding.getMessage().getMessage().trim().isEmpty()){
+        if (!binding.getMessage().getMessage().trim().isEmpty()) {
             binding.getMessage().setReceiverId(viewModel.getCurrentEmployee().getId());
             viewModel.sendMessage(binding.getMessage());
             binding.setMessage(new Message());
@@ -97,7 +97,16 @@ public class SuperEmployeeHomeFragment extends Fragment {
     }
 
     private void setEmployeeHistory(List<EmployeeHistory> historyList) {
-        EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList,getActivity().getApplication(), new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
+
+        if (historyList == null || historyList.isEmpty()) {
+            binding.superEmployeeHomeEmptyRecycler.setVisibility(View.VISIBLE);
+            binding.superEmployeeHomeRecycler.setVisibility(View.GONE);
+        } else {
+            binding.superEmployeeHomeEmptyRecycler.setVisibility(View.GONE);
+            binding.superEmployeeHomeRecycler.setVisibility(View.VISIBLE);
+        }
+
+        EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList, getActivity().getApplication(), new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
             @Override
             public void onClickCard(Attendance attendance) {
                 Bundle bundle = new Bundle();

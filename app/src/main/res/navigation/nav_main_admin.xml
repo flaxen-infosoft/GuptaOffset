@@ -68,4 +68,9 @@
         tools:layout="@layout/fragment_super_employee_add_employee"
         android:name="com.flaxeninfosoft.guptaoffset.views.superEmployee.fragments.SuperEmployeeAddEmployeeFragment"
         android:label="SuperEmployeeAddEmployeeFragment" />
+    <fragment
+        android:id="@+id/pendingPaymentRequestsFragment"
+        tools:layout="@layout/fragment_pending_payment_requests"
+        android:name="com.flaxeninfosoft.guptaoffset.views.PendingPaymentRequestsFragment"
+        android:label="Pending Requests" />
 </navigation>

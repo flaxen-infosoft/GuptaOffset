@@ -21,7 +21,22 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:padding="8dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/super_employee_home_message_input_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/super_employee_home_empty_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nothing to show here"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

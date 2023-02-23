@@ -61,8 +61,16 @@ public class EmployeeDailyReportsFragment extends Fragment {
     }
 
     private void setEods(List<Eod> eods) {
+
+        if (eods == null || eods.isEmpty()){
+            binding.employeeDailyReportsRecycler.setVisibility(View.GONE);
+            binding.employeeDailyReportsEmptyRecycler.setVisibility(View.VISIBLE);
+        }else {
+            binding.employeeDailyReportsRecycler.setVisibility(View.VISIBLE);
+            binding.employeeDailyReportsEmptyRecycler.setVisibility(View.GONE);
+        }
+
         DailyReportRecyclerAdapter adapter = new DailyReportRecyclerAdapter(eods, eod -> {
-            // Ignored
             Bundle bundle = new Bundle();
             bundle.putLong(Constants.EOD_ID, eod.getId());
             Navigation.findNavController(binding.getRoot()).navigate(R.id.eodProfileFragment, bundle);

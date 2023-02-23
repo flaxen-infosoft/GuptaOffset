@@ -64,6 +64,15 @@ public class PendingPaymentRequestsFragment extends Fragment {
     }
 
     private void setRequestsList(List<PaymentRequest> paymentRequests) {
+
+        if (paymentRequests == null || paymentRequests.isEmpty()){
+            binding.pendingPaymentRequestsRecycler.setVisibility(View.GONE);
+            binding.pendingPaymentEmptyRecycler.setVisibility(View.VISIBLE);
+        }else {
+            binding.pendingPaymentRequestsRecycler.setVisibility(View.VISIBLE);
+            binding.pendingPaymentEmptyRecycler.setVisibility(View.GONE);
+        }
+
         PaymentRequestRecyclerAdapter adapter = new PaymentRequestRecyclerAdapter(paymentRequests, request -> {
             CustomDialogFragment dialog = new CustomDialogFragment(request, getViewLifecycleOwner(), () -> {
                 loadRequests();

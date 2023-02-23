@@ -48,10 +48,15 @@ public class AdminHomeFragment extends Fragment {
         viewModel.getAllEmployees().observe(getViewLifecycleOwner(), this::onChange);
         binding.adminHomeAddSuperEmployee.setOnClickListener(this::navigateToAddSuperEmployee);
         binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
+        binding.adminHomePaymentRequests.setOnClickListener(this::navigateToPaymentRequests);
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
         return binding.getRoot();
+    }
+
+    private void navigateToPaymentRequests(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.pendingPaymentRequestsFragment);
     }
 
     private void navigateToAddEmployee(View view) {
@@ -69,6 +74,13 @@ public class AdminHomeFragment extends Fragment {
     }
 
     private void onChange(List<Employee> employees) {
+        if (employees == null || employees.isEmpty()){
+            binding.adminHomeEmptyRecycler.setVisibility(View.VISIBLE);
+            binding.adminHomeRecycler.setVisibility(View.GONE);
+        }else {
+            binding.adminHomeEmptyRecycler.setVisibility(View.GONE);
+            binding.adminHomeRecycler.setVisibility(View.VISIBLE);
+        }
         binding.adminHomeRecycler.setAdapter(new EmployeeRecyclerAdapter(employees, this::onCLickEmployeeCard));
     }
 

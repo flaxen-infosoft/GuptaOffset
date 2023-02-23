@@ -58,6 +58,15 @@ public class SuperEmployeeAllEmployeesFragment extends Fragment {
     }
 
     private void setEmployees(List<Employee> employees) {
+
+        if (employees==null || employees.isEmpty()){
+            binding.superEmployeeAllEmployeesEmptyRecycler.setVisibility(View.VISIBLE);
+            binding.superEmployeeAllEmployeesRecycler.setVisibility(View.GONE);
+        }else {
+            binding.superEmployeeAllEmployeesEmptyRecycler.setVisibility(View.GONE);
+            binding.superEmployeeAllEmployeesRecycler.setVisibility(View.VISIBLE);
+        }
+
         EmployeeRecyclerAdapter adapter = new EmployeeRecyclerAdapter(employees, employee -> {
             Bundle bundle = new Bundle();
             bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());

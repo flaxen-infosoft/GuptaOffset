@@ -102,6 +102,14 @@ public class EmployeeHomeFragment extends Fragment {
     }
 
     private void setEmployeeHistory(List<EmployeeHistory> historyList) {
+
+        if (historyList==null || historyList.isEmpty()){
+            binding.employeeHomeEmptyRecycler.setVisibility(View.VISIBLE);
+            binding.employeeHomeRecycler.setVisibility(View.GONE);
+        }else {
+            binding.employeeHomeEmptyRecycler.setVisibility(View.GONE);
+            binding.employeeHomeRecycler.setVisibility(View.VISIBLE);
+        }
         EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList, getActivity().getApplication(), new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
             @Override
             public void onClickCard(Attendance attendance) {
