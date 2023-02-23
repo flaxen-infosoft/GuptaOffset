@@ -49,7 +49,7 @@ public class Constants {
     public static final String TO_DATE = "to_date";
     public static final String APPLY_DATE = "apply_date";
     public static final String SUBJECT = "subject";
-    public static final String MESSAGE = "paid_message";
+    public static final String MESSAGE = "message";
 
     public static final String TIME = "time";
     public static final String IMAGE = "snap";

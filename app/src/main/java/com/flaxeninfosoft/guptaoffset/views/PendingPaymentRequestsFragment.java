@@ -65,7 +65,7 @@ public class PendingPaymentRequestsFragment extends Fragment {
 
     private void setRequestsList(List<PaymentRequest> paymentRequests) {
         PaymentRequestRecyclerAdapter adapter = new PaymentRequestRecyclerAdapter(paymentRequests, request -> {
-            CustomDialogFragment dialog = new CustomDialogFragment(request, () -> {
+            CustomDialogFragment dialog = new CustomDialogFragment(request, getViewLifecycleOwner(), () -> {
                 loadRequests();
             });
             dialog.show(requireActivity().getSupportFragmentManager(), "CustomDialogFragment");

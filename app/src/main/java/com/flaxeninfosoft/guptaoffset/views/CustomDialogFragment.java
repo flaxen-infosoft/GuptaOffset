@@ -3,25 +3,19 @@ package com.flaxeninfosoft.guptaoffset.views;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.LayoutCustomDialogBinding;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
-import com.flaxeninfosoft.guptaoffset.viewModels.AdminViewModel;
-import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
 
 public class CustomDialogFragment extends DialogFragment {
@@ -31,10 +25,12 @@ public class CustomDialogFragment extends DialogFragment {
 
     private PaymentRequest request;
     private OnCompleteListener listener;
+    private LifecycleOwner lifecycleOwner;
 
-    public CustomDialogFragment(PaymentRequest request, OnCompleteListener listener){
+    public CustomDialogFragment(PaymentRequest request, LifecycleOwner viewLifecycleOwner, OnCompleteListener listener) {
         this.request = request;
         this.listener = listener;
+        this.lifecycleOwner = viewLifecycleOwner;
     }
 
     @Override
@@ -58,10 +54,10 @@ public class CustomDialogFragment extends DialogFragment {
         binding.customDialogOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validateFields()){
+                if (validateFields()) {
                     binding.getPayment().setId(request.getId());
-                    viewModel.updatePaymentRequest(binding.getPayment());
-                    listener.onComplete();
+                    viewModel.updatePaymentRequest(binding.getPayment()).observe(lifecycleOwner,
+                            request -> listener.onComplete());
                     dismiss();
                 }
             }
@@ -70,21 +66,22 @@ public class CustomDialogFragment extends DialogFragment {
         binding.customDialogCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              dismiss();
+                dismiss();
             }
         });
         builder.setView(binding.getRoot());
         return builder.create();
     }
 
-    private boolean validateFields(){
+    private boolean validateFields() {
         if (binding.getPayment().getReceived() == null || binding.getPayment().getReceived().trim().isEmpty()) {
             binding.layoutCustomDialogAmountEditText.setError("**Enter Amount");
             return false;
         }
         return true;
     }
-    public interface OnCompleteListener{
+
+    public interface OnCompleteListener {
         void onComplete();
     }
 }
