@@ -34,6 +34,10 @@ public class Location {
     @Expose
     private String batteryStatus;
 
+    @SerializedName(Constants.DISTRICT)
+    @Expose
+    private String district;
+
     public Long getId() {
         return id;
     }
@@ -90,6 +94,14 @@ public class Location {
         this.batteryStatus = batteryStatus;
     }
 
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
     @Override
     public String toString() {
         return "Location{" +
@@ -100,6 +112,7 @@ public class Location {
                 ", longitude=" + longitude +
                 ", address='" + address + '\'' +
                 ", batteryStatus='" + batteryStatus + '\'' +
+                ", district='" + district + '\'' +
                 '}';
     }
 }

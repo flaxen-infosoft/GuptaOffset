@@ -15,8 +15,8 @@ import java.util.List;
 
 public class DailyReportRecyclerAdapter extends RecyclerView.Adapter<DailyReportRecyclerAdapter.DailyReportViewHolder> {
 
-    private List<Eod> eodList;
-    private SingleDailyReportOnClickListener listener;
+    private final List<Eod> eodList;
+    private final SingleDailyReportOnClickListener listener;
 
     public DailyReportRecyclerAdapter(List<Eod> eodList, SingleDailyReportOnClickListener listener) {
         this.eodList = eodList;

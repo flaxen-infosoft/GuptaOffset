@@ -102,6 +102,7 @@ public class LocationService extends Service {
                     // initialising address list
                     List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     Address currentAddress = addresses.get(0);
+                    location.setDistrict(currentAddress.getSubAdminArea());
                     location.setAddress(currentAddress.getAddressLine(0));
                     location.setBatteryStatus(""+Utilities.getBatteryLevel(LocationService.this));
                     viewModel.addCurrentEmployeeLocation(location);
