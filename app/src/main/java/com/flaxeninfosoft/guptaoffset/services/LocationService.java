@@ -51,7 +51,7 @@ public class LocationService extends Service {
     private LocationCallback locationCallback;
 
 
-    private final static int INTERVAL = 20000;
+    private final static int INTERVAL = 300000;
     Handler m_handler = new Handler();
 
     Runnable m_handlerTask = new Runnable() {
