@@ -65,20 +65,6 @@
                 android:layout_height="170dp"
                 android:src="@drawable/ic_add_image"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/employee_add_eod_other_expense"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Other expense"
-                    android:inputType="phone"
-                    android:text="@={eod.otherExpense}" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/employee_add_eod_daily_allowance"
@@ -94,6 +80,21 @@
                     android:hint="Daily allowance"
                     android:inputType="numberSigned"
                     android:text="@={eod.dailyAllowance}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/employee_add_eod_other_expense"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Other expense"
+                    android:inputType="phone"
+                    android:text="@={eod.otherExpense}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
