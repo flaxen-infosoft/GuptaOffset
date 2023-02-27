@@ -13,5 +13,5 @@ import retrofit2.http.Query;
 public interface HistoryApiInterface {
 
     @GET(ApiEndpoints.GET_EMPLOYEE_HISTORY)
-    Call<List<EmployeeHistory>> getEmployeeHistory(@Query(Constants.EMPLOYEE_ID) Long empId);
+    Call<List<EmployeeHistory>> getEmployeeHistory(@Query(Constants.EMPLOYEE_ID) Long empId, @Query(Constants.TOKEN) Long currentEmpId);
 }

@@ -697,8 +697,8 @@ public class MainRepository {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public void getEmployeeHomeHistory(Long empId, ApiResponseListener<List<EmployeeHistory>, String> listener) {
-        Call<List<EmployeeHistory>> historyCall = historyApiInterface.getEmployeeHistory(empId);
+    public void getEmployeeHomeHistory(Long empId, Long currentEmpId, ApiResponseListener<List<EmployeeHistory>, String> listener) {
+        Call<List<EmployeeHistory>> historyCall = historyApiInterface.getEmployeeHistory(empId, currentEmpId);
 
         historyCall.enqueue(new Callback<List<EmployeeHistory>>() {
             @Override

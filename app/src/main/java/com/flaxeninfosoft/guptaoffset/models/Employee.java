@@ -66,10 +66,14 @@ public class Employee {
     @Expose
     private String firm;
 
-//    Yeah Boiii!!!
+    //    Yeah Boiii!!!
     @SerializedName(Constants.BATTERY_STATUS)
     @Expose
     private String batteryStatus;
+
+    @SerializedName(Constants.PENDING_MESSAGES)
+    @Expose
+    private String pendingMessages;
 
     public Employee() {
         currentLocation = new Location();
@@ -203,6 +207,14 @@ public class Employee {
         this.batteryStatus = batteryStatus;
     }
 
+    public String getPendingMessages() {
+        return pendingMessages;
+    }
+
+    public void setPendingMessages(String pendingMessages) {
+        this.pendingMessages = pendingMessages;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -222,6 +234,7 @@ public class Employee {
                 ", currentLocation=" + currentLocation +
                 ", firm='" + firm + '\'' +
                 ", batteryStatus='" + batteryStatus + '\'' +
+                ", pendingMessages='" + pendingMessages + '\'' +
                 '}';
     }
 }

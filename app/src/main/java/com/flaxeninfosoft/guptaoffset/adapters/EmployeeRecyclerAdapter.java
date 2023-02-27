@@ -1,6 +1,8 @@
 package com.flaxeninfosoft.guptaoffset.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -8,7 +10,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.databinding.SingleEmployeeCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleEmployeeItemCardBinding;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 
@@ -40,7 +41,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
 
     @Override
     public int getItemCount() {
-        if (employeeList == null){
+        if (employeeList == null) {
             return 0;
         }
         return employeeList.size();
@@ -62,11 +63,24 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
         public void setEmployee(Employee employee) {
             binding.setEmployee(employee);
             binding.getRoot().setOnClickListener(v -> onClickListener.onClickCard(employee));
+
+            try {
+                int pendingMessages = Integer.parseInt(employee.getPendingMessages());
+//                Yeah Boii!!!
+                if (pendingMessages == 0) {
+                    binding.employeeCardPendingMessageLayout.setVisibility(View.GONE);
+                } else {
+                    binding.employeeCardPendingMessageLayout.setVisibility(View.VISIBLE);
+                    binding.employeeCardPendingMessageCount.setText("" + pendingMessages);
+                }
+
+            } catch (Exception e) {
+                binding.employeeCardPendingMessageLayout.setVisibility(View.GONE);
+            }
         }
     }
 
-    public interface SingleEmployeeCardOnClickListener{
-//        Yeah Boiii!!!
+    public interface SingleEmployeeCardOnClickListener {
         void onClickCard(Employee employee);
     }
 }

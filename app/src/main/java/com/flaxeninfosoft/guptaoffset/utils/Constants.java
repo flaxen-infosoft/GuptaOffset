@@ -122,4 +122,5 @@ public class Constants {
 
     public static final String PAYMENT_RECEIVED = "received";
     public static final String DISTRICT = "district";
+    public static final String PENDING_MESSAGES = "pending_messages";
 }

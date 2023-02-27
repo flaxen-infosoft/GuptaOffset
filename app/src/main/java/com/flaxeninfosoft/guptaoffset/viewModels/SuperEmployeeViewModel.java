@@ -66,7 +66,7 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
         return currentSuperEmployeeEmployees;
     }
 
-//    Yeah Boiii!!!
+    //    Yeah Boiii!!!
     public LiveData<Boolean> addEmployee(Employee employee) {
         employee.setDesignation(Constants.DESIGNATION_EMPLOYEE);
 
@@ -130,7 +130,7 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
     public LiveData<List<EmployeeHistory>> getEmployeeHistoryById(Long empId) {
         MutableLiveData<List<EmployeeHistory>> flag = new MutableLiveData<>();
 
-        repo.getEmployeeHomeHistory(empId, new ApiResponseListener<List<EmployeeHistory>, String>() {
+        repo.getEmployeeHomeHistory(empId, getCurrentEmployeeId(), new ApiResponseListener<List<EmployeeHistory>, String>() {
             @Override
             public void onSuccess(List<EmployeeHistory> response) {
                 flag.postValue(response);
@@ -169,7 +169,7 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
 
         MutableLiveData<PaymentRequest> flag = new MutableLiveData<>();
 
-        repo.updatePaymentRequest(payment, new ApiResponseListener<PaymentRequest, String>(){
+        repo.updatePaymentRequest(payment, new ApiResponseListener<PaymentRequest, String>() {
 
             @Override
             public void onSuccess(PaymentRequest response) {
