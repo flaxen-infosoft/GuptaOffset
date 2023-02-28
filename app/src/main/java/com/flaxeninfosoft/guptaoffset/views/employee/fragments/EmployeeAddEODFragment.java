@@ -188,10 +188,10 @@ public class EmployeeAddEODFragment extends Fragment {
             binding.employeeAddEodSchoolsVisits.setError("Enter schools visits");
             return false;
         }
-        if (binding.getEod().getPetrolExpense() == null) {
-            binding.employeeAddEodPetrolExpense.setError("Enter petrol expense");
-            return false;
-        }
+//        if (binding.getEod().getPetrolExpense() == null) {
+//            binding.employeeAddEodPetrolExpense.setError("Enter petrol expense");
+//            return false;
+//        }
         if (binding.getEod().getOtherExpense() != null && !binding.getEod().getOtherExpense().isEmpty()){
             if (binding.getEod().getExpenseDescription() == null || binding.getEod().getExpenseDescription().isEmpty()){
                 binding.employeeAddEodExpenseDescription.setError("Enter expense description");

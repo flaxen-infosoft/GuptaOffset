@@ -23,9 +23,9 @@ public class CustomDialogFragment extends DialogFragment {
     private SuperEmployeeViewModel viewModel;
     private LayoutCustomDialogBinding binding;
 
-    private PaymentRequest request;
-    private OnCompleteListener listener;
-    private LifecycleOwner lifecycleOwner;
+    private final PaymentRequest request;
+    private final OnCompleteListener listener;
+    private final LifecycleOwner lifecycleOwner;
 
     public CustomDialogFragment(PaymentRequest request, LifecycleOwner viewLifecycleOwner, OnCompleteListener listener) {
         this.request = request;
@@ -51,24 +51,16 @@ public class CustomDialogFragment extends DialogFragment {
 
         builder.setView(dialogView);
 
-        binding.customDialogOkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (validateFields()) {
-                    binding.getPayment().setId(request.getId());
-                    viewModel.updatePaymentRequest(binding.getPayment()).observe(lifecycleOwner,
-                            request -> listener.onComplete());
-                    dismiss();
-                }
-            }
-        });
-
-        binding.customDialogCancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        binding.customDialogOkButton.setOnClickListener(v -> {
+            if (validateFields()) {
+                binding.getPayment().setId(request.getId());
+                viewModel.updatePaymentRequest(binding.getPayment()).observe(lifecycleOwner,
+                        request -> listener.onComplete());
                 dismiss();
             }
         });
+
+        binding.customDialogCancelButton.setOnClickListener(v -> dismiss());
         builder.setView(binding.getRoot());
         return builder.create();
     }

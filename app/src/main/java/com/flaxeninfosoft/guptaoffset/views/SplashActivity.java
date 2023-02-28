@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
-import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.Connection;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
@@ -24,59 +23,14 @@ import com.flaxeninfosoft.guptaoffset.views.superEmployee.SuperEmployeeMainActiv
 
 public class SplashActivity extends AppCompatActivity {
 
-    private MainRepository repo;
     private LoginViewModel viewModel;
-    //--------------------------------------Notification-----------------------------
-    private static final String CHANNEL_ID = "Only For New Message";
-    private static final int NOTIFICATION_ID = 100;
-//--------------------------------------Notification-----------------------------
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-//--------------------------------------Notification Code-----------------------------
-//
-//        Drawable drawable= ResourcesCompat.getDrawable(getResources(),R.drawable.splash_logo,null);
-//        BitmapDrawable bitmapDrawable= (BitmapDrawable) drawable;
-//        Bitmap bitmap=bitmapDrawable.getBitmap();
-//
-//        NotificationManager notificationManager= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//        Notification notification;
-//        Intent intent=new Intent(getApplicationContext(),SplashActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        PendingIntent pendingIntent=PendingIntent.getActivity(this,100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-//
-//        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
-//            notification=new Notification.Builder(this)
-//                    .setLargeIcon(bitmap)
-//                    .setSmallIcon(R.drawable.splash_logo)
-//                    .setContentText("Application Running")
-//                    .setSubText("New Message")
-//                    .setContentIntent(pendingIntent)
-//                    .setChannelId(CHANNEL_ID)
-//                    .build();
-//            notificationManager.createNotificationChannel(new NotificationChannel(CHANNEL_ID,"GuptaJI Channel",NotificationManager.IMPORTANCE_HIGH)
-//            );
-//        }
-//        else{
-//            notification=new Notification.Builder(this)
-//                    .setLargeIcon(bitmap)
-//                    .setSmallIcon(R.drawable.splash_logo)
-//                    .setContentText("New Message")
-//                    .setSubText("Message From Employees")
-//                    .setContentIntent(pendingIntent)
-//                    .build();
-//        }
-//        notificationManager.notify(NOTIFICATION_ID,notification);
-//
-//--------------------------------------Notification Code-----------------------------
-
-
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(LoginViewModel.class);
-        repo = MainRepository.getInstance(getApplicationContext());
 
         checkGps();
     }
@@ -102,9 +56,7 @@ public class SplashActivity extends AppCompatActivity {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Please enable Gps.")
                     .setCancelable(false)
-                    .setPositiveButton("Yes", (dialog, id) -> {
-                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                    })
+                    .setPositiveButton("Yes", (dialog, id) -> startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
                     .setNegativeButton("No", (dialog, id) -> checkGps());
             final AlertDialog alert = builder.create();
             alert.show();

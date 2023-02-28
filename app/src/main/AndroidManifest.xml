@@ -47,7 +47,8 @@
             android:name=".services.LocationService"
             android:enabled="true"
             android:exported="true"
-            android:foregroundServiceType="location" />
+            android:foregroundServiceType="location"
+            android:permission="location" />
 
         <activity
             android:name=".views.superEmployee.SuperEmployeeMainActivity"

@@ -74,9 +74,7 @@ public class PendingPaymentRequestsFragment extends Fragment {
         }
 
         PaymentRequestRecyclerAdapter adapter = new PaymentRequestRecyclerAdapter(paymentRequests, request -> {
-            CustomDialogFragment dialog = new CustomDialogFragment(request, getViewLifecycleOwner(), () -> {
-                loadRequests();
-            });
+            CustomDialogFragment dialog = new CustomDialogFragment(request, getViewLifecycleOwner(), this::loadRequests);
             dialog.show(requireActivity().getSupportFragmentManager(), "CustomDialogFragment");
         });
 
