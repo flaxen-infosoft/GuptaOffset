@@ -64,6 +64,8 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
             binding.setEmployee(employee);
             binding.getRoot().setOnClickListener(v -> onClickListener.onClickCard(employee));
 
+            binding.getRoot().setOnLongClickListener(v -> onClickListener.onLongClickCard(employee));
+
             try {
                 int pendingMessages = Integer.parseInt(employee.getPendingMessages());
 //                Yeah Boii!!!
@@ -82,5 +84,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
 
     public interface SingleEmployeeCardOnClickListener {
         void onClickCard(Employee employee);
+
+        boolean onLongClickCard(Employee employee);
     }
 }

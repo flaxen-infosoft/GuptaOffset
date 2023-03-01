@@ -82,4 +82,8 @@
         android:id="@+id/attendanceProfileFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.profiles.AttendanceProfileFragment"
         android:label="AttendanceProfileFragment" />
+    <fragment
+        android:id="@+id/adminEditEmployeeFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminEditEmployeeFragment"
+        android:label="AdminEditEmployeeFragment" />
 </navigation>

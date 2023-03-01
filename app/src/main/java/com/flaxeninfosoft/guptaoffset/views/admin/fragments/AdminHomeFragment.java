@@ -89,7 +89,24 @@ public class AdminHomeFragment extends Fragment {
             binding.adminHomeEmptyRecycler.setVisibility(View.GONE);
             binding.adminHomeRecycler.setVisibility(View.VISIBLE);
         }
-        binding.adminHomeRecycler.setAdapter(new EmployeeRecyclerAdapter(employees, this::onCLickEmployeeCard));
+        binding.adminHomeRecycler.setAdapter(new EmployeeRecyclerAdapter(employees, new EmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
+            @Override
+            public void onClickCard(Employee employee) {
+                onCLickEmployeeCard(employee);
+            }
+
+            @Override
+            public boolean onLongClickCard(Employee employee) {
+                onLongClickEmployeeCard(employee);
+                return false;
+            }
+        }));
+    }
+
+    private void onLongClickEmployeeCard(Employee employee) {
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.adminEditEmployeeFragment, bundle);
     }
 
     private void onCLickEmployeeCard(Employee employee) {
