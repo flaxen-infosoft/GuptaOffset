@@ -65,7 +65,7 @@ public class AdminEditEmployeeFragment extends Fragment {
             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
             Navigation.findNavController(binding.getRoot()).navigateUp();
         } else {
-
+            binding.setEmployee(employee);
             binding.adminUpdateEmployeeBtn.setEnabled(true);
             binding.adminUpdateEmployeeBtn.setOnClickListener(view -> {
 
