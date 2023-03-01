@@ -50,6 +50,14 @@ public class AdminHomeFragment extends Fragment {
         binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
         binding.adminHomePaymentRequests.setOnClickListener(this::navigateToPaymentRequests);
 
+        binding.adminAddIcon.setOnClickListener(view -> {
+            if (binding.adminHomeCard.getVisibility() == View.VISIBLE) {
+                binding.adminHomeCard.setVisibility(View.GONE);
+            } else {
+                binding.adminHomeCard.setVisibility(View.VISIBLE);
+            }
+        });
+
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
         return binding.getRoot();
@@ -64,7 +72,7 @@ public class AdminHomeFragment extends Fragment {
     }
 
     private void showToast(String s) {
-        if (!s.isEmpty()){
+        if (!s.isEmpty()) {
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
@@ -74,10 +82,10 @@ public class AdminHomeFragment extends Fragment {
     }
 
     private void onChange(List<Employee> employees) {
-        if (employees == null || employees.isEmpty()){
+        if (employees == null || employees.isEmpty()) {
             binding.adminHomeEmptyRecycler.setVisibility(View.VISIBLE);
             binding.adminHomeRecycler.setVisibility(View.GONE);
-        }else {
+        } else {
             binding.adminHomeEmptyRecycler.setVisibility(View.GONE);
             binding.adminHomeRecycler.setVisibility(View.VISIBLE);
         }
