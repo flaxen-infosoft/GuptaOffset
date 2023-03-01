@@ -251,10 +251,10 @@ public class EmployeeAddSchoolFragment extends Fragment {
             binding.employeeAddSchoolName.setError("**Enter name");
             return false;
         }
-        if (binding.getSchool().getTotalStudentStrength() == null || binding.getSchool().getTotalStudentStrength().trim().isEmpty()) {
-            binding.employeeAddSchoolStrength.setError("**Enter strength");
-            return false;
-        }
+//        if (binding.getSchool().getTotalStudentStrength() == null || binding.getSchool().getTotalStudentStrength().trim().isEmpty()) {
+//            binding.employeeAddSchoolStrength.setError("**Enter strength");
+//            return false;
+//        }
         if (binding.getSchool().getLocation().getAddress() == null || binding.getSchool().getLocation().getAddress().trim().isEmpty()) {
             binding.employeeAddSchoolAddress.setError("**Enter address");
             return false;

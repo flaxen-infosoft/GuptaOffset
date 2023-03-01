@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminEmployeeActivityFragment"
-        android:label="Employee Activity"
+
         tools:layout="@layout/fragment_admin_employee_activity" >
         <action
             android:id="@+id/action_adminEmployeeActivityFragment_to_dealerProfileFragment"
@@ -73,4 +73,13 @@
         tools:layout="@layout/fragment_pending_payment_requests"
         android:name="com.flaxeninfosoft.guptaoffset.views.PendingPaymentRequestsFragment"
         android:label="Pending Requests" />
+    <fragment
+        android:id="@+id/imageViewFragment"
+        tools:layout="@layout/fragment_image_view"
+        android:name="com.flaxeninfosoft.guptaoffset.views.ImageViewFragment"
+        android:label="ImageViewFragment" />
+    <fragment
+        android:id="@+id/attendanceProfileFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.profiles.AttendanceProfileFragment"
+        android:label="AttendanceProfileFragment" />
 </navigation>

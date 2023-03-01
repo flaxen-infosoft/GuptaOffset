@@ -65,6 +65,9 @@ public class AdminEmployeeActivityFragment extends Fragment {
         } else {
 
             viewModel.getEmployeeHistoryById(empId).observe(getViewLifecycleOwner(), this::setHistory);
+            viewModel.getEmployeeById(empId).observe(getViewLifecycleOwner(),  employee -> {
+
+            });
         }
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
@@ -91,7 +94,9 @@ public class AdminEmployeeActivityFragment extends Fragment {
         EmployeeHomeRecyclerAdapter adapter = new EmployeeHomeRecyclerAdapter(historyList, getActivity().getApplication(), new EmployeeHomeRecyclerAdapter.EmployeeHomeClickListener() {
             @Override
             public void onClickCard(Attendance attendance) {
-
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.ATN_ID, attendance.getId());
+                Navigation.findNavController(binding.getRoot()).navigate( R.id.attendanceProfileFragment,bundle);
             }
 
             @Override
