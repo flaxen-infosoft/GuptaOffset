@@ -56,7 +56,7 @@ public class PendingPaymentRequestsFragment extends Fragment {
     }
 
     private void loadRequests() {
-        if (superEmployeeId != -1) {
+        if (superEmployeeId == -1) {
             viewModel.getAllPendingPaymentRequests().observe(getViewLifecycleOwner(), this::setRequestsList);
         } else {
             viewModel.getAllPendingPaymentRequestsToEmployee().observe(getViewLifecycleOwner(), this::setRequestsList);

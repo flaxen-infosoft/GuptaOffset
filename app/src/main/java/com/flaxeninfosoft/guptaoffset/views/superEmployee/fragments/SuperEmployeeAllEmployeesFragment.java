@@ -67,10 +67,21 @@ public class SuperEmployeeAllEmployeesFragment extends Fragment {
             binding.superEmployeeAllEmployeesRecycler.setVisibility(View.VISIBLE);
         }
 
-        EmployeeRecyclerAdapter adapter = new EmployeeRecyclerAdapter(employees, employee -> {
-            Bundle bundle = new Bundle();
-            bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeAllEmployeesFragment_to_adminEmployeeActivityFragment2, bundle);
+        EmployeeRecyclerAdapter adapter = new EmployeeRecyclerAdapter(employees, new EmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
+            @Override
+            public void onClickCard(Employee employee) {
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeAllEmployeesFragment_to_adminEmployeeActivityFragment2, bundle);
+            }
+
+            @Override
+            public boolean onLongClickCard(Employee employee) {
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.adminEditEmployeeFragment, bundle);
+                return true;
+            }
         });
 
         binding.superEmployeeAllEmployeesRecycler.setAdapter(adapter);

@@ -50,6 +50,14 @@ public class AdminHomeFragment extends Fragment {
         binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
         binding.adminHomePaymentRequests.setOnClickListener(this::navigateToPaymentRequests);
 
+        binding.adminAddIcon.setOnClickListener(view -> {
+            if (binding.adminHomeCard.getVisibility() == View.VISIBLE) {
+                binding.adminHomeCard.setVisibility(View.GONE);
+            } else {
+                binding.adminHomeCard.setVisibility(View.VISIBLE);
+            }
+        });
+
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
         return binding.getRoot();
@@ -64,7 +72,7 @@ public class AdminHomeFragment extends Fragment {
     }
 
     private void showToast(String s) {
-        if (!s.isEmpty()){
+        if (!s.isEmpty()) {
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
@@ -74,14 +82,31 @@ public class AdminHomeFragment extends Fragment {
     }
 
     private void onChange(List<Employee> employees) {
-        if (employees == null || employees.isEmpty()){
+        if (employees == null || employees.isEmpty()) {
             binding.adminHomeEmptyRecycler.setVisibility(View.VISIBLE);
             binding.adminHomeRecycler.setVisibility(View.GONE);
-        }else {
+        } else {
             binding.adminHomeEmptyRecycler.setVisibility(View.GONE);
             binding.adminHomeRecycler.setVisibility(View.VISIBLE);
         }
-        binding.adminHomeRecycler.setAdapter(new EmployeeRecyclerAdapter(employees, this::onCLickEmployeeCard));
+        binding.adminHomeRecycler.setAdapter(new EmployeeRecyclerAdapter(employees, new EmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
+            @Override
+            public void onClickCard(Employee employee) {
+                onCLickEmployeeCard(employee);
+            }
+
+            @Override
+            public boolean onLongClickCard(Employee employee) {
+                onLongClickEmployeeCard(employee);
+                return false;
+            }
+        }));
+    }
+
+    private void onLongClickEmployeeCard(Employee employee) {
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.adminEditEmployeeFragment, bundle);
     }
 
     private void onCLickEmployeeCard(Employee employee) {
