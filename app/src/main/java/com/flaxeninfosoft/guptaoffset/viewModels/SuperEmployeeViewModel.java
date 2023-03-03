@@ -173,6 +173,9 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
 
             @Override
             public void onSuccess(PaymentRequest response) {
+
+
+
                 flag.postValue(response);
             }
 

@@ -14,6 +14,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -28,14 +29,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.models.Location;
-import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.Utilities;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
-import com.flaxeninfosoft.guptaoffset.views.employee.fragments.EmployeeAddSchoolFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
 import java.util.List;
@@ -64,13 +63,13 @@ public class LocationService extends Service {
                     && ActivityCompat.checkSelfPermission(LocationService.this,
                     Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-                locationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
-                        .addOnCompleteListener(task -> {});
 //                Yeah Boiii!!!
+                locationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+                        .addOnCompleteListener(task -> {
+                        });
             }
         }
     };
-
 
 
     public LocationService() {
@@ -105,7 +104,7 @@ public class LocationService extends Service {
                     Address currentAddress = addresses.get(0);
                     location.setDistrict(currentAddress.getSubAdminArea());
                     location.setAddress(currentAddress.getAddressLine(0));
-                    location.setBatteryStatus(""+Utilities.getBatteryLevel(LocationService.this));
+                    location.setBatteryStatus("" + (Math.round(Utilities.getBatteryLevel(LocationService.this))));
                     viewModel.addCurrentEmployeeLocation(location);
                     viewModel.updateCurrentEmployeeBatteryStatus(Utilities.getBatteryLevel(LocationService.this));
 
@@ -118,7 +117,7 @@ public class LocationService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-       super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId);
 
         Toast.makeText(this, "Service started", Toast.LENGTH_SHORT).show();
         Log.i("LocationUpdate", "Service started");
@@ -130,19 +129,22 @@ public class LocationService extends Service {
     }
 
     private void startMyOwnForeground() {
-        Drawable drawable= ResourcesCompat.getDrawable(getResources(), R.drawable.splash_logo,null);
-        BitmapDrawable bitmapDrawable= (BitmapDrawable) drawable;
-        Bitmap bitmap=bitmapDrawable.getBitmap();
+        Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.splash_logo, null);
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+        Bitmap bitmap = bitmapDrawable.getBitmap();
 
         String NOTIFICATION_CHANNEL_ID = "com.flaxeninfosoft";
         String channelName = "Background Service";
-        NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_NONE);
-        chan.setLightColor(Color.BLUE);
-        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        NotificationChannel chan = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_NONE);
+            chan.setLightColor(Color.BLUE);
+            chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
 
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        assert manager != null;
-        manager.createNotificationChannel(chan);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            assert manager != null;
+            manager.createNotificationChannel(chan);
+        }
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
         Notification notification = notificationBuilder.setOngoing(true)
@@ -162,7 +164,9 @@ public class LocationService extends Service {
         locationProviderClient.removeLocationUpdates(locationCallback).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 m_handler.removeCallbacks(m_handlerTask);
-                stopForeground(Service.STOP_FOREGROUND_REMOVE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    stopForeground(Service.STOP_FOREGROUND_REMOVE);
+                }
                 Toast.makeText(LocationService.this, "Service stopped", Toast.LENGTH_SHORT).show();
                 Log.i("LocationUpdate", "Service stopped");
             } else {
