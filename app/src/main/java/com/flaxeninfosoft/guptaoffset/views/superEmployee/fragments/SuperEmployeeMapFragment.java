@@ -15,6 +15,7 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentSuperEmployeeMapBinding;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -51,6 +52,7 @@ public class SuperEmployeeMapFragment extends Fragment {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(latLng)
                                     .title(e.getName()));
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
                         }
                     }
                 }

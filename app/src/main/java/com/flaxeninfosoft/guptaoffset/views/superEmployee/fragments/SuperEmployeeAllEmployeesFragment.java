@@ -48,7 +48,16 @@ public class SuperEmployeeAllEmployeesFragment extends Fragment {
         viewModel.getCurrentSuperEmployeeEmployees().observe(getViewLifecycleOwner(), this::setEmployees);
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
+        binding.superEmployeeAllEmployeesSwipeRefresh.setOnRefreshListener(this::fetchCurrentEmployees);
+
         return binding.getRoot();
+    }
+
+    private void fetchCurrentEmployees() {
+        viewModel.fetchCurrentEmployeesOfSuperEmployee();
+        if (binding.superEmployeeAllEmployeesSwipeRefresh.isRefreshing()){
+            binding.superEmployeeAllEmployeesSwipeRefresh.setRefreshing(false);
+        }
     }
 
     private void showToast(String s) {

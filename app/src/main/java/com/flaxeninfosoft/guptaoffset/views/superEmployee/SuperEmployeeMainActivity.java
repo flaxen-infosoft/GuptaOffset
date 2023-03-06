@@ -37,9 +37,9 @@ public class SuperEmployeeMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_super_employee_main);
 
-        NavHostFragment hostFragment =
-                (NavHostFragment) getSupportFragmentManager()
-                        .findFragmentById(R.id.super_employee_main_host_fragment);
+            NavHostFragment hostFragment =
+                    (NavHostFragment) getSupportFragmentManager()
+                            .findFragmentById(R.id.super_employee_main_host_fragment);
 
         navController = hostFragment.getNavController();
 

@@ -63,7 +63,9 @@ public class EmployeeHomeFragment extends Fragment {
         binding.employeeHomeCardMyMap.setOnClickListener(this::navigateToMap);
         binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
 
-        binding.employeeHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager lm = new LinearLayoutManager(getContext());
+        lm.setStackFromEnd(true);
+        binding.employeeHomeRecycler.setLayoutManager(lm);
 
         viewModel.getCurrentEmployeeHistory().observe(getViewLifecycleOwner(), this::setEmployeeHistory);
 
@@ -172,9 +174,10 @@ public class EmployeeHomeFragment extends Fragment {
         });
         binding.employeeHomeRecycler.setAdapter(adapter);
 
-        if (historyList != null && historyList.size() > 1) {
+        if (historyList != null && !historyList.isEmpty()) {
             binding.employeeHomeRecycler.scrollToPosition(historyList.size() - 1);
         }
+
     }
 
     private void navigateToPaymentRequest(View view) {

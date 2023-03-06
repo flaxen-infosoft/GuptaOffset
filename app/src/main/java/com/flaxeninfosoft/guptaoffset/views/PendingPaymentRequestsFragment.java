@@ -52,6 +52,8 @@ public class PendingPaymentRequestsFragment extends Fragment {
 
         loadRequests();
 
+        binding.pendingPaymentSwipeRefresh.setOnRefreshListener(this::loadRequests);
+
         return binding.getRoot();
     }
 
@@ -60,6 +62,9 @@ public class PendingPaymentRequestsFragment extends Fragment {
             viewModel.getAllPendingPaymentRequests().observe(getViewLifecycleOwner(), this::setRequestsList);
         } else {
             viewModel.getAllPendingPaymentRequestsToEmployee().observe(getViewLifecycleOwner(), this::setRequestsList);
+        }
+        if (binding.pendingPaymentSwipeRefresh.isRefreshing()){
+            binding.pendingPaymentSwipeRefresh.setRefreshing(false);
         }
     }
 

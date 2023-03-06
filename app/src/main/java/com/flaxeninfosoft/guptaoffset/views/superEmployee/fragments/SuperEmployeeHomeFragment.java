@@ -64,7 +64,10 @@ public class SuperEmployeeHomeFragment extends Fragment {
         binding.superEmployeeHomeCardDailyReports.setOnClickListener(this::navigateToDailyReports);
         binding.superEmployeeHomeCardPaymentRequests.setOnClickListener(this::navigateToPaymentRequests);
 
-        binding.superEmployeeHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager lm = new LinearLayoutManager(getContext());
+        lm.setStackFromEnd(true);
+        binding.superEmployeeHomeRecycler.setLayoutManager(lm);
+
         binding.superEmployeeHomeSendMessageFab.setOnClickListener(this::sendMessage);
 
         viewModel.getCurrentEmployeeHistory().observe(getViewLifecycleOwner(), this::setEmployeeHistory);

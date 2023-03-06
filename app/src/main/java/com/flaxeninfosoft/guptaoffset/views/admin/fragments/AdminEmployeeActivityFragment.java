@@ -54,7 +54,9 @@ public class AdminEmployeeActivityFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_employee_activity, container, false);
         binding.setMessage(new Message());
 
-        binding.adminEmployeeActivityRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager lm = new LinearLayoutManager(getContext());
+        lm.setStackFromEnd(true);
+        binding.adminEmployeeActivityRecycler.setLayoutManager(lm);
 
         empId = getArguments().getLong(Constants.EMPLOYEE_ID, 0);
         binding.adminEmployeeActivitySendMessageFab.setOnClickListener(this::sendMessage);

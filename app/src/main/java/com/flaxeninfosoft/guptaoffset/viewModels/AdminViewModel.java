@@ -14,20 +14,20 @@ import com.flaxeninfosoft.guptaoffset.utils.Constants;
 
 import java.util.List;
 
-public class AdminViewModel extends SuperEmployeeViewModel{
+public class AdminViewModel extends SuperEmployeeViewModel {
 
     private final MainRepository repo;
 
     private final MutableLiveData<List<Employee>> employeeList;
 
-    public AdminViewModel(@NonNull Application application){
+    public AdminViewModel(@NonNull Application application) {
         super(application);
         repo = MainRepository.getInstance(application.getApplicationContext());
         employeeList = new MutableLiveData<>();
     }
 
     public LiveData<Boolean> addEmployee(Employee employee) {
-        employee.setAssignedTo(getCurrentEmployeeId()+"");
+        employee.setAssignedTo(getCurrentEmployeeId() + "");
         employee.setDesignation(Constants.DESIGNATION_SUPER_EMPLOYEE);
 
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
@@ -40,7 +40,7 @@ public class AdminViewModel extends SuperEmployeeViewModel{
 
             @Override
             public void onFailure(String error) {
-               getToastMessageLiveData().postValue(error);
+                getToastMessageLiveData().postValue(error);
                 flag.postValue(false);
             }
         });
@@ -48,8 +48,14 @@ public class AdminViewModel extends SuperEmployeeViewModel{
         return flag;
     }
 
-    public LiveData<List<Employee>> getAllEmployees(){
+    public LiveData<List<Employee>> getAllEmployees() {
 
+        fetchAllEmployees();
+
+        return employeeList;
+    }
+
+    public void fetchAllEmployees() {
         repo.getAllEmployees(new ApiResponseListener<List<Employee>, String>() {
             @Override
             public void onSuccess(List<Employee> response) {
@@ -62,13 +68,11 @@ public class AdminViewModel extends SuperEmployeeViewModel{
                 getToastMessageLiveData().postValue(error);
             }
         });
-
-        return employeeList;
     }
 
-//    Yeah Boiii!!!
+    //    Yeah Boiii!!!
     public LiveData<Boolean> addSuperEmployee(Employee employee) {
-        employee.setAssignedTo(getCurrentEmployeeId()+"");
+        employee.setAssignedTo(getCurrentEmployeeId() + "");
         employee.setDesignation(Constants.DESIGNATION_SUPER_EMPLOYEE);
 
         MutableLiveData<Boolean> flag = new MutableLiveData<>();

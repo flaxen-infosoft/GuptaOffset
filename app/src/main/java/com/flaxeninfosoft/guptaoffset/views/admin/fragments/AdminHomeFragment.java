@@ -58,9 +58,18 @@ public class AdminHomeFragment extends Fragment {
             }
         });
 
+        binding.adminHomeSwipeRefresh.setOnRefreshListener(this::getAllEmployees);
+
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
         return binding.getRoot();
+    }
+
+    private void getAllEmployees() {
+        viewModel.fetchAllEmployees();
+        if (binding.adminHomeSwipeRefresh.isRefreshing()){
+            binding.adminHomeSwipeRefresh.setRefreshing(false);
+        }
     }
 
     private void navigateToPaymentRequests(View view) {

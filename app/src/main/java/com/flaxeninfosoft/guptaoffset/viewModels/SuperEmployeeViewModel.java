@@ -50,6 +50,16 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
     }
 
     public LiveData<List<Employee>> getCurrentSuperEmployeeEmployees() {
+
+        fetchCurrentEmployeesOfSuperEmployee();
+
+        return currentSuperEmployeeEmployees;
+    }
+
+    //    Yeah Boiii!!!
+
+    public void fetchCurrentEmployeesOfSuperEmployee(){
+
         repo.getEmployeesOfSuperEmployee(getCurrentEmployeeId(), new ApiResponseListener<List<Employee>, String>() {
             @Override
             public void onSuccess(List<Employee> response) {
@@ -62,11 +72,7 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
                 currentSuperEmployeeEmployees.postValue(null);
             }
         });
-
-        return currentSuperEmployeeEmployees;
     }
-
-    //    Yeah Boiii!!!
     public LiveData<Boolean> addEmployee(Employee employee) {
         employee.setDesignation(Constants.DESIGNATION_EMPLOYEE);
 

@@ -14,16 +14,23 @@
         android:orientation="vertical"
         tools:context=".views.admin.fragments.AdminHomeFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/admin_home_recycler"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/admin_home_swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/admin_home_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:visibility="gone" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
         <TextView
             android:id="@+id/admin_home_empty_recycler"
@@ -39,32 +46,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
-<!--            android:id="@+id/admin_home_add_employee"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="16dp"-->
-<!--            android:text="Add employee"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/admin_home_add_super_employee"-->
-<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+        <!--        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
+        <!--            android:id="@+id/admin_home_add_employee"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="16dp"-->
+        <!--            android:text="Add employee"-->
+        <!--            app:layout_constraintBottom_toTopOf="@id/admin_home_add_super_employee"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
 
-<!--        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
-<!--            android:id="@+id/admin_home_add_super_employee"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="16dp"-->
-<!--            android:text="Add super employee"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/admin_home_payment_requests"-->
-<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+        <!--        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
+        <!--            android:id="@+id/admin_home_add_super_employee"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="16dp"-->
+        <!--            android:text="Add super employee"-->
+        <!--            app:layout_constraintBottom_toTopOf="@id/admin_home_payment_requests"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
 
-<!--        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
-<!--            android:id="@+id/admin_home_payment_requests"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="16dp"-->
-<!--            android:text="Payment requests"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+        <!--        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
+        <!--            android:id="@+id/admin_home_payment_requests"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="16dp"-->
+        <!--            android:text="Payment requests"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/admin_home_card"
@@ -128,8 +135,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        android:textAlignment="center"
                         android:text="Add \nsuper employee"
+                        android:textAlignment="center"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
