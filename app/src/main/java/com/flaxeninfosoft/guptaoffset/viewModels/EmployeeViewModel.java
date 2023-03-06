@@ -25,7 +25,6 @@ import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.utils.SharedPrefs;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -66,7 +65,7 @@ public class EmployeeViewModel extends AndroidViewModel {
         return sharedPrefs.getCurrentEmployee();
     }
 
-//    Yeah Boiii!!!
+    //    Yeah Boiii!!!
     Long getCurrentEmployeeId() {
         return sharedPrefs.getCurrentEmployee().getId();
     }
@@ -204,7 +203,7 @@ public class EmployeeViewModel extends AndroidViewModel {
         return flag;
     }
 
-    public LiveData<Attendance> getAttendanceById(Long atnId){
+    public LiveData<Attendance> getAttendanceById(Long atnId) {
         MutableLiveData<Attendance> flag = new MutableLiveData<>();
 
         repo.getAttendanceById(atnId, new ApiResponseListener<Attendance, String>() {
@@ -265,8 +264,8 @@ public class EmployeeViewModel extends AndroidViewModel {
 
         return flag;
     }
-    
-    public LiveData<List<Dealer>> getCurrentEmployeeDealers(){
+
+    public LiveData<List<Dealer>> getCurrentEmployeeDealers() {
         Long empId = getCurrentEmployeeId();
         repo.getDealerByEmpId(empId, new ApiResponseListener<List<Dealer>, String>() {
             @Override
@@ -336,23 +335,23 @@ public class EmployeeViewModel extends AndroidViewModel {
         return flag;
     }
 
-    public void setAddSchoolHoadingUri(Uri uri){
+    public void setAddSchoolHoadingUri(Uri uri) {
         try {
             addSchoolHoadingUri.setValue(uri);
-        }catch (Exception e){
+        } catch (Exception e) {
             addSchoolHoadingUri.postValue(uri);
         }
     }
 
-    public void setAddSchoolSpecimenUri(Uri uri){
-        try{
+    public void setAddSchoolSpecimenUri(Uri uri) {
+        try {
             addSchoolSpecimenUri.setValue(uri);
-        }catch (Exception e){
+        } catch (Exception e) {
             addSchoolSpecimenUri.postValue(uri);
         }
     }
 
-    public School getNewSchool(){
+    public School getNewSchool() {
         return repo.getNewSchool();
     }
 
@@ -437,9 +436,14 @@ public class EmployeeViewModel extends AndroidViewModel {
         MutableLiveData<Boolean> flag = new MutableLiveData<>();
 
         eod.setEmpId(getCurrentEmployeeId());
-        eod.setExpenseImage(FileEncoder.encodeImage(getApplication().getContentResolver(), expenseImage));
-        eod.setPetrolExpenseImage(FileEncoder.encodeImage(getApplication().getContentResolver(), petrolImage));
-         repo.addEod(getCurrentEmployeeId(), eod, new ApiResponseListener<Eod, String>() {
+
+        if (expenseImage != null)
+            eod.setExpenseImage(FileEncoder.encodeImage(getApplication().getContentResolver(), expenseImage));
+
+        if (petrolImage != null)
+            eod.setPetrolExpenseImage(FileEncoder.encodeImage(getApplication().getContentResolver(), petrolImage));
+
+        repo.addEod(getCurrentEmployeeId(), eod, new ApiResponseListener<Eod, String>() {
             @Override
             public void onSuccess(Eod response) {
                 flag.postValue(true);
@@ -537,7 +541,7 @@ public class EmployeeViewModel extends AndroidViewModel {
         return currentLocation;
     }
 
-    public LiveData<Location> getCurrentEmployeeLocation(){
+    public LiveData<Location> getCurrentEmployeeLocation() {
 
         return currentLocation;
     }
@@ -551,9 +555,10 @@ public class EmployeeViewModel extends AndroidViewModel {
 //    ----------------------------------------------------------------------------------------------
 
     private final MutableLiveData<List<EmployeeHistory>> history = new MutableLiveData<>();
+
     public LiveData<List<EmployeeHistory>> getCurrentEmployeeHistory() {
 
-        repo.getEmployeeHomeHistory(getCurrentEmployeeId(),getCurrentEmployeeId(), new ApiResponseListener<List<EmployeeHistory>, String>() {
+        repo.getEmployeeHomeHistory(getCurrentEmployeeId(), getCurrentEmployeeId(), new ApiResponseListener<List<EmployeeHistory>, String>() {
             @Override
             public void onSuccess(List<EmployeeHistory> response) {
                 history.postValue(response);
@@ -571,7 +576,7 @@ public class EmployeeViewModel extends AndroidViewModel {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public LiveData<Message> sendMessage(Message message){
+    public LiveData<Message> sendMessage(Message message) {
         MutableLiveData<Message> flag = new MutableLiveData<>();
         message.setSenderId(getCurrentEmployeeId());
         repo.sendMessage(getCurrentEmployeeId(), message, new ApiResponseListener<Message, String>() {
@@ -600,13 +605,13 @@ public class EmployeeViewModel extends AndroidViewModel {
         repo.getNewSchool().setSpecimenImageUri(specimenImageUri);
     }
 
-    public void setNewSchoolHoadingImageUri(Uri uri){
+    public void setNewSchoolHoadingImageUri(Uri uri) {
         repo.getNewSchool().setHoadingImageUri(uri);
     }
 
     public void updateCurrentEmployeeBatteryStatus(float batteryLevel) {
-        repo.updateEmployeeBatteryStatus(getCurrentEmployeeId(), batteryLevel+"");
+        repo.updateEmployeeBatteryStatus(getCurrentEmployeeId(), batteryLevel + "");
     }
 
 
-  }
+}
