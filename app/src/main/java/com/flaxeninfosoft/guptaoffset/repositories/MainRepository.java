@@ -13,6 +13,7 @@ import com.flaxeninfosoft.guptaoffset.api.EodApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.HistoryApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LeaveApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.LocationApiInterface;
+import com.flaxeninfosoft.guptaoffset.api.LrApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.MessageApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.OrderApiInterface;
 import com.flaxeninfosoft.guptaoffset.api.PaymentApiInterface;
@@ -26,6 +27,7 @@ import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.LoginModel;
+import com.flaxeninfosoft.guptaoffset.models.Lr;
 import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
@@ -56,6 +58,7 @@ public class MainRepository {
     private final AttendanceApiInterface attendanceApiInterface;
     private final MessageApiInterface messageApiInterface;
     private final OrderApiInterface orderApiInterface;
+    private final LrApiInterface lrApiInterface;
     private final int STATUS_NOT_FOUND = 404;
 
     private School newSchool;
@@ -63,10 +66,10 @@ public class MainRepository {
     private MainRepository(Context context) {
         Retrofit apiClient = RetrofitClient.getClient();
 
+//        Yeah Boii!
         authApiInterface = apiClient.create(AuthApiInterface.class);
         dealerApiInterface = apiClient.create(DealerApiInterface.class);
         paymentApiInterface = apiClient.create(PaymentApiInterface.class);
-//        Yeah Boii!
         schoolApiInterface = apiClient.create(SchoolApiInterface.class);
         attendanceApiInterface = apiClient.create(AttendanceApiInterface.class);
         employeeApiInterface = apiClient.create(EmployeeApiInterface.class);
@@ -76,6 +79,7 @@ public class MainRepository {
         orderApiInterface = apiClient.create(OrderApiInterface.class);
         historyApiInterface = apiClient.create(HistoryApiInterface.class);
         messageApiInterface = apiClient.create(MessageApiInterface.class);
+        lrApiInterface = apiClient.create(LrApiInterface.class);
 
         newSchool = new School();
     }
@@ -836,5 +840,29 @@ public class MainRepository {
         Call<PaymentRequest> call = paymentApiInterface.updatePaymentRequest(payment.getId(), payment);
 
         processPaymentCall(call, listener);
+    }
+
+    public void sendLr(Lr lr, ApiResponseListener<Lr, String> listener) {
+        Call<Lr> call = lrApiInterface.sendLr(lr);
+
+        call.enqueue(new Callback<Lr>() {
+            @Override
+            public void onResponse(@NonNull Call<Lr> call, @NonNull Response<Lr> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        listener.onSuccess(response.body());
+                    } catch (Exception e) {
+                        listener.onFailure("Invalid response from server");
+                    }
+                } else {
+                    listener.onFailure(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Lr> call, @NonNull Throwable t) {
+                listener.onFailure("Unable to connect to server");
+            }
+        });
     }
 }

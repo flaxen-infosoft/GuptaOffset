@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.viewModels;
 
 import android.app.Application;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -9,10 +10,13 @@ import androidx.lifecycle.MutableLiveData;
 import com.flaxeninfosoft.guptaoffset.listeners.ApiResponseListener;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
+import com.flaxeninfosoft.guptaoffset.models.Lr;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.repositories.MainRepository;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
+import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 
+import java.io.IOException;
 import java.util.List;
 
 public class SuperEmployeeViewModel extends EmployeeViewModel {
@@ -191,6 +195,26 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
                 getToastMessageLiveData().postValue(error);
             }
         });
+
+        return flag;
+    }
+
+    public LiveData<Boolean> sendLr(Lr lr, Uri image) throws IOException {
+        MutableLiveData<Boolean> flag = new MutableLiveData<>();
+        lr.setImage(FileEncoder.encodeImage(getApplication().getContentResolver(), image));
+        repo.sendLr(lr, new ApiResponseListener<Lr, String>() {
+            @Override
+            public void onSuccess(Lr response) {
+                flag.postValue(true);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                toastMessage.postValue(error);
+                flag.postValue(false);
+            }
+        });
+
 
         return flag;
     }

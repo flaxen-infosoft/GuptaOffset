@@ -22,6 +22,7 @@ import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
+import com.flaxeninfosoft.guptaoffset.models.Lr;
 import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
@@ -169,6 +170,11 @@ public class EmployeeHomeFragment extends Fragment {
 
             @Override
             public void onClickCard(Message message) {
+
+            }
+
+            @Override
+            public void onClickCard(Lr lr) {
 
             }
         });

@@ -86,4 +86,8 @@
         android:id="@+id/adminEditEmployeeFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminEditEmployeeFragment"
         android:label="AdminEditEmployeeFragment" />
+    <fragment
+        android:id="@+id/sendLrFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.SendLrFragment"
+        android:label="SendLrFragment" />
 </navigation>

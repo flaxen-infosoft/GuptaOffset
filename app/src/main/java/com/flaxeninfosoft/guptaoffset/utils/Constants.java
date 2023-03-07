@@ -110,6 +110,7 @@ public class Constants {
     public static final int TYPE_MESSAGE = 9;
     public static final int TYPE_MESSAGE_SENT = 10;
     public static final int TYPE_MESSAGE_RECEIVED = 11;
+    public static final int TYPE_LR = 12;
 
     public static final String EXPENSE_DESCRIPTION = "expense_description";
     public static final String DAYS_LEAVE = "days_leave";
@@ -123,4 +124,6 @@ public class Constants {
     public static final String PAYMENT_RECEIVED = "received";
     public static final String DISTRICT = "district";
     public static final String PENDING_MESSAGES = "pending_messages";
+    public static final String LR = "lr";
+
 }

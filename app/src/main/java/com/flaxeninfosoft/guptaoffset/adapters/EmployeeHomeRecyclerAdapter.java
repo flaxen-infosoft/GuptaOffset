@@ -19,6 +19,7 @@ import com.flaxeninfosoft.guptaoffset.databinding.SingleDealerCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleEmployeeCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleEodCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleLeaveCardBinding;
+import com.flaxeninfosoft.guptaoffset.databinding.SingleLrCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleOrderCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SinglePaymentRequestCardBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleSchoolCardBinding;
@@ -28,6 +29,7 @@ import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
+import com.flaxeninfosoft.guptaoffset.models.Lr;
 import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
@@ -66,7 +68,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         }
     }
 
-//    Yeah Boiii!!!
+    //    Yeah Boiii!!!
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -101,7 +103,9 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             case Constants.TYPE_MESSAGE_RECEIVED:
                 LayoutChatLeftBinding receivedMessageBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.layout_chat_left, parent, false);
                 return new SingleMessageReceivedCardViewHolder(receivedMessageBinding, onClickListener::onClickCard);
-
+            case Constants.TYPE_LR:
+                SingleLrCardBinding lrCardBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.single_lr_card, parent, false);
+                return new SingleLrCardViewHolder(lrCardBinding, onClickListener::onClickCard);
         }
         return null;
     }
@@ -151,7 +155,10 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
                     SingleMessageReceivedCardViewHolder receivedCardViewHolder = (SingleMessageReceivedCardViewHolder) holder;
                     receivedCardViewHolder.setData(history.getMessage());
                 }
-
+                break;
+            case Constants.TYPE_LR:
+                SingleLrCardViewHolder lrCardViewHolder = (SingleLrCardViewHolder) holder;
+                lrCardViewHolder.setData(history.getLr());
                 break;
         }
     }
@@ -183,6 +190,8 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         void onClickCard(PaymentRequest paymentRequest);
 
         void onClickCard(Message message);
+
+        void onClickCard(Lr lr);
     }
 
     public static class SingleAttendanceCardViewHolder extends RecyclerView.ViewHolder {
@@ -288,7 +297,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         }
 
         public void setData(Eod eod) {
-            if (eod==null){
+            if (eod == null) {
                 return;
             }
             binding.setEod(eod);
@@ -298,7 +307,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             if (eod.getExpenseImage() != null) {
                 String url = ApiEndpoints.BASE_URL + eod.getExpenseImage();
                 Log.i(Constants.LOG_TAG, url);
-              //  Glide.with(binding.getRoot().getContext()).load(url).into(binding.eodCardExpenseImage);
+                //  Glide.with(binding.getRoot().getContext()).load(url).into(binding.eodCardExpenseImage);
             } else {
                 //binding.eodCardExpenseImage.setVisibility(View.GONE);
             }
@@ -401,9 +410,9 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             binding.setPaymentRequest(payment);
             binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(payment));
 
-            if (payment.getStatus().equals(Constants.PAYMENT_RECEIVED)){
+            if (payment.getStatus().equals(Constants.PAYMENT_RECEIVED)) {
                 binding.paymentRequestReceivedLayout.setVisibility(View.VISIBLE);
-            }else {
+            } else {
                 binding.paymentRequestReceivedLayout.setVisibility(View.GONE);
             }
         }
@@ -452,6 +461,34 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
         public interface SingleMessageCardClickListener {
             void onClickCard(Message message);
+        }
+    }
+
+    public static class SingleLrCardViewHolder extends RecyclerView.ViewHolder {
+
+        private final SingleLrCardBinding binding;
+        private final SingleLrCardClickListener onClickListener;
+
+        public SingleLrCardViewHolder(@NonNull SingleLrCardBinding binding, SingleLrCardClickListener onClickListener) {
+            super(binding.getRoot());
+            this.binding = binding;
+            this.onClickListener = onClickListener;
+        }
+
+        public void setData(Lr lr) {
+            binding.setLr(lr);
+            binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(lr));
+
+            try {
+                String image = ApiEndpoints.BASE_URL + lr.getImage();
+                Glide.with(binding.getRoot().getContext()).load(image).into(binding.singleLrCardImage);
+            } catch (Exception ignored) {
+                ignored.printStackTrace();
+            }
+        }
+
+        public interface SingleLrCardClickListener {
+            void onClickCard(Lr lr);
         }
     }
 

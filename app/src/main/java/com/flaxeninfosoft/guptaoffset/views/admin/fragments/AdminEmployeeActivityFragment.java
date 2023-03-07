@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +22,7 @@ import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.EmployeeHistory;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
+import com.flaxeninfosoft.guptaoffset.models.Lr;
 import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
@@ -61,15 +61,30 @@ public class AdminEmployeeActivityFragment extends Fragment {
         empId = getArguments().getLong(Constants.EMPLOYEE_ID, 0);
         binding.adminEmployeeActivitySendMessageFab.setOnClickListener(this::sendMessage);
 
+        binding.adminEmployeeActivityAttachmentsBtn.setOnClickListener(listener -> {
+            if (binding.superEmployeeHomeCard.getVisibility() == View.VISIBLE) {
+                binding.superEmployeeHomeCard.setVisibility(View.GONE);
+            } else {
+                binding.superEmployeeHomeCard.setVisibility(View.VISIBLE);
+            }
+        });
+
         if (empId == 0) {
             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
             Navigation.findNavController(binding.getRoot()).navigateUp();
         } else {
 
             viewModel.getEmployeeHistoryById(empId).observe(getViewLifecycleOwner(), this::setHistory);
-            viewModel.getEmployeeById(empId).observe(getViewLifecycleOwner(),  employee -> {
+            viewModel.getEmployeeById(empId).observe(getViewLifecycleOwner(), employee -> {
 
             });
+
+            binding.adminEmployeeActivitySendLr.setOnClickListener(view -> {
+                Bundle bundle = new Bundle();
+                bundle.putLong(Constants.EMPLOYEE_ID, empId);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.sendLrFragment, bundle);
+            });
+
         }
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
@@ -78,7 +93,7 @@ public class AdminEmployeeActivityFragment extends Fragment {
     }
 
     private void showToast(String s) {
-        if (!s.isEmpty()){
+        if (!s.isEmpty()) {
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
@@ -98,7 +113,7 @@ public class AdminEmployeeActivityFragment extends Fragment {
             public void onClickCard(Attendance attendance) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(Constants.ATN_ID, attendance.getId());
-                Navigation.findNavController(binding.getRoot()).navigate( R.id.attendanceProfileFragment,bundle);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.attendanceProfileFragment, bundle);
             }
 
             @Override
@@ -146,6 +161,11 @@ public class AdminEmployeeActivityFragment extends Fragment {
 
             @Override
             public void onClickCard(Message message) {
+
+            }
+
+            @Override
+            public void onClickCard(Lr lr) {
 
             }
         });

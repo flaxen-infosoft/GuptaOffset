@@ -54,6 +54,10 @@ public class EmployeeHistory {
     @Expose
     private School school;
 
+    @SerializedName(Constants.LR)
+    @Expose
+    private Lr lr;
+
     @SerializedName(Constants.MESSAGE)
     @Expose
     private Message message;
@@ -66,7 +70,7 @@ public class EmployeeHistory {
         this.id = id;
     }
 
-//    Yeah Boiii!!!
+    //    Yeah Boiii!!!
     public Long getEmpId() {
         return empId;
     }
@@ -155,6 +159,14 @@ public class EmployeeHistory {
         this.school = school;
     }
 
+    public Lr getLr() {
+        return lr;
+    }
+
+    public void setLr(Lr lr) {
+        this.lr = lr;
+    }
+
     public Message getMessage() {
         return message;
     }
@@ -177,6 +189,7 @@ public class EmployeeHistory {
                 ", location=" + location +
                 ", order=" + order +
                 ", payment=" + payment +
+                ", lr=" + lr +
                 ", school=" + school +
                 ", message=" + message +
                 '}';

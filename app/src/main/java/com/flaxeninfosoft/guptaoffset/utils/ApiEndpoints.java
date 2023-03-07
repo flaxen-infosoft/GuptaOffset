@@ -87,4 +87,5 @@ public class ApiEndpoints {
     public static final String GET_TODAYS_ATTENDANCE = "attendance/getTodaysAttendance.php";
     public static final String GET_ATTENDANCE_BY_ID = "attendance/getAttendanceById.php";
 
+    public static final String SEND_LR = "lr/sendLr.php";
 }
