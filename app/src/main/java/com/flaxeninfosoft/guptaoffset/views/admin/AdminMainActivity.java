@@ -22,7 +22,6 @@ import com.flaxeninfosoft.guptaoffset.views.employee.EmployeeMainActivity;
 
 public class AdminMainActivity extends AppCompatActivity {
 
-
     private ActivityAdminMainBinding binding;
     private AdminViewModel viewModel;
 

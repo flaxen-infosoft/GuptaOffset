@@ -66,9 +66,8 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         } else {
             return type;
         }
-    }
+    }   //    Yeah Boiii!!!
 
-    //    Yeah Boiii!!!
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

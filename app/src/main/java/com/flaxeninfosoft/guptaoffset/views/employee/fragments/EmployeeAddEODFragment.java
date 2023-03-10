@@ -202,10 +202,14 @@ public class EmployeeAddEODFragment extends Fragment {
 //            binding.employeeAddEodOtherExpense.setError("Enter other expenses");
 //            return false;
 //        }
-//        if (image == null) {
-//            Toast.makeText(getContext(), "Add Image", Toast.LENGTH_LONG).show();
-//            return false;
-//        }
+        if (expenseImage == null) {
+            Toast.makeText(getContext(), "Add expense Image", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (petrolImage == null) {
+            Toast.makeText(getContext(), "Add petrol expense Image", Toast.LENGTH_LONG).show();
+            return false;
+        }
 
         return true;
     }

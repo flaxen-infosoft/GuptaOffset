@@ -27,6 +27,7 @@ import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.AdminViewModel;
 
@@ -69,6 +70,7 @@ public class AdminEmployeeActivityFragment extends Fragment {
             }
         });
 
+
         if (empId == 0) {
             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
             Navigation.findNavController(binding.getRoot()).navigateUp();
@@ -76,7 +78,7 @@ public class AdminEmployeeActivityFragment extends Fragment {
 
             viewModel.getEmployeeHistoryById(empId).observe(getViewLifecycleOwner(), this::setHistory);
             viewModel.getEmployeeById(empId).observe(getViewLifecycleOwner(), employee -> {
-
+//                binding.adminEmployeeActivityToolbar.setTitle(employee.getName());
             });
 
             binding.adminEmployeeActivitySendLr.setOnClickListener(view -> {
@@ -166,7 +168,10 @@ public class AdminEmployeeActivityFragment extends Fragment {
 
             @Override
             public void onClickCard(Lr lr) {
-
+                String inImage = ApiEndpoints.BASE_URL + lr.getImage();
+                Bundle bundle = new Bundle();
+                bundle.putString("IMAGE", inImage);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
             }
         });
 

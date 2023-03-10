@@ -27,6 +27,7 @@ import com.flaxeninfosoft.guptaoffset.models.Message;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
@@ -175,7 +176,10 @@ public class EmployeeHomeFragment extends Fragment {
 
             @Override
             public void onClickCard(Lr lr) {
-
+                String inImage = ApiEndpoints.BASE_URL + lr.getImage();
+                Bundle bundle = new Bundle();
+                bundle.putString("IMAGE", inImage);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
             }
         });
         binding.employeeHomeRecycler.setAdapter(adapter);
