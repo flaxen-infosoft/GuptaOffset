@@ -20,6 +20,7 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentSuperEmployeeAddEmploy
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
+import com.flaxeninfosoft.guptaoffset.views.admin.AdminMainActivity;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -48,6 +49,8 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_super_employee_add_employee, container, false);
         binding.setEmployee(new Employee());
+
+        ((AdminMainActivity) requireActivity()).setupActionBar(binding.superEmployeeAddEmployeeToolbar, "Add Employee");
 
         binding.superEmployeeAddEmployeeBtn.setOnClickListener(this::onClickAddButton);
 

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/adminHomeFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminHomeFragment"
-        android:label="Home"
+        android:label="Admin"
         tools:layout="@layout/fragment_admin_home" >
         <action
             android:id="@+id/action_adminHomeFragment_to_adminEmployeeActivityFragment"
@@ -23,7 +23,6 @@
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminEmployeeActivityFragment"
-
         tools:layout="@layout/fragment_admin_employee_activity" >
         <action
             android:id="@+id/action_adminEmployeeActivityFragment_to_dealerProfileFragment"

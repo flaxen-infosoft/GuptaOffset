@@ -46,6 +46,26 @@
                     android:textSize="20sp" />
 
                 <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date  : "
+                        android:textColor="#222"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{attendance.date}"
+                        android:textColor="#222"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/attendance_card_start_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

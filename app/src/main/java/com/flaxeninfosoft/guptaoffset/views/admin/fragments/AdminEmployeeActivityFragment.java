@@ -30,6 +30,7 @@ import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.AdminViewModel;
+import com.flaxeninfosoft.guptaoffset.views.admin.AdminMainActivity;
 
 import java.util.List;
 
@@ -78,7 +79,9 @@ public class AdminEmployeeActivityFragment extends Fragment {
 
             viewModel.getEmployeeHistoryById(empId).observe(getViewLifecycleOwner(), this::setHistory);
             viewModel.getEmployeeById(empId).observe(getViewLifecycleOwner(), employee -> {
-//                binding.adminEmployeeActivityToolbar.setTitle(employee.getName());
+                if (employee != null && employee.getName() != null) {
+                    ((AdminMainActivity) requireActivity()).setupActionBar(binding.adminEmployeeActivityToolbar, employee.getName());
+                }
             });
 
             binding.adminEmployeeActivitySendLr.setOnClickListener(view -> {

@@ -19,6 +19,7 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentAdminHomeBinding;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.AdminViewModel;
+import com.flaxeninfosoft.guptaoffset.views.admin.AdminMainActivity;
 
 import java.util.List;
 
@@ -44,6 +45,8 @@ public class AdminHomeFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_home, container, false);
 
         binding.adminHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        ((AdminMainActivity) requireActivity()).setupActionBar(binding.adminHomeToolbar, "Admin");
 
         viewModel.getAllEmployees().observe(getViewLifecycleOwner(), this::onChange);
         binding.adminHomeAddSuperEmployee.setOnClickListener(this::navigateToAddSuperEmployee);

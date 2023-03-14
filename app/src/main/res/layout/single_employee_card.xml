@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="employee"
             type="com.flaxeninfosoft.guptaoffset.models.Employee" />
@@ -33,19 +33,19 @@
                 android:id="@+id/employ_card"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
                 android:maxWidth="200dp"
-                android:layout_marginRight="10dp">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/employee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/employee"
                     android:text="Employee added "
                     android:textColor="#222"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -53,18 +53,18 @@
                     android:layout_marginTop="8dp">
 
                     <TextView
+                        android:id="@+id/e_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/e_id"
                         android:text="ID : "
                         android:textColor="#222"
-                        android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/single_employee_card_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/single_employee_card_id"
                         android:text="@{``+employee.id}"
                         android:textColor="#222"
                         android:textSize="17sp" />
@@ -76,18 +76,18 @@
                     android:layout_marginTop="8dp">
 
                     <TextView
+                        android:id="@+id/e_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/e_name"
                         android:text="Name : "
                         android:textColor="#222"
-                        android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/single_employee_card_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/single_employee_card_name"
                         android:text="@{employee.name}"
                         android:textColor="#222"
                         android:textSize="17sp" />
@@ -99,18 +99,18 @@
                     android:layout_marginTop="8dp">
 
                     <TextView
+                        android:id="@+id/area"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/area"
                         android:text="Area : "
                         android:textColor="#222"
-                        android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/single_employee_card_area"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/single_employee_card_area"
                         android:text="@{employee.area}"
                         android:textColor="#222"
                         android:textSize="17sp" />
@@ -122,18 +122,18 @@
                     android:layout_marginTop="8dp">
 
                     <TextView
+                        android:id="@+id/e_contact"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/e_contact"
                         android:text="Contact : "
                         android:textColor="#222"
-                        android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/single_employee_card_contact"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/single_employee_card_contact"
                         android:text="@{employee.phone}"
                         android:textColor="#222"
                         android:textSize="17sp" />
@@ -147,16 +147,38 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/e_salary"
-                        android:text="Salary : "
+                        android:text="Date : "
                         android:textColor="#222"
-                        android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/single_employee_card_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{employee.date}"
+                        android:textColor="#222"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/e_salary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Salary : "
+                        android:textColor="#222"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
                         android:id="@+id/single_employee_card_salary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@{employee.salary}"
                         android:textColor="#222"
                         android:textSize="17sp" />
@@ -170,9 +192,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/employ_card"
                 android:layout_toEndOf="@+id/employ_card"
+                android:layout_toRightOf="@+id/employ_card"
                 android:text="1:30 P.M."
-                android:textColor="#888"
-                android:layout_toRightOf="@+id/employ_card" />
+                android:textColor="#888" />
 
 
         </RelativeLayout>

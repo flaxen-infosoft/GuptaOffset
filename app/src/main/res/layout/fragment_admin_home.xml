@@ -14,14 +14,23 @@
         android:orientation="vertical"
         tools:context=".views.admin.fragments.AdminHomeFragment">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/admin_home_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Test appbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/admin_home_swipe_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/admin_home_toolbar">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/admin_home_recycler"
