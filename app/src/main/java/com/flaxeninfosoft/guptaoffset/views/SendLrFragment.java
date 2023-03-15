@@ -127,6 +127,7 @@ public class SendLrFragment extends Fragment {
                         File imgFile = new File(pictureImagePath);
                         if (imgFile.exists()) {
                             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                            myBitmap = FileEncoder.rotateBitmap(myBitmap);
                             binding.sendLrImage.setImageBitmap(myBitmap);
                             image = FileEncoder.getImageUri(getContext(), myBitmap);
                         }
