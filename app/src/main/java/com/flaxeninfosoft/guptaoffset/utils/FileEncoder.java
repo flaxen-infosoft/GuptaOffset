@@ -3,6 +3,7 @@ package com.flaxeninfosoft.guptaoffset.utils;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -37,5 +38,13 @@ public class FileEncoder {
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Image"+System.currentTimeMillis(), null);
         return Uri.parse(path);
+    }
+
+    public static Bitmap rotateBitmap(Bitmap original) {
+        Matrix matrix = new Matrix();
+        matrix.preRotate(90);
+        Bitmap rotatedBitmap = Bitmap.createBitmap(original, 0, 0, original.getWidth(), original.getHeight(), matrix, true);
+        original.recycle();
+        return rotatedBitmap;
     }
 }

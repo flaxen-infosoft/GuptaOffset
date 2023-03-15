@@ -136,4 +136,9 @@ public class EmployeeMainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return navController.navigateUp() || super.onSupportNavigateUp();
+    }
 }

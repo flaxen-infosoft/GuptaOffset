@@ -134,21 +134,21 @@ public class SuperEmployeeHomeFragment extends Fragment {
             public void onClickCard(Dealer dealer) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(Constants.DEALER_ID, dealer.getId());
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminEmployeeActivityFragment_to_dealerProfileFragment, bundle);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_dealerProfileFragment, bundle);
             }
 
             @Override
             public void onClickCard(Order order) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(Constants.ORDER_ID, order.getId());
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminEmployeeActivityFragment_to_orderProfileFragment, bundle);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_orderProfileFragment, bundle);
             }
 
             @Override
             public void onClickCard(Eod eod) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(Constants.EOD_ID, eod.getId());
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminEmployeeActivityFragment_to_eodProfileFragment, bundle);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_eodProfileFragment, bundle);
             }
 
             @Override
