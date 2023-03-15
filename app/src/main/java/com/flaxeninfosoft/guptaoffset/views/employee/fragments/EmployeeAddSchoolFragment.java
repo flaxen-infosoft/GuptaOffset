@@ -179,6 +179,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
                         File imgFile = new  File(pictureSpecimanImagePath);
                         if(imgFile.exists()) {
                             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                            myBitmap = FileEncoder.rotateBitmap(myBitmap);
                             binding.employeeAddSchoolSpecimenImage.setImageBitmap(myBitmap);
                             binding.getSchool().setSpecimenImageUri(FileEncoder.getImageUri(getContext(), myBitmap));
                             viewModel.setNewSchoolSpecimenImageUri(binding.getSchool().getSpecimenImageUri());

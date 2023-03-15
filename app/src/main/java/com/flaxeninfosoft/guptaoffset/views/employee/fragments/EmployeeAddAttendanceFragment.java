@@ -232,6 +232,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                         File imgFile = new  File(pictureStartImagePath);
                         if(imgFile.exists()){
                             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                            myBitmap = FileEncoder.rotateBitmap(myBitmap);
                             binding.employeeAddAttendanceStartMeterImage.setImageBitmap(myBitmap);
                             image = FileEncoder.getImageUri(getContext(), myBitmap);
                         }
@@ -252,6 +253,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                         File imgFile = new  File(pictureEndImagePath);
                         if(imgFile.exists()) {
                             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                            myBitmap = FileEncoder.rotateBitmap(myBitmap);
                             binding.employeeAddAttendanceEndMeterImage.setImageBitmap(myBitmap);
                             image = FileEncoder.getImageUri(getContext(), myBitmap);
                         }

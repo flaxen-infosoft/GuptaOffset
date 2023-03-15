@@ -114,6 +114,7 @@ public class EmployeeAddEODFragment extends Fragment {
                     File imgFile = new  File(picturePetrolExpenseImagePath);
                     if(imgFile.exists()) {
                         Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                        myBitmap = FileEncoder.rotateBitmap(myBitmap);
                         binding.employeeAddEodPetrolImage.setImageBitmap(myBitmap);
                         petrolImage = FileEncoder.getImageUri(getContext(), myBitmap);
                     }
