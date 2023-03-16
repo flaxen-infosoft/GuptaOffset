@@ -54,7 +54,7 @@ public class SplashActivity extends AppCompatActivity {
         final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Please enable Gps.")
+            builder.setMessage("This app collects location data to enable tracking performance and orders even when the app is closed or not in use.")
                     .setCancelable(false)
                     .setPositiveButton("Yes", (dialog, id) -> startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
                     .setNegativeButton("No", (dialog, id) -> checkGps());
