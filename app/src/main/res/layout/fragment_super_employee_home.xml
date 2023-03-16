@@ -72,6 +72,7 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:padding="4dp"
                         android:layout_gravity="center"
                         app:srcCompat="@drawable/ic_attendance" />
 
@@ -97,6 +98,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
+                        android:padding="4dp"
                         app:srcCompat="@drawable/ic_leave" />
 
                     <TextView
@@ -166,6 +168,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
+                        android:padding="4dp"
                         app:srcCompat="@drawable/ic_order" />
 
                     <TextView
@@ -189,7 +192,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/ic_expense" />
+                        android:padding="4dp"
+                        app:srcCompat="@drawable/ic_payment_request" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -212,6 +216,7 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:padding="6dp"
                         android:layout_gravity="center"
                         app:srcCompat="@drawable/ic_eod" />
 
@@ -282,6 +287,7 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:padding="2dp"
                         android:layout_gravity="center"
                         app:srcCompat="@drawable/ic_report" />
 
@@ -307,7 +313,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/ic_expense" />
+                        android:padding="4dp"
+                        app:srcCompat="@drawable/ic_pending_requests" />
 
                     <TextView
                         android:layout_width="wrap_content"
