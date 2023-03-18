@@ -30,6 +30,8 @@ import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
+import com.flaxeninfosoft.guptaoffset.views.admin.AdminMainActivity;
+import com.flaxeninfosoft.guptaoffset.views.superEmployee.SuperEmployeeMainActivity;
 
 import java.util.List;
 
@@ -53,6 +55,8 @@ public class SuperEmployeeHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_super_employee_home, container, false);
         binding.setMessage(new Message());
+
+        ((SuperEmployeeMainActivity) requireActivity()).setupActionBar(binding.adminEmployeeHomeToolbar, "Home");
 
         binding.superEmployeeHomeCardAddAttendance.setOnClickListener(this::navigateToAddAttendance);
         binding.superEmployeeHomeCardAddLeave.setOnClickListener(this::navigateToAddLeave);

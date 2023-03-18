@@ -16,6 +16,15 @@
         android:orientation="vertical"
         tools:context=".views.superEmployee.fragments.SuperEmployeeHomeFragment">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/admin_employee_home_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/menu_super_employee_home"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/super_employee_home_recycler"
             android:layout_width="match_parent"
@@ -25,7 +34,7 @@
             app:layout_constraintBottom_toTopOf="@id/super_employee_home_message_input_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/admin_employee_home_toolbar"/>
 
         <TextView
             android:id="@+id/super_employee_home_empty_recycler"

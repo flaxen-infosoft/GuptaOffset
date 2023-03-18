@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -23,6 +24,7 @@ import com.flaxeninfosoft.guptaoffset.databinding.ActivitySuperEmployeeMainBindi
 import com.flaxeninfosoft.guptaoffset.services.LocationService;
 import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
 import com.flaxeninfosoft.guptaoffset.views.SplashActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class SuperEmployeeMainActivity extends AppCompatActivity {
 
@@ -30,7 +32,6 @@ public class SuperEmployeeMainActivity extends AppCompatActivity {
     private SuperEmployeeViewModel viewModel;
 
     private NavController navController;
-    private AppBarConfiguration config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +44,7 @@ public class SuperEmployeeMainActivity extends AppCompatActivity {
 
         navController = hostFragment.getNavController();
 
-        config = new AppBarConfiguration.Builder(R.id.superEmployeeHomeFragment).build();
-
-        setSupportActionBar(binding.superEmployeeMainToolbar);
-        NavigationUI.setupActionBarWithNavController(this, navController, config);
+//        config = new AppBarConfiguration.Builder(R.id.superEmployeeHomeFragment).build();
 
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(SuperEmployeeViewModel.class);
 
@@ -133,5 +131,16 @@ public class SuperEmployeeMainActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         return navController.navigateUp() || super.onSupportNavigateUp();
+    }
+
+    public void setupActionBar(Toolbar toolbar, String title) {
+        setSupportActionBar(toolbar);
+        NavHostFragment hostFragment =
+                (NavHostFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.super_employee_main_host_fragment);
+
+        navController = hostFragment.getNavController();
+        NavigationUI.setupActionBarWithNavController(this, navController);
+        toolbar.setTitle(title);
     }
 }
