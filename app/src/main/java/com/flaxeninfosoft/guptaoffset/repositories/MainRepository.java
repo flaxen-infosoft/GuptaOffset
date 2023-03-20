@@ -167,7 +167,6 @@ public class MainRepository {
 
             @Override
             public void onFailure(@NonNull Call<Employee> call, @NonNull Throwable t) {
-                Log.i("CRM-LOG", t.getCause().getLocalizedMessage());
                 listener.onFailure("Unable to connect to server.");
             }
         });

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main_super_employee"
-    app:startDestination="@id/superEmployeeHomeFragment">
+    app:startDestination="@id/superEmployeeAllEmployeesFragment">
     <fragment
         android:id="@+id/superEmployeeHomeFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.superEmployee.fragments.SuperEmployeeHomeFragment"

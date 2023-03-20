@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(LoginViewModel.class);
 
-        checkGps();
+//        checkGps();
     }
 
     private void continueFlow() {
@@ -52,16 +52,21 @@ public class SplashActivity extends AppCompatActivity {
 
     private void checkGps() {
         final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
         if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("This app collects location data to enable tracking performance and orders even when the app is closed or not in use.")
                     .setCancelable(false)
-                    .setPositiveButton("Yes", (dialog, id) -> startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
+                    .setPositiveButton("Enable Location", (dialog, id) -> startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
                     .setNegativeButton("No", (dialog, id) -> checkGps());
             final AlertDialog alert = builder.create();
             alert.show();
         } else {
-            continueFlow();
+            builder.setMessage("This app collects location data to enable tracking performance and orders even when the app is closed or not in use.")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", (dialog, id) -> continueFlow());
+            final AlertDialog alert = builder.create();
+            alert.show();
         }
     }
 

@@ -65,6 +65,12 @@ public class SuperEmployeeMainActivity extends AppCompatActivity {
             navController.navigate(R.id.employeeProfileFragment);
             return true;
         }
+
+        if (item.getItemId() == R.id.menu_super_employee_my_dashboard){
+            navController.navigate(R.id.superEmployeeHomeFragment);
+            return true;
+        }
+
         if (item.getItemId() == R.id.menu_super_employee_my_employees) {
             navController.navigate(R.id.superEmployeeAllEmployeesFragment);
             return true;

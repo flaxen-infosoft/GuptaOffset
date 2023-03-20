@@ -19,6 +19,8 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentSuperEmployeeAllEmploy
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.SuperEmployeeViewModel;
+import com.flaxeninfosoft.guptaoffset.views.admin.AdminMainActivity;
+import com.flaxeninfosoft.guptaoffset.views.superEmployee.SuperEmployeeMainActivity;
 
 import java.util.List;
 
@@ -44,6 +46,8 @@ public class SuperEmployeeAllEmployeesFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_super_employee_all_employees, container, false);
 
         binding.superEmployeeAllEmployeesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        ((SuperEmployeeMainActivity) requireActivity()).setupActionBar(binding.superEmployeeHomeToolbar, "My Employee");
 
         viewModel.getCurrentSuperEmployeeEmployees().observe(getViewLifecycleOwner(), this::setEmployees);
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
