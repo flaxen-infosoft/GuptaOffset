@@ -193,24 +193,24 @@ public class EmployeeAddEODFragment extends Fragment {
 //            binding.employeeAddEodPetrolExpense.setError("Enter petrol expense");
 //            return false;
 //        }
-        if (binding.getEod().getOtherExpense() != null && !binding.getEod().getOtherExpense().isEmpty()){
-            if (binding.getEod().getExpenseDescription() == null || binding.getEod().getExpenseDescription().isEmpty()){
-                binding.employeeAddEodExpenseDescription.setError("Enter expense description");
-                return false;
-            }
-        }
+//        if (binding.getEod().getOtherExpense() != null && !binding.getEod().getOtherExpense().isEmpty()){
+//            if (binding.getEod().getExpenseDescription() == null || binding.getEod().getExpenseDescription().isEmpty()){
+//                binding.employeeAddEodExpenseDescription.setError("Enter expense description");
+//                return false;
+//            }
+//        }
 //        if (binding.getEod().getOtherExpense() == null) {
 //            binding.employeeAddEodOtherExpense.setError("Enter other expenses");
 //            return false;
 //        }
-        if (expenseImage == null) {
-            Toast.makeText(getContext(), "Add expense Image", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        if (petrolImage == null) {
-            Toast.makeText(getContext(), "Add petrol expense Image", Toast.LENGTH_LONG).show();
-            return false;
-        }
+//        if (expenseImage == null) {
+//            Toast.makeText(getContext(), "Add expense Image", Toast.LENGTH_LONG).show();
+//            return false;
+//        }
+//        if (petrolImage == null) {
+//            Toast.makeText(getContext(), "Add petrol expense Image", Toast.LENGTH_LONG).show();
+//            return false;
+//        }
 
         return true;
     }
