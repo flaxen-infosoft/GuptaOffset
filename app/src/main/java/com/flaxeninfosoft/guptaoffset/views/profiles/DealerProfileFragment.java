@@ -45,6 +45,9 @@ public class DealerProfileFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dealer_profile, container, false);
         long dealerId = getArguments().getLong(Constants.DEALER_ID, -1);
 
+        binding.dealerProfileToolbar.setNavigationOnClickListener(view -> navigateUp());
+        binding.dealerProfileToolbar.setNavigationIcon(R.drawable.ic_back);
+
         if (dealerId == -1) {
             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
             navigateUp();

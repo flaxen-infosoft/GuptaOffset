@@ -44,6 +44,9 @@ public class OrderProfileFragment extends Fragment {
 
         long orderId = getArguments().getLong(Constants.ORDER_ID, -1);
 
+        binding.orderProfileToolbar.setNavigationOnClickListener(view -> navigateUp());
+        binding.orderProfileToolbar.setNavigationIcon(R.drawable.ic_back);
+
         if (orderId == -1) {
             navigateUp();
         }else{

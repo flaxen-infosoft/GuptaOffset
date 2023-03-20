@@ -49,6 +49,9 @@ public class EodProfileFragment extends Fragment {
 
         long eodId = getArguments().getLong(Constants.EOD_ID, -1);
 
+        binding.eodProfileToolbar.setNavigationOnClickListener(view -> navigateUp());
+        binding.eodProfileToolbar.setNavigationIcon(R.drawable.ic_back);
+
         if (eodId == -1) {
             navigateUp();
         }else {

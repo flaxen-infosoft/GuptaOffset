@@ -1,165 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="eod"
             type="com.flaxeninfosoft.guptaoffset.models.Eod" />
     </data>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
+        android:orientation="vertical"
         tools:context=".views.profiles.EodProfileFragment">
 
-        <LinearLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/eod_profile_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="wrap_content"
+            app:title="Report Profile" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/eod_profile_id"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/eod_profile_id"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:hint="Report id"
-                    android:text="@={``+eod.id}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginVertical="8dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/eod_profile_school_visits"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="Report id"
+                        android:text="@={``+eod.id}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/eod_profile_school_visits"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:hint="School visits"
-                    android:text="@={eod.schoolVisits}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginVertical="8dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/eod_profile_petrol_expense"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="School visits"
+                        android:text="@={eod.schoolVisits}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/eod_profile_petrol_expense"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:hint="Petrol Expense"
-                    android:text="@={eod.petrolExpense}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginVertical="8dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/eod_profile_other_expense"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="Petrol Expense"
+                        android:text="@={eod.petrolExpense}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/eod_profile_other_expense"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:hint="Other Expense"
-                    android:text="@={eod.otherExpense}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginVertical="8dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/eod_profile_other_expense_description"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="Other Expense"
+                        android:text="@={eod.otherExpense}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/eod_profile_other_expense_description"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:gravity="start"
-                    android:hint="expense description"
-                    android:minLines="3"
-                    android:text="@={eod.expenseDescription}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginVertical="8dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/eod_profile_daily_allowance"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:gravity="start"
+                        android:hint="expense description"
+                        android:minLines="3"
+                        android:text="@={eod.expenseDescription}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/eod_profile_daily_allowance"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:hint="Daily allowance"
-                    android:text="@={eod.dailyAllowance}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginVertical="8dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/eod_profile_date"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="Daily allowance"
+                        android:text="@={eod.dailyAllowance}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/eod_profile_date"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:hint="Date"
-                    android:text="@={eod.date}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginVertical="8dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/eod_profile_address_til"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="Date"
+                        android:text="@={eod.date}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/eod_profile_address_til"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:hint="Address"
-                    android:text="@={eod.location.address}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginVertical="8dp">
 
-            <ImageView
-                android:id="@+id/eod_profile_petrol_expense_image"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginVertical="8dp" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="Address"
+                        android:text="@={eod.location.address}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:id="@+id/eod_profile_other_expense_image"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginVertical="8dp" />
+                <ImageView
+                    android:id="@+id/eod_profile_petrol_expense_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginVertical="8dp" />
 
-            <fragment
-                android:id="@+id/eod_profile_map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="250dp" />
+                <ImageView
+                    android:id="@+id/eod_profile_other_expense_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginVertical="8dp" />
 
-        </LinearLayout>
-    </ScrollView>
+                <fragment
+                    android:id="@+id/eod_profile_map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </layout>

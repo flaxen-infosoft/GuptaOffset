@@ -44,6 +44,9 @@ public class AttendanceProfileFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_attendance_profile, container, false);
         binding.setAttendance(new Attendance());
 
+        binding.attendanceProfileToolbar.setNavigationOnClickListener(view -> navigateUp());
+        binding.attendanceProfileToolbar.setNavigationIcon(R.drawable.ic_back);
+
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Fetching data...");
         progressDialog.setMessage("Loading");

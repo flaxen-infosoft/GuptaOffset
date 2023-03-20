@@ -47,6 +47,9 @@ public class SchoolProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_school_profile, container, false);
 
+        binding.schoolProfileToolbar.setNavigationOnClickListener(view -> navigateUp());
+        binding.schoolProfileToolbar.setNavigationIcon(R.drawable.ic_back);
+
         long schoolId = getArguments().getLong(Constants.SCHOOL_ID, -1);
 
         if (schoolId == -1) {
@@ -56,6 +59,10 @@ public class SchoolProfileFragment extends Fragment {
         }
 
         return binding.getRoot();
+    }
+
+    private void navigateUp() {
+        Navigation.findNavController(binding.getRoot()).navigateUp();
     }
 
     private void setSchool(School school) {
