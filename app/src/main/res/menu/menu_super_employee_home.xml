@@ -6,10 +6,6 @@
         android:title="My Profile" />
 
     <item
-        android:id="@+id/menu_super_employee_my_employees"
-        android:title="My Employees" />
-
-    <item
         android:id="@+id/menu_super_employee_my_dashboard"
         android:title="My Dashboard" />
 

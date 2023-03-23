@@ -65,6 +65,11 @@ public class AdminEditEmployeeFragment extends Fragment {
             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
             Navigation.findNavController(binding.getRoot()).navigateUp();
         } else {
+
+            if (!viewModel.getCurrentEmployee().getDesignation().equals(Constants.DESIGNATION_ADMIN)){
+                binding.adminEditEmployeeSalary.setVisibility(View.GONE);
+            }
+
             binding.setEmployee(employee);
             binding.adminUpdateEmployeeBtn.setEnabled(true);
             binding.adminUpdateEmployeeBtn.setOnClickListener(view -> {

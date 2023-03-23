@@ -62,6 +62,10 @@ public class EmployeeHistory {
     @Expose
     private Message message;
 
+    @SerializedName(Constants.ATTACHMENT)
+    @Expose
+    private Attachment attachment;
+
     public Long getId() {
         return id;
     }
@@ -175,6 +179,14 @@ public class EmployeeHistory {
         this.message = message;
     }
 
+    public Attachment getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(Attachment attachment) {
+        this.attachment = attachment;
+    }
+
     @Override
     public String toString() {
         return "EmployeeHistory{" +
@@ -189,9 +201,10 @@ public class EmployeeHistory {
                 ", location=" + location +
                 ", order=" + order +
                 ", payment=" + payment +
-                ", lr=" + lr +
                 ", school=" + school +
+                ", lr=" + lr +
                 ", message=" + message +
+                ", attachment=" + attachment +
                 '}';
     }
 }

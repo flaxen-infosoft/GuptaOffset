@@ -2,7 +2,7 @@ package com.flaxeninfosoft.guptaoffset.utils;
 
 public class ApiEndpoints {
 
-    public static final String BASE_URL = "http://88.99.248.156/~anand/api/";
+    public static final String BASE_URL = "http://103.118.17.202/~anand/api/";
 
     public static final String LOGIN = "auth/login.php";    //done
 

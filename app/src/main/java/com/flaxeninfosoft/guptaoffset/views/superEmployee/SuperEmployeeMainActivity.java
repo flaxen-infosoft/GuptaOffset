@@ -71,10 +71,6 @@ public class SuperEmployeeMainActivity extends AppCompatActivity {
             return true;
         }
 
-        if (item.getItemId() == R.id.menu_super_employee_my_employees) {
-            navController.navigate(R.id.superEmployeeAllEmployeesFragment);
-            return true;
-        }
         if (item.getItemId() == R.id.menu_super_employee_home_logout) {
 
             viewModel.logout();
