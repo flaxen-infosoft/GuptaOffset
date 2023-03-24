@@ -32,13 +32,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.BuildConfig;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddDealerBinding;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
@@ -48,6 +48,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 
 public class EmployeeAddDealerFragment extends Fragment {
@@ -130,18 +133,44 @@ public class EmployeeAddDealerFragment extends Fragment {
     }
 
     private void onClickAddImage(View view) {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = timeStamp + ".jpg";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        pictureImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
-        File file = new File(pictureImagePath);
-        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",file);
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        mLauncher.launch(cameraIntent);
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        String imageFileName = timeStamp + ".jpg";
+//        File storageDir = Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_PICTURES);
+//        pictureImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
+//        File file = new File(pictureImagePath);
+//        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider", file);
+//        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+//        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        mLauncher.launch(cameraIntent);
+
+        ImagePicker.with(this)
+                .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .cameraOnly()
+                .createIntent(intent -> {
+                    newCamIntent.launch(intent);
+                    return null;
+                });
     }
+
+    ActivityResultLauncher<Intent> newCamIntent = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    int resCode = result.getResultCode();
+                    Uri data = result.getData().getData();
+
+                    if (resCode == Activity.RESULT_OK) {
+                        image = data;
+                        binding.employeeAddDealerImage.setImageURI(image);
+                    } else if (resCode == ImagePicker.RESULT_ERROR) {
+                        Toast.makeText(getContext(), ImagePicker.getError(result.getData()), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
     ActivityResultLauncher<Intent> mLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -152,8 +181,8 @@ public class EmployeeAddDealerFragment extends Fragment {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         try {
 
-                            File imgFile = new  File(pictureImagePath);
-                            if(imgFile.exists()) {
+                            File imgFile = new File(pictureImagePath);
+                            if (imgFile.exists()) {
                                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                                 myBitmap = FileEncoder.rotateBitmap(myBitmap);
                                 binding.employeeAddDealerImage.setImageBitmap(myBitmap);

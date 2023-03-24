@@ -131,7 +131,7 @@ public class SuperEmployeeHomeFragment extends Fragment {
             public void onClickCard(School school) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(Constants.SCHOOL_ID, school.getId());
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminEmployeeActivityFragment_to_schoolProfileFragment, bundle);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeHomeFragment_to_schoolProfileFragment, bundle);
             }
 
             @Override

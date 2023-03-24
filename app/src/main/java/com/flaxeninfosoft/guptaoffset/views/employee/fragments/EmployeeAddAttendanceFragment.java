@@ -1,14 +1,12 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,25 +17,22 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
-import com.flaxeninfosoft.guptaoffset.BuildConfig;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddAttendanceBinding;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class EmployeeAddAttendanceFragment extends Fragment {
 
@@ -196,31 +191,49 @@ public class EmployeeAddAttendanceFragment extends Fragment {
     }
 
     private void selectEndImage(View view) {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = timeStamp + ".jpg";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        pictureEndImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
-        File file = new File(pictureEndImagePath);
-        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",file);
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        endImage.launch(cameraIntent);
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        String imageFileName = timeStamp + ".jpg";
+//        File storageDir = Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_PICTURES);
+//        pictureEndImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
+//        File file = new File(pictureEndImagePath);
+//        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",file);
+//        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+//        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        endImage.launch(cameraIntent);
+
+        ImagePicker.with(this)
+                .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .cameraOnly()
+                .createIntent(intent -> {
+                    newEndImage.launch(intent);
+                    return null;
+                });
     }
 
     private void selectStartImage(View view) {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = timeStamp + ".jpg";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        pictureStartImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
-        File file = new File(pictureStartImagePath);
-        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",file);
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        startImage.launch(cameraIntent);
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        String imageFileName = timeStamp + ".jpg";
+//        File storageDir = Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_PICTURES);
+//        pictureStartImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
+//        File file = new File(pictureStartImagePath);
+//        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",file);
+//        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+//        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        startImage.launch(cameraIntent);
+
+        ImagePicker.with(this)
+                .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .cameraOnly()
+                .createIntent(intent -> {
+                    newStartImage.launch(intent);
+                    return null;
+                });
     }
 
     ActivityResultLauncher<Intent> startImage = registerForActivityResult(
@@ -229,8 +242,8 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     try {
-                        File imgFile = new  File(pictureStartImagePath);
-                        if(imgFile.exists()){
+                        File imgFile = new File(pictureStartImagePath);
+                        if (imgFile.exists()) {
                             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                             myBitmap = FileEncoder.rotateBitmap(myBitmap);
                             binding.employeeAddAttendanceStartMeterImage.setImageBitmap(myBitmap);
@@ -244,14 +257,48 @@ public class EmployeeAddAttendanceFragment extends Fragment {
             }
     );
 
+    ActivityResultLauncher<Intent> newStartImage = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    int resCode = result.getResultCode();
+                    Uri data = result.getData().getData();
+
+                    if (resCode == Activity.RESULT_OK) {
+                        image = data;
+                        binding.employeeAddAttendanceStartMeterImage.setImageURI(image);
+                    } else if (resCode == ImagePicker.RESULT_ERROR) {
+                        Toast.makeText(getContext(), ImagePicker.getError(result.getData()), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+    ActivityResultLauncher<Intent> newEndImage = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    int resCode = result.getResultCode();
+                    Uri data = result.getData().getData();
+
+                    if (resCode == Activity.RESULT_OK) {
+                        image = data;
+                        binding.employeeAddAttendanceEndMeterImage.setImageURI(image);
+                    } else if (resCode == ImagePicker.RESULT_ERROR) {
+                        Toast.makeText(getContext(), ImagePicker.getError(result.getData()), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
     ActivityResultLauncher<Intent> endImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     try {
-                        File imgFile = new  File(pictureEndImagePath);
-                        if(imgFile.exists()) {
+                        File imgFile = new File(pictureEndImagePath);
+                        if (imgFile.exists()) {
                             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                             myBitmap = FileEncoder.rotateBitmap(myBitmap);
                             binding.employeeAddAttendanceEndMeterImage.setImageBitmap(myBitmap);

@@ -111,16 +111,16 @@ public class EmployeeMainActivity extends AppCompatActivity {
             navController.navigate(R.id.employeeProfileFragment);
             return true;
         }
-        if (item.getItemId() == R.id.menu_employee_home_logout) {
-
-            viewModel.logout();
-            stopLocationService();
-            Intent intent = new Intent(EmployeeMainActivity.this, SplashActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-            return true;
-        }
+//        if (item.getItemId() == R.id.menu_employee_home_logout) {
+//
+//            viewModel.logout();
+//            stopLocationService();
+//            Intent intent = new Intent(EmployeeMainActivity.this, SplashActivity.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(intent);
+//            finish();
+//            return true;
+//        }
         return false;
     }
 

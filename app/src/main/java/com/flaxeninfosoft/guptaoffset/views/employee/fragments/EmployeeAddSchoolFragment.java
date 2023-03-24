@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -37,6 +38,7 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddSchoolBinding;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
@@ -57,6 +59,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
     private String pictureSpecimanImagePath;
 
     private String pictureHoadingImagePath;
+
     public EmployeeAddSchoolFragment() {
         // Required empty public constructor
     }
@@ -137,17 +140,26 @@ public class EmployeeAddSchoolFragment extends Fragment {
     }
 
     private void onClickHoadingImage(View view) {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = timeStamp + ".jpg";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        pictureHoadingImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
-        File file = new File(pictureHoadingImagePath);
-        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",file);
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        hoadingImageIntent.launch(cameraIntent);
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        String imageFileName = timeStamp + ".jpg";
+//        File storageDir = Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_PICTURES);
+//        pictureHoadingImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
+//        File file = new File(pictureHoadingImagePath);
+//        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider", file);
+//        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+//        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        hoadingImageIntent.launch(cameraIntent);
+
+        ImagePicker.with(this)
+                .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .cameraOnly()
+                .createIntent(intent -> {
+                    newHoadingImageIntent.launch(intent);
+                    return null;
+                });
     }
 
     private void showToast(String s) {
@@ -157,17 +169,26 @@ public class EmployeeAddSchoolFragment extends Fragment {
     }
 
     private void onClickSpecimenImage(View view) {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = timeStamp + ".jpg";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        pictureSpecimanImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
-        File file = new File(pictureSpecimanImagePath);
-        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",file);
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        specimenImageIntent.launch(cameraIntent);
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        String imageFileName = timeStamp + ".jpg";
+//        File storageDir = Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_PICTURES);
+//        pictureSpecimanImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
+//        File file = new File(pictureSpecimanImagePath);
+//        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider", file);
+//        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+//        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        specimenImageIntent.launch(cameraIntent);
+
+        ImagePicker.with(this)
+                .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .cameraOnly()
+                .createIntent(intent -> {
+                    newSpecimenImageIntent.launch(intent);
+                    return null;
+                });
     }
 
     ActivityResultLauncher<Intent> specimenImageIntent = registerForActivityResult(
@@ -176,8 +197,8 @@ public class EmployeeAddSchoolFragment extends Fragment {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     try {
-                        File imgFile = new  File(pictureSpecimanImagePath);
-                        if(imgFile.exists()) {
+                        File imgFile = new File(pictureSpecimanImagePath);
+                        if (imgFile.exists()) {
                             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                             myBitmap = FileEncoder.rotateBitmap(myBitmap);
                             binding.employeeAddSchoolSpecimenImage.setImageBitmap(myBitmap);
@@ -190,14 +211,33 @@ public class EmployeeAddSchoolFragment extends Fragment {
                 }
             }
     );
+
+    ActivityResultLauncher<Intent> newSpecimenImageIntent = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    int resCode = result.getResultCode();
+                    Uri data = result.getData().getData();
+
+                    if (resCode == Activity.RESULT_OK) {
+                        viewModel.setNewSchoolSpecimenImageUri(data);
+                        binding.employeeAddSchoolSpecimenImage.setImageURI(data);
+                        binding.getSchool().setSpecimenImageUri(data);
+                    } else if (resCode == ImagePicker.RESULT_ERROR) {
+                        Toast.makeText(getContext(), ImagePicker.getError(result.getData()), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
     ActivityResultLauncher<Intent> hoadingImageIntent = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     try {
-                        File imgFile = new  File(pictureHoadingImagePath);
-                        if(imgFile.exists()) {
+                        File imgFile = new File(pictureHoadingImagePath);
+                        if (imgFile.exists()) {
                             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                             binding.employeeAddSchoolHoadingImage.setImageBitmap(myBitmap);
                             binding.getSchool().setHoadingImageUri(FileEncoder.getImageUri(getContext(), myBitmap));
@@ -209,6 +249,24 @@ public class EmployeeAddSchoolFragment extends Fragment {
                 }
             }
     );
+
+    ActivityResultLauncher<Intent> newHoadingImageIntent = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    int resCode = result.getResultCode();
+                    Uri data = result.getData().getData();
+
+                    if (resCode == Activity.RESULT_OK) {
+                        binding.employeeAddSchoolHoadingImage.setImageURI(data);
+                        binding.getSchool().setHoadingImageUri(data);
+                        viewModel.setNewSchoolHoadingImageUri(data);
+                    } else if (resCode == ImagePicker.RESULT_ERROR) {
+                        Toast.makeText(getContext(), ImagePicker.getError(result.getData()), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
 
     private void onClickAddSchool(View view) {

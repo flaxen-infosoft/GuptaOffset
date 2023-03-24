@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -33,6 +34,7 @@ import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.io.File;
 import java.io.IOException;
@@ -110,18 +112,44 @@ public class EmployeeAddOrderFragment extends Fragment {
     }
     private String pictureImagePath = "";
     public void chooseImage(View view) {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = timeStamp + ".jpg";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        pictureImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
-        File file = new File(pictureImagePath);
-        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",file);
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        mLauncher.launch(cameraIntent);
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        String imageFileName = timeStamp + ".jpg";
+//        File storageDir = Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_PICTURES);
+//        pictureImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
+//        File file = new File(pictureImagePath);
+//        Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",file);
+//        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+//        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        mLauncher.launch(cameraIntent);
+
+        ImagePicker.with(this)
+                .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .cameraOnly()
+                .createIntent(intent -> {
+                    newCamIntent.launch(intent);
+                    return null;
+                });
     }
+
+    ActivityResultLauncher<Intent> newCamIntent = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    int resCode = result.getResultCode();
+                    Uri data = result.getData().getData();
+
+                    if (resCode == Activity.RESULT_OK) {
+                        image = data;
+                        binding.employeeAddOrderImage.setImageURI(image);
+                    } else if (resCode == ImagePicker.RESULT_ERROR) {
+                        Toast.makeText(getContext(), ImagePicker.getError(result.getData()), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
     ActivityResultLauncher<Intent> mLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),

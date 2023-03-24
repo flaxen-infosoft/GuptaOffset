@@ -5,7 +5,7 @@
         android:id="@+id/menu_employee_home_profile"
         android:title="My Profile" />
 
-    <item
-        android:id="@+id/menu_employee_home_logout"
-        android:title="Logout" />
+<!--    <item-->
+<!--        android:id="@+id/menu_employee_home_logout"-->
+<!--        android:title="Logout" />-->
 </menu>
