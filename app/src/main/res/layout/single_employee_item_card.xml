@@ -14,12 +14,13 @@
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/employee_card_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#DCF8C6"
-            android:elevation="8dp"
+            app:cardElevation="4dp"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="8dp"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true">
 

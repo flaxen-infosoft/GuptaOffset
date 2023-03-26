@@ -1,6 +1,8 @@
 package com.flaxeninfosoft.guptaoffset.views.admin.fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ public class AdminHomeFragment extends Fragment {
 
     private FragmentAdminHomeBinding binding;
     private AdminViewModel viewModel;
+    private List<Employee> employeeList;
 
     public AdminHomeFragment() {
         // Required empty public constructor
@@ -61,6 +64,43 @@ public class AdminHomeFragment extends Fragment {
             }
         });
 
+        binding.adminHomeSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (employeeList == null || employeeList.isEmpty()) {
+                    binding.adminHomeEmptyRecycler.setVisibility(View.VISIBLE);
+                    binding.adminHomeRecycler.setVisibility(View.GONE);
+                } else {
+                    binding.adminHomeEmptyRecycler.setVisibility(View.GONE);
+                    binding.adminHomeRecycler.setVisibility(View.VISIBLE);
+                }
+                EmployeeRecyclerAdapter adapter = new EmployeeRecyclerAdapter(employeeList, new EmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
+                    @Override
+                    public void onClickCard(Employee employee) {
+                        onCLickEmployeeCard(employee);
+                    }
+
+                    @Override
+                    public boolean onLongClickCard(Employee employee) {
+                        onLongClickEmployeeCard(employee);
+                        return false;
+                    }
+                });
+                adapter.getFilter().filter(charSequence.toString());
+                binding.adminHomeRecycler.setAdapter(adapter);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         binding.adminHomeSwipeRefresh.setOnRefreshListener(this::getAllEmployees);
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
@@ -70,7 +110,7 @@ public class AdminHomeFragment extends Fragment {
 
     private void getAllEmployees() {
         viewModel.fetchAllEmployees();
-        if (binding.adminHomeSwipeRefresh.isRefreshing()){
+        if (binding.adminHomeSwipeRefresh.isRefreshing()) {
             binding.adminHomeSwipeRefresh.setRefreshing(false);
         }
     }
@@ -94,6 +134,7 @@ public class AdminHomeFragment extends Fragment {
     }
 
     private void onChange(List<Employee> employees) {
+        employeeList = employees;
         if (employees == null || employees.isEmpty()) {
             binding.adminHomeEmptyRecycler.setVisibility(View.VISIBLE);
             binding.adminHomeRecycler.setVisibility(View.GONE);
@@ -101,7 +142,7 @@ public class AdminHomeFragment extends Fragment {
             binding.adminHomeEmptyRecycler.setVisibility(View.GONE);
             binding.adminHomeRecycler.setVisibility(View.VISIBLE);
         }
-        binding.adminHomeRecycler.setAdapter(new EmployeeRecyclerAdapter(employees, new EmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
+        EmployeeRecyclerAdapter adapter = new EmployeeRecyclerAdapter(employees, new EmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
             @Override
             public void onClickCard(Employee employee) {
                 onCLickEmployeeCard(employee);
@@ -112,7 +153,8 @@ public class AdminHomeFragment extends Fragment {
                 onLongClickEmployeeCard(employee);
                 return false;
             }
-        }));
+        });
+        binding.adminHomeRecycler.setAdapter(adapter);
     }
 
     private void onLongClickEmployeeCard(Employee employee) {

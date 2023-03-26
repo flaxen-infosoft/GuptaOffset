@@ -1,6 +1,8 @@
 package com.flaxeninfosoft.guptaoffset.views.superEmployee.fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ public class SuperEmployeeAllEmployeesFragment extends Fragment {
 
     private SuperEmployeeViewModel viewModel;
     private FragmentSuperEmployeeAllEmployeesBinding binding;
+    private List<Employee> employeeList;
 
     public SuperEmployeeAllEmployeesFragment() {
         // Required empty public constructor
@@ -51,6 +54,47 @@ public class SuperEmployeeAllEmployeesFragment extends Fragment {
 
         viewModel.getCurrentSuperEmployeeEmployees().observe(getViewLifecycleOwner(), this::setEmployees);
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
+
+        binding.superEmployeeHomeSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (employeeList == null || employeeList.isEmpty()) {
+                    binding.superEmployeeAllEmployeesEmptyRecycler.setVisibility(View.VISIBLE);
+                    binding.superEmployeeAllEmployeesRecycler.setVisibility(View.GONE);
+                } else {
+                    binding.superEmployeeAllEmployeesEmptyRecycler.setVisibility(View.GONE);
+                    binding.superEmployeeAllEmployeesRecycler.setVisibility(View.VISIBLE);
+                }
+                EmployeeRecyclerAdapter adapter = new EmployeeRecyclerAdapter(employeeList, new EmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
+                    @Override
+                    public void onClickCard(Employee employee) {
+                        Bundle bundle = new Bundle();
+                        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+                        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_superEmployeeAllEmployeesFragment_to_adminEmployeeActivityFragment2, bundle);
+                    }
+
+                    @Override
+                    public boolean onLongClickCard(Employee employee) {
+                        Bundle bundle = new Bundle();
+                        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+                        Navigation.findNavController(binding.getRoot()).navigate(R.id.adminEditEmployeeFragment, bundle);
+                        return true;
+                    }
+                });
+                adapter.getFilter().filter(charSequence.toString());
+                binding.superEmployeeAllEmployeesRecycler.setAdapter(adapter);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         binding.superEmployeeAllEmployeesSwipeRefresh.setOnRefreshListener(this::fetchCurrentEmployees);
 
