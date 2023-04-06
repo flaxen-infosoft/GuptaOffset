@@ -17,7 +17,7 @@
             android:id="@+id/employee_card_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#DCF8C6"
+            android:backgroundTint="@color/white"
             app:cardElevation="4dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
@@ -25,6 +25,7 @@
             app:cardUseCompatPadding="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp">
@@ -37,24 +38,26 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-               <LinearLayout
-                   android:id="@+id/employee_card_pending_message_layout"
-                   android:layout_width="30dp"
-                   android:layout_height="30dp"
-                   android:padding="4dp"
-                   app:layout_constraintTop_toTopOf="parent"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   android:background="@drawable/shape_round_corners">
+                <LinearLayout
+                    android:id="@+id/employee_card_pending_message_layout"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="4dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@drawable/shape_round_corners"
+                    android:backgroundTint="@color/teal_700">
 
-                   <TextView
-                       android:id="@+id/employee_card_pending_message_count"
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:layout_gravity="center"
-                       android:gravity="center"
-                       android:textSize="14sp"
-                       android:textStyle="bold"/>
-               </LinearLayout>
+                    <TextView
+                        android:id="@+id/employee_card_pending_message_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -70,23 +73,23 @@
                         android:orientation="horizontal">
 
 
-                        <TextView
-                            android:id="@+id/eid"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:text="@{``+employee.id}"
-                            android:textColor="@color/black"
-                            android:textSize="20sp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/eid"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="15dp"-->
+<!--                            android:text="@{``+employee.id}"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="20sp" />-->
 
                         <TextView
                             android:id="@+id/ename"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
+                            android:layout_marginStart="15dp"
                             android:text="@{employee.name}"
                             android:textColor="@color/black"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -96,22 +99,30 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/battery_icon"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="10dp"
+                            android:textSize="15sp" />
+
+                        <TextView
                             android:id="@+id/employee_card_item_card_firm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:text="@{employee.firm + '-'}"
+                            android:text="@{employee.firm}"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:layout_marginStart="2dp"
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/employee_card_item_card_designation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
+                            android:layout_marginLeft="2dp"
                             android:text="@{employee.designation+'-'}"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/employee_card_item_battery_status"
@@ -122,35 +133,56 @@
                             android:gravity="end"
                             android:text="@{employee.batteryStatus+'%'}"
                             android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:drawableStart="@drawable/location_icon"
+                            android:drawablePadding="3dp" />
+
+                        <TextView
+                            android:id="@+id/earea"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:text="@{employee.currentLocation.address}"
                             android:textSize="16sp" />
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/earea"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:text="@{employee.currentLocation.address}"
-                        android:textSize="16sp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Last update:- "
-                        android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Last update:- "
+                            android:drawableStart="@drawable/time_icon"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:layout_marginStart="13dp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:text="@{employee.currentLocation.date}"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="@{employee.currentLocation.date}"/>
 
-                </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

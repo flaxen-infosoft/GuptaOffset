@@ -126,10 +126,10 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
                 int pendingMessages = Integer.parseInt(employee.getPendingMessages());
 
                 if (pendingMessages == 0) {
-//                    binding.employeeCardBackground.setBackgroundColor(Color.WHITE);
+                    binding.constraintLayout.setBackgroundColor(Color.WHITE);
                     binding.employeeCardPendingMessageLayout.setVisibility(View.GONE);
                 } else {
-//                    binding.employeeCardBackground.setBackgroundColor(Color.parseColor("#DCF8C6"));
+                    binding.constraintLayout.setBackgroundColor(Color.parseColor("#DCF8C6"));
                     binding.employeeCardPendingMessageLayout.setVisibility(View.VISIBLE);
                     binding.employeeCardPendingMessageCount.setText("" + pendingMessages);
                 }
