@@ -83,7 +83,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="4dp"
                         android:gravity="center_horizontal"
-                        android:text="Add\nAttendance"
+                        android:text="उपस्थिति दर्ज"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -107,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        android:text="Add leave"
+                        android:text="अवकाश दर्ज"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -130,7 +130,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        android:text="Add School"
+                        android:text="विद्यालय दर्ज"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -153,7 +153,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        android:text="Add Shop"
+                        android:text="दुकान जोड़े"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -177,7 +177,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        android:text="Add Order"
+                        android:text="ऑर्डर जोड़े"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -202,7 +202,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
                         android:gravity="center_horizontal"
-                        android:text="Payment\nRequest"
+                        android:text="भुगतान अनुरोध"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -227,7 +227,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
                         android:gravity="center"
-                        android:text="Add Daily\nReport"
+                        android:text="दैनिक रिपोर्ट"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -250,7 +250,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        android:text="My Map"
+                        android:text="मेरा नक्शा"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -275,7 +275,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="4dp"
                         android:gravity="center_horizontal"
-                        android:text="Reports"
+                        android:text="रिपोर्ट / प्रतिवेदन"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
