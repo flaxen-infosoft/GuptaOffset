@@ -39,7 +39,7 @@ public class ImageViewFragment extends Fragment {
             Navigation.findNavController(binding.getRoot()).navigateUp();
         } else {
 
-            Glide.with(getContext()).load(imageLink).into(binding.imageViewImage);
+            Glide.with(getContext()).load(imageLink).placeholder(R.drawable.loading_image).into(binding.imageViewImage);
         }
 
         return binding.getRoot();

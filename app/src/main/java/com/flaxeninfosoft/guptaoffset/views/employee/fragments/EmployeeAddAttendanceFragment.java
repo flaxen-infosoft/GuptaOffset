@@ -132,7 +132,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
 
                 String imageLink = ApiEndpoints.BASE_URL + attendance.getSnapIn();
-                Glide.with(binding.getRoot().getContext()).load(imageLink).into(binding.employeeAddAttendanceStartMeterImage);
+                Glide.with(binding.getRoot().getContext()).load(imageLink).placeholder(R.drawable.loading_image).into(binding.employeeAddAttendanceStartMeterImage);
 
                 binding.employeeAddAttendanceEndMeter.setEnabled(true);
                 binding.employeeAddAttendanceEndMeter.setVisibility(View.VISIBLE);
@@ -168,10 +168,10 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
 
                 String imageLink1 = ApiEndpoints.BASE_URL + attendance.getSnapOut();
-                Glide.with(binding.getRoot().getContext()).load(imageLink1).into(binding.employeeAddAttendanceEndMeterImage);
+                Glide.with(binding.getRoot().getContext()).load(imageLink1).placeholder(R.drawable.loading_image).into(binding.employeeAddAttendanceEndMeterImage);
 
                 String imageLink2 = ApiEndpoints.BASE_URL + attendance.getSnapIn();
-                Glide.with(binding.getRoot().getContext()).load(imageLink2).into(binding.employeeAddAttendanceStartMeterImage);
+                Glide.with(binding.getRoot().getContext()).load(imageLink2).placeholder(R.drawable.loading_image).into(binding.employeeAddAttendanceStartMeterImage);
 
                 binding.employeeAddAttendanceEndMeter.setEnabled(false);
                 binding.employeeAddAttendanceEndMeter.setVisibility(View.VISIBLE);

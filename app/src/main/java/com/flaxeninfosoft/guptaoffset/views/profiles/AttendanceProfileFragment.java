@@ -87,7 +87,7 @@ public class AttendanceProfileFragment extends Fragment {
                 case 2:
                     binding.attendanceProfileOutLayout.setVisibility(View.VISIBLE);
                     String outImage = ApiEndpoints.BASE_URL + attendance.getSnapOut();
-                    Glide.with(binding.getRoot().getContext()).load(outImage).into(binding.employeeAttendanceProfileEndMeterImage);
+                    Glide.with(binding.getRoot().getContext()).load(outImage).placeholder(R.drawable.loading_image).into(binding.employeeAttendanceProfileEndMeterImage);
 
                     binding.employeeAttendanceProfileEndMeterImage.setOnClickListener(view -> {
                         Bundle bundle = new Bundle();
@@ -97,7 +97,7 @@ public class AttendanceProfileFragment extends Fragment {
                 case 1:
                     binding.attendanceProfileInLayout.setVisibility(View.VISIBLE);
                     String inImage = ApiEndpoints.BASE_URL + attendance.getSnapIn();
-                    Glide.with(binding.getRoot().getContext()).load(inImage).into(binding.employeeAttendanceProfileStartMeterImage);
+                    Glide.with(binding.getRoot().getContext()).load(inImage).placeholder(R.drawable.loading_image).into(binding.employeeAttendanceProfileStartMeterImage);
 
                     binding.employeeAttendanceProfileStartMeterImage.setOnClickListener(view -> {
                         Bundle bundle = new Bundle();

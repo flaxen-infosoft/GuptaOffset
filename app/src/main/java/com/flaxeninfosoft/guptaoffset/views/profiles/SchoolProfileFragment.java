@@ -75,7 +75,7 @@ public class SchoolProfileFragment extends Fragment {
         }
 
         String image = ApiEndpoints.BASE_URL + school.getSnap();
-        Glide.with(getContext()).load(image).into(binding.schoolProfileHoadingImage);
+        Glide.with(getContext()).load(image).placeholder(R.drawable.loading_image).into(binding.schoolProfileHoadingImage);
 
         binding.schoolProfileHoadingImage.setOnClickListener(view -> {
             Bundle bundle = new Bundle();
@@ -84,7 +84,7 @@ public class SchoolProfileFragment extends Fragment {
         });
 
         String image1 = ApiEndpoints.BASE_URL + school.getSpecimen();
-        Glide.with(getContext()).load(image1).into(binding.schoolProfileSpecimenImage);
+        Glide.with(getContext()).load(image1).placeholder(R.drawable.loading_image).into(binding.schoolProfileSpecimenImage);
 
         binding.schoolProfileSpecimenImage.setOnClickListener(view -> {
             Bundle bundle = new Bundle();

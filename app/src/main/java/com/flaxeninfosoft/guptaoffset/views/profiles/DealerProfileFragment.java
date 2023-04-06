@@ -72,7 +72,7 @@ public class DealerProfileFragment extends Fragment {
         }
 
         String image=ApiEndpoints.BASE_URL+dealer.getImage();
-        Glide.with(getContext()).load(image).into(binding.dealerProfileSpecimenImage);
+        Glide.with(getContext()).load(image).placeholder(R.drawable.loading_image).into(binding.dealerProfileSpecimenImage);
 
         binding.dealerProfileSpecimenImage.setOnClickListener(view -> {
             Bundle bundle = new Bundle();

@@ -210,10 +210,10 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             binding.getRoot().setOnClickListener(v -> clickListener.onClickCard(attendance));
 
             String timeInImage = ApiEndpoints.BASE_URL + attendance.getSnapIn();
-            Glide.with(binding.getRoot().getContext()).load(timeInImage).into(binding.singleAttendanceCardTimeInImage);
+            Glide.with(binding.getRoot().getContext()).load(timeInImage).placeholder(R.drawable.loading_image).into(binding.singleAttendanceCardTimeInImage);
 
             String timeOutImage = ApiEndpoints.BASE_URL + attendance.getSnapOut();
-            Glide.with(binding.getRoot().getContext()).load(timeOutImage).into(binding.singleAttendanceCardTimeOutImage);
+            Glide.with(binding.getRoot().getContext()).load(timeOutImage).placeholder(R.drawable.loading_image).into(binding.singleAttendanceCardTimeOutImage);
 
             switch (attendance.getPunchStatus()) {
                 case 0:
@@ -253,7 +253,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
             String imageLink = ApiEndpoints.BASE_URL + dealer.getImage();
 
-            Glide.with(binding.getRoot().getContext()).load(imageLink).into(binding.singleDealerCardImage);
+            Glide.with(binding.getRoot().getContext()).load(imageLink).placeholder(R.drawable.loading_image).into(binding.singleDealerCardImage);
         }
 
         public interface SingleDealerCardClickListener {
@@ -355,7 +355,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             binding.getRoot().setOnClickListener(v -> onCLickListener.onClickCard(order));
             String imageLink = ApiEndpoints.BASE_URL + order.getSnap();
 
-            Glide.with(binding.getRoot().getContext()).load(imageLink).into(binding.singleOrderCardImage);
+            Glide.with(binding.getRoot().getContext()).load(imageLink).placeholder(R.drawable.loading_image).into(binding.singleOrderCardImage);
         }
 
         public interface SingleOrderCardClickListener {
@@ -380,10 +380,10 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
             try {
                 String schoolImage = ApiEndpoints.BASE_URL + school.getSnap();
-                Glide.with(binding.getRoot().getContext()).load(schoolImage).into(binding.singleSchoolCardSchoolImage);
+                Glide.with(binding.getRoot().getContext()).load(schoolImage).placeholder(R.drawable.loading_image).into(binding.singleSchoolCardSchoolImage);
 
                 String specimen = ApiEndpoints.BASE_URL + school.getSpecimen();
-                Glide.with(binding.getRoot().getContext()).load(specimen).into(binding.singleSchoolCardSpecimenOrderImage);
+                Glide.with(binding.getRoot().getContext()).load(specimen).placeholder(R.drawable.loading_image).into(binding.singleSchoolCardSpecimenOrderImage);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -480,7 +480,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
             try {
                 String image = ApiEndpoints.BASE_URL + lr.getImage();
-                Glide.with(binding.getRoot().getContext()).load(image).into(binding.singleLrCardImage);
+                Glide.with(binding.getRoot().getContext()).load(image).placeholder(R.drawable.loading_image).into(binding.singleLrCardImage);
             } catch (Exception ignored) {
                 ignored.printStackTrace();
             }

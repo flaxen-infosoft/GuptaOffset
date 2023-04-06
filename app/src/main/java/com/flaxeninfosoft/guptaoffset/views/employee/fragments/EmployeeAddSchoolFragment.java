@@ -33,7 +33,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
-import com.flaxeninfosoft.guptaoffset.BuildConfig;
+
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddSchoolBinding;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
@@ -129,13 +129,13 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
     private void setHoadingImage() {
         if (viewModel.getNewSchool().getHoadingImageUri() != null)
-            Glide.with(getContext()).load(viewModel.getNewSchool().getHoadingImageUri()).into(binding.employeeAddSchoolHoadingImage);
+            Glide.with(getContext()).load(viewModel.getNewSchool().getHoadingImageUri()).placeholder(R.drawable.loading_image).into(binding.employeeAddSchoolHoadingImage);
 
     }
 
     public void setSpecimenImage() {
         if (viewModel.getNewSchool().getSpecimenImageUri() != null)
-            Glide.with(getContext()).load(viewModel.getNewSchool().getSpecimenImageUri()).into(binding.employeeAddSchoolSpecimenImage);
+            Glide.with(getContext()).load(viewModel.getNewSchool().getSpecimenImageUri()).placeholder(R.drawable.loading_image).into(binding.employeeAddSchoolSpecimenImage);
 
     }
 

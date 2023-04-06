@@ -70,7 +70,7 @@ public class OrderProfileFragment extends Fragment {
         }
 
         String image = ApiEndpoints.BASE_URL+order.getSnap();
-        Glide.with(getContext()).load(image).into(binding.orderProfileSpecimenImage);
+        Glide.with(getContext()).load(image).placeholder(R.drawable.loading_image).into(binding.orderProfileSpecimenImage);
 
         binding.orderProfileSpecimenImage.setOnClickListener(view -> {
             Bundle bundle = new Bundle();

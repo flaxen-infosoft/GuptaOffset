@@ -73,7 +73,7 @@ public class EodProfileFragment extends Fragment {
 
         if (eod.getPetrolExpenseImage() != null && !eod.getPetrolExpenseImage().isEmpty()) {
             String image = ApiEndpoints.BASE_URL + eod.getPetrolExpenseImage();
-            Glide.with(getContext()).load(image).into(binding.eodProfilePetrolExpenseImage);
+            Glide.with(getContext()).load(image).placeholder(R.drawable.loading_image).into(binding.eodProfilePetrolExpenseImage);
 
             binding.eodProfilePetrolExpenseImage.setOnClickListener(view->{
                 Bundle bundle = new Bundle();
@@ -86,7 +86,7 @@ public class EodProfileFragment extends Fragment {
 
         if (eod.getExpenseImage() != null && !eod.getExpenseImage().isEmpty()) {
             String image = ApiEndpoints.BASE_URL + eod.getExpenseImage();
-            Glide.with(getContext()).load(image).into(binding.eodProfileOtherExpenseImage);
+            Glide.with(getContext()).load(image).placeholder(R.drawable.loading_image).into(binding.eodProfileOtherExpenseImage);
 
             binding.eodProfileOtherExpenseImage.setOnClickListener(view->{
                 Bundle bundle = new Bundle();
