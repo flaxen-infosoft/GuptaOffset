@@ -183,6 +183,13 @@
                         android:textSize="17sp" />
                 </LinearLayout>
 
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/check_icon"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="end"/>
+
             </LinearLayout>
         </RelativeLayout>
 
@@ -192,9 +199,9 @@
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="-6dp"
-            android:layout_marginTop="0.6dp"
-            android:background="@null"
+            android:layout_marginTop="0.4dp"
+            android:backgroundTint="#F1C6F8"
             android:scaleX="1.5"
-            android:src="@drawable/v_bubble_corner_right" />
+            android:background="@drawable/v_bubble_corner_right" />
     </RelativeLayout>
 </layout>

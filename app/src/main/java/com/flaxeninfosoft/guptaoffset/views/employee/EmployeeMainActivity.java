@@ -2,7 +2,9 @@ package com.flaxeninfosoft.guptaoffset.views.employee;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,13 +12,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -25,7 +26,6 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.ActivityEmployeeMainBinding;
 import com.flaxeninfosoft.guptaoffset.services.LocationService;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
-import com.flaxeninfosoft.guptaoffset.views.SplashActivity;
 
 public class EmployeeMainActivity extends AppCompatActivity {
 
@@ -63,6 +63,19 @@ public class EmployeeMainActivity extends AppCompatActivity {
             startService(intent);
         } else {
             Toast.makeText(this, "Location and Network permission needed", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(EmployeeMainActivity.this);
+            builder.setTitle("Permission Denied")
+                    .setCancelable(false)
+                    .setMessage("आपने लोकेशन की परमिशन नही दी है कृप्या सेटिंग में जाकर परमिशन दे")
+                    .setNegativeButton("Cancel", null)
+                    .setPositiveButton("Ok", (dialog, which) -> {
+
+                        Intent intent = new Intent();
+                        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        intent.setData(Uri.fromParts("package", getPackageName(), null));
+                        startActivity(intent);
+
+                    }).show();
         }
     }
 
@@ -111,6 +124,12 @@ public class EmployeeMainActivity extends AppCompatActivity {
             navController.navigate(R.id.employeeProfileFragment);
             return true;
         }
+
+        if (item.getItemId() == R.id.menu_employee_home_refresh) {
+//            viewModel.getCurrentEmployeeHistory().observe(this, this::setEmployeeHistory);
+            return true;
+        }
+
 //        if (item.getItemId() == R.id.menu_employee_home_logout) {
 //
 //            viewModel.logout();

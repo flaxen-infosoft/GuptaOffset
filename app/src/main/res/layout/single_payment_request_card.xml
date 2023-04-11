@@ -166,6 +166,13 @@
                    </LinearLayout>
                 </LinearLayout>
 
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/check_icon"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="end"/>
+
             </LinearLayout>
 
         </RelativeLayout>
@@ -177,8 +184,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="-6dp"
             android:layout_marginTop="0.6dp"
-            android:background="@null"
             android:scaleX="1.5"
-            android:src="@drawable/v_bubble_corner_right" />
+            android:background="@drawable/v_bubble_corner_right"
+            android:backgroundTint="#F8D8C6"/>
     </RelativeLayout>
 </layout>

@@ -1,9 +1,13 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,8 +33,12 @@ import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
+import com.flaxeninfosoft.guptaoffset.viewModels.AdminViewModel;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class EmployeeHomeFragment extends Fragment {
@@ -54,6 +62,9 @@ public class EmployeeHomeFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_home, container, false);
         binding.setMessage(new Message());
         binding.getMessage().setReceiverId(viewModel.getCurrentEmployee().getId());
+
+        long atnId = viewModel.getCurrentEmployee().getId();
+        viewModel.getCurrentEmployeeTodaysAttendance().observe(getViewLifecycleOwner(), this::setAttendance);
 
         binding.employeeHomeCardAddAttendance.setOnClickListener(this::navigateAddAttendance);
         binding.employeeHomeCardAddLeave.setOnClickListener(this::navigateToAddLeave);
@@ -84,6 +95,54 @@ public class EmployeeHomeFragment extends Fragment {
         binding.employeeHomeSendMessageFab.setOnClickListener(this::sendMessage);
 
         return binding.getRoot();
+    }
+
+
+
+    private void setAttendance(Attendance attendance) {
+
+        String punchStatus = "0";
+        if (attendance == null) {
+            punchStatus = "0";
+            Log.i("getEmpId", "0");
+            Log.i("getPunchStatus", "0");
+        } else {
+            punchStatus = String.valueOf(attendance.getPunchStatus());
+            Log.i("getEmpId", String.valueOf(attendance.getEmpId()));
+            Log.i("getPunchStatus", String.valueOf(attendance.getPunchStatus()));
+        }
+
+        DateFormat dateFormat = new SimpleDateFormat("HH");
+        Date date = new Date();
+        int time = Integer.parseInt(dateFormat.format(date));
+        Log.i("time", String.valueOf(time));
+
+
+        if (punchStatus.equals("0")) {
+            showDialog();
+        } else if (punchStatus.equals("1") && time >= 19) {
+            showDialog();
+        }
+
+
+    }
+
+
+    private void showDialog() {
+        LayoutInflater factory = LayoutInflater.from(getContext());
+
+        final View view = factory.inflate(R.layout.attendance_alert_dialog_layout, null);
+        AlertDialog attendaceDialog = new AlertDialog.Builder(getContext()).create();
+        attendaceDialog.setView(view);
+        attendaceDialog.setCancelable(false);
+        attendaceDialog.show();
+        Button buttonCancel = view.findViewById(R.id.button2);
+        Button buttonPunch = view.findViewById(R.id.button1);
+        buttonPunch.setOnClickListener(view12 -> {
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddAttendanceFragment);
+            attendaceDialog.dismiss();
+        });
+        buttonCancel.setOnClickListener(view1 -> attendaceDialog.dismiss());
     }
 
     private void sendMessage(View view) {

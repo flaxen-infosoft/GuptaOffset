@@ -5,6 +5,10 @@
         android:id="@+id/menu_employee_home_profile"
         android:title="My Profile" />
 
+    <item
+        android:id="@+id/menu_employee_home_refresh"
+        android:title="Refresh" />
+
 <!--    <item-->
 <!--        android:id="@+id/menu_employee_home_logout"-->
 <!--        android:title="Logout" />-->

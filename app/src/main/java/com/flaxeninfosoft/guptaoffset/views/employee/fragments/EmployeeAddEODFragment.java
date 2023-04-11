@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -25,6 +27,7 @@ import androidx.navigation.Navigation;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddEODBinding;
+import com.flaxeninfosoft.guptaoffset.models.Attendance;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
@@ -69,11 +72,47 @@ public class EmployeeAddEODFragment extends Fragment {
         progressDialog.setCancelable(false);
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
+        viewModel.getCurrentEmployeeTodaysAttendance().observe(getViewLifecycleOwner(), this::setAttendance);
 
         binding.employeeAddEodExpenseImage.setOnClickListener(this::onClickExpenseImage);
         binding.employeeAddEodPetrolImage.setOnClickListener(this::onClickPetrolImage);
 
         return binding.getRoot();
+    }
+
+    private void setAttendance(Attendance attendance) {
+        String punchStatus = "0";
+        if (attendance == null) {
+            punchStatus = "0";
+        } else {
+            punchStatus = String.valueOf(attendance.getPunchStatus());
+        }
+
+
+        if (punchStatus.equals("0")) {
+            showDialog();
+        } else if (punchStatus.equals("1")) {
+            showDialog();
+        } else {
+            //submit eod
+        }
+    }
+
+    private void showDialog() {
+        LayoutInflater factory = LayoutInflater.from(getContext());
+
+        final View view = factory.inflate(R.layout.attendance_alert_dialog_layout, null);
+        AlertDialog attendaceDialog = new AlertDialog.Builder(getContext()).create();
+        attendaceDialog.setView(view);
+        attendaceDialog.setCancelable(false);
+        attendaceDialog.show();
+        Button buttonCancel = view.findViewById(R.id.button2);
+        Button buttonPunch = view.findViewById(R.id.button1);
+        buttonPunch.setOnClickListener(view12 -> {
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.employeeAddAttendanceFragment);
+            attendaceDialog.dismiss();
+        });
+        buttonCancel.setOnClickListener(view1 -> attendaceDialog.dismiss());
     }
 
     ActivityResultLauncher<Intent> expenseImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {

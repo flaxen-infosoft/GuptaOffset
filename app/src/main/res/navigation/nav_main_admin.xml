@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_superEmployeeAddEmployeeFragment"
             app:destination="@id/superEmployeeAddEmployeeFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_adminAllOrderFragment"
+            app:destination="@id/adminAllOrderFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
@@ -89,4 +92,12 @@
         android:id="@+id/sendLrFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.SendLrFragment"
         android:label="SendLrFragment" />
+    <fragment
+        android:id="@+id/adminAllOrderFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminAllOrderFragment"
+        android:label="AdminAllOrderFragment" >
+        <action
+            android:id="@+id/action_adminAllOrderFragment_to_orderProfileFragment"
+            app:destination="@id/orderProfileFragment" />
+    </fragment>
 </navigation>

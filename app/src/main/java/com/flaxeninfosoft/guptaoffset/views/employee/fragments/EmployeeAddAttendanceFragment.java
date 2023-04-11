@@ -204,7 +204,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 //        endImage.launch(cameraIntent);
 
         ImagePicker.with(this)
-                .compress(1024)         //Final image size will be less than 1 MB(Optional)
+//                .compress(1024)         //Final image size will be less than 1 MB(Optional)
                 .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
                 .cameraOnly()
                 .createIntent(intent -> {
@@ -227,7 +227,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 //        startImage.launch(cameraIntent);
 
         ImagePicker.with(this)
-                .compress(1024)         //Final image size will be less than 1 MB(Optional)
+//                .compress(1024)         //Final image size will be less than 1 MB(Optional)
                 .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
                 .cameraOnly()
                 .createIntent(intent -> {
@@ -313,11 +313,17 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 
     private void punch(String reading, Uri uri) {
         binding.employeeAddAttendanceBtn.setEnabled(false);
+        progressDialog.setTitle("Wait");
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         try {
             viewModel.punchAttendance(reading, uri).observe(getViewLifecycleOwner(), attendance -> {
                 if (attendance != null) {
+                    progressDialog.dismiss();
                     navigateUp();
                 } else {
+                    progressDialog.dismiss();
                     binding.employeeAddAttendanceBtn.setEnabled(true);
                 }
             });

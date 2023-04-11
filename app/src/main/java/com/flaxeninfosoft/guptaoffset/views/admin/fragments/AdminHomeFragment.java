@@ -55,6 +55,7 @@ public class AdminHomeFragment extends Fragment {
         binding.adminHomeAddSuperEmployee.setOnClickListener(this::navigateToAddSuperEmployee);
         binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
         binding.adminHomePaymentRequests.setOnClickListener(this::navigateToPaymentRequests);
+        binding.adminHomeAllOrders.setOnClickListener(this::onClickAllOrders);
 
         binding.adminAddIcon.setOnClickListener(view -> {
             if (binding.adminHomeCard.getVisibility() == View.VISIBLE) {
@@ -106,6 +107,10 @@ public class AdminHomeFragment extends Fragment {
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
         return binding.getRoot();
+    }
+
+    private void onClickAllOrders(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_adminAllOrderFragment);
     }
 
     private void getAllEmployees() {

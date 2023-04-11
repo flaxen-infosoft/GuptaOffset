@@ -70,7 +70,7 @@
                     android:layout_marginVertical="8dp"
                     android:scaleType="centerCrop" />
 
-                <fragment
+                <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/order_profile_map"
                     android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"

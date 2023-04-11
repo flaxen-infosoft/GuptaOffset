@@ -112,53 +112,55 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         EmployeeHistory history = historyList.get(position);
-        switch (history.getType()) {
-            case Constants.TYPE_ADD_ATTENDANCE:
-                SingleAttendanceCardViewHolder atnViewHolder = (SingleAttendanceCardViewHolder) holder;
-                atnViewHolder.setData(history.getAttendance());
-                break;
-            case Constants.TYPE_ADD_LEAVE:
-                SingleLeaveCardViewHolder leaveViewHolder = (SingleLeaveCardViewHolder) holder;
-                leaveViewHolder.setData(history.getLeave());
-                break;
-            case Constants.TYPE_ADD_SCHOOL:
-                SingleSchoolCardViewHolder schoolCardViewHolder = (SingleSchoolCardViewHolder) holder;
-                schoolCardViewHolder.setData(history.getSchool());
-                break;
-            case Constants.TYPE_ADD_DEALER:
-                SingleDealerCardViewHolder dealerCardViewHolder = (SingleDealerCardViewHolder) holder;
-                dealerCardViewHolder.setData(history.getDealer());
-                break;
-            case Constants.TYPE_ADD_ORDER:
-                SingleOrderCardViewHolder orderCardViewHolder = (SingleOrderCardViewHolder) holder;
-                orderCardViewHolder.setData(history.getOrder());
-                break;
-            case Constants.TYPE_ADD_EOD:
-                SingleEodCardViewHolder eodCardViewHolder = (SingleEodCardViewHolder) holder;
-                eodCardViewHolder.setData(history.getEod());
-                break;
-            case Constants.TYPE_ADD_EMPLOYEE:
-                SingleEmployeeCardViewHolder employeeCardViewHolder = (SingleEmployeeCardViewHolder) holder;
-                employeeCardViewHolder.setData(history.getEmployee());
-                break;
-            case Constants.TYPE_ADD_PAYMENT:
-                SinglePaymentCardViewHolder paymentCardViewHolder = (SinglePaymentCardViewHolder) holder;
-                paymentCardViewHolder.setData(history.getPayment());
-                break;
-            case Constants.TYPE_MESSAGE:
-                Message message = historyList.get(position).getMessage();
-                if (message.getSenderId() == SharedPrefs.getInstance(application.getApplicationContext()).getCurrentEmployee().getId()) {
-                    SingleMessageSentCardViewHolder sendMessageCardViewHolder = (SingleMessageSentCardViewHolder) holder;
-                    sendMessageCardViewHolder.setData(history.getMessage());
-                } else {
-                    SingleMessageReceivedCardViewHolder receivedCardViewHolder = (SingleMessageReceivedCardViewHolder) holder;
-                    receivedCardViewHolder.setData(history.getMessage());
-                }
-                break;
-            case Constants.TYPE_LR:
-                SingleLrCardViewHolder lrCardViewHolder = (SingleLrCardViewHolder) holder;
-                lrCardViewHolder.setData(history.getLr());
-                break;
+        if (history!=null) {
+            switch (history.getType()) {
+                case Constants.TYPE_ADD_ATTENDANCE:
+                    SingleAttendanceCardViewHolder atnViewHolder = (SingleAttendanceCardViewHolder) holder;
+                    atnViewHolder.setData(history.getAttendance());
+                    break;
+                case Constants.TYPE_ADD_LEAVE:
+                    SingleLeaveCardViewHolder leaveViewHolder = (SingleLeaveCardViewHolder) holder;
+                    leaveViewHolder.setData(history.getLeave());
+                    break;
+                case Constants.TYPE_ADD_SCHOOL:
+                    SingleSchoolCardViewHolder schoolCardViewHolder = (SingleSchoolCardViewHolder) holder;
+                    schoolCardViewHolder.setData(history.getSchool());
+                    break;
+                case Constants.TYPE_ADD_DEALER:
+                    SingleDealerCardViewHolder dealerCardViewHolder = (SingleDealerCardViewHolder) holder;
+                    dealerCardViewHolder.setData(history.getDealer());
+                    break;
+                case Constants.TYPE_ADD_ORDER:
+                    SingleOrderCardViewHolder orderCardViewHolder = (SingleOrderCardViewHolder) holder;
+                    orderCardViewHolder.setData(history.getOrder());
+                    break;
+                case Constants.TYPE_ADD_EOD:
+                    SingleEodCardViewHolder eodCardViewHolder = (SingleEodCardViewHolder) holder;
+                    eodCardViewHolder.setData(history.getEod());
+                    break;
+                case Constants.TYPE_ADD_EMPLOYEE:
+                    SingleEmployeeCardViewHolder employeeCardViewHolder = (SingleEmployeeCardViewHolder) holder;
+                    employeeCardViewHolder.setData(history.getEmployee());
+                    break;
+                case Constants.TYPE_ADD_PAYMENT:
+                    SinglePaymentCardViewHolder paymentCardViewHolder = (SinglePaymentCardViewHolder) holder;
+                    paymentCardViewHolder.setData(history.getPayment());
+                    break;
+                case Constants.TYPE_MESSAGE:
+                    Message message = historyList.get(position).getMessage();
+                    if (message.getSenderId() == SharedPrefs.getInstance(application.getApplicationContext()).getCurrentEmployee().getId()) {
+                        SingleMessageSentCardViewHolder sendMessageCardViewHolder = (SingleMessageSentCardViewHolder) holder;
+                        sendMessageCardViewHolder.setData(history.getMessage());
+                    } else {
+                        SingleMessageReceivedCardViewHolder receivedCardViewHolder = (SingleMessageReceivedCardViewHolder) holder;
+                        receivedCardViewHolder.setData(history.getMessage());
+                    }
+                    break;
+                case Constants.TYPE_LR:
+                    SingleLrCardViewHolder lrCardViewHolder = (SingleLrCardViewHolder) holder;
+                    lrCardViewHolder.setData(history.getLr());
+                    break;
+            }
         }
     }
 
@@ -406,13 +408,20 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
         }
 
         public void setData(PaymentRequest payment) {
-            binding.setPaymentRequest(payment);
-            binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(payment));
+            try {
+                if (payment.getStatus()!=null) {
+                    binding.setPaymentRequest(payment);
+                    binding.getRoot().setOnClickListener(view -> onClickListener.onClickCard(payment));
 
-            if (payment.getStatus().equals(Constants.PAYMENT_RECEIVED)) {
-                binding.paymentRequestReceivedLayout.setVisibility(View.VISIBLE);
-            } else {
-                binding.paymentRequestReceivedLayout.setVisibility(View.GONE);
+                    if (payment.getStatus().equals(Constants.PAYMENT_RECEIVED)) {
+                        binding.paymentRequestReceivedLayout.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.paymentRequestReceivedLayout.setVisibility(View.GONE);
+                    }
+                }
+            }
+            catch (Exception e){
+                Log.i("Payment","Payment have null data");
             }
         }
 
