@@ -125,10 +125,10 @@ public class EmployeeMainActivity extends AppCompatActivity {
             return true;
         }
 
-        if (item.getItemId() == R.id.menu_employee_home_refresh) {
+//        if (item.getItemId() == R.id.menu_employee_home_refresh) {
 //            viewModel.getCurrentEmployeeHistory().observe(this, this::setEmployeeHistory);
-            return true;
-        }
+//            return true;
+//        }
 
 //        if (item.getItemId() == R.id.menu_employee_home_logout) {
 //
