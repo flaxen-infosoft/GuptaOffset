@@ -16,23 +16,24 @@
 
         <RelativeLayout
             android:id="@+id/message_send_for_leave"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
-            android:layout_toLeftOf="@id/test_arrow"
+            android:layout_toStartOf="@id/test_arrow"
             android:background="@drawable/bg_single_attendance_card"
             android:paddingLeft="15dp"
             android:paddingTop="5dp"
             android:paddingRight="15dp"
             android:paddingBottom="7dp"
+            android:layout_marginStart="15dp"
             tools:ignore="UselessParent">
 
             <LinearLayout
                 android:id="@+id/leave_card"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="7dp"
                 android:maxWidth="200dp"
                 android:layout_marginRight="10dp">
 
@@ -41,20 +42,22 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/dealer"
                     android:text="Attendance"
+                    android:layout_gravity="center"
                     android:textColor="#222"
                     android:textStyle="bold"
                     android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Date  : "
                         android:textColor="#222"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -62,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:text="@{attendance.date}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -73,7 +76,8 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp">
 
                         <TextView
                             android:id="@+id/apply_date"
@@ -81,7 +85,7 @@
                             android:layout_height="wrap_content"
                             android:text="Start Time  : "
                             android:textColor="#222"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -90,28 +94,29 @@
                             android:layout_height="wrap_content"
                             android:text="@{attendance.timeIn}"
                             android:textColor="#222"
-                            android:textSize="17sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp">
+                        android:layout_marginTop="3dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="start address : "
+                            android:text="Start address : "
                             android:textColor="#222"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@{attendance.startLocation.address}"
                             android:textColor="#222"
-                            android:textSize="17sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <ImageView
@@ -140,7 +145,7 @@
                           android:text="End Time : "
                           android:textColor="#222"
                           android:textStyle="bold"
-                          android:textSize="18sp" />
+                          android:textSize="16sp" />
 
                       <TextView
                           android:layout_width="wrap_content"
@@ -148,28 +153,29 @@
                           android:id="@+id/single_Eod_card_from_date"
                           android:text="@{attendance.timeOut}"
                           android:textColor="#222"
-                          android:textSize="17sp" />
+                          android:textSize="16sp" />
                   </LinearLayout>
 
                   <LinearLayout
-                      android:layout_width="wrap_content"
+                      android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:layout_marginTop="8dp">
+                      android:layout_marginTop="3dp"
+                      android:orientation="vertical">
 
                       <TextView
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:text="end address : "
+                          android:text="End address : "
                           android:textColor="#222"
-                          android:textSize="18sp"
+                          android:textSize="16sp"
                           android:textStyle="bold" />
 
                       <TextView
-                          android:layout_width="wrap_content"
+                          android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:text="@{attendance.endLocation.address}"
                           android:textColor="#222"
-                          android:textSize="17sp" />
+                          android:textSize="16sp" />
                   </LinearLayout>
 
                   <ImageView
@@ -200,7 +206,6 @@
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="-6dp"
-            android:layout_marginTop="0.6dp"
             android:backgroundTint="#F8C6F6"
             android:scaleX="1.5"
             android:background="@drawable/v_bubble_corner_right" />

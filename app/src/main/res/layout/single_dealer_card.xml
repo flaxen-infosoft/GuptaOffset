@@ -16,12 +16,13 @@
 
         <RelativeLayout
             android:id="@+id/message_send_for_dealer"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
             android:layout_toLeftOf="@id/test_arrow"
             android:background="@drawable/bg_dealer_card"
             android:paddingLeft="15dp"
+            android:layout_marginStart="15dp"
             android:paddingTop="5dp"
             android:paddingRight="15dp"
             android:paddingBottom="7dp"
@@ -30,7 +31,7 @@
 
             <LinearLayout
                 android:id="@+id/dealer_card"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginEnd="10dp"
@@ -42,6 +43,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/dealer"
                     android:text="Dealer "
+                    android:layout_gravity="center"
                     android:textColor="#222"
                     android:textStyle="bold"
                     android:textSize="20sp" />
@@ -58,7 +60,7 @@
                         android:text="Date : "
                         android:textColor="#222"
                         android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/single_dealer_card_date"
@@ -66,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:text="@{dealer.date}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -81,7 +83,7 @@
                         android:text="Name : "
                         android:textColor="#222"
                         android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -89,7 +91,7 @@
                         android:id="@+id/single_dealer_card_name"
                         android:text="@{dealer.name}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -104,7 +106,7 @@
                         android:text="Contact : "
                         android:textColor="#222"
                         android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -112,28 +114,29 @@
                         android:id="@+id/single_dealer_card_contact"
                         android:text="@{dealer.contact}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Address : "
                         android:textColor="#222"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{dealer.location.address}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <ImageView
@@ -163,7 +166,6 @@
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="-6dp"
-            android:layout_marginTop="0.6dp"
             android:backgroundTint="#F8C6C6"
             android:scaleX="1.5"
             android:background="@drawable/v_bubble_corner_right" />

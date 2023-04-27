@@ -21,20 +21,21 @@
             android:layout_height="wrap_content"
             android:text="Payment Request"
             android:textColor="#222"
+            android:layout_gravity="center"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp">
+           android:layout_marginTop="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="From : "
                 android:textColor="#222"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -42,21 +43,20 @@
                 android:layout_height="wrap_content"
                 android:text="@{payment.employee.name}"
                 android:textColor="#222"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/payment_card_amount_til"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="request amount : "
+                android:text="Request amount : "
                 android:textColor="#222"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -64,21 +64,20 @@
                 android:layout_height="wrap_content"
                 android:text="@{payment.amount}"
                 android:textColor="#222"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/payment_card_date_til"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="date : "
+                android:text="Date : "
                 android:textColor="#222"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -86,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{payment.date}"
                 android:textColor="#222"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
 <!--        <LinearLayout-->
@@ -112,15 +111,14 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Status : "
                 android:textColor="#222"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -128,28 +126,28 @@
                 android:layout_height="wrap_content"
                 android:text="@{payment.status}"
                 android:textColor="#222"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Address : "
                 android:textColor="#222"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{payment.location.address}"
                 android:textColor="#222"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
     </LinearLayout>

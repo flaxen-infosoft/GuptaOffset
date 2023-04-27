@@ -15,9 +15,10 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
+            android:layout_marginStart="15dp"
             android:layout_toLeftOf="@id/test_arrow"
             android:background="@drawable/bg_eod_card"
             android:padding="8dp"
@@ -25,7 +26,7 @@
 
             <LinearLayout
                 android:id="@+id/eod_card"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
@@ -37,20 +38,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Daily report"
+                    android:layout_gravity="center"
                     android:textColor="#222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Schools Visit  : "
                         android:textColor="#222"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -58,19 +61,20 @@
                         android:layout_height="wrap_content"
                         android:text="@{eod.schoolVisits}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="Petrol : "
                         android:textColor="#222"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -78,19 +82,20 @@
                         android:layout_height="wrap_content"
                         android:text="@{eod.petrolExpense}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="DA : "
                         android:textColor="#222"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -98,19 +103,20 @@
                         android:layout_height="wrap_content"
                         android:text="@{eod.dailyAllowance}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="Date : "
                         android:textColor="#222"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -118,19 +124,20 @@
                         android:layout_height="wrap_content"
                         android:text="@{eod.date}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Other Expanses : "
                         android:textColor="#222"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -138,49 +145,52 @@
                         android:layout_height="wrap_content"
                         android:text="@{eod.otherExpense}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Expanses description :"
                         android:textColor="#222"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/single_leave_card_to_date"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{eod.expenseDescription}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="3dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Address : "
                         android:textColor="#222"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{eod.location.address}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <ImageView
@@ -199,7 +209,6 @@
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="-6dp"
-            android:layout_marginTop="0.4dp"
             android:backgroundTint="#F1C6F8"
             android:scaleX="1.5"
             android:background="@drawable/v_bubble_corner_right" />

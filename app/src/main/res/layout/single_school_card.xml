@@ -17,7 +17,7 @@
 
         <RelativeLayout
             android:id="@+id/message_send_for_school"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
             android:layout_toLeftOf="@id/test_arrow"
@@ -25,13 +25,14 @@
             android:paddingLeft="15dp"
             android:paddingTop="5dp"
             android:paddingRight="15dp"
+            android:layout_marginStart="15dp"
             android:paddingBottom="7dp"
             tools:ignore="UselessParent">
 
 
             <LinearLayout
                 android:id="@+id/school_card"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginEnd="10dp"
@@ -43,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/school"
                     android:text="School "
+                    android:layout_gravity="center"
                     android:textColor="#222"
                     android:textStyle="bold"
                     android:textSize="20sp" />
@@ -50,7 +52,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -59,7 +61,7 @@
                         android:text="Date : "
                         android:textColor="#222"
                         android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -67,13 +69,13 @@
                         android:id="@+id/single_school_card_date"
                         android:text="@{school.date}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="3dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -82,7 +84,7 @@
                         android:text="Name : "
                         android:textColor="#222"
                         android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -90,13 +92,13 @@
                         android:id="@+id/single_school_card_name"
                         android:text="@{school.name}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="3dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -105,7 +107,7 @@
                         android:text="Total strength : "
                         android:textColor="#222"
                         android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -113,13 +115,14 @@
                         android:id="@+id/single_school_card_strength"
                         android:text="@{school.totalStudentStrength}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="3dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -128,21 +131,21 @@
                         android:text="Address : "
                         android:textColor="#222"
                         android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/single_school_card_address"
                         android:text="@{school.location.address}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="3dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -151,7 +154,7 @@
                         android:text="Contact : "
                         android:textColor="#222"
                         android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -159,7 +162,7 @@
                         android:id="@+id/single_school_card_contact"
                         android:text="@{school.contact}"
                         android:textColor="#222"
-                        android:textSize="17sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <TextView
@@ -209,7 +212,6 @@
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="-6dp"
-            android:layout_marginTop="0.6dp"
             android:scaleX="1.5"
             android:background="@drawable/v_bubble_corner_right"
             android:backgroundTint="#C6D7F8"/>
