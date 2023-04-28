@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_adminAllOrderFragment"
             app:destination="@id/adminAllOrderFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_seprateSchoolFragment"
+            app:destination="@id/seprateSchoolFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_seprateDealerFragment"
+            app:destination="@id/seprateDealerFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
@@ -100,4 +106,12 @@
             android:id="@+id/action_adminAllOrderFragment_to_orderProfileFragment"
             app:destination="@id/orderProfileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/seprateDealerFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.SeprateDealerFragment"
+        android:label="SeprateDealerFragment" />
+    <fragment
+        android:id="@+id/seprateSchoolFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.SeprateSchoolFragment"
+        android:label="SeprateSchoolFragment" />
 </navigation>

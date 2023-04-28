@@ -9,9 +9,11 @@ import android.widget.Filter;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.flaxeninfosoft.guptaoffset.R;
+import com.flaxeninfosoft.guptaoffset.databinding.ItemAdmineHomeBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.SingleEmployeeItemCardBinding;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 
@@ -34,7 +36,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
     @NonNull
     @Override
     public EmployeeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        SingleEmployeeItemCardBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.single_employee_item_card, parent, false);
+        ItemAdmineHomeBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_admine_home, parent, false);
 
         return new EmployeeViewHolder(binding, onClickListener);
     }
@@ -42,6 +44,13 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
     @Override
     public void onBindViewHolder(@NonNull EmployeeViewHolder holder, int position) {
         holder.setEmployee(employeeList.get(position));
+        holder.binding.linearLayoutSchool.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateSchoolFragment));
+        holder.binding.linearLayoutDealer.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateDealerFragment));
+
+
+
     }
 
     @Override
@@ -106,11 +115,11 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
 
     public static class EmployeeViewHolder extends RecyclerView.ViewHolder {
 
-        private final SingleEmployeeItemCardBinding binding;
+        private final ItemAdmineHomeBinding binding;
 
         private final SingleEmployeeCardOnClickListener onClickListener;
 
-        public EmployeeViewHolder(@NonNull SingleEmployeeItemCardBinding binding, SingleEmployeeCardOnClickListener onClickListener) {
+        public EmployeeViewHolder(@NonNull ItemAdmineHomeBinding binding, SingleEmployeeCardOnClickListener onClickListener) {
             super(binding.getRoot());
             this.binding = binding;
             this.onClickListener = onClickListener;
@@ -122,21 +131,21 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
 
             binding.getRoot().setOnLongClickListener(v -> onClickListener.onLongClickCard(employee));
 
-            try {
-                int pendingMessages = Integer.parseInt(employee.getPendingMessages());
-
-                if (pendingMessages == 0) {
-                    binding.constraintLayout.setBackgroundColor(Color.WHITE);
-                    binding.employeeCardPendingMessageLayout.setVisibility(View.GONE);
-                } else {
-                    binding.constraintLayout.setBackgroundColor(Color.parseColor("#DCF8C6"));
-                    binding.employeeCardPendingMessageLayout.setVisibility(View.VISIBLE);
-                    binding.employeeCardPendingMessageCount.setText("" + pendingMessages);
-                }
-
-            } catch (Exception e) {
-                binding.employeeCardPendingMessageLayout.setVisibility(View.GONE);
-            }
+//            try {
+//                int pendingMessages = Integer.parseInt(employee.getPendingMessages());
+//
+//                if (pendingMessages == 0) {
+//                    binding.constraintLayout.setBackgroundColor(Color.WHITE);
+//                    binding.employeeCardPendingMessageLayout.setVisibility(View.GONE);
+//                } else {
+//                    binding.constraintLayout.setBackgroundColor(Color.parseColor("#DCF8C6"));
+//                    binding.employeeCardPendingMessageLayout.setVisibility(View.VISIBLE);
+//                    binding.employeeCardPendingMessageCount.setText("" + pendingMessages);
+//                }
+//
+//            } catch (Exception e) {
+//                binding.employeeCardPendingMessageLayout.setVisibility(View.GONE);
+//            }
         }
     }
 
