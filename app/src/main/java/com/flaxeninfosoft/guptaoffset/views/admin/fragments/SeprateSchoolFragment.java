@@ -27,6 +27,7 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentSeprateSchoolBinding;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
 import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -90,9 +91,11 @@ public class SeprateSchoolFragment extends Fragment {
 
     private void onClickSchool(School school) {
         Paper.init(getContext());
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.SCHOOL_ID,school.getId());
         Paper.book().write("EmpId_School",school.getEmpId());
         Paper.book().write("Current_SchoolId",school.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_seprateSchoolFragment_to_schoolProfileFragment);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_seprateSchoolFragment_to_schoolProfileFragment,bundle);
     }
 
 
