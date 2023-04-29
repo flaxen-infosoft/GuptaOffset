@@ -20,11 +20,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.adapters.DealerAdminRecyclerAdapter;
 import com.flaxeninfosoft.guptaoffset.adapters.SchoolAdminRecyclerAdapter;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentSeprateDealerBinding;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentSeprateSchoolBinding;
-import com.flaxeninfosoft.guptaoffset.models.Dealer;
+import com.flaxeninfosoft.guptaoffset.adapters.TodayNotWorkingEmployeeAdapter;
+import com.flaxeninfosoft.guptaoffset.databinding.FragmentTodayNotWokingEmployeeBinding;
+import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.google.gson.Gson;
@@ -36,15 +35,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import io.paperdb.Paper;
 
 
-public class SeprateSchoolFragment extends Fragment {
-    public SeprateSchoolFragment() {
+public class TodayNotWokingEmployeeFragment extends Fragment {
+
+
+    public TodayNotWokingEmployeeFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,85 +53,79 @@ public class SeprateSchoolFragment extends Fragment {
 
     }
 
-    FragmentSeprateSchoolBinding binding;
+    FragmentTodayNotWokingEmployeeBinding binding;
     String selectedDate;
     String empId;
     String currentDate = "";
-    SchoolAdminRecyclerAdapter schoolAdminRecyclerAdapter;
-    List<School> schoolList;
+    List<Employee> employeeList;
     RequestQueue requestQueue;
     ProgressDialog progressDialog;
+    TodayNotWorkingEmployeeAdapter todayNotWorkingEmployeeAdapter;
     Gson gson;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_seprate_school, container, false);
-        empId = Paper.book().read("CurrentEmployeeId");
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_today_not_woking_employee, container, false);
+        binding.backImg.setOnClickListener(this::onClickBack);
         currentDate = Paper.book().read("currentDate");
         selectedDate = Paper.book().read("selectedDate");
-        schoolList = new ArrayList<>();
-        binding.schoolBackImg.setOnClickListener(view -> Navigation.findNavController(view).navigateUp());
+        employeeList = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
         gson = new Gson();
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Please wait ....");
-        schoolAdminRecyclerAdapter = new SchoolAdminRecyclerAdapter(schoolList, this::onClickSchool);
-        binding.schoolRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.schoolSwipeRefresh.setOnRefreshListener(() -> getSchool());
-        binding.schoolRecycler.setAdapter(schoolAdminRecyclerAdapter);
-        schoolAdminRecyclerAdapter.notifyDataSetChanged();
-        getSchool();
-        schoolAdminRecyclerAdapter.notifyDataSetChanged();
+        todayNotWorkingEmployeeAdapter = new TodayNotWorkingEmployeeAdapter(employeeList, this::onClickEmployee);
+        binding.notWorkingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.notWorkingSwipeRefresh.setOnRefreshListener(() -> getEmployee());
+        binding.notWorkingRecycler.setAdapter(todayNotWorkingEmployeeAdapter);
+        todayNotWorkingEmployeeAdapter.notifyDataSetChanged();
+        getEmployee();
+        todayNotWorkingEmployeeAdapter.notifyDataSetChanged();
         return binding.getRoot();
     }
 
-    private void onClickSchool(School school) {
-        Paper.init(getContext());
-        Paper.book().write("EmpId_School",school.getEmpId());
-        Paper.book().write("Current_SchoolId",school.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_seprateSchoolFragment_to_schoolProfileFragment);
+    private void onClickEmployee(Employee employee) {
+
+    }
+
+    private void onClickBack(View view) {
+        Navigation.findNavController(view).navigateUp();
     }
 
 
-    private void getSchool() {
+    private void getEmployee() {
 
         progressDialog.show();
-        String url = ApiEndpoints.BASE_URL + "school/getSchoolByempId.php";
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("empId", empId);
-        if (selectedDate == null) {
-            hashMap.put("date", currentDate);
-        } else {
-            hashMap.put("date", selectedDate);
-        }
+        String url = ApiEndpoints.BASE_URL + "attendance/getTodaynotWorking.php";
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
             Log.i("Dealer", response.toString());
             progressDialog.dismiss();
-            if (binding.schoolSwipeRefresh.isRefreshing()) {
-                binding.schoolSwipeRefresh.setRefreshing(false);
+            if (binding.notWorkingSwipeRefresh.isRefreshing()) {
+                binding.notWorkingSwipeRefresh.setRefreshing(false);
             }
             if (response != null) {
                 try {
                     JSONArray jsonArray = response.getJSONArray("data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        School school = gson.fromJson(jsonArray.getJSONObject(i).toString(), School.class);
-                        schoolList.add(school);
+                        Employee employee = gson.fromJson(jsonArray.getJSONObject(i).toString(), Employee.class);
+                        employeeList.add(employee);
                     }
 
-                    binding.schoolRecycler.setAdapter(schoolAdminRecyclerAdapter);
-                    schoolAdminRecyclerAdapter.notifyDataSetChanged();
-                    if (schoolList == null || schoolList.isEmpty()) {
-                        binding.schoolRecycler.setVisibility(View.GONE);
-                        binding.schoolEmptyTV.setVisibility(View.VISIBLE);
+                    binding.notWorkingRecycler.setAdapter(todayNotWorkingEmployeeAdapter);
+                    todayNotWorkingEmployeeAdapter.notifyDataSetChanged();
+                    if (employeeList == null || employeeList.isEmpty()) {
+                        binding.notWorkingRecycler.setVisibility(View.GONE);
+                        binding.notWorkingEmptyTV.setVisibility(View.VISIBLE);
                     } else {
-                        binding.schoolRecycler.setVisibility(View.VISIBLE);
-                        binding.schoolEmptyTV.setVisibility(View.GONE);
+                        binding.notWorkingRecycler.setVisibility(View.VISIBLE);
+                        binding.notWorkingEmptyTV.setVisibility(View.GONE);
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -140,8 +135,8 @@ public class SeprateSchoolFragment extends Fragment {
             }
         }, error -> {
             progressDialog.dismiss();
-            if (binding.schoolSwipeRefresh.isRefreshing()) {
-                binding.schoolSwipeRefresh.setRefreshing(false);
+            if (binding.notWorkingSwipeRefresh.isRefreshing()) {
+                binding.notWorkingSwipeRefresh.setRefreshing(false);
             }
             Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
         });

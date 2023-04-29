@@ -1,74 +1,156 @@
 package com.flaxeninfosoft.guptaoffset.views.admin.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.flaxeninfosoft.guptaoffset.R;
+import com.flaxeninfosoft.guptaoffset.adapters.DealerAdminRecyclerAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentSeprateDealerBinding;
+import com.flaxeninfosoft.guptaoffset.models.Dealer;
+import com.flaxeninfosoft.guptaoffset.models.Location;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
+import com.google.gson.Gson;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SeprateDealerFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import io.paperdb.Paper;
+
+
 public class SeprateDealerFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public SeprateDealerFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SeprateDealerFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SeprateDealerFragment newInstance(String param1, String param2) {
-        SeprateDealerFragment fragment = new SeprateDealerFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
+    String empId;
+    String selectedDate;
+    String currentDate="";
     FragmentSeprateDealerBinding binding;
+    DealerAdminRecyclerAdapter dealerAdminRecyclerAdapter;
+    List<Dealer> dealerList;
+    RequestQueue requestQueue;
+    ProgressDialog progressDialog;
+    Gson gson;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_seprate_dealer, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_seprate_dealer, container, false);
+        empId = Paper.book().read("CurrentEmployeeId");
+        currentDate = Paper.book().read("currentDate");
+        selectedDate = Paper.book().read("selectedDate");
+        dealerList = new ArrayList<>();
+        requestQueue = Volley.newRequestQueue(getContext());
+        gson = new Gson();
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Wait");
+        progressDialog.setMessage("Please wait ....");
         binding.dealerBackImg.setOnClickListener(view -> Navigation.findNavController(view).navigateUp());
+        dealerAdminRecyclerAdapter = new DealerAdminRecyclerAdapter(dealerList, this::onClickDealer);
+        binding.dealerRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.dealerSwipeRefresh.setOnRefreshListener(() -> getDealer());
+        binding.dealerRecycler.setAdapter(dealerAdminRecyclerAdapter);
+        dealerAdminRecyclerAdapter.notifyDataSetChanged();
+        getDealer();
+        dealerAdminRecyclerAdapter.notifyDataSetChanged();
+
+        return binding.getRoot();
+    }
+
+    private void onClickDealer(Dealer dealer) {
+        Paper.init(getContext());
+        Paper.book().write("EmpId_Dealer",dealer.getEmpId());
+        Paper.book().write("Current_DealerId",dealer.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_seprateDealerFragment_to_dealerProfileFragment);
+    }
 
 
-        return  binding.getRoot();
+    private void getDealer() {
+
+        progressDialog.show();
+        String url = ApiEndpoints.BASE_URL + "dealer/getDealerByEmployeeId.php";
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("empId", empId);
+        if (selectedDate==null) {
+            hashMap.put("date", currentDate);
+        } else {
+            hashMap.put("date", selectedDate);
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
+            Log.i("Dealer", response.toString());
+            progressDialog.dismiss();
+            if (binding.dealerSwipeRefresh.isRefreshing()) {
+                binding.dealerSwipeRefresh.setRefreshing(false);
+            }
+            if (response != null) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("data");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        Dealer dealer = gson.fromJson(jsonArray.getJSONObject(i).toString(), Dealer.class);
+                        dealerList.add(dealer);
+                    }
+
+                    binding.dealerRecycler.setAdapter(dealerAdminRecyclerAdapter);
+                    dealerAdminRecyclerAdapter.notifyDataSetChanged();
+                    if (dealerList == null || dealerList.isEmpty()) {
+                        binding.dealerRecycler.setVisibility(View.GONE);
+                        binding.delaerEmptyTV.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.dealerRecycler.setVisibility(View.VISIBLE);
+                        binding.delaerEmptyTV.setVisibility(View.GONE);
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+            }
+        }, error -> {
+            progressDialog.dismiss();
+            if (binding.dealerSwipeRefresh.isRefreshing()) {
+                binding.dealerSwipeRefresh.setRefreshing(false);
+            }
+            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+        });
+
+        int timeout = 10000; // 10 seconds
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
     }
 }

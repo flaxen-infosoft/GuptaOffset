@@ -156,18 +156,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2023-04-26"
+                            android:layout_marginTop="5dp"
+                            android:text="@{employee.currentLocation.date}"
+                            android:layout_gravity="center"
+                            android:gravity="center"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:textColor="@color/textcolor" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="12-01-01"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/textcolor" />
+
                     </LinearLayout>
                     <View
                         android:layout_width="1.5dp"
@@ -641,6 +638,7 @@
                         android:layout_gravity="center" >
 
                         <TextView
+                            android:id="@+id/add_to_flag_textview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/soild_card_corner"

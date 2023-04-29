@@ -28,6 +28,12 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_seprateDealerFragment"
             app:destination="@id/seprateDealerFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_flagEmployeeFragment"
+            app:destination="@id/flagEmployeeFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_todayNotWokingEmployeeFragment"
+            app:destination="@id/todayNotWokingEmployeeFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
@@ -109,9 +115,27 @@
     <fragment
         android:id="@+id/seprateDealerFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.SeprateDealerFragment"
-        android:label="SeprateDealerFragment" />
+        android:label="SeprateDealerFragment" >
+        <action
+            android:id="@+id/action_seprateDealerFragment_to_dealerProfileFragment"
+            app:destination="@id/dealerProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/seprateSchoolFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.SeprateSchoolFragment"
-        android:label="SeprateSchoolFragment" />
+        android:label="SeprateSchoolFragment" >
+        <action
+            android:id="@+id/action_seprateSchoolFragment_to_schoolProfileFragment"
+            app:destination="@id/schoolProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/flagEmployeeFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.FlagEmployeeFragment"
+        android:label="fragment_flag_employee"
+        tools:layout="@layout/fragment_flag_employee" />
+    <fragment
+        android:id="@+id/todayNotWokingEmployeeFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.TodayNotWokingEmployeeFragment"
+        android:label="fragment_today_not_woking_employee"
+        tools:layout="@layout/fragment_today_not_woking_employee" />
 </navigation>
