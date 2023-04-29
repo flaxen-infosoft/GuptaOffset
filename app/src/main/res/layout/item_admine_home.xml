@@ -265,8 +265,9 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="08:10"
+                                    android:text="@{employee.morning_attendance != null ? employee.morning_attendance : `0:0`}"
                                     android:textStyle="bold"
+                                    android:gravity="center"
                                     android:textColor="@color/black" />
 
                                 <View
@@ -279,8 +280,9 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="19:10"
+                                    android:text="@{employee.evening_attendance != null ? employee.evening_attendance : `0:0`}"
                                     android:textStyle="bold"
+                                    android:gravity="center"
                                     android:textColor="@color/black" />
 
 
@@ -325,7 +327,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:text="5"
+                                    android:text="@{employee.school_count != null ? employee.school_count : `0`}"
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
                                     android:gravity="center"
@@ -374,7 +376,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:text="100"
+                                    android:text="@{employee.petrol_amount != null ? employee.petrol_amount : `0`}"
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
                                     android:gravity="center"
@@ -422,7 +424,7 @@
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:padding="2sp"
-                                    android:text="4"
+                                    android:text="0"
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
                                     android:textStyle="bold" />
@@ -457,6 +459,10 @@
                                 android:layout_gravity="center"
                                 android:textSize="15sp"
                                 android:paddingTop="5dp"
+                                android:paddingEnd="3dp"
+                                android:drawableEnd="@drawable/km_icon"
+                                android:drawableTint="@color/textcolor"
+                                android:drawablePadding="5dp"
                                 android:paddingBottom="5dp"
                                 android:textColor="@color/black"
                                 android:textStyle="bold" />
@@ -476,7 +482,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:text="5"
+                                    android:text="@{employee.km != null ? employee.km : `0`}"
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
                                     android:gravity="center"
@@ -523,7 +529,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:text="2"
+                                    android:text="@{employee.dealer_count != null ? employee.dealer_count : `0`}"
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
                                     android:gravity="center"
@@ -570,7 +576,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:text="5000"
+                                    android:text="@{employee.total_amount != null ? employee.total_amount : `0`}"
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
                                     android:gravity="center"
@@ -616,7 +622,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:text="05:12 "
+                                    android:text="@{employee.school_visit_duration != null ? employee.school_visit_duration : `0`}"
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
                                     android:gravity="center"
@@ -633,7 +639,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="10dp"
+                        android:padding="4dp"
                         android:orientation="horizontal"
                         android:layout_gravity="center" >
 
@@ -642,7 +648,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/soild_card_corner"
-                            android:padding="5dp"
+                            android:padding="4dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginStart="5dp"
                             android:text="Add to Flag"
