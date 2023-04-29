@@ -26,6 +26,7 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentSeprateDealerBinding;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -94,7 +95,9 @@ public class SeprateDealerFragment extends Fragment {
         Paper.init(getContext());
         Paper.book().write("EmpId_Dealer",dealer.getEmpId());
         Paper.book().write("Current_DealerId",dealer.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_seprateDealerFragment_to_dealerProfileFragment);
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.DEALER_ID,dealer.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_seprateDealerFragment_to_dealerProfileFragment,bundle);
     }
 
 
