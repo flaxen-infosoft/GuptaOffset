@@ -66,6 +66,127 @@ public class Employee {
     @Expose
     private String firm;
 
+    @SerializedName("morning_attendance")
+    @Expose
+    private String morning_attendance;
+
+    @SerializedName("evening_attendance")
+    @Expose
+    private String evening_attendance;
+
+    @SerializedName("school_count")
+    @Expose
+    private String school_count;
+
+    @SerializedName("petrol_amount")
+    @Expose
+    private String petrol_amount;
+
+    @SerializedName("tehsil_cover")
+    @Expose
+    private String tehsil_cover;
+
+    @SerializedName("km")
+    @Expose
+    private String km;
+
+    @SerializedName("dealer_count")
+    @Expose
+    private String dealer_count;
+
+    @SerializedName("total_amount")
+    @Expose
+    private String total_amount;
+
+    @SerializedName("school_visit_duration")
+    @Expose
+    private String school_visit_duration;
+
+    public String getMorning_attendance() {
+        return morning_attendance;
+    }
+
+    public void setMorning_attendance(String morning_attendance) {
+        this.morning_attendance = morning_attendance;
+    }
+
+    public String getEvening_attendance() {
+        return evening_attendance;
+    }
+
+    public void setEvening_attendance(String evening_attendance) {
+        this.evening_attendance = evening_attendance;
+    }
+
+    public String getSchool_count() {
+        return school_count;
+    }
+
+    public void setSchool_count(String school_count) {
+        this.school_count = school_count;
+    }
+
+    public String getPetrol_amount() {
+        return petrol_amount;
+    }
+
+    public void setPetrol_amount(String petrol_amount) {
+        this.petrol_amount = petrol_amount;
+    }
+
+    public String getTehsil_cover() {
+        return tehsil_cover;
+    }
+
+    public void setTehsil_cover(String tehsil_cover) {
+        this.tehsil_cover = tehsil_cover;
+    }
+
+    public String getKm() {
+        return km;
+    }
+
+    public void setKm(String km) {
+        this.km = km;
+    }
+
+    public String getDealer_count() {
+        return dealer_count;
+    }
+
+    public void setDealer_count(String dealer_count) {
+        this.dealer_count = dealer_count;
+    }
+
+    public String getTotal_amount() {
+        return total_amount;
+    }
+
+    public void setTotal_amount(String total_amount) {
+        this.total_amount = total_amount;
+    }
+
+    public String getSchool_visit_duration() {
+        return school_visit_duration;
+    }
+
+    public void setSchool_visit_duration(String school_visit_duration) {
+        this.school_visit_duration = school_visit_duration;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
+    @SerializedName("flag")
+    @Expose
+    private String flag;
+
+
     //    Yeah Boiii!!!
     @SerializedName(Constants.BATTERY_STATUS)
     @Expose
@@ -245,6 +366,16 @@ public class Employee {
                 ", date='" + date + '\'' +
                 ", currentLocation=" + currentLocation +
                 ", firm='" + firm + '\'' +
+                ", morning_attendance='" + morning_attendance + '\'' +
+                ", evening_attendance='" + evening_attendance + '\'' +
+                ", school_count='" + school_count + '\'' +
+                ", petrol_amount='" + petrol_amount + '\'' +
+                ", tehsil_cover='" + tehsil_cover + '\'' +
+                ", km='" + km + '\'' +
+                ", dealer_count='" + dealer_count + '\'' +
+                ", total_amount='" + total_amount + '\'' +
+                ", school_visit_duration='" + school_visit_duration + '\'' +
+                ", flag='" + flag + '\'' +
                 ", batteryStatus='" + batteryStatus + '\'' +
                 ", pendingMessages='" + pendingMessages + '\'' +
                 ", description='" + description + '\'' +
