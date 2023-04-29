@@ -66,4 +66,6 @@ dependencies {
     implementation 'com.android.volley:volley:1.2.1'
     //convert json object into custom class
     implementation 'com.google.code.gson:gson:2.9.0'
+    //paper database for storing data locally
+    implementation 'io.github.pilgr:paperdb:2.7.2'
 }
