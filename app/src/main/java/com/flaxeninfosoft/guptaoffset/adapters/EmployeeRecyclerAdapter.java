@@ -1,7 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.adapters;
 
-import android.graphics.Color;
-import android.util.Log;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +13,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.ItemAdmineHomeBinding;
-import com.flaxeninfosoft.guptaoffset.databinding.SingleEmployeeItemCardBinding;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
+import com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminHomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.paperdb.Paper;
 
 public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecyclerAdapter.EmployeeViewHolder> {
 
     private final List<Employee> allEmployeeList;
     private List<Employee> employeeList;
     private final SingleEmployeeCardOnClickListener onClickListener;
+    Context context;
+
+    public EmployeeRecyclerAdapter(List<Employee> employeeList, Context context, SingleEmployeeCardOnClickListener onClickListener) {
+        this.employeeList = employeeList;
+        this.onClickListener = onClickListener;
+        this.allEmployeeList = employeeList;
+        this.context = context;
+
+    }
 
     public EmployeeRecyclerAdapter(List<Employee> employeeList, SingleEmployeeCardOnClickListener onClickListener) {
         this.employeeList = employeeList;
@@ -44,12 +54,19 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
     @Override
     public void onBindViewHolder(@NonNull EmployeeViewHolder holder, int position) {
         holder.setEmployee(employeeList.get(position));
+        Long empId = employeeList.get(position).getId();
+        Paper.init(context);
+        Paper.book().write("CurrentEmployeeId", String.valueOf(employeeList.get(position).getId()));
         holder.binding.linearLayoutSchool.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateSchoolFragment));
         holder.binding.linearLayoutDealer.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateDealerFragment));
-
-
+        holder.binding.addToFlagTextview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AdminHomeFragment.showDialog(context, empId);
+            }
+        });
 
     }
 
@@ -66,8 +83,8 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
 
     //return the filter class object
     public Filter getFilter() {
-        if(fRecords == null) {
-            fRecords=new RecordFilter();
+        if (fRecords == null) {
+            fRecords = new RecordFilter();
         }
         return fRecords;
     }
@@ -90,7 +107,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
             } else {
                 //Need Filter
                 // it matches the text  entered in the edittext and set the data in adapter list
-                List<Employee> fRecords  = new ArrayList<>();
+                List<Employee> fRecords = new ArrayList<>();
 
                 for (Employee s : allEmployeeList) {
                     if (s.getName().toUpperCase().trim().contains(constraint.toString().toUpperCase().trim())) {
@@ -104,7 +121,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
         }
 
         @Override
-        protected void publishResults(CharSequence constraint,FilterResults results) {
+        protected void publishResults(CharSequence constraint, FilterResults results) {
 
             //it set the data from filter to adapter list and refresh the recyclerview adapter
             employeeList = (List<Employee>) results.values;
