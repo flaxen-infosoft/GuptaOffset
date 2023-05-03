@@ -67,7 +67,7 @@ public class ShowNotesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.show_notes, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_show_notes, container, false);
         binding.backImg.setOnClickListener(this::onClickBack);
         showNotesList = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
