@@ -38,6 +38,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.paperdb.Paper;
+
 
 public class ShowNotesFragment extends Fragment {
 
@@ -46,6 +48,8 @@ public class ShowNotesFragment extends Fragment {
     ProgressDialog progressDialog;
     ShowNotesRecyclerAdapter showNotesRecyclerAdapter;
     Gson gson;
+
+    Long empId;
 
 
     public ShowNotesFragment() {
@@ -72,6 +76,7 @@ public class ShowNotesFragment extends Fragment {
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Please wait ....");
+        empId = Paper.book().read("CurrentEmployeeId");
         showNotesRecyclerAdapter = new ShowNotesRecyclerAdapter(showNotesList, new ShowNotesRecyclerAdapter.NotesLayoutClickListener() {
 
 
@@ -83,16 +88,16 @@ public class ShowNotesFragment extends Fragment {
         });
 
         binding.showNotesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.showNotesSwipeRefresh.setOnRefreshListener(() -> getAllNotes(Long empId));
+        binding.showNotesSwipeRefresh.setOnRefreshListener(() -> getAllNotes(empId));
         binding.showNotesRecycler.setAdapter(showNotesRecyclerAdapter);
         showNotesRecyclerAdapter.notifyDataSetChanged();
-        getAllNotes(Long empId);
+        getAllNotes(empId);
         showNotesRecyclerAdapter.notifyDataSetChanged();
 
         return binding.getRoot();
     }
 
-    public static void getAllNotes(Long empId)   {
+    public void getAllNotes(Long empId)   {
 
         progressDialog.show();
         String url = ApiEndpoints.BASE_URL + "employee/getallFlagEmployee.php";
@@ -139,9 +144,9 @@ public class ShowNotesFragment extends Fragment {
     }
 
     private void onClickNote(ShowNotes showNotes) {
-        Bundle bundle = new Bundle();
-        bundle.putLong(Constants.EMPLOYEE_ID, ShowNotes.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_showNotesFragment, bundle);
+//        Bundle bundle = new Bundle();
+//        bundle.putLong(Constants.EMPLOYEE_ID, ShowNotes.getId());
+//        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_showNotesFragment, bundle);
     }
 
     private void onClickBack(View view) {

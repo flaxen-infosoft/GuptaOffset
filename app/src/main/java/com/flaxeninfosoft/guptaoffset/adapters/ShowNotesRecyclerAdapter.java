@@ -18,8 +18,8 @@ import java.util.List;
 
 public class ShowNotesRecyclerAdapter extends RecyclerView.Adapter<ShowNotesRecyclerAdapter.ViewHolder> {
 
-    List<ShowNotes> showNotesList ;
-    
+    List<ShowNotes> showNotesList;
+
     NotesLayoutClickListener notesLayoutClickListener;
 
     public ShowNotesRecyclerAdapter(List<ShowNotes> showNotesList, NotesLayoutClickListener notesLayoutClickListener) {
@@ -30,7 +30,7 @@ public class ShowNotesRecyclerAdapter extends RecyclerView.Adapter<ShowNotesRecy
     @NonNull
     @Override
     public ShowNotesRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ShowNotesBinding showNotesBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.show_notes,parent, false);
+        ShowNotesBinding showNotesBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.show_notes, parent, false);
         return new ViewHolder(showNotesBinding, notesLayoutClickListener);
     }
 
@@ -49,13 +49,13 @@ public class ShowNotesRecyclerAdapter extends RecyclerView.Adapter<ShowNotesRecy
         return showNotesList.size();
     }
 
-    public class ViewHolder extends  RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ShowNotesBinding binding;
 
         NotesLayoutClickListener notesLayoutClickListener;
 
-        public ViewHolder(ShowNotesBinding binding , NotesLayoutClickListener notesLayoutClickListener) {
+        public ViewHolder(ShowNotesBinding binding, NotesLayoutClickListener notesLayoutClickListener) {
             super(binding.getRoot());
             this.binding = binding;
             this.notesLayoutClickListener = notesLayoutClickListener;
