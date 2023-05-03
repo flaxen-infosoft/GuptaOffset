@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_todayNotWokingEmployeeFragment"
             app:destination="@id/todayNotWokingEmployeeFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_showNotesFragment"
+            app:destination="@id/showNotesFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
@@ -138,4 +141,8 @@
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.TodayNotWokingEmployeeFragment"
         android:label="fragment_today_not_woking_employee"
         tools:layout="@layout/fragment_today_not_woking_employee" />
+    <fragment
+        android:id="@+id/showNotesFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.ShowNotesFragment"
+        android:label="ShowNotesFragment" />
 </navigation>
