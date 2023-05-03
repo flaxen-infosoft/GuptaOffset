@@ -13,8 +13,11 @@
     <EditText
         android:id="@+id/txt_input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/layoutcorner2"
+        android:padding="10dp"
+        android:gravity="start"
         android:hint="Enter your Message"
         android:layout_gravity="center"
         android:textSize="18sp" />
