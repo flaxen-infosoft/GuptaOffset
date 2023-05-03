@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="showNotes"
+            type="com.flaxeninfosoft.guptaoffset.models.ShowNotes" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#FDF3DE"
+            app:cardCornerRadius="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layoutcorner2"
+                android:padding="15dp"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="1dp"
+                        android:text="Date :"
+                        android:textColor="@color/textcolor"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30-04-2023"
+                        android:textSize="15dp"
+                        android:layout_weight="5"
+                        android:padding="1dp"
+                        android:layout_marginStart="3dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textcolor"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="1dp"
+                        android:text="Time :"
+                        android:textColor="@color/textcolor"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12:05"
+                        android:textSize="15dp"
+                        android:padding="1dp"
+                        android:layout_marginStart="3dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textcolor"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Note :"
+                        android:textSize="18dp"
+                        android:padding="1dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textcolor"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Notes ghalf bhuwe erhbyvuylher kwegtrovbgwoer7tvutr kwgtevcwtorgevciwtrgoikvbgutwobvcwtbovwtui"
+                        android:layout_marginTop="5dp"
+                        android:textSize="15dp"
+                        android:padding="1dp"
+                        android:gravity="center"
+                        android:layout_marginStart="3dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textcolor"
+                        android:layout_gravity="center"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</layout>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -15,6 +16,7 @@ import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.ItemAdmineHomeBinding;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminHomeFragment;
+import com.flaxeninfosoft.guptaoffset.views.admin.fragments.ShowNotesFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +69,19 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
                 AdminHomeFragment.showDialog(context, empId);
             }
         });
+        holder.binding.addNotesTextview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AdminHomeFragment.notesDialog(context, empId);
+            }
+        });
 
+        holder.binding.showNotesTextview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
