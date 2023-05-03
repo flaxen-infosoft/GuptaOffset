@@ -106,7 +106,7 @@ public class FlagEmployeeFragment extends Fragment {
     private void getEmployee() {
 
         progressDialog.show();
-        String url = ApiEndpoints.BASE_URL + "";
+        String url = ApiEndpoints.BASE_URL + "employee/getallFlagEmployee.php";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
             Log.i("employee", response.toString());
             progressDialog.dismiss();
