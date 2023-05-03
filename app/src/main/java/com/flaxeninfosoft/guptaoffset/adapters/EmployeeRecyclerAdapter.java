@@ -29,6 +29,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
     private List<Employee> employeeList;
     private final SingleEmployeeCardOnClickListener onClickListener;
     Context context;
+    ItemAdmineHomeBinding binding;
 
     public EmployeeRecyclerAdapter(List<Employee> employeeList, Context context, SingleEmployeeCardOnClickListener onClickListener) {
         this.employeeList = employeeList;
@@ -48,7 +49,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
     @NonNull
     @Override
     public EmployeeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemAdmineHomeBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_admine_home, parent, false);
+        binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_admine_home, parent, false);
 
         return new EmployeeViewHolder(binding, onClickListener);
     }
@@ -76,12 +77,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
             }
         });
 
-        holder.binding.showNotesTextview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        holder.binding.showNotesTextview.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_showNotesFragment));
     }
 
     @Override

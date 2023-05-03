@@ -105,6 +105,7 @@ public class AdminHomeFragment extends Fragment {
                     addNotes(context ,msg, empId);
                 } else {
                     Toast.makeText(context, "Please Enter Something in note.", Toast.LENGTH_SHORT).show();
+                    txt_inputText.setError("Please write something.");
                 }
                 alertDialog.dismiss();
             }
