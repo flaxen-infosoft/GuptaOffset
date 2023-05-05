@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,28 +59,20 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
     public void onBindViewHolder(@NonNull EmployeeViewHolder holder, int position) {
         holder.setEmployee(employeeList.get(position));
         Long empId = employeeList.get(position).getId();
-        if (context != null){
+        if (context != null) {
             Paper.init(context);
-        } else {
-
         }
         Paper.book().write("CurrentEmployeeId", String.valueOf(employeeList.get(position).getId()));
         holder.binding.linearLayoutSchool.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateSchoolFragment));
         holder.binding.linearLayoutDealer.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateDealerFragment));
-        holder.binding.addToFlagTextview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AdminHomeFragment.showDialog(context, empId);
-            }
+        holder.binding.addToFlagTextview.setOnClickListener(view -> AdminHomeFragment.addToFlagDialog(context, empId));
+
+        holder.binding.removeFromFlagTextview.setOnClickListener(view -> {
+            AdminHomeFragment.removeFromFlagDialog(context, empId);
         });
-        holder.binding.addNotesTextview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AdminHomeFragment.notesDialog(context, empId);
-            }
-        });
+        holder.binding.addNotesTextview.setOnClickListener(view -> AdminHomeFragment.notesDialog(context, empId));
 
         holder.binding.showNotesTextview.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_showNotesFragment));
     }
@@ -159,6 +152,14 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
         public void setEmployee(Employee employee) {
             binding.setEmployee(employee);
             binding.getRoot().setOnClickListener(v -> onClickListener.onClickCard(employee));
+
+            if (employee.getFlag().equals("1")) {
+                binding.removeFromFlagTextview.setVisibility(View.VISIBLE);
+                binding.addToFlagTextview.setVisibility(View.GONE);
+            } else {
+                binding.removeFromFlagTextview.setVisibility(View.GONE);
+                binding.addToFlagTextview.setVisibility(View.VISIBLE);
+            }
 
             binding.getRoot().setOnLongClickListener(v -> onClickListener.onLongClickCard(employee));
 

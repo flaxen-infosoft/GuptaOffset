@@ -135,7 +135,20 @@
         android:id="@+id/flagEmployeeFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.FlagEmployeeFragment"
         android:label="fragment_flag_employee"
-        tools:layout="@layout/fragment_flag_employee" />
+        tools:layout="@layout/fragment_flag_employee" >
+        <action
+            android:id="@+id/action_flagEmployeeFragment_to_adminEmployeeActivityFragment"
+            app:destination="@id/adminEmployeeActivityFragment" />
+        <action
+            android:id="@+id/action_flagEmployeeFragment_to_showNotesFragment"
+            app:destination="@id/showNotesFragment" />
+        <action
+            android:id="@+id/action_flagEmployeeFragment_to_seprateDealerFragment"
+            app:destination="@id/seprateDealerFragment" />
+        <action
+            android:id="@+id/action_flagEmployeeFragment_to_seprateSchoolFragment"
+            app:destination="@id/seprateSchoolFragment" />
+    </fragment>
     <fragment
         android:id="@+id/todayNotWokingEmployeeFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.TodayNotWokingEmployeeFragment"

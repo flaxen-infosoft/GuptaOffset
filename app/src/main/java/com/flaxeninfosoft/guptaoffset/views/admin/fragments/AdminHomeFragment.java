@@ -58,7 +58,7 @@ import io.paperdb.Paper;
 public class AdminHomeFragment extends Fragment {
 
     private FragmentAdminHomeBinding binding;
-    private AdminViewModel viewModel;
+    private  static AdminViewModel viewModel;
     private List<Employee> employeeList;
     String selectedDate = "";
 
@@ -67,91 +67,6 @@ public class AdminHomeFragment extends Fragment {
     public AdminHomeFragment() {
         // Required empty public constructor
     }
-
-    public static void notesDialog(Context context, Long empId) {
-
-
-        System.out.println(empId);
-        System.out.println(empId);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-        View mView = LayoutInflater.from(context).inflate(R.layout.add_notes_dialogue,null);
-
-        EditText txt_inputText = (EditText)mView.findViewById(R.id.txt_input);
-        Button btn_cancel = (Button)mView.findViewById(R.id.btn_cancel);
-        Button btn_okay = (Button)mView.findViewById(R.id.btn_okay);
-
-        builder.setView(mView);
-
-        final AlertDialog alertDialog = builder.create();
-        alertDialog.setCanceledOnTouchOutside(false);
-
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                alertDialog.dismiss();
-            }
-        });
-
-        btn_okay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String msg = txt_inputText.getText().toString();
-
-                if (!msg.isEmpty()) {
-                    addNotes(context ,msg, empId);
-                } else {
-                    Toast.makeText(context, "Please Enter Something in note.", Toast.LENGTH_SHORT).show();
-                    txt_inputText.setError("Please write something.");
-                }
-                alertDialog.dismiss();
-            }
-        });
-            alertDialog.show();
-    }
-
-            private static void addNotes(Context context,String message, Long empId) {
-//              String empId = Paper.book().read("CurrentEmployeeId");
-                Toast.makeText(context, "getNote() method", Toast.LENGTH_SHORT).show();
-                RequestQueue requestQueue = Volley.newRequestQueue(context);
-                ProgressDialog progressDialog = new ProgressDialog(context);
-                progressDialog.setCancelable(false);
-                progressDialog.setTitle("Wait");
-                progressDialog.setMessage("Please wait ....");
-                progressDialog.show();
-
-                String url = ApiEndpoints.BASE_URL + "notes/addemployeenote.php";
-                HashMap<String, Object> hashMap = new HashMap<>();
-                hashMap.put("empId", empId);
-                hashMap.put("note", message);
-
-
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
-                    Log.i("Dealer", response.toString());
-                    progressDialog.dismiss();
-
-                    if (response != null) {
-
-                        try {
-                            Toast.makeText(context, response.getString("message"), Toast.LENGTH_SHORT).show();
-
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }, error -> {
-                    progressDialog.dismiss();
-                    Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
-                });
-
-                int timeout = 10000; // 10 seconds
-                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                requestQueue.add(jsonObjectRequest);
-            }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -351,15 +266,33 @@ public class AdminHomeFragment extends Fragment {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_adminEmployeeActivityFragment, bundle);
     }
 
-    public static void showDialog(Context context,Long empId) {
+    public static void addToFlagDialog(Context context, Long empId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-        builder.setMessage("Are you sure you want to add employee in flag");
+        builder.setMessage("Are you sure you want to add employee in flag ?");
         builder.setTitle("Add Employee Flag");
         builder.setCancelable(false);
 
         builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
-            addToFlag(context,empId);
+            addToFlag(context, empId);
+        });
+
+        builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+            dialog.cancel();
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+    public static void removeFromFlagDialog(Context context, Long empId) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setMessage("Are you sure you want to remove employee from flag ?");
+        builder.setTitle("Remove Employee From Flag");
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
+            removeFromFlag(context, empId);
         });
 
         builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
@@ -371,7 +304,7 @@ public class AdminHomeFragment extends Fragment {
     }
 
 
-    private static void addToFlag(Context context,Long empId) {
+    private static void addToFlag(Context context, Long empId) {
 //        String empId = Paper.book().read("CurrentEmployeeId");
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         ProgressDialog progressDialog = new ProgressDialog(context);
@@ -393,6 +326,128 @@ public class AdminHomeFragment extends Fragment {
 
                 try {
                     Toast.makeText(context, response.getString("data"), Toast.LENGTH_SHORT).show();
+
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }, error -> {
+            progressDialog.dismiss();
+            Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
+        });
+
+        int timeout = 10000; // 10 seconds
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+    private static void removeFromFlag(Context context, Long empId) {
+//        String empId = Paper.book().read("CurrentEmployeeId");
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Wait");
+        progressDialog.setMessage("Please wait ....");
+        progressDialog.show();
+
+        String url = ApiEndpoints.BASE_URL + "employee/Deleteflagemployee.php";
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("empId", empId);
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
+            Log.i("Dealer", response.toString());
+            progressDialog.dismiss();
+
+            if (response != null) {
+
+                try {
+                    Toast.makeText(context, response.getString("data"), Toast.LENGTH_SHORT).show();
+                    viewModel.fetchAllEmployees();
+
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }, error -> {
+            progressDialog.dismiss();
+            Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
+        });
+
+        int timeout = 10000; // 10 seconds
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+    }
+
+
+    public static void notesDialog(Context context, Long empId) {
+
+
+        System.out.println(empId);
+        System.out.println(empId);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        View mView = LayoutInflater.from(context).inflate(R.layout.add_notes_dialogue, null);
+
+        EditText txt_inputText = (EditText) mView.findViewById(R.id.txt_input);
+        Button btn_cancel = (Button) mView.findViewById(R.id.btn_cancel);
+        Button btn_okay = (Button) mView.findViewById(R.id.btn_okay);
+
+        builder.setView(mView);
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                alertDialog.dismiss();
+            }
+        });
+
+        btn_okay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String msg = txt_inputText.getText().toString();
+
+                if (!msg.isEmpty()) {
+                    addNotes(context, msg, empId);
+                } else {
+                    Toast.makeText(context, "Please Enter Something in note.", Toast.LENGTH_SHORT).show();
+                    txt_inputText.setError("Please write something.");
+                }
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.show();
+    }
+    private static void addNotes(Context context, String message, Long empId) {
+//              String empId = Paper.book().read("CurrentEmployeeId");
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Wait");
+        progressDialog.setMessage("Please wait ....");
+        progressDialog.show();
+
+        String url = ApiEndpoints.BASE_URL + "notes/addemployeenote.php";
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("empId", empId);
+        hashMap.put("note", message);
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
+            Log.i("Dealer", response.toString());
+            progressDialog.dismiss();
+
+            if (response != null) {
+
+                try {
+                    Toast.makeText(context, response.getString("message"), Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);

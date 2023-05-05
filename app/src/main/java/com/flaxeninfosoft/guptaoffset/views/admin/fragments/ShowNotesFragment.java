@@ -36,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import io.paperdb.Paper;
@@ -64,6 +65,7 @@ public class ShowNotesFragment extends Fragment {
     }
 
     FragmentShowNotesBinding binding;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,6 +79,7 @@ public class ShowNotesFragment extends Fragment {
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Please wait ....");
         empId = Long.parseLong(Paper.book().read("CurrentEmployeeId"));
+        Toast.makeText(getContext(), empId + "", Toast.LENGTH_SHORT).show();
         showNotesRecyclerAdapter = new ShowNotesRecyclerAdapter(showNotesList, new ShowNotesRecyclerAdapter.NotesLayoutClickListener() {
 
             @Override
@@ -96,18 +99,20 @@ public class ShowNotesFragment extends Fragment {
         return binding.getRoot();
     }
 
-    public void getAllNotes(Long empId)   {
-
+    public void getAllNotes(Long empId) {
+        showNotesList.clear();
         progressDialog.show();
         String url = ApiEndpoints.BASE_URL + "notes/getAllnoteByempId.php";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("empId", empId);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
             Log.i("notes", response.toString());
             progressDialog.dismiss();
             if (binding.showNotesSwipeRefresh.isRefreshing()) {
                 binding.showNotesSwipeRefresh.setRefreshing(false);
             }
-            if (response != null) {
-                try {
+            try {
+                if (response != null) {
                     JSONArray jsonArray = response.getJSONArray("data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -124,9 +129,15 @@ public class ShowNotesFragment extends Fragment {
                         binding.showNotesRecycler.setVisibility(View.VISIBLE);
                         binding.showNotesEmptyTV.setVisibility(View.GONE);
                     }
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
+                } else {
+                    try {
+                        Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
             }
         }, error -> {
             progressDialog.dismiss();
