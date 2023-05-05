@@ -58,7 +58,11 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
     public void onBindViewHolder(@NonNull EmployeeViewHolder holder, int position) {
         holder.setEmployee(employeeList.get(position));
         Long empId = employeeList.get(position).getId();
-        Paper.init(context);
+        if (context != null){
+            Paper.init(context);
+        } else {
+
+        }
         Paper.book().write("CurrentEmployeeId", String.valueOf(employeeList.get(position).getId()));
         holder.binding.linearLayoutSchool.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateSchoolFragment));

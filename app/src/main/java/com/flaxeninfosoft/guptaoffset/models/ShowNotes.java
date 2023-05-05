@@ -5,9 +5,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ShowNotes {
-    @SerializedName("notes")
+    @SerializedName("note")
     @Expose
-   private String notes;
+   private String note;
 
     @SerializedName("id")
     @Expose
@@ -21,15 +21,17 @@ public class ShowNotes {
     @Expose
    private String time;
 
-    public ShowNotes() {
+    public String getNote() {
+        return note;
     }
 
-    public String getNotes() {
-        return notes;
+    public void setNote(String note) {
+        this.note = note;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
+
+    public void setNotes(String note) {
+        this.note = note;
     }
 
     public static Long getId() {
@@ -56,8 +58,8 @@ public class ShowNotes {
         this.time = time;
     }
 
-    public ShowNotes(String notes, Long id, String date, String time) {
-        this.notes = notes;
+    public ShowNotes(String note, Long id, String date, String time) {
+        this.note = note;
         this.id = id;
         this.date = date;
         this.time = time;

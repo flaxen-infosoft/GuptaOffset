@@ -76,9 +76,8 @@ public class ShowNotesFragment extends Fragment {
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Please wait ....");
-        empId = Paper.book().read("CurrentEmployeeId");
+        empId = Long.parseLong(Paper.book().read("CurrentEmployeeId"));
         showNotesRecyclerAdapter = new ShowNotesRecyclerAdapter(showNotesList, new ShowNotesRecyclerAdapter.NotesLayoutClickListener() {
-
 
             @Override
             public void onClickNotes(ShowNotes showNotes) {
@@ -100,7 +99,7 @@ public class ShowNotesFragment extends Fragment {
     public void getAllNotes(Long empId)   {
 
         progressDialog.show();
-        String url = ApiEndpoints.BASE_URL + "employee/getallFlagEmployee.php";
+        String url = ApiEndpoints.BASE_URL + "notes/getAllnoteByempId.php";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
             Log.i("notes", response.toString());
             progressDialog.dismiss();
