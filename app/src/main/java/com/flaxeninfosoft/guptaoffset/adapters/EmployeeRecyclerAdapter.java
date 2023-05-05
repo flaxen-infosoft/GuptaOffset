@@ -2,6 +2,7 @@ package com.flaxeninfosoft.guptaoffset.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.ItemAdmineHomeBinding;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminHomeFragment;
 import com.flaxeninfosoft.guptaoffset.views.admin.fragments.ShowNotesFragment;
 
@@ -62,7 +64,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
         if (context != null) {
             Paper.init(context);
         }
-        Paper.book().write("CurrentEmployeeId", String.valueOf(employeeList.get(position).getId()));
+        Paper.book().write("CurrentEmployeeId", empId);
         holder.binding.linearLayoutSchool.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateSchoolFragment));
         holder.binding.linearLayoutDealer.setOnClickListener(view ->
@@ -73,8 +75,9 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
             AdminHomeFragment.removeFromFlagDialog(context, empId);
         });
         holder.binding.addNotesTextview.setOnClickListener(view -> AdminHomeFragment.notesDialog(context, empId));
-
-        holder.binding.showNotesTextview.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_showNotesFragment));
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID,empId);
+        holder.binding.showNotesTextview.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_showNotesFragment,bundle));
     }
 
     @Override
