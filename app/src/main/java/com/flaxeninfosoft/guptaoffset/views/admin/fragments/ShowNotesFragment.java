@@ -79,7 +79,6 @@ public class ShowNotesFragment extends Fragment {
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Please wait ....");
         empId = Long.parseLong(Paper.book().read("CurrentEmployeeId"));
-        Toast.makeText(getContext(), empId + "", Toast.LENGTH_SHORT).show();
         showNotesRecyclerAdapter = new ShowNotesRecyclerAdapter(showNotesList, new ShowNotesRecyclerAdapter.NotesLayoutClickListener() {
 
             @Override
@@ -113,25 +112,29 @@ public class ShowNotesFragment extends Fragment {
             }
             try {
                 if (response != null) {
-                    JSONArray jsonArray = response.getJSONArray("data");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        ShowNotes showNotes = gson.fromJson(jsonArray.getJSONObject(i).toString(), ShowNotes.class);
-                        showNotesList.add(showNotes);
-                    }
+                    if (response.getJSONArray("data").length() > 0) {
+                        JSONArray jsonArray = response.getJSONArray("data");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            ShowNotes showNotes = gson.fromJson(jsonArray.getJSONObject(i).toString(), ShowNotes.class);
+                            showNotesList.add(showNotes);
+                        }
 
-                    binding.showNotesRecycler.setAdapter(showNotesRecyclerAdapter);
-                    showNotesRecyclerAdapter.notifyDataSetChanged();
-                    if (showNotesList == null || showNotesList.isEmpty()) {
-                        binding.showNotesRecycler.setVisibility(View.GONE);
-                        binding.showNotesEmptyTV.setVisibility(View.VISIBLE);
+                        binding.showNotesRecycler.setAdapter(showNotesRecyclerAdapter);
+                        showNotesRecyclerAdapter.notifyDataSetChanged();
+                        if (showNotesList == null || showNotesList.isEmpty()) {
+                            binding.showNotesRecycler.setVisibility(View.GONE);
+                            binding.showNotesEmptyTV.setVisibility(View.VISIBLE);
+                        } else {
+                            binding.showNotesRecycler.setVisibility(View.VISIBLE);
+                            binding.showNotesEmptyTV.setVisibility(View.GONE);
+                        }
                     } else {
-                        binding.showNotesRecycler.setVisibility(View.VISIBLE);
-                        binding.showNotesEmptyTV.setVisibility(View.GONE);
+                        Toast.makeText(getContext(), response.getString("data"), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     try {
-                        Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), response.getString("data"), Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
@@ -144,7 +147,7 @@ public class ShowNotesFragment extends Fragment {
             if (binding.showNotesSwipeRefresh.isRefreshing()) {
                 binding.showNotesSwipeRefresh.setRefreshing(false);
             }
-            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
         });
 
         int timeout = 10000; // 10 seconds
