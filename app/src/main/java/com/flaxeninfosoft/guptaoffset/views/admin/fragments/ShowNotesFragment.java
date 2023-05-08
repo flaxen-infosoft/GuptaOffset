@@ -80,7 +80,8 @@ public class ShowNotesFragment extends Fragment {
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Please wait ....");
-        empId = getArguments().getLong(Constants.EMPLOYEE_ID);
+//        empId = getArguments().getLong(Constants.EMPLOYEE_ID);
+        empId = Paper.book().read("CurrentEmployeeId");
         showNotesRecyclerAdapter = new ShowNotesRecyclerAdapter(showNotesList, getContext(), showNotes -> onClickNote(showNotes));
 
         binding.showNotesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
