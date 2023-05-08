@@ -1,8 +1,11 @@
 package com.flaxeninfosoft.guptaoffset.adapters;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -13,8 +16,11 @@ import com.flaxeninfosoft.guptaoffset.databinding.ShowNotesBinding;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.ShowNotes;
 import com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminHomeFragment;
+import com.flaxeninfosoft.guptaoffset.views.admin.fragments.ShowNotesFragment;
 
 import java.util.List;
+
+import io.paperdb.Paper;
 
 public class ShowNotesRecyclerAdapter extends RecyclerView.Adapter<ShowNotesRecyclerAdapter.ViewHolder> {
 
@@ -22,9 +28,16 @@ public class ShowNotesRecyclerAdapter extends RecyclerView.Adapter<ShowNotesRecy
 
     NotesLayoutClickListener notesLayoutClickListener;
 
-    public ShowNotesRecyclerAdapter(List<ShowNotes> showNotesList, NotesLayoutClickListener notesLayoutClickListener) {
+    Context context;
+    Long id;
+
+    Long empId;
+
+
+    public ShowNotesRecyclerAdapter(List<ShowNotes> showNotesList,Context context, NotesLayoutClickListener notesLayoutClickListener) {
         this.showNotesList = showNotesList;
         this.notesLayoutClickListener = notesLayoutClickListener;
+        this.context = context;
     }
 
     @NonNull
@@ -36,9 +49,22 @@ public class ShowNotesRecyclerAdapter extends RecyclerView.Adapter<ShowNotesRecy
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.setData(showNotesList.get(position));
+       holder.setData(showNotesList.get(position));
+        Long empId = showNotesList.get(position).getId();
+        if (context != null) {
+            Paper.init(context);
+        }
+        Paper.book().write("CurrentEmployeeId", empId);
 
+        Long id = showNotesList.get(position).getId();
+        if (context != null){
+            Paper.init(context);
+        }
+        Paper.book().write("id",id);
 
+       holder.binding.deleteNoteImg.setOnClickListener(view -> {
+           ShowNotesFragment.deleteNotesDialog(context, empId, id);
+       });
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.flaxeninfosoft.guptaoffset.views.admin.fragments;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -49,7 +52,6 @@ public class ShowNotesFragment extends Fragment {
     ProgressDialog progressDialog;
     ShowNotesRecyclerAdapter showNotesRecyclerAdapter;
     Gson gson;
-
     Long empId;
 
 
@@ -79,7 +81,7 @@ public class ShowNotesFragment extends Fragment {
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Please wait ....");
         empId = getArguments().getLong(Constants.EMPLOYEE_ID);
-        showNotesRecyclerAdapter = new ShowNotesRecyclerAdapter(showNotesList, new ShowNotesRecyclerAdapter.NotesLayoutClickListener() {
+        showNotesRecyclerAdapter = new ShowNotesRecyclerAdapter(showNotesList, getContext() , new ShowNotesRecyclerAdapter.NotesLayoutClickListener() {
 
             @Override
             public void onClickNotes(ShowNotes showNotes) {
@@ -164,5 +166,65 @@ public class ShowNotesFragment extends Fragment {
 
     private void onClickBack(View view) {
         Navigation.findNavController(view).navigateUp();
+    }
+    public static void deleteNotesDialog(Context context , Long empId ,Long id){
+
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setMessage("Are you sure you want to delete note ?");
+        builder.setTitle("Delete Note ");
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) ->{
+           deleteNotes(context , empId , id);
+        });
+
+        builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog , which) ->{
+           dialog.cancel();
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private static void deleteNotes(Context context , Long empId , Long id){
+
+         RequestQueue requestQueue1 = Volley.newRequestQueue(context);
+         ProgressDialog progressDialog1 = new ProgressDialog(context);
+         progressDialog1.setCancelable(false);
+         progressDialog1.setTitle("Wait");
+         progressDialog1.setMessage("Please wait ....");
+         progressDialog1.show();
+
+         String url = ApiEndpoints.BASE_URL + "notes/removenoteByempId.php";
+         HashMap<String , Object> hashMap = new HashMap<>();
+         hashMap.put("empId",empId);
+         hashMap.put("id",id);
+
+         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,url,new JSONObject(hashMap),response -> {
+            Log.i("Notes",response.toString());
+            progressDialog1.dismiss();
+
+             if (response != null) {
+
+                 try {
+                     Toast.makeText(context, response.getString("message"), Toast.LENGTH_SHORT).show();
+
+                 } catch (JSONException e) {
+                     throw new RuntimeException(e);
+                 }
+
+             }
+         }, error -> {
+             progressDialog1.dismiss();
+             Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
+         });
+
+        int timeout = 10000; // 10 seconds
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue1.add(jsonObjectRequest);
     }
 }

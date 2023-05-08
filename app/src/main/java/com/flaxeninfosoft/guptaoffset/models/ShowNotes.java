@@ -58,10 +58,7 @@ public class ShowNotes {
         this.time = time;
     }
 
-    public ShowNotes(String note, Long id, String date, String time) {
-        this.note = note;
-        this.id = id;
-        this.date = date;
-        this.time = time;
+    public ShowNotes() {
+
     }
 }
