@@ -195,7 +195,7 @@ public class ShowNotesFragment extends Fragment {
         String url = ApiEndpoints.BASE_URL + "notes/removenoteByempId.php";
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("empId", empId);
-        hashMap.put("id", id);
+        hashMap.put("noteId", id);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
             Log.i("Notes", response.toString());
