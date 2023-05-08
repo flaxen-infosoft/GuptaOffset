@@ -29,9 +29,6 @@ public class ShowNotesRecyclerAdapter extends RecyclerView.Adapter<ShowNotesRecy
     NotesLayoutClickListener notesLayoutClickListener;
 
     Context context;
-    Long id;
-
-    Long empId;
 
 
     public ShowNotesRecyclerAdapter(List<ShowNotes> showNotesList,Context context, NotesLayoutClickListener notesLayoutClickListener) {
@@ -50,17 +47,12 @@ public class ShowNotesRecyclerAdapter extends RecyclerView.Adapter<ShowNotesRecy
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
        holder.setData(showNotesList.get(position));
-        Long empId = showNotesList.get(position).getId();
+        Long empId = Paper.book().read("CurrentEmployeeId");
+        Long id = showNotesList.get(position).getId();
         if (context != null) {
             Paper.init(context);
         }
-        Paper.book().write("CurrentEmployeeId", empId);
-
-        Long id = showNotesList.get(position).getId();
-        if (context != null){
-            Paper.init(context);
-        }
-        Paper.book().write("id",id);
+        Paper.book().write("CurrentNoteId",id);
 
        holder.binding.deleteNoteImg.setOnClickListener(view -> {
            ShowNotesFragment.deleteNotesDialog(context, empId, id);

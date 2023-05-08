@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="showNotes"
             type="com.flaxeninfosoft.guptaoffset.models.ShowNotes" />
@@ -26,23 +27,10 @@
                 android:orientation="vertical"
                 android:padding="5dp">
 
-                <ImageView
-                    android:id="@+id/delete_note_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_gravity="end"
-                    android:layout_marginBottom="5dp"
-                    android:src="@drawable/baseline_delete_24" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1.5dp"
-                    android:background="@color/textcolor"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -50,6 +38,7 @@
                         android:layout_gravity="center"
                         android:padding="1dp"
                         android:text="Date :"
+                        android:layout_marginStart="3dp"
                         android:textColor="@color/textcolor"
                         android:textSize="15dp"
                         android:textStyle="bold" />
@@ -57,14 +46,36 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{showNotes.date}"
-                        android:textSize="15dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="3dp"
                         android:layout_weight="5"
                         android:padding="1dp"
-                        android:layout_marginStart="3dp"
-                        android:textStyle="bold"
+                        android:text="@{showNotes.date}"
                         android:textColor="@color/textcolor"
-                        android:layout_gravity="center"/>
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/delete_note_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_gravity="end"
+                        android:layout_marginBottom="5dp"
+                        android:src="@drawable/baseline_delete_24" />
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:background="@color/textcolor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -79,13 +90,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{showNotes.time}"
-                        android:textSize="15dp"
-                        android:padding="1dp"
+                        android:layout_gravity="center"
                         android:layout_marginStart="3dp"
-                        android:textStyle="bold"
+                        android:padding="1dp"
+                        android:text="@{showNotes.time}"
                         android:textColor="@color/textcolor"
-                        android:layout_gravity="center"/>
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -93,32 +104,30 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal"
                     android:padding="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Note :"
-                        android:textSize="18dp"
+                        android:layout_gravity="start"
                         android:padding="1dp"
-                        android:textStyle="bold"
+                        android:text="Note :"
                         android:textColor="@color/textcolor"
-                        android:layout_gravity="center"/>
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{showNotes.note}"
-                        android:layout_marginTop="5dp"
-                        android:textSize="15dp"
-                        android:padding="1dp"
-                        android:gravity="center"
                         android:layout_marginStart="3dp"
-                        android:textStyle="bold"
+                        android:padding="1dp"
+                        android:text="@{showNotes.note}"
                         android:textColor="@color/textcolor"
-                        android:layout_gravity="center"/>
+                        android:textSize="15dp"
+                        android:layout_marginTop="3dp"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
