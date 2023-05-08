@@ -52,7 +52,7 @@ public class ShowNotesFragment extends Fragment {
     ProgressDialog progressDialog;
     ShowNotesRecyclerAdapter showNotesRecyclerAdapter;
     Gson gson;
-    Long empId;
+    static Long empId;
 
 
     public ShowNotesFragment() {
@@ -80,8 +80,8 @@ public class ShowNotesFragment extends Fragment {
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Please wait ....");
-//        empId = getArguments().getLong(Constants.EMPLOYEE_ID);
-        empId = Paper.book().read("CurrentEmployeeId");
+         empId = getArguments().getLong(Constants.EMPLOYEE_ID);
+//        empId = Paper.book().read("CurrentEmployeeId");
         showNotesRecyclerAdapter = new ShowNotesRecyclerAdapter(showNotesList, getContext(), showNotes -> onClickNote(showNotes));
 
         binding.showNotesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -126,6 +126,8 @@ public class ShowNotesFragment extends Fragment {
                             binding.showNotesEmptyTV.setVisibility(View.GONE);
                         }
                     } else {
+                        binding.showNotesRecycler.setVisibility(View.GONE);
+                        binding.showNotesEmptyTV.setVisibility(View.VISIBLE);
                         Toast.makeText(getContext(), response.getString("data"), Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -162,7 +164,7 @@ public class ShowNotesFragment extends Fragment {
         Navigation.findNavController(view).navigateUp();
     }
 
-    public static void deleteNotesDialog(Context context, Long empId, Long id) {
+    public static void deleteNotesDialog(Context context, Long empId1, Long id) {
 
 
 
