@@ -157,7 +157,23 @@
                     android:id="@+id/today_not_working_employee_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Toady \nNot Working\nEmployees"
+                    android:text="Today \nNot Working\nEmployees"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="2.5"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="1.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textcolor"/>
+                <TextView
+                    android:id="@+id/above_80Km_drive_Report"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Above 80 \nKM Drive \nReport"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_weight="2.5"
@@ -196,7 +212,6 @@
                 android:visibility="gone" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
         <TextView
             android:id="@+id/admin_home_empty_recycler"

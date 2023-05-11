@@ -106,13 +106,12 @@ public class EmployeeAddEODFragment extends Fragment {
         attendaceDialog.setView(view);
         attendaceDialog.setCancelable(false);
         attendaceDialog.show();
-        Button buttonCancel = view.findViewById(R.id.button2);
+//        Button buttonCancel = view.findViewById(R.id.button2);
         Button buttonPunch = view.findViewById(R.id.button1);
         buttonPunch.setOnClickListener(view12 -> {
             Navigation.findNavController(binding.getRoot()).navigate(R.id.employeeAddAttendanceFragment);
             attendaceDialog.dismiss();
         });
-        buttonCancel.setOnClickListener(view1 -> attendaceDialog.dismiss());
     }
 
     ActivityResultLauncher<Intent> expenseImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {

@@ -115,7 +115,7 @@ public class EmployeeAddDealerFragment extends Fragment {
                             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                             Address currentAddress = addresses.get(0);
                             binding.getDealer().getLocation().setAddress(currentAddress.getAddressLine(0));
-                            binding.employeeAddDealerAddress.getEditText().setText(currentAddress.getAddressLine(0));
+//                            binding.employeeAddDealerAddress.getEditText().setText(currentAddress.getAddressLine(0));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

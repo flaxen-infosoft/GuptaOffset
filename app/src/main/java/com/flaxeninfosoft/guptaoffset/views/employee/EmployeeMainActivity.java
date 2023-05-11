@@ -48,8 +48,8 @@ public class EmployeeMainActivity extends AppCompatActivity {
 
         config = new AppBarConfiguration.Builder(R.id.employeeHomeFragment).build();
 
-        setSupportActionBar(binding.employeeMainToolbar);
-        NavigationUI.setupActionBarWithNavController(this, navController, config);
+//        setSupportActionBar(binding.employeeMainToolbar);
+//        NavigationUI.setupActionBarWithNavController(this, navController, config);
 
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(EmployeeViewModel.class);
         viewModel.getToastMessageLiveData().observe(this, this::showToastMessage);

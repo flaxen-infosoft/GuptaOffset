@@ -329,7 +329,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
     private void clearErrors() {
         binding.employeeAddSchoolName.setError(null);
-        binding.employeeAddSchoolStrength.setError(null);
+//        binding.employeeAddSchoolStrength.setError(null);
         binding.employeeAddSchoolAddress.setError(null);
         binding.employeeAddSchoolContact.setError(null);
     }

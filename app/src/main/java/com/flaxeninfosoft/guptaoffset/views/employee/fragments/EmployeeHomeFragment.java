@@ -74,7 +74,12 @@ public class EmployeeHomeFragment extends Fragment {
         binding.employeeHomeCardPaymentRequest.setOnClickListener(this::navigateToPaymentRequest);
         binding.employeeHomeCardAddEod.setOnClickListener(this::navigateToAddEod);
         binding.employeeHomeCardMyMap.setOnClickListener(this::navigateToMap);
-        binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
+        binding.paymentReceiveTextview.setOnClickListener(this::navigateToPaymentReceive);
+        binding.bookOrderListTextview.setOnClickListener(this::navigateToBookOrderList);
+        binding.absentOrLeaveTextview.setOnClickListener(this::navigateToAbsentOrLeave);
+        binding.meetingTaskTextview.setOnClickListener(this::navigateToMeetingOrTask);
+        binding.schoolListTextview.setOnClickListener(this::navigateToSchoolList);
+        binding.myAccount.setOnClickListener(this::navigateToMyAccount);
 
         LinearLayoutManager lm = new LinearLayoutManager(getContext());
         lm.setStackFromEnd(true);
@@ -96,6 +101,7 @@ public class EmployeeHomeFragment extends Fragment {
 
         return binding.getRoot();
     }
+
 
 
 
@@ -136,13 +142,13 @@ public class EmployeeHomeFragment extends Fragment {
         attendaceDialog.setView(view);
         attendaceDialog.setCancelable(false);
         attendaceDialog.show();
-        Button buttonCancel = view.findViewById(R.id.button2);
+//        Button buttonCancel = view.findViewById(R.id.button2);
         Button buttonPunch = view.findViewById(R.id.button1);
         buttonPunch.setOnClickListener(view12 -> {
             Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddAttendanceFragment);
             attendaceDialog.dismiss();
         });
-        buttonCancel.setOnClickListener(view1 -> attendaceDialog.dismiss());
+//        buttonCancel.setOnClickListener(view1 -> attendaceDialog.dismiss());
     }
 
     private void sendMessage(View view) {
@@ -283,5 +289,29 @@ public class EmployeeHomeFragment extends Fragment {
 
     private void navigateToDailyReports(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeDailyReportsFragment);
+    }
+
+    private void navigateToPaymentReceive(View view){
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_paymentReceiveFragment);
+    }
+
+    private void navigateToBookOrderList(View view){
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_bookOrderListrFragment);
+    }
+
+    private void navigateToAbsentOrLeave(View view){
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_absentOrLeaveFragment);
+    }
+
+    private void navigateToMeetingOrTask(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_meetingOrTaskFragment);
+    }
+
+    private void navigateToSchoolList(View view){
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_schoolListFragment);
+    }
+
+    private void navigateToMyAccount(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_myAccountFragment);
     }
 }

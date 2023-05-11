@@ -16,15 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.DealerAdminRecyclerAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentSeprateDealerBinding;
 import com.flaxeninfosoft.guptaoffset.models.Dealer;
-import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.Gson;
@@ -54,7 +51,7 @@ public class SeprateDealerFragment extends Fragment {
 
     }
 
-    String empId;
+    Long empId;
     String selectedDate;
     String currentDate="";
     FragmentSeprateDealerBinding binding;
@@ -69,7 +66,7 @@ public class SeprateDealerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_seprate_dealer, container, false);
-        empId = Paper.book().read("CurrentEmployeeId");
+        empId = Paper.book().read("CurrentEmployeeId", 0L);
         currentDate = Paper.book().read("currentDate");
         selectedDate = Paper.book().read("selectedDate");
         dealerList = new ArrayList<>();

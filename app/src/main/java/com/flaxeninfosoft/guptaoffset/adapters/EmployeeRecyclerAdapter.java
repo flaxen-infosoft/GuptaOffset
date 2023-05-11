@@ -156,13 +156,18 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
             binding.setEmployee(employee);
             binding.getRoot().setOnClickListener(v -> onClickListener.onClickCard(employee));
 
-            if (employee.getFlag().equals("1")) {
-                binding.removeFromFlagTextview.setVisibility(View.VISIBLE);
-                binding.addToFlagTextview.setVisibility(View.GONE);
-            } else {
-                binding.removeFromFlagTextview.setVisibility(View.GONE);
-                binding.addToFlagTextview.setVisibility(View.VISIBLE);
+            try {
+                if (employee.getFlag().equals("1")) {
+                    binding.removeFromFlagTextview.setVisibility(View.VISIBLE);
+                    binding.addToFlagTextview.setVisibility(View.GONE);
+                } else {
+                    binding.removeFromFlagTextview.setVisibility(View.GONE);
+                    binding.addToFlagTextview.setVisibility(View.VISIBLE);
+                }
+            } catch (Exception e){
+                e.printStackTrace();
             }
+
 
             binding.getRoot().setOnLongClickListener(v -> onClickListener.onLongClickCard(employee));
 

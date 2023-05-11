@@ -53,6 +53,24 @@
         <action
             android:id="@+id/action_employeeHomeFragment_to_employeeDailyReportsFragment"
             app:destination="@id/employeeDailyReportsFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_paymentReceiveFragment"
+            app:destination="@id/paymentReceiveFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_bookOrderListrFragment"
+            app:destination="@id/bookOrderListrFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_absentOrLeaveFragment"
+            app:destination="@id/absentOrLeaveFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_meetingOrTaskFragment"
+            app:destination="@id/meetingOrTaskFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_schoolListFragment"
+            app:destination="@id/schoolListFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_myAccountFragment"
+            app:destination="@id/myAccountFragment" />
     </fragment>
 
     <fragment
@@ -137,6 +155,30 @@
         android:label="EmployeeDailyReportsFragment"
         tools:layout="@layout/fragment_employee_daily_reports">
     </fragment>
+    <fragment
+        android:id="@+id/paymentReceiveFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.PaymentReceiveFragment"
+        android:label="PaymentReceiveFragment" />
+    <fragment
+        android:id="@+id/bookOrderListrFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.BookOrderListrFragment"
+        android:label="BookOrderListrFragment" />
+    <fragment
+        android:id="@+id/absentOrLeaveFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.AbsentOrLeaveFragment"
+        android:label="AbsentOrLeaveFragment" />
+    <fragment
+        android:id="@+id/meetingOrTaskFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.MeetingOrTaskFragment"
+        android:label="MeetingOrTaskFragment" />
+    <fragment
+        android:id="@+id/schoolListFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.SchoolListFragment"
+        android:label="SchoolListFragment" />
+    <fragment
+        android:id="@+id/myAccountFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.MyAccountFragment"
+        android:label="MyAccountFragment" />
 
 
 </navigation>

@@ -94,6 +94,7 @@ public class AdminHomeFragment extends Fragment {
         binding.calenderTextId.setOnClickListener(this::onClickCalender);
         binding.todayNotWorkingEmployeeText.setOnClickListener(this::onClickTodayNotWorking);
         binding.flagEmployeeText.setOnClickListener(this::onClickFlagEmployee);
+        binding.above80KmDriveReport.setOnClickListener(this::onClickAbove80KmDriver);
 
         binding.adminAddIcon.setOnClickListener(view -> {
             if (binding.adminHomeCard.getVisibility() == View.VISIBLE) {
@@ -162,6 +163,10 @@ public class AdminHomeFragment extends Fragment {
 
 
         return binding.getRoot();
+    }
+
+    private void onClickAbove80KmDriver(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_above80KmDriveReportFragment);
     }
 
     private void onClickFlagEmployee(View view) {
@@ -302,7 +307,6 @@ public class AdminHomeFragment extends Fragment {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
 
     private static void addToFlag(Context context, Long empId) {
 //        String empId = Paper.book().read("CurrentEmployeeId");

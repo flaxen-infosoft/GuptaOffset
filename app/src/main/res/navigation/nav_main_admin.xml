@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_showNotesFragment"
             app:destination="@id/showNotesFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_above80KmDriveReportFragment"
+            app:destination="@id/above80KmDriveReportFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
@@ -158,4 +161,8 @@
         android:id="@+id/showNotesFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.ShowNotesFragment"
         android:label="ShowNotesFragment" />
+    <fragment
+        android:id="@+id/above80KmDriveReportFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.Above80KmDriveReportFragment"
+        android:label="Above80KmDriveReportFragment" />
 </navigation>

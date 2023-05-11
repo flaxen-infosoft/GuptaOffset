@@ -20,11 +20,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.adapters.DealerAdminRecyclerAdapter;
 import com.flaxeninfosoft.guptaoffset.adapters.SchoolAdminRecyclerAdapter;
-import com.flaxeninfosoft.guptaoffset.databinding.FragmentSeprateDealerBinding;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentSeprateSchoolBinding;
-import com.flaxeninfosoft.guptaoffset.models.Dealer;
 import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
@@ -37,7 +34,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import io.paperdb.Paper;
 
@@ -55,7 +51,7 @@ public class SeprateSchoolFragment extends Fragment {
 
     FragmentSeprateSchoolBinding binding;
     String selectedDate;
-    String empId;
+    Long empId;
     String currentDate = "";
     SchoolAdminRecyclerAdapter schoolAdminRecyclerAdapter;
     List<School> schoolList;
@@ -68,7 +64,7 @@ public class SeprateSchoolFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_seprate_school, container, false);
-        empId = Paper.book().read("CurrentEmployeeId");
+        empId = Paper.book().read("CurrentEmployeeId", 0L);
         currentDate = Paper.book().read("currentDate");
         selectedDate = Paper.book().read("selectedDate");
         schoolList = new ArrayList<>();
