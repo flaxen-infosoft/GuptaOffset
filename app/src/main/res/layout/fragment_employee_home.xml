@@ -60,7 +60,6 @@
                             android:text="Date :"
                             android:textColor="@color/red"
                             android:textStyle="bold"
-                            android:padding="5dp"
                             android:layout_gravity="center"
                             android:textSize="15sp"
                             android:drawableStart="@drawable/plus"
@@ -90,12 +89,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/soild_card_corner"
-                        android:padding="8sp"
+                        android:padding="4sp"
                         android:text="Name"
                         android:gravity="center"
                         android:paddingTop="1dp"
                         android:textColor="@color/white"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -123,7 +122,7 @@
                         android:layout_weight="5"
                         android:text="District \nMap"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="11sp"
                         android:textStyle="bold" />
 
                     <View
@@ -137,12 +136,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:text="TEHSIL LIST"
+                        android:text="Tehsil List"
                         android:gravity="center"
                         android:layout_weight="5"
                         android:padding="5dp"
                         android:textColor="@color/textcolor"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -206,7 +205,7 @@
                     android:id="@+id/absent_or_leave_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Absent /\nLeave"
+                    android:text="Absent \nLeave"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:drawableBottom="@drawable/absence"
@@ -222,7 +221,7 @@
                     android:id="@+id/meeting_task_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Meeting /\nTask"
+                    android:text="Meeting \nTask"
                     android:layout_gravity="center"
                     android:drawableBottom="@drawable/timetable"
                     android:gravity="center"
@@ -242,7 +241,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1.6"
                     android:gravity="center"
-                    android:text="School /\nList"
+                    android:text="School \nList"
                     android:drawableBottom="@drawable/schoollist"
                     android:textColor="@color/black"
                     android:textSize="10sp"

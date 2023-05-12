@@ -151,6 +151,9 @@
         <action
             android:id="@+id/action_flagEmployeeFragment_to_seprateSchoolFragment"
             app:destination="@id/seprateSchoolFragment" />
+        <action
+            android:id="@+id/action_flagEmployeeFragment_to_showNotesFragment2"
+            app:destination="@id/showNotesFragment" />
     </fragment>
     <fragment
         android:id="@+id/todayNotWokingEmployeeFragment"

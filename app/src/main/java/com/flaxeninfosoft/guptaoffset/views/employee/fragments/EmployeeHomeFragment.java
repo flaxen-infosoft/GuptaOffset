@@ -124,11 +124,11 @@ public class EmployeeHomeFragment extends Fragment {
         Log.i("time", String.valueOf(time));
 
 
-        if (punchStatus.equals("0")) {
-            showDialog();
-        } else if (punchStatus.equals("1") && time >= 19) {
-            showDialog();
-        }
+//        if (punchStatus.equals("0")) {
+//            showDialog();
+//        } else if (punchStatus.equals("1") && time >= 19) {
+//            showDialog();
+//        }
 
 
     }

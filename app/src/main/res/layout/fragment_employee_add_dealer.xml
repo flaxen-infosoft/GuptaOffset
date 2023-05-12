@@ -88,7 +88,7 @@
                             android:id="@+id/date_text_id"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="06 - Apr - 2024"
+                            android:text="@{dealer.date}"
                             android:textColor="@color/textcolor"
                             android:textSize="16sp"
                             android:layout_gravity="center"
@@ -126,7 +126,7 @@
                             android:id="@+id/tm_text_id"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="12:03"
+                            android:text=""
                             android:textColor="@color/textcolor"
                             android:textSize="16sp"
                             android:layout_gravity="center"
@@ -166,7 +166,7 @@
                             android:id="@+id/cityname_text_id"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Select City"
+                            android:text=""
                             android:textColor="@color/textcolor"
                             android:textSize="16sp"
                             android:layout_gravity="center"
@@ -205,7 +205,7 @@
                             android:id="@+id/tehsilname_text_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Select Tehsil"
+                            android:text=""
                             android:textColor="@color/textcolor"
                             android:drawableRight="@drawable/baseline_location_on_24"
                             android:textSize="16sp"
@@ -309,7 +309,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Notes"
-                    android:text="@={dealer.name}"/>
+                    android:text=""/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton

@@ -60,6 +60,18 @@ public class Attendance {
     @Expose
     private int punchStatus;
 
+    @SerializedName(Constants.LOCATION)
+    @Expose
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     public Attendance() {
         startLocation = new Location();
         endLocation = new Location();

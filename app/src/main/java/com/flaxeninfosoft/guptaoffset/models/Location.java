@@ -38,6 +38,30 @@ public class Location {
     @Expose
     private String district;
 
+    @SerializedName(Constants.START_LOCATION)
+    @Expose
+    private String startLocation;
+
+    @SerializedName(Constants.END_LOCATION)
+    @Expose
+    private String endLocation;
+
+    public String getStartLocation() {
+        return startLocation;
+    }
+
+    public void setStartLocation(String startLocation) {
+        this.startLocation = startLocation;
+    }
+
+    public String getEndLocation() {
+        return endLocation;
+    }
+
+    public void setEndLocation(String endLocation) {
+        this.endLocation = endLocation;
+    }
+
     public Long getId() {
         return id;
     }
@@ -114,6 +138,8 @@ public class Location {
                 ", address='" + address + '\'' +
                 ", batteryStatus='" + batteryStatus + '\'' +
                 ", district='" + district + '\'' +
+                ", startLocation='" + startLocation + '\'' +
+                ", endLocation='" + endLocation + '\'' +
                 '}';
     }
 }
