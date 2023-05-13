@@ -1,13 +1,16 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,14 +40,22 @@ import com.flaxeninfosoft.guptaoffset.viewModels.AdminViewModel;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
 import java.text.DateFormat;
+import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import io.paperdb.Paper;
 
 public class EmployeeHomeFragment extends Fragment {
 
     private EmployeeViewModel viewModel;
     private FragmentEmployeeHomeBinding binding;
+    static String selectedDate = "";
+    static String currentDate = "";
 
     public EmployeeHomeFragment() {
         // Required empty public constructor
@@ -63,7 +74,9 @@ public class EmployeeHomeFragment extends Fragment {
         binding.setMessage(new Message());
         binding.getMessage().setReceiverId(viewModel.getCurrentEmployee().getId());
 
-        long atnId = viewModel.getCurrentEmployee().getId();
+        Employee employee = viewModel.getCurrentEmployee();
+        binding.employeeName.setText(employee.getName());
+
         viewModel.getCurrentEmployeeTodaysAttendance().observe(getViewLifecycleOwner(), this::setAttendance);
 
         binding.employeeHomeCardAddAttendance.setOnClickListener(this::navigateAddAttendance);
@@ -80,6 +93,22 @@ public class EmployeeHomeFragment extends Fragment {
         binding.meetingTaskTextview.setOnClickListener(this::navigateToMeetingOrTask);
         binding.schoolListTextview.setOnClickListener(this::navigateToSchoolList);
         binding.myAccount.setOnClickListener(this::navigateToMyAccount);
+        binding.selectDateLayout.setOnClickListener(this::onSelectDate);
+
+        String formattedDateTime = "";
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            currentDate = now.format(formatter);
+            Paper.init(getContext());
+            Paper.book().write("currentDate", formattedDateTime);
+        }
+
+        if (selectedDate.isEmpty()) {
+            binding.dateTextId.setText(currentDate);
+        } else {
+            binding.dateTextId.setText(selectedDate);
+        }
 
         LinearLayoutManager lm = new LinearLayoutManager(getContext());
         lm.setStackFromEnd(true);
@@ -102,7 +131,41 @@ public class EmployeeHomeFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private void onSelectDate(View view) {
+        getDate(view, true);
+    }
 
+    private void getDate(View view, boolean b) {
+        if (b) {
+            final Calendar c = Calendar.getInstance();
+            int y = c.get(Calendar.YEAR);
+            int m = c.get(Calendar.MONTH);
+            int d = c.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                    Date date = new Date(year, month, day);
+                    Format format = new SimpleDateFormat("20yy-MM-dd");
+                    binding.dateTextId.setText(format.format(date));
+                    selectedDate = format.format(date);
+                    Paper.init(getContext());
+                    Paper.book().write("selectedDate", selectedDate);
+
+                }
+            }, y, m, d);
+            datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                datePickerDialog.getDatePicker().setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
+                    @Override
+                    public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
+
+                    }
+                });
+            }
+            datePickerDialog.show();
+        }
+    }
 
 
     private void setAttendance(Attendance attendance) {
@@ -172,10 +235,10 @@ public class EmployeeHomeFragment extends Fragment {
 
     private void setEmployeeHistory(List<EmployeeHistory> historyList) {
 
-        if (historyList==null || historyList.isEmpty()){
+        if (historyList == null || historyList.isEmpty()) {
             binding.employeeHomeEmptyRecycler.setVisibility(View.VISIBLE);
             binding.employeeHomeRecycler.setVisibility(View.GONE);
-        }else {
+        } else {
             binding.employeeHomeEmptyRecycler.setVisibility(View.GONE);
             binding.employeeHomeRecycler.setVisibility(View.VISIBLE);
         }
@@ -184,7 +247,7 @@ public class EmployeeHomeFragment extends Fragment {
             public void onClickCard(Attendance attendance) {
                 Bundle bundle = new Bundle();
                 bundle.putLong(Constants.ATN_ID, attendance.getId());
-                Navigation.findNavController(binding.getRoot()).navigate( R.id.action_employeeHomeFragment_to_attendanceProfileFragment,bundle);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_attendanceProfileFragment, bundle);
             }
 
             @Override
@@ -291,15 +354,15 @@ public class EmployeeHomeFragment extends Fragment {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeDailyReportsFragment);
     }
 
-    private void navigateToPaymentReceive(View view){
+    private void navigateToPaymentReceive(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_paymentReceiveFragment);
     }
 
-    private void navigateToBookOrderList(View view){
+    private void navigateToBookOrderList(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_bookOrderListrFragment);
     }
 
-    private void navigateToAbsentOrLeave(View view){
+    private void navigateToAbsentOrLeave(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_absentOrLeaveFragment);
     }
 
@@ -307,7 +370,7 @@ public class EmployeeHomeFragment extends Fragment {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_meetingOrTaskFragment);
     }
 
-    private void navigateToSchoolList(View view){
+    private void navigateToSchoolList(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_schoolListFragment);
     }
 
