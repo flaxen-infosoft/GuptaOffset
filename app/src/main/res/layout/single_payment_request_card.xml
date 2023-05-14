@@ -43,10 +43,10 @@
                     android:id="@+id/payment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="Payment "
                     android:textColor="#222"
                     android:textSize="20sp"
-                    android:layout_gravity="center"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -55,127 +55,231 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
-
-                        <TextView
-                            android:id="@+id/payment_card_amount_til"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Amount : "
-                            android:textColor="#222"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{paymentRequest.amount}"
-                            android:textColor="#222"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp">
-
-                        <TextView
-                            android:id="@+id/payment_card_status_til"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Status : "
-                            android:textColor="#222"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{paymentRequest.status}"
-                            android:textColor="#222"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:orientation="vertical">
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/layoutcorner2"
+                        android:orientation="horizontal">
+
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Address : "
-                            android:textColor="#222"
-                            android:textSize="16sp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="start"
+                            android:padding="5dp"
+                            android:text="Date :"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@{paymentRequest.location.address}"
-                            android:textColor="#222"
-                            android:textSize="16sp" />
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="@{paymentRequest.date}"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+
                     </LinearLayout>
-                   <LinearLayout
-                       android:id="@+id/payment_request_received_layout"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:visibility="visible"
-                       android:orientation="vertical">
 
-                       <LinearLayout
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginTop="3dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/layoutcorner2"
+                        android:orientation="horizontal">
 
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:text="Received : "
-                               android:textColor="#222"
-                               android:textSize="16sp"
-                               android:textStyle="bold" />
 
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:text="@{paymentRequest.received}"
-                               android:textColor="#222"
-                               android:textSize="16sp" />
-                       </LinearLayout>
-                       <LinearLayout
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:layout_marginTop="3dp"
-                           android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="start"
+                            android:padding="5dp"
+                            android:text="Amount :"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
 
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:text="Message : "
-                               android:textColor="#222"
-                               android:textSize="16sp"
-                               android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="@{paymentRequest.amount}"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
 
-                           <TextView
-                               android:layout_width="match_parent"
-                               android:layout_height="wrap_content"
-                               android:text="@{paymentRequest.message}"
-                               android:textColor="#222"
-                               android:textSize="16sp" />
-                       </LinearLayout>
-                   </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/layoutcorner2"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="start"
+                            android:padding="5dp"
+                            android:text="Status :"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="@{paymentRequest.status}"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/layoutcorner2"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="start"
+                            android:padding="5dp"
+                            android:text="Address :"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="@{paymentRequest.location.address}"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/payment_request_received_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/layoutcorner2"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:gravity="start"
+                                android:padding="5dp"
+                                android:text="Recived :"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:text="@{paymentRequest.received}"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/layoutcorner2"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:gravity="start"
+                                android:padding="5dp"
+                                android:text="Message :"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:padding="4dp"
+                                android:text="@{paymentRequest.message}"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
                 </LinearLayout>
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/check_icon"
+                    android:layout_gravity="end"
                     android:layout_marginTop="5dp"
-                    android:layout_gravity="end"/>
+                    android:src="@drawable/check_icon" />
 
             </LinearLayout>
 
@@ -188,8 +292,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="-6dp"
             android:layout_marginTop="0.6dp"
-            android:scaleX="1.5"
             android:background="@drawable/v_bubble_corner_right"
-            android:backgroundTint="#F8D8C6"/>
+            android:backgroundTint="#F8D8C6"
+            android:scaleX="1.5" />
     </RelativeLayout>
 </layout>
