@@ -49,55 +49,83 @@
                     android:textSize="20sp" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/date"
-                        android:text="Date : "
-                        android:textColor="#222"
-                        android:textStyle="bold"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/single_order_card_date"
-                        android:text="@{order.date}"
-                        android:textColor="#222"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="vertical">
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/layoutcorner2"
+                    android:orientation="horizontal">
+
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Address : "
-                        android:textColor="#222"
-                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:gravity="start"
+                        android:padding="5dp"
+                        android:text="Date :"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{order.location.address}"
-                        android:textColor="#222"
-                        android:textSize="16sp" />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="@{order.date}"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/layoutcorner2"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:gravity="start"
+                        android:padding="5dp"
+                        android:text="Address"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:text="@{order.location.address}"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
 
                 <ImageView
                     android:id="@+id/single_order_card_image"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_marginTop="7dp"
+                    android:background="@drawable/layoutcorner2"
+                    android:padding="5dp"
                     android:src="@drawable/person_vector"
                     android:scaleType="fitXY" />
 
