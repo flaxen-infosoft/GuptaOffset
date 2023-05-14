@@ -277,6 +277,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
                 viewModel.addSchool(binding.getSchool()).observe(getViewLifecycleOwner(), b -> {
                     if (b) {
                         progressDialog.dismiss();
+                        Toast.makeText(getContext(),  "स्कूल ऐड हो गया है।\n", Toast.LENGTH_SHORT).show();
                         clearErrors();
                         navigateUp();
                     }

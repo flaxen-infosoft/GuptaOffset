@@ -210,6 +210,8 @@ public class EmployeeAddDealerFragment extends Fragment {
                         progressDialog.dismiss();
                         clearErrors();
                         navigateUp();
+                        Toast.makeText(getContext(), "डीलर ऐड हो गए है ।\n", Toast.LENGTH_SHORT).show();
+
                     }
                 });
             } catch (IOException e) {

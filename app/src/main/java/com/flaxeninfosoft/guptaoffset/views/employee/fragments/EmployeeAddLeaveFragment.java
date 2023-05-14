@@ -102,6 +102,7 @@ public class EmployeeAddLeaveFragment extends Fragment {
                 progressDialog.dismiss();
                 if (isSuccess) {
                     navigateUp();
+                    Toast.makeText(getContext(),  "छुट्टी ऐड हो गई है ।\n", Toast.LENGTH_SHORT).show();
                 } else {
                     binding.employeeApplyLeaveSubmitBtn.setEnabled(true);
                 }
