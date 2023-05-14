@@ -48,15 +48,15 @@ public class AdminViewModel extends SuperEmployeeViewModel {
         return flag;
     }
 
-    public LiveData<List<Employee>> getAllEmployees() {
+    public LiveData<List<Employee>> getAllEmployees(String date) {
 
-        fetchAllEmployees();
+        fetchAllEmployees(date);
 
         return employeeList;
     }
 
-    public void fetchAllEmployees() {
-        repo.getAllEmployees(new ApiResponseListener<List<Employee>, String>() {
+    public void fetchAllEmployees(String date) {
+        repo.getAllEmployees(date, new ApiResponseListener<List<Employee>, String>() {
             @Override
             public void onSuccess(List<Employee> response) {
                 employeeList.postValue(response);

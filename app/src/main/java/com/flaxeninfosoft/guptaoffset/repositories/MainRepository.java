@@ -108,8 +108,8 @@ public class MainRepository {
         processEmployeeCall(getEmployeeByIdCall, listener);
     }
 
-    public void getAllEmployees(ApiResponseListener<List<Employee>, String> listener) {
-        Call<List<Employee>> getAllEmployeesCall = employeeApiInterface.getAllEmployees();
+    public void getAllEmployees(String date,ApiResponseListener<List<Employee>, String> listener) {
+        Call<List<Employee>> getAllEmployeesCall = employeeApiInterface.getAllEmployees(date);
 
         processEmployeeListCall(getAllEmployeesCall, listener);
     }
