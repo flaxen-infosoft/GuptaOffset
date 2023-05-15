@@ -19,7 +19,7 @@ public interface EmployeeApiInterface {
     Call<Employee> getEmployeeById(@Query(Constants.EMPLOYEE_ID) Long empId);
 
     @GET(ApiEndpoints.GET_ALL_EMPLOYEES)
-    Call<List<Employee>> getAllEmployees();
+    Call<List<Employee>> getAllEmployees(@Query("date")String date);
 
     @GET(ApiEndpoints.GET_ALL_SUPER_EMPLOYEES)
     Call<List<Employee>> getAllSuperEmployees();

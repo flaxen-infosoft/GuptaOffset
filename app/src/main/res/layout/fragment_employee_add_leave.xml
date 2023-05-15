@@ -31,7 +31,7 @@
                 android:layout_height="50dp"
                 android:layout_marginEnd="25dp"
                 android:layout_weight="5"
-                android:background="@drawable/leave_background"
+                android:background="@color/white"
                 android:gravity="center"
                 android:hint="Leave from"
                 android:text="@{leave.fromDate}"
@@ -43,7 +43,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="5dp"
                 android:layout_weight="5"
-                android:background="@drawable/leave_background"
+                android:background="@color/white"
                 android:gravity="center"
                 android:hint="Leave to"
                 android:text="@{leave.toDate}"
@@ -55,7 +55,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp">
+            android:layout_margin="12dp"
+            android:background="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -68,10 +69,11 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/employee_apply_leave_message_til"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp">
+            android:layout_margin="12dp"
+            android:background="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -88,8 +90,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="8dp"
-            android:backgroundTint="#FD7F44"
-            android:textColor="@color/white"
             android:text="Apply Leave" />
 
 

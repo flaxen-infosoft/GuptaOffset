@@ -5,6 +5,8 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -37,6 +39,7 @@ import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.AdminViewModel;
+import com.flaxeninfosoft.guptaoffset.views.SplashActivity;
 import com.flaxeninfosoft.guptaoffset.views.admin.AdminMainActivity;
 import com.google.gson.Gson;
 
@@ -58,11 +61,11 @@ import io.paperdb.Paper;
 public class AdminHomeFragment extends Fragment {
 
     private FragmentAdminHomeBinding binding;
-    private  static AdminViewModel viewModel;
+    private static AdminViewModel viewModel;
     private List<Employee> employeeList;
-    String selectedDate = "";
+    static String selectedDate = "";
 
-    String currentDate = "";
+    static String currentDate = "";
 
     public AdminHomeFragment() {
         // Required empty public constructor
@@ -81,20 +84,34 @@ public class AdminHomeFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_home, container, false);
 
         binding.adminHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        String formattedDateTime = "";
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            currentDate = now.format(formatter);
+            Paper.init(getContext());
+            Paper.book().write("currentDate", formattedDateTime);
+        }
 
-        ((AdminMainActivity) requireActivity()).setupActionBar(binding.adminHomeToolbar, "Admin");
-
-        viewModel.getAllEmployees().observe(getViewLifecycleOwner(), this::onChange);
+//        ((AdminMainActivity) requireActivity()).setupActionBar(binding.adminHomeToolbar, "Admin");
+        if (selectedDate.isEmpty()) {
+            Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
+            viewModel.getAllEmployees(currentDate).observe(getViewLifecycleOwner(), this::onChange);
+        } else {
+            Toast.makeText(getContext(), selectedDate + " Employee History", Toast.LENGTH_SHORT).show();
+            viewModel.getAllEmployees(selectedDate).observe(getViewLifecycleOwner(), this::onChange);
+        }
         binding.adminHomeAddSuperEmployee.setOnClickListener(this::navigateToAddSuperEmployee);
         binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
         binding.adminHomePaymentRequests.setOnClickListener(this::navigateToPaymentRequests);
         binding.adminHomeAllOrders.setOnClickListener(this::onClickAllOrders);
         binding.paymentReqText.setOnClickListener(this::navigateToPaymentRequests);
         binding.bookOrderText.setOnClickListener(this::onClickAllOrders);
-        binding.calenderTextId.setOnClickListener(this::onClickCalender);
+        binding.selectDateLayout.setOnClickListener(this::onClickCalender);
         binding.todayNotWorkingEmployeeText.setOnClickListener(this::onClickTodayNotWorking);
         binding.flagEmployeeText.setOnClickListener(this::onClickFlagEmployee);
         binding.above80KmDriveReport.setOnClickListener(this::onClickAbove80KmDriver);
+        binding.logOut.setOnClickListener(this::onClickLogout);
 
         binding.adminAddIcon.setOnClickListener(view -> {
             if (binding.adminHomeCard.getVisibility() == View.VISIBLE) {
@@ -141,28 +158,26 @@ public class AdminHomeFragment extends Fragment {
             }
         });
 
-        binding.adminHomeSwipeRefresh.setOnRefreshListener(this::getAllEmployees);
+        binding.adminHomeSwipeRefresh.setOnRefreshListener(this::getAllEmployeesOnSwipe);
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
-        String formattedDateTime = "";
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            formattedDateTime = now.format(formatter);
-            Paper.init(getContext());
-            Paper.book().write("currentDate", formattedDateTime);
-        }
-
-
         if (selectedDate.isEmpty()) {
-            binding.dateTextId.setText(formattedDateTime);
+            binding.dateTextId.setText(currentDate);
         } else {
             binding.dateTextId.setText(selectedDate);
         }
 
 
         return binding.getRoot();
+    }
+
+    private void onClickLogout(View view) {
+        viewModel.logout();
+        Intent intent = new Intent(getContext(), SplashActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     private void onClickAbove80KmDriver(View view) {
@@ -202,6 +217,15 @@ public class AdminHomeFragment extends Fragment {
 
                 }
             }, y, m, d);
+            datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                datePickerDialog.getDatePicker().setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
+                    @Override
+                    public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
+                        getAllEmployees();
+                    }
+                });
+            }
             datePickerDialog.show();
         }
     }
@@ -211,7 +235,27 @@ public class AdminHomeFragment extends Fragment {
     }
 
     private void getAllEmployees() {
-        viewModel.fetchAllEmployees();
+        if (selectedDate.isEmpty()) {
+            Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
+            viewModel.fetchAllEmployees(currentDate);
+            binding.dateTextId.setText(currentDate);
+        } else {
+            Toast.makeText(getContext(), selectedDate + " Employee History", Toast.LENGTH_SHORT).show();
+            viewModel.fetchAllEmployees(selectedDate);
+            binding.dateTextId.setText(selectedDate);
+        }
+        if (binding.adminHomeSwipeRefresh.isRefreshing()) {
+            binding.adminHomeSwipeRefresh.setRefreshing(false);
+        }
+    }
+
+
+    private void getAllEmployeesOnSwipe() {
+
+        Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
+        viewModel.fetchAllEmployees(currentDate);
+        binding.dateTextId.setText(currentDate);
+
         if (binding.adminHomeSwipeRefresh.isRefreshing()) {
             binding.adminHomeSwipeRefresh.setRefreshing(false);
         }
@@ -367,7 +411,11 @@ public class AdminHomeFragment extends Fragment {
 
                 try {
                     Toast.makeText(context, response.getString("data"), Toast.LENGTH_SHORT).show();
-                    viewModel.fetchAllEmployees();
+                    if (selectedDate.isEmpty()) {
+                        viewModel.fetchAllEmployees(currentDate);
+                    } else {
+                        viewModel.fetchAllEmployees(selectedDate);
+                    }
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);

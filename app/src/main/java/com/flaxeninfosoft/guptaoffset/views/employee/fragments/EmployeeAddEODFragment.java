@@ -248,6 +248,7 @@ public class EmployeeAddEODFragment extends Fragment {
                     if (b) {
                         progressDialog.dismiss();
                         navigateUp();
+                        Toast.makeText(getContext(), "रिपोर्ट ऐड हो गई है।\n", Toast.LENGTH_SHORT).show();
                     } else {
                         progressDialog.dismiss();
                     }

@@ -40,7 +40,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="00"
                 android:padding="3dp"
                 android:textColor="@color/textcolor"
                 android:textSize="16sp"
@@ -102,7 +102,7 @@
                                 android:id="@+id/date_text_id"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{school.date}"
+                                android:text="06 - Apr - 2024"
                                 android:textColor="@color/textcolor"
                                 android:textSize="16sp"
                                 android:layout_gravity="center"
@@ -113,6 +113,8 @@
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
                             android:background="@color/textcolor" />
+
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -138,7 +140,7 @@
                                 android:id="@+id/tm_text_id"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text=""
+                                android:text="12:03"
                                 android:textColor="@color/textcolor"
                                 android:textSize="16sp"
                                 android:layout_gravity="center"
@@ -178,7 +180,7 @@
                                 android:id="@+id/cityname_text_id"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text=""
+                                android:text="Select City"
                                 android:textColor="@color/textcolor"
                                 android:textSize="16sp"
                                 android:layout_gravity="center"
@@ -298,7 +300,7 @@
                 android:textSize="15dp"
                 android:textColor="@color/black"
                 android:layout_marginTop="3dp"
-                android:text="स्कूल इमेज" />
+                android:text="School Image" />
 
             <ImageView
                 android:id="@+id/employee_add_school_hoading_image"
@@ -521,7 +523,7 @@
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:layout_marginTop="3dp"
-                    android:text="स्पेसिमेन इमेज" />
+                    android:text="Specimen Image" />
 
                 <ImageView
                     android:id="@+id/employee_add_school_specimen_image"
@@ -543,8 +545,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Note :"
-                    android:text=""/>
+                    android:hint="Note :"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton

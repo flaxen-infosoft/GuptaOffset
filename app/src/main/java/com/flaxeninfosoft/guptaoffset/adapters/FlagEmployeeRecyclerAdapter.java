@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.ItemAdmineHomeBinding;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.views.admin.fragments.FlagEmployeeFragment;
 
 import java.util.List;
@@ -45,9 +47,11 @@ public class FlagEmployeeRecyclerAdapter extends RecyclerView.Adapter<FlagEmploy
         Long empId = employeeList.get(position).getId();
         if (context != null) {
             Paper.init(context);
-            Paper.book().write("CurrentEmployeeId", String.valueOf(employeeList.get(position).getId()));
+            Paper.book().write("CurrentEmployeeId", employeeList.get(position).getId());
         }
 
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID,empId);
         holder.binding.removeFromFlagTextview.setOnClickListener(view -> {
             FlagEmployeeFragment.removeFromFlagDialog(context, empId);
         });
@@ -56,7 +60,7 @@ public class FlagEmployeeRecyclerAdapter extends RecyclerView.Adapter<FlagEmploy
         holder.binding.linearLayoutDealer.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_seprateDealerFragment));
         holder.binding.addNotesTextview.setOnClickListener(view -> FlagEmployeeFragment.notesDialog(context, empId));
-        holder.binding.showNotesTextview.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_showNotesFragment));
+        holder.binding.showNotesTextview.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_showNotesFragment,bundle));
 
     }
 

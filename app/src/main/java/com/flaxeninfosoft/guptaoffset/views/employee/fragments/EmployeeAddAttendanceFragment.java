@@ -102,6 +102,9 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 binding.employeeAddAttendanceEndMeter.setVisibility(View.GONE);
                 binding.employeeAddAttendanceEndAddress.setVisibility(View.GONE);
                 binding.employeeAddAttendanceEndMeterImage.setVisibility(View.GONE);
+                binding.endTimeEditText.setVisibility(View.GONE);
+                binding.hindiText2.setVisibility(View.GONE);
+                binding.eveningText.setVisibility(View.GONE);
 
                 binding.employeeAddAttendanceTotalMeter.setVisibility(View.GONE);
 
@@ -138,6 +141,9 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 binding.employeeAddAttendanceEndMeter.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceEndAddress.setVisibility(View.GONE);
                 binding.employeeAddAttendanceEndMeterImage.setVisibility(View.VISIBLE);
+                binding.endTimeEditText.setVisibility(View.VISIBLE);
+                binding.hindiText2.setVisibility(View.VISIBLE);
+                binding.eveningText.setVisibility(View.VISIBLE);
 
                 binding.employeeAddAttendanceTotalMeter.setVisibility(View.GONE);
 
@@ -177,7 +183,9 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 binding.employeeAddAttendanceEndMeter.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceEndAddress.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceEndMeterImage.setVisibility(View.VISIBLE);
-
+                binding.endTimeEditText.setVisibility(View.VISIBLE);
+                binding.hindiText2.setVisibility(View.VISIBLE);
+                binding.eveningText.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceTotalMeter.setVisibility(View.VISIBLE);
 
                 binding.employeeAddAttendanceBtn.setEnabled(false);
@@ -321,6 +329,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
             viewModel.punchAttendance(reading, uri).observe(getViewLifecycleOwner(), attendance -> {
                 if (attendance != null) {
                     progressDialog.dismiss();
+                    Toast.makeText(getContext(), "आपकी उपस्थिति दर्ज हो गई है ।\n", Toast.LENGTH_SHORT).show();
                     navigateUp();
                 } else {
                     progressDialog.dismiss();
