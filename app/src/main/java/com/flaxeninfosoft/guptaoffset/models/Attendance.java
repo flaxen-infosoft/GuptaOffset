@@ -8,6 +8,10 @@ import java.sql.Date;
 
 public class Attendance {
 
+
+    @SerializedName(Constants.NAME)
+    @Expose
+    private String name;
     @SerializedName(Constants.ID)
     @Expose
     private Long id;
@@ -42,7 +46,7 @@ public class Attendance {
 
     @SerializedName(Constants.START_LOCATION)
     @Expose
-    private Location startLocation;
+    private Location start_location;
 
     @SerializedName(Constants.END_METER)
     @Expose
@@ -50,7 +54,7 @@ public class Attendance {
 
     @SerializedName(Constants.END_LOCATION)
     @Expose
-    private Location endLocation;
+    private Location end_location;
 
     @SerializedName(Constants.TOTAL_DISTANCE)
     @Expose
@@ -73,8 +77,32 @@ public class Attendance {
     }
 
     public Attendance() {
-        startLocation = new Location();
-        endLocation = new Location();
+        start_location = new Location();
+        end_location = new Location();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Location getStart_location() {
+        return start_location;
+    }
+
+    public void setStart_location(Location start_location) {
+        this.start_location = start_location;
+    }
+
+    public Location getEnd_location() {
+        return end_location;
+    }
+
+    public void setEnd_location(Location end_location) {
+        this.end_location = end_location;
     }
 
     public Long getId() {
@@ -143,11 +171,11 @@ public class Attendance {
     }
 
     public Location getStartLocation() {
-        return startLocation;
+        return start_location;
     }
 
     public void setStartLocation(Location startLocation) {
-        this.startLocation = startLocation;
+        this.start_location = startLocation;
     }
 
     public String getEndMeter() {
@@ -159,11 +187,11 @@ public class Attendance {
     }
 
     public Location getEndLocation() {
-        return endLocation;
+        return end_location;
     }
 
     public void setEndLocation(Location endLocation) {
-        this.endLocation = endLocation;
+        this.end_location = endLocation;
     }
 
     public String getTotalDistance() {
@@ -185,7 +213,8 @@ public class Attendance {
     @Override
     public String toString() {
         return "Attendance{" +
-                "id=" + id +
+                "name" + name +
+                ",id=" + id +
                 ", empId=" + empId +
                 ", timeIn=" + timeIn +
                 ", timeOut=" + timeOut +

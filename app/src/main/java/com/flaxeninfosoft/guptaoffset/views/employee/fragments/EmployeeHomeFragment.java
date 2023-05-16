@@ -93,7 +93,7 @@ public class EmployeeHomeFragment extends Fragment {
         binding.meetingTaskTextview.setOnClickListener(this::navigateToMeetingOrTask);
         binding.schoolListTextview.setOnClickListener(this::navigateToSchoolList);
         binding.myAccount.setOnClickListener(this::navigateToMyAccount);
-        binding.selectDateLayout.setOnClickListener(this::onSelectDate);
+        binding.dateTextId.setOnClickListener(this::onSelectDate);
 
         String formattedDateTime = "";
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {

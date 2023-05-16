@@ -26,9 +26,11 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentAbove80KmDriveReportBi
 import com.flaxeninfosoft.guptaoffset.models.Attachment;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
+import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.ShowNotes;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,11 +50,9 @@ public class Above80KmDriveReportFragment extends Fragment {
     List<Attendance> attendanceList;
     String selectedDate;
 
-    String empId;
+    static Long empId;
 
     String currentDate = "";
-
-    List<Employee> employeeList;
 
     RequestQueue requestQueue;
 
@@ -62,10 +62,11 @@ public class Above80KmDriveReportFragment extends Fragment {
 
     Gson gson;
 
+
+
     public Above80KmDriveReportFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -92,7 +93,7 @@ public class Above80KmDriveReportFragment extends Fragment {
         progressDialog.setMessage("Please wait...");
         above80kmRecyclerAdapter = new Above80kmRecyclerAdapter(attendanceList, this::onClickAbove80km);
         binding.above80KmDriveReportRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.above80SwipeRefresh.setOnRefreshListener(()-> getAbove80());
+        binding.above80kmSwipeRefresh.setOnRefreshListener(()-> getAbove80());
         binding.above80KmDriveReportRecycler.setAdapter(above80kmRecyclerAdapter);
         above80kmRecyclerAdapter.notifyDataSetChanged();
         getAbove80();
@@ -106,20 +107,21 @@ public class Above80KmDriveReportFragment extends Fragment {
     }
 
     private void getAbove80() {
-
+        attendanceList.clear();
         progressDialog.show();
         String url = ApiEndpoints.BASE_URL + "attendance/gettotodayeightyAttendance.php";
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("empId", empId);
+        Toast.makeText(getContext(), ""+empId, Toast.LENGTH_SHORT).show();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url , new JSONObject(hashMap) , response -> {
             Log.i("Above80km", response.toString());
             progressDialog.dismiss();
 
-            if (binding.above80SwipeRefresh.isRefreshing()) {
-                binding.above80SwipeRefresh.setRefreshing(false);
+            if (binding.above80kmSwipeRefresh.isRefreshing()) {
+                binding.above80kmSwipeRefresh.setRefreshing(false);
             }
-            try{
-                if (response.getJSONArray("data").length() > 0) {
+            if (response != null) {
+                try {
                     JSONArray jsonArray = response.getJSONArray("data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -127,30 +129,25 @@ public class Above80KmDriveReportFragment extends Fragment {
                         attendanceList.add(attendance);
                     }
 
-//                    binding.above80KmDriveReportRecycler.setAdapter(above80kmRecyclerAdapter);
-//                    above80kmRecyclerAdapter.notifyDataSetChanged();
+                    binding.above80KmDriveReportRecycler.setAdapter(above80kmRecyclerAdapter);
+                    above80kmRecyclerAdapter.notifyDataSetChanged();
                     if (attendanceList == null || attendanceList.isEmpty()) {
-                        binding.above80SwipeRefresh.setVisibility(View.GONE);
+                        binding.above80KmDriveReportRecycler.setVisibility(View.GONE);
                         binding.above80KmDriveReportEmptyTV.setVisibility(View.VISIBLE);
                     } else {
-                        binding.above80SwipeRefresh.setVisibility(View.VISIBLE);
+                        binding.above80KmDriveReportRecycler.setVisibility(View.VISIBLE);
                         binding.above80KmDriveReportEmptyTV.setVisibility(View.GONE);
                     }
-                }else {
-                    try {
-                        Toast.makeText(getContext(), response.getString("data"), Toast.LENGTH_SHORT).show();
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
+
             }
 
         }, error -> {
             progressDialog.dismiss();
-            if (binding.above80SwipeRefresh.isRefreshing()) {
-                binding.above80SwipeRefresh.setRefreshing(false);
+            if (binding.above80kmSwipeRefresh.isRefreshing()) {
+                binding.above80kmSwipeRefresh.setRefreshing(false);
             }
         });
 

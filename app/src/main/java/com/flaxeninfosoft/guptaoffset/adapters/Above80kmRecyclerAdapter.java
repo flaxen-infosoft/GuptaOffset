@@ -43,7 +43,6 @@ public class Above80kmRecyclerAdapter extends RecyclerView.Adapter<Above80kmRecy
     public void onBindViewHolder(@NonNull Above80kmRecyclerAdapter.ViewHolder holder, int position) {
 
         holder.setData(attendanceList.get(position));
-        Long empId = Paper.book().read("CurrentEmployeeId");
         Long Id = attendanceList.get(position).getId();
         if (context != null){
             Paper.init(context);
