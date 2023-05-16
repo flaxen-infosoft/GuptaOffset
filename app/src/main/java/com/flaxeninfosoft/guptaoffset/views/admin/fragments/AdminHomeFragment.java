@@ -103,7 +103,8 @@ public class AdminHomeFragment extends Fragment {
         }
         binding.adminHomeAddSuperEmployee.setOnClickListener(this::navigateToAddSuperEmployee);
         binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
-        binding.adminHomePaymentRequests.setOnClickListener(this::navigateToPaymentRequests);
+        binding.adminHomeLeave.setOnClickListener(this::navigateToAdminLeave);
+     //   binding.adminHomePaymentRequests.setOnClickListener(this::navigateToPaymentRequests);
         binding.adminHomeAllOrders.setOnClickListener(this::onClickAllOrders);
         binding.paymentReqText.setOnClickListener(this::navigateToPaymentRequests);
         binding.bookOrderText.setOnClickListener(this::onClickAllOrders);
@@ -263,6 +264,9 @@ public class AdminHomeFragment extends Fragment {
 
     private void navigateToPaymentRequests(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.pendingPaymentRequestsFragment);
+    }
+    private void navigateToAdminLeave(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_adminLeaveFragment22);
     }
 
     private void navigateToAddEmployee(View view) {
