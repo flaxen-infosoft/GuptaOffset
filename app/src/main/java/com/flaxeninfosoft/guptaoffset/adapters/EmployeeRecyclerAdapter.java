@@ -80,7 +80,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
         holder.binding.showNotesTextview.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_showNotesFragment,bundle));
         holder.binding.leaveTextview.setOnClickListener(view ->
-                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_adminLeaveFragment2,bundle));
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_adminLeaveFragment,bundle));
     }
 
     @Override

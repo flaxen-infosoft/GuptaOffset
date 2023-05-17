@@ -32,7 +32,7 @@ public class AdminLeaveAdapter extends RecyclerView.Adapter<AdminLeaveAdapter.Vi
         this.leaveList = leaveList;
         this.context = context;
         this.adminLeaveClickListener = adminLeaveClickListener;
-    }
+    }  
 
     @NonNull
     @Override
@@ -41,6 +41,9 @@ public class AdminLeaveAdapter extends RecyclerView.Adapter<AdminLeaveAdapter.Vi
         return new ViewHolder(adminLeaveBinding,adminLeaveClickListener);
 
     }
+
+
+
 
     @Override
     public void onBindViewHolder(@NonNull AdminLeaveAdapter.ViewHolder holder, int position) {
