@@ -40,9 +40,6 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_above80KmDriveReportFragment"
             app:destination="@id/above80KmDriveReportFragment" />
-        <action
-            android:id="@+id/action_adminHomeFragment_to_adminLeaveFragment2"
-            app:destination="@id/adminLeaveFragment2" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
@@ -154,9 +151,6 @@
         <action
             android:id="@+id/action_flagEmployeeFragment_to_seprateSchoolFragment"
             app:destination="@id/seprateSchoolFragment" />
-        <action
-            android:id="@+id/action_flagEmployeeFragment_to_showNotesFragment2"
-            app:destination="@id/showNotesFragment" />
     </fragment>
     <fragment
         android:id="@+id/todayNotWokingEmployeeFragment"
@@ -171,9 +165,4 @@
         android:id="@+id/above80KmDriveReportFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.Above80KmDriveReportFragment"
         android:label="Above80KmDriveReportFragment" />
-    <fragment
-        android:id="@+id/adminLeaveFragment2"
-        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminLeaveFragment"
-        android:label="fragment_admin_leave"
-        tools:layout="@layout/fragment_admin_leave" />
 </navigation>

@@ -56,6 +56,7 @@ public class EmployeeHomeFragment extends Fragment {
     private FragmentEmployeeHomeBinding binding;
     static String selectedDate = "";
     static String currentDate = "";
+    private Employee employee;
 
     public EmployeeHomeFragment() {
         // Required empty public constructor
@@ -74,7 +75,7 @@ public class EmployeeHomeFragment extends Fragment {
         binding.setMessage(new Message());
         binding.getMessage().setReceiverId(viewModel.getCurrentEmployee().getId());
 
-        Employee employee = viewModel.getCurrentEmployee();
+         employee = viewModel.getCurrentEmployee();
         binding.employeeName.setText(employee.getName());
 
         viewModel.getCurrentEmployeeTodaysAttendance().observe(getViewLifecycleOwner(), this::setAttendance);
@@ -319,6 +320,7 @@ public class EmployeeHomeFragment extends Fragment {
     }
 
     private void navigateToPaymentRequest(View view) {
+
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeePaymentRequestFragment);
     }
 
@@ -355,11 +357,15 @@ public class EmployeeHomeFragment extends Fragment {
     }
 
     private void navigateToPaymentReceive(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_paymentReceiveFragment);
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID,employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_paymentReceiveFragment,bundle);
     }
 
     private void navigateToBookOrderList(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_bookOrderListrFragment);
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID,employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_bookOrderListrFragment,bundle);
     }
 
     private void navigateToAbsentOrLeave(View view) {
