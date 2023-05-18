@@ -672,10 +672,10 @@
                             android:background="@drawable/soild_card_corner"
                             android:backgroundTint="#808080"
                             android:gravity="center"
-                            android:padding="4dp"
+                            android:padding="6dp"
                             android:text="Remove Flag"
                             android:textColor="@color/white"
-                            android:textSize="15sp"
+                            android:textSize="11sp"
                             android:textStyle="bold"
                             android:visibility="gone" />
 
