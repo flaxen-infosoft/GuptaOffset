@@ -523,30 +523,30 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-<!--                <LinearLayout-->
+                <LinearLayout
+                    android:id="@+id/employeeHomeCardDailyReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp">
 
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical"-->
-<!--                    android:padding="4dp">-->
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        app:srcCompat="@drawable/ic_report" />
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="50dp"-->
-<!--                        android:layout_height="50dp"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:padding="5dp"-->
-<!--                        app:srcCompat="@drawable/ic_report" />-->
-
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_horizontal"-->
-<!--                        android:layout_margin="4dp"-->
-<!--                        android:gravity="center_horizontal"-->
-<!--                        android:text="रिपोर्ट / प्रतिवेदन"-->
-<!--                        android:textSize="11sp"-->
-<!--                        android:textStyle="bold" />-->
-<!--                </LinearLayout>-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="4dp"
+                        android:gravity="center_horizontal"
+                        android:text="रिपोर्ट / प्रतिवेदन"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
             </GridLayout>
 
