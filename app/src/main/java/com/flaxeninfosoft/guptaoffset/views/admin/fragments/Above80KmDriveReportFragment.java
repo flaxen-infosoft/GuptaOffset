@@ -63,7 +63,6 @@ public class Above80KmDriveReportFragment extends Fragment {
     Gson gson;
 
 
-
     public Above80KmDriveReportFragment() {
         // Required empty public constructor
     }
@@ -80,7 +79,7 @@ public class Above80KmDriveReportFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        binding =  DataBindingUtil.inflate(inflater,R.layout.fragment_above80_km_drive_report, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_above80_km_drive_report, container, false);
         binding.above80KmDriveReportBackImg.setOnClickListener(this::onClickBack);
         currentDate = Paper.book().read("currentDate");
         selectedDate = Paper.book().read("selectedDate");
@@ -93,13 +92,13 @@ public class Above80KmDriveReportFragment extends Fragment {
         progressDialog.setMessage("Please wait...");
         above80kmRecyclerAdapter = new Above80kmRecyclerAdapter(attendanceList, this::onClickAbove80km);
         binding.above80KmDriveReportRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.above80kmSwipeRefresh.setOnRefreshListener(()-> getAbove80());
+        binding.above80kmSwipeRefresh.setOnRefreshListener(() -> getAbove80());
         binding.above80KmDriveReportRecycler.setAdapter(above80kmRecyclerAdapter);
         above80kmRecyclerAdapter.notifyDataSetChanged();
         getAbove80();
 
 
-        return  binding.getRoot();
+        return binding.getRoot();
     }
 
     private void onClickAbove80km(Attendance attendance) {
@@ -110,10 +109,10 @@ public class Above80KmDriveReportFragment extends Fragment {
         attendanceList.clear();
         progressDialog.show();
         String url = ApiEndpoints.BASE_URL + "attendance/gettotodayeightyAttendance.php";
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("empId", empId);
-        Toast.makeText(getContext(), ""+empId, Toast.LENGTH_SHORT).show();
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url , new JSONObject(hashMap) , response -> {
+//        HashMap<String, Object> hashMap = new HashMap<>();
+//        hashMap.put("empId", empId);
+//        Toast.makeText(getContext(), ""+empId, Toast.LENGTH_SHORT).show();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
             Log.i("Above80km", response.toString());
             progressDialog.dismiss();
 
