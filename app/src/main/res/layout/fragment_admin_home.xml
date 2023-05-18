@@ -6,7 +6,7 @@
     <data>
 
     </data>
-
+    
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,9 +27,9 @@
             android:id="@+id/admin_home_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="11dp"
+            android:layout_marginHorizontal="12dp"
             android:singleLine="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginVertical="4dp"
             android:background="@drawable/edit_text_border"
             android:hint="Search Employee"
             android:padding="10dp"
@@ -52,7 +52,6 @@
             android:layout_marginTop="5dp">
 
             <LinearLayout
-                android:id="@+id/select_date_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/layoutcornor"
@@ -76,7 +75,7 @@
                     android:id="@+id/date_text_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="06 - Apr - 2024"
                     android:textColor="@color/red"
                     android:textStyle="bold"
                     android:layout_weight="7"
@@ -259,7 +258,7 @@
             android:id="@+id/admin_home_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="8dp"
             android:visibility="gone"
             app:cardCornerRadius="8dp"
@@ -272,9 +271,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:columnCount="5"
+                android:columnCount="4"
                 android:padding="8dp"
-                android:rowCount="5">
+                android:rowCount="4">
 
                 <LinearLayout
                     android:id="@+id/admin_home_add_employee"
@@ -288,14 +287,14 @@
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:padding="3dp"
-                        app:srcCompat="@drawable/add_employee" />
+                        app:srcCompat="@drawable/ic_employee" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        android:text="Add \nEmployee"
+                        android:text="Add Employee"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -336,7 +335,7 @@
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:padding="4dp"
-                        app:srcCompat="@drawable/payment_request" />
+                        app:srcCompat="@drawable/ic_pending_requests" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -356,7 +355,6 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:layout_gravity="center"
                     android:orientation="vertical"
                     android:padding="5dp">
 
@@ -376,16 +374,16 @@
                         android:text="All\nOrders"
                         android:textSize="11sp"
                         android:textStyle="bold" />
+
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/log_out"
+                    android:id="@+id/admin_home_logout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:layout_gravity="center"
                     android:orientation="vertical"
                     android:padding="5dp">
 
@@ -394,7 +392,7 @@
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:padding="4dp"
-                        app:srcCompat="@drawable/logout" />
+                        app:srcCompat="@drawable/floating_logout" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -402,9 +400,10 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="4dp"
                         android:gravity="center_horizontal"
-                        android:text="Log \nOut"
+                        android:text="Logout"
                         android:textSize="11sp"
                         android:textStyle="bold" />
+
                 </LinearLayout>
 
             </GridLayout>

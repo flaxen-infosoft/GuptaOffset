@@ -94,7 +94,7 @@ public class EmployeeHomeFragment extends Fragment {
         binding.meetingTaskTextview.setOnClickListener(this::navigateToMeetingOrTask);
         binding.schoolListTextview.setOnClickListener(this::navigateToSchoolList);
         binding.myAccount.setOnClickListener(this::navigateToMyAccount);
-        binding.selectDateLayout.setOnClickListener(this::onSelectDate);
+        binding.dateTextId.setOnClickListener(this::onSelectDate);
 
         String formattedDateTime = "";
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -188,11 +188,11 @@ public class EmployeeHomeFragment extends Fragment {
         Log.i("time", String.valueOf(time));
 
 
-        if (punchStatus.equals("0")) {
-            showDialog();
-        } else if (punchStatus.equals("1") && time >= 19) {
-            showDialog();
-        }
+//        if (punchStatus.equals("0")) {
+//            showDialog();
+//        } else if (punchStatus.equals("1") && time >= 19) {
+//            showDialog();
+//        }
 
 
     }

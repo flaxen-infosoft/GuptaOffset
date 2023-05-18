@@ -31,8 +31,8 @@
                 android:layout_height="50dp"
                 android:layout_marginEnd="25dp"
                 android:layout_weight="5"
+                android:background="@color/white"
                 android:gravity="center"
-                android:background="@drawable/layoutcorner2"
                 android:hint="Leave from"
                 android:text="@{leave.fromDate}"
                 android:textStyle="bold" />
@@ -43,9 +43,9 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="5dp"
                 android:layout_weight="5"
+                android:background="@color/white"
                 android:gravity="center"
                 android:hint="Leave to"
-                android:background="@drawable/layoutcorner2"
                 android:text="@{leave.toDate}"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -55,7 +55,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp">
+            android:layout_margin="12dp"
+            android:background="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -71,7 +72,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp">
+            android:layout_margin="12dp"
+            android:background="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"

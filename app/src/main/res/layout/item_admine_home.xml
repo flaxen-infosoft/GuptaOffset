@@ -693,6 +693,21 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/leave_textview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="5"
+                            android:background="@drawable/soild_card_corner"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="Leave"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
                             android:id="@+id/show_notes_textview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

@@ -103,16 +103,16 @@ public class AdminHomeFragment extends Fragment {
         }
         binding.adminHomeAddSuperEmployee.setOnClickListener(this::navigateToAddSuperEmployee);
         binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
-        binding.adminHomeLeave.setOnClickListener(this::navigateToAdminLeave);
+//        binding.adminHomeLeave.setOnClickListener(this::navigateToAdminLeave);
      //   binding.adminHomePaymentRequests.setOnClickListener(this::navigateToPaymentRequests);
         binding.adminHomeAllOrders.setOnClickListener(this::onClickAllOrders);
         binding.paymentReqText.setOnClickListener(this::navigateToPaymentRequests);
         binding.bookOrderText.setOnClickListener(this::onClickAllOrders);
-        binding.selectDateLayout.setOnClickListener(this::onClickCalender);
+        binding.dateTextId.setOnClickListener(this::onClickCalender);
         binding.todayNotWorkingEmployeeText.setOnClickListener(this::onClickTodayNotWorking);
         binding.flagEmployeeText.setOnClickListener(this::onClickFlagEmployee);
         binding.above80KmDriveReport.setOnClickListener(this::onClickAbove80KmDriver);
-        binding.logOut.setOnClickListener(this::onClickLogout);
+        binding.adminHomeLogout.setOnClickListener(this::onClickLogout);
 
         binding.adminAddIcon.setOnClickListener(view -> {
             if (binding.adminHomeCard.getVisibility() == View.VISIBLE) {
@@ -265,9 +265,9 @@ public class AdminHomeFragment extends Fragment {
     private void navigateToPaymentRequests(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.pendingPaymentRequestsFragment);
     }
-    private void navigateToAdminLeave(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_adminLeaveFragment22);
-    }
+//    private void navigateToAdminLeave(View view) {
+//        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_adminLeaveFragment22);
+//    }
 
     private void navigateToAddEmployee(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminHomeFragment_to_superEmployeeAddEmployeeFragment);

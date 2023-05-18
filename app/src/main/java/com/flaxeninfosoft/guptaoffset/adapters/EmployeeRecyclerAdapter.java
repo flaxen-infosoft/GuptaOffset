@@ -77,7 +77,10 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
         holder.binding.addNotesTextview.setOnClickListener(view -> AdminHomeFragment.notesDialog(context, empId));
         Bundle bundle = new Bundle();
         bundle.putLong(Constants.EMPLOYEE_ID,empId);
-        holder.binding.showNotesTextview.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_showNotesFragment,bundle));
+        holder.binding.showNotesTextview.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_showNotesFragment,bundle));
+        holder.binding.leaveTextview.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_adminLeaveFragment,bundle));
     }
 
     @Override

@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="#FD7F44"
+            android:textColor="@color/white"
             android:text="Add order" />
 
     </LinearLayout>
