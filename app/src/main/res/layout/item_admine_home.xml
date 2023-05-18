@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="employee"
-            type="com.flaxeninfosoft.guptaoffset.models.Employee"/>
+            type="com.flaxeninfosoft.guptaoffset.models.Employee" />
     </data>
 
     <LinearLayout
@@ -44,38 +45,37 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{employee.name}"
-                        android:background="@drawable/soild_card_corner"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:layout_weight="9"
+                        android:background="@drawable/soild_card_corner"
                         android:gravity="center"
+                        android:padding="5sp"
+                        android:text="@{employee.name}"
+                        android:textColor="@color/white"
                         android:textSize="18sp"
-                        android:padding="5sp" />
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
+                        android:orientation="horizontal"
                         android:paddingStart="5dp"
-                        android:paddingEnd="5dp"
-                        android:orientation="horizontal">
+                        android:paddingEnd="5dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="District \nMap"
-                            android:textSize="12sp"
                             android:gravity="center"
+                            android:text="District \nMap"
                             android:textColor="@color/black"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
 
                         <ImageView
                             android:layout_width="30sp"
                             android:layout_height="30sp"
                             android:layout_gravity="center"
-                            android:src="@drawable/baseline_location_on_24"
-                            />
+                            android:src="@drawable/baseline_location_on_24" />
 
                     </LinearLayout>
 
@@ -87,15 +87,16 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="@{employee.batteryStatus+` %`}"
                             android:background="@drawable/soild_card_corner"
-                            android:textColor="#FDEBC7"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
                             android:gravity="center"
-                            android:padding="5sp" />
+                            android:padding="5sp"
+                            android:text="@{employee.batteryStatus+` %`}"
+                            android:textColor="#FDEBC7"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
+
                     <View
                         android:layout_width="1.5dp"
                         android:layout_height="match_parent"
@@ -111,10 +112,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="10"
-                    android:backgroundTint="#FDF3DE"
                     android:background="@drawable/layoutcornor"
-                    android:orientation="horizontal">
+                    android:backgroundTint="#FDF3DE"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
 
                     <View
                         android:layout_width="1.5dp"
@@ -124,13 +125,13 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{employee.currentLocation.address}"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
+                        android:layout_weight="2.6"
                         android:gravity="center"
                         android:padding="5sp"
-                        android:layout_weight="2.6"
-                        android:textColor="@color/textcolor" />
+                        android:text="@{employee.currentLocation.address}"
+                        android:textColor="@color/textcolor"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="1.5dp"
@@ -141,31 +142,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="7.4"
-                        android:padding="3dp"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="3dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Last Update :"
-                            android:textStyle="bold"
+                            android:textColor="@color/textcolor"
                             android:textSize="14sp"
-                            android:textColor="@color/textcolor" />
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="@{employee.currentLocation.date}"
                             android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
+                            android:text="@{employee.currentLocation.date}"
+                            android:textColor="@color/textcolor"
                             android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/textcolor" />
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
+
                     <View
                         android:layout_width="1.5dp"
                         android:layout_height="match_parent"
@@ -177,8 +179,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/layoutcornor"
-                    android:padding="5sp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="5sp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -189,20 +191,20 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/layoutcorner2"
-                            android:layout_marginEnd="3sp"
                             android:layout_marginStart="3sp"
+                            android:layout_marginEnd="3sp"
                             android:layout_weight="2"
+                            android:background="@drawable/layoutcorner2"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Attendance \ntime"
                                 android:layout_gravity="center"
                                 android:gravity="center"
-                                android:textSize="12sp"
+                                android:text="Attendance \ntime"
                                 android:textColor="@color/black"
+                                android:textSize="12sp"
                                 android:textStyle="bold" />
 
                             <View
@@ -220,14 +222,14 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="M"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black" />
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold" />
 
                                 <ImageView
                                     android:layout_width="15sp"
                                     android:layout_height="15sp"
-                                    android:src="@drawable/greencheck"
-                                    android:layout_marginStart="5sp" />
+                                    android:layout_marginStart="5sp"
+                                    android:src="@drawable/greencheck" />
 
                                 <View
                                     android:layout_width="1dp"
@@ -240,14 +242,14 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="E"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black" />
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold" />
 
                                 <ImageView
                                     android:layout_width="15sp"
                                     android:layout_height="15sp"
-                                    android:src="@drawable/redcheck"
-                                    android:layout_marginStart="5sp" />
+                                    android:layout_marginStart="5sp"
+                                    android:src="@drawable/redcheck" />
 
                             </LinearLayout>
 
@@ -265,10 +267,10 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@{employee.morning_attendance != null ? employee.morning_attendance : `0:0`}"
-                                    android:textStyle="bold"
                                     android:gravity="center"
-                                    android:textColor="@color/black" />
+                                    android:text="@{employee.morning_attendance != null ? employee.morning_attendance : `0:0`}"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold" />
 
                                 <View
                                     android:layout_width="1dp"
@@ -280,10 +282,10 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@{employee.evening_attendance != null ? employee.evening_attendance : `0:0`}"
-                                    android:textStyle="bold"
                                     android:gravity="center"
-                                    android:textColor="@color/black" />
+                                    android:text="@{employee.evening_attendance != null ? employee.evening_attendance : `0:0`}"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold" />
 
 
                             </LinearLayout>
@@ -294,23 +296,23 @@
                             android:id="@+id/linear_layout_school"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/layoutcorner2"
                             android:layout_marginEnd="3sp"
                             android:layout_weight="2"
+                            android:background="@drawable/layoutcorner2"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="School"
                                 android:layout_gravity="center"
-                                android:textSize="15dp"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
                                 android:drawableEnd="@drawable/baseline_school_24"
                                 android:drawablePadding="5dp"
                                 android:drawableTint="@color/textcolor"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:text="School"
                                 android:textColor="@color/black"
+                                android:textSize="15dp"
                                 android:textStyle="bold" />
 
                             <View
@@ -327,11 +329,11 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:padding="2sp"
                                     android:text="@{employee.school_count != null ? employee.school_count : `0`}"
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
-                                    android:gravity="center"
-                                    android:padding="2sp"
                                     android:textStyle="bold" />
 
 
@@ -342,23 +344,23 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/layoutcorner2"
                             android:layout_marginEnd="3sp"
                             android:layout_weight="2"
+                            android:background="@drawable/layoutcorner2"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Petrol"
                                 android:layout_gravity="center"
-                                android:textSize="15dp"
                                 android:drawableEnd="@drawable/petrol"
                                 android:drawablePadding="5dp"
                                 android:drawableTint="@color/textcolor"
                                 android:paddingTop="5dp"
                                 android:paddingBottom="1dp"
+                                android:text="Petrol"
                                 android:textColor="@color/black"
+                                android:textSize="15dp"
                                 android:textStyle="bold" />
 
                             <View
@@ -376,11 +378,11 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:padding="2sp"
                                     android:text="@{employee.petrol_amount != null ? employee.petrol_amount : `0`}"
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
-                                    android:gravity="center"
-                                    android:padding="2sp"
                                     android:textStyle="bold" />
 
 
@@ -391,20 +393,20 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/layoutcorner2"
                             android:layout_marginEnd="3sp"
                             android:layout_weight="2"
+                            android:background="@drawable/layoutcorner2"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Tehsil Cover"
                                 android:layout_gravity="center"
-                                android:textSize="15sp"
                                 android:paddingTop="5dp"
                                 android:paddingBottom="7dp"
+                                android:text="Tehsil Cover"
                                 android:textColor="@color/black"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
 
                             <View
@@ -439,32 +441,32 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginStart="3dp"
                         android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/layoutcorner2"
                             android:layout_marginEnd="3sp"
                             android:layout_weight="2"
+                            android:background="@drawable/layoutcorner2"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="K.M."
                                 android:layout_gravity="center"
-                                android:textSize="15sp"
+                                android:drawableEnd="@drawable/km_icon"
+                                android:drawablePadding="5dp"
+                                android:drawableTint="@color/textcolor"
                                 android:paddingTop="5dp"
                                 android:paddingEnd="3dp"
-                                android:drawableEnd="@drawable/km_icon"
-                                android:drawableTint="@color/textcolor"
-                                android:drawablePadding="5dp"
                                 android:paddingBottom="5dp"
+                                android:text="K.M."
                                 android:textColor="@color/black"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
 
                             <View
@@ -482,12 +484,12 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:text="@{employee.km != null ? employee.km : `0`}"
-                                    android:textColor="@color/textcolor"
-                                    android:textSize="18sp"
                                     android:gravity="center"
                                     android:paddingTop="7dp"
                                     android:paddingBottom="7dp"
+                                    android:text="@{employee.km != null ? employee.km : `0`}"
+                                    android:textColor="@color/textcolor"
+                                    android:textSize="18sp"
                                     android:textStyle="bold" />
 
                             </LinearLayout>
@@ -498,20 +500,20 @@
                             android:id="@+id/linear_layout_dealer"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/layoutcorner2"
                             android:layout_marginEnd="3sp"
                             android:layout_weight="2"
+                            android:background="@drawable/layoutcorner2"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Dealer"
                                 android:layout_gravity="center"
-                                android:textSize="15sp"
                                 android:paddingTop="5dp"
                                 android:paddingBottom="5dp"
+                                android:text="Dealer"
                                 android:textColor="@color/black"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
 
                             <View
@@ -529,12 +531,12 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:text="@{employee.dealer_count != null ? employee.dealer_count : `0`}"
-                                    android:textColor="@color/textcolor"
-                                    android:textSize="18sp"
                                     android:gravity="center"
                                     android:paddingTop="7dp"
                                     android:paddingBottom="7dp"
+                                    android:text="@{employee.dealer_count != null ? employee.dealer_count : `0`}"
+                                    android:textColor="@color/textcolor"
+                                    android:textSize="18sp"
                                     android:textStyle="bold" />
 
 
@@ -545,9 +547,9 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/layoutcorner2"
                             android:layout_marginEnd="3sp"
                             android:layout_weight="2"
+                            android:background="@drawable/layoutcorner2"
                             android:orientation="vertical">
 
                             <TextView
@@ -576,12 +578,12 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:text="@{employee.total_amount != null ? employee.total_amount : `0`}"
-                                    android:textColor="@color/textcolor"
-                                    android:textSize="18sp"
                                     android:gravity="center"
                                     android:paddingTop="7dp"
                                     android:paddingBottom="7dp"
+                                    android:text="@{employee.total_amount != null ? employee.total_amount : `0`}"
+                                    android:textColor="@color/textcolor"
+                                    android:textSize="18sp"
                                     android:textStyle="bold" />
 
 
@@ -592,19 +594,19 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/layoutcorner2"
                             android:layout_marginEnd="3sp"
                             android:layout_weight="2"
+                            android:background="@drawable/layoutcorner2"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="First school &amp; Last school visit duration"
                                 android:gravity="center"
-                                android:textSize="10sp"
                                 android:padding="2.4dp"
+                                android:text="First school &amp; Last school visit duration"
                                 android:textColor="@color/black"
+                                android:textSize="10sp"
                                 android:textStyle="bold" />
 
                             <View
@@ -622,12 +624,12 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:text="@{employee.school_visit_duration != null ? employee.school_visit_duration : `0`}"
-                                    android:textColor="@color/textcolor"
-                                    android:textSize="18sp"
                                     android:gravity="center"
                                     android:paddingTop="7dp"
                                     android:paddingBottom="7dp"
+                                    android:text="@{employee.school_visit_duration != null ? employee.school_visit_duration : `0`}"
+                                    android:textColor="@color/textcolor"
+                                    android:textSize="18sp"
                                     android:textStyle="bold" />
 
                             </LinearLayout>
@@ -639,12 +641,11 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="4dp"
+                        android:layout_gravity="center"
                         android:orientation="horizontal"
-                        android:layout_gravity="center" >
+                        android:padding="4dp">
 
                         <TextView
-                            android:visibility="visible"
                             android:id="@+id/add_to_flag_textview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -653,15 +654,15 @@
                             android:layout_weight="5"
                             android:background="@drawable/soild_card_corner"
                             android:gravity="center"
-                            android:padding="4dp"
+                            android:padding="6dp"
                             android:text="Add to Flag"
                             android:textColor="@color/white"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="visible" />
 
 
                         <TextView
-                            android:visibility="gone"
                             android:id="@+id/remove_from_flag_textview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -675,7 +676,8 @@
                             android:text="Remove Flag"
                             android:textColor="@color/white"
                             android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/add_notes_textview"
@@ -688,6 +690,22 @@
                             android:gravity="center"
                             android:padding="4dp"
                             android:text="Add Notes"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/show_notes_textview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="5"
+                            android:background="@drawable/soild_card_corner"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="Notes"
                             android:textColor="@color/white"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -706,21 +724,6 @@
                             android:textColor="@color/white"
                             android:textSize="15sp"
                             android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/show_notes_textview"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/soild_card_corner"
-                            android:padding="4dp"
-                            android:layout_weight="5"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginStart="5dp"
-                            android:text="Notes"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:textSize="15sp"/>
 
                     </LinearLayout>
 
