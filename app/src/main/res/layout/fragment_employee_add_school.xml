@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout
-                        android:background="@drawable/employee_corner_layout"
+                        android:background="@drawable/layoutcorner2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -154,7 +154,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/employee_corner_layout"
+                        android:background="@drawable/layoutcorner2"
                         android:orientation="horizontal">
 
                         <LinearLayout

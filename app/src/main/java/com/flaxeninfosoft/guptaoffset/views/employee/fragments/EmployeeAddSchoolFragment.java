@@ -45,6 +45,7 @@ import com.google.android.gms.location.LocationServices;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -89,6 +90,18 @@ public class EmployeeAddSchoolFragment extends Fragment {
         setHoadingImage();
         setSpecimenImage();
         setAddress();
+
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Month starts from 0, so add 1
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+
+        binding.dateTextId.setText(year + "/" + month + "/" + day);
+        binding.tmTextId.setText(hour + ":" + minute + ":" + second);
+
 
         return binding.getRoot();
     }
@@ -277,7 +290,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
                 viewModel.addSchool(binding.getSchool()).observe(getViewLifecycleOwner(), b -> {
                     if (b) {
                         progressDialog.dismiss();
-                        Toast.makeText(getContext(),  "स्कूल ऐड हो गया है।\n", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "स्कूल ऐड हो गया है।\n", Toast.LENGTH_SHORT).show();
                         clearErrors();
                         navigateUp();
                     }
