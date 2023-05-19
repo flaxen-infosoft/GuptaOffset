@@ -22,9 +22,9 @@ public class MeetingTask {
     @Expose
     private String time;
 
-    @SerializedName(Constants.LOCATION)
+    @SerializedName("address")
     @Expose
-    private Location location;
+    private String meeting_address;
 
     @SerializedName(Constants.TASK)
     @Expose
@@ -62,12 +62,12 @@ public class MeetingTask {
         this.time = time;
     }
 
-    public Location getLocation() {
-        return location;
+    public String getMeeting_address() {
+        return meeting_address;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setMeeting_address(String meeting_address) {
+        this.meeting_address = meeting_address;
     }
 
     public String getTask() {

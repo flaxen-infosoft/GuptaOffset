@@ -52,6 +52,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import io.paperdb.Paper;
+
 public class MeetingOrTaskFragment extends Fragment {
 
     FragmentMeetingOrTaskBinding binding;
@@ -63,6 +65,7 @@ public class MeetingOrTaskFragment extends Fragment {
     Gson gson;
     ProgressDialog progressDialog;
     EmployeeMeetingTaskAdapter employeeMeetingTaskAdapter;
+
     public MeetingOrTaskFragment() {
         // Required empty public constructor
     }
@@ -100,14 +103,12 @@ public class MeetingOrTaskFragment extends Fragment {
         hashMap.put("meetingId", id);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
-            Log.i("MeetingTask", response.toString());
             progressDialog1.dismiss();
 
             if (response != null) {
 
                 try {
                     Toast.makeText(context, response.getString("message"), Toast.LENGTH_SHORT).show();
-
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -136,25 +137,28 @@ public class MeetingOrTaskFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_meeting_or_task, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_meeting_or_task, container, false);
         binding.meetingOrTaskBackImg.setOnClickListener(this::onClickBack);
         meetingTaskList = new ArrayList<>();
-        empId = getArguments().getLong(Constants.EMPLOYEE_ID,0L);
+        empId = getArguments().getLong(Constants.EMPLOYEE_ID, 0L);
+        Paper.init(getContext());
+        Paper.book().write("EmpIDInMeetingTask", empId);
         gson = new Gson();
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Please wait ....");
         requestQueue = Volley.newRequestQueue(getContext());
-        employeeMeetingTaskAdapter = new EmployeeMeetingTaskAdapter(meetingTaskList, getContext(), meetingTask -> onClickNote(meetingTask));
+//        employeeMeetingTaskAdapter = new EmployeeMeetingTaskAdapter(meetingTaskList, getContext(), meetingTask -> onClickNote(meetingTask));
 
         binding.meetingOrTaskRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.addMeetingTaskTextview.setOnClickListener(view -> addMeetingTaskDialog(empId));
         binding.meetingTaskSwipeRefresh.setOnRefreshListener(() -> getAllMeetingTask(empId));
-        binding.showMeetingTaskTextview.setOnClickListener(view -> getAllMeetingTask(empId));
+        employeeMeetingTaskAdapter = new EmployeeMeetingTaskAdapter(meetingTaskList, getContext(), meetingTask -> {
+        });
         binding.meetingOrTaskRecycler.setAdapter(employeeMeetingTaskAdapter);
-        employeeMeetingTaskAdapter.notifyDataSetChanged();
         getAllMeetingTask(empId);
+        employeeMeetingTaskAdapter.notifyDataSetChanged();
 
 
         return binding.getRoot();
@@ -182,14 +186,16 @@ public class MeetingOrTaskFragment extends Fragment {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             MeetingTask meetingTask = gson.fromJson(jsonArray.getJSONObject(i).toString(), MeetingTask.class);
+                            Log.e("LIST1:", meetingTask.getTask());
                             meetingTaskList.add(meetingTask);
                         }
 
+                        employeeMeetingTaskAdapter = new EmployeeMeetingTaskAdapter(meetingTaskList, getContext(), meetingTask -> {
 
+                        });
                         binding.meetingOrTaskRecycler.setAdapter(employeeMeetingTaskAdapter);
-                        employeeMeetingTaskAdapter.notifyDataSetChanged();
                         if (meetingTaskList == null || meetingTaskList.isEmpty()) {
-                            Log.e("LIST1:", meetingTaskList.toString());
+
                             binding.meetingOrTaskRecycler.setVisibility(View.GONE);
                             binding.meetingOrTaskEmptyTv.setVisibility(View.VISIBLE);
                         } else {
@@ -201,7 +207,6 @@ public class MeetingOrTaskFragment extends Fragment {
                         Log.e("LIST3:", meetingTaskList.toString());
                         binding.meetingOrTaskRecycler.setVisibility(View.GONE);
                         binding.meetingOrTaskEmptyTv.setVisibility(View.VISIBLE);
-                        Toast.makeText(getContext(), response.getString("data"), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     try {
@@ -263,7 +268,7 @@ public class MeetingOrTaskFragment extends Fragment {
                 String address = add_meeting_address_editTxt.getText().toString();
 
                 if (!msg.isEmpty() || !address.isEmpty()) {
-                    addMeetingTask(getContext(),msg, address ,empId);
+                    addMeetingTask(getContext(), msg, address, empId);
                 } else {
                     Toast.makeText(getContext(), "Please Enter Address and Your Task", Toast.LENGTH_SHORT).show();
                     add_meeting_task_editTxt.setError("Please write something.");
@@ -275,25 +280,25 @@ public class MeetingOrTaskFragment extends Fragment {
         add_meeting_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    final Calendar c = Calendar.getInstance();
-                    int y = c.get(Calendar.YEAR);
-                    int m = c.get(Calendar.MONTH);
-                    int d = c.get(Calendar.DAY_OF_MONTH);
+                final Calendar c = Calendar.getInstance();
+                int y = c.get(Calendar.YEAR);
+                int m = c.get(Calendar.MONTH);
+                int d = c.get(Calendar.DAY_OF_MONTH);
 
-                    DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
-                            Date date = new Date(year, month, day);
-                            Format format = new SimpleDateFormat("20yy-MM-dd");
-                            add_meeting_date.setText(format.format(date));
-                            datepicker = format.format(date);
+                        Date date = new Date(year, month, day);
+                        Format format = new SimpleDateFormat("20yy-MM-dd");
+                        add_meeting_date.setText(format.format(date));
+                        datepicker = format.format(date);
 //                getAllLeave(empId);
 
-                        }
-                    }, y, m, d);
-                    datePickerDialog.show();
-                    datePickerDialog.getDatePicker().getMaxDate();
+                    }
+                }, y, m, d);
+                datePickerDialog.show();
+                datePickerDialog.getDatePicker().getMaxDate();
 
             }
         });
@@ -337,8 +342,8 @@ public class MeetingOrTaskFragment extends Fragment {
         hashMap.put("empId", empId);
         hashMap.put("note", msg);
         hashMap.put("address", address);
-        hashMap.put("date",datepicker);
-        hashMap.put("time",time);
+        hashMap.put("date", datepicker);
+        hashMap.put("time", time);
 
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
@@ -349,6 +354,8 @@ public class MeetingOrTaskFragment extends Fragment {
 
                 try {
                     Toast.makeText(context, response.getString("message"), Toast.LENGTH_SHORT).show();
+                    getAllMeetingTask(empId);
+
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);

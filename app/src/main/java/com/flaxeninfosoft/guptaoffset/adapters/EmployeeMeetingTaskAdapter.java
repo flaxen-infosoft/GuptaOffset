@@ -35,30 +35,30 @@ public class EmployeeMeetingTaskAdapter extends RecyclerView.Adapter<EmployeeMee
     @NonNull
     @Override
     public EmployeeMeetingTaskAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        MeetingTaskLayoutBinding meetingTaskLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.meeting_task_layout,parent,false);
-        return new ViewHolder(meetingTaskLayoutBinding,employeeMeetingTaskClickListener);
+        MeetingTaskLayoutBinding meetingTaskLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.meeting_task_layout, parent, false);
+        return new ViewHolder(meetingTaskLayoutBinding, employeeMeetingTaskClickListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull EmployeeMeetingTaskAdapter.ViewHolder holder, int position) {
         holder.setData(meetingTaskList.get(position));
-        Long empId = Paper.book().read("CurrentEmployeeId");
+        Long empId = Paper.book().read("EmpIDInMeetingTask");
         Long Id = meetingTaskList.get(position).getId();
         if (context != null) {
             Paper.init(context);
         }
-        Paper.book().write("CurrentTaskId",Id);
+        Paper.book().write("CurrentTaskId", Id);
 
 //        holder.binding.addMeetingTextview.setOnClickListener(view -> AdminHomeFragment.addMeetingTaskDialog(context, empId));
 
         holder.binding.deleteMeetingImg.setOnClickListener(view -> {
-            MeetingOrTaskFragment.deleteTaskDialog(context,empId,Id);
+            MeetingOrTaskFragment.deleteTaskDialog(context, empId, Id);
         });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return meetingTaskList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -66,11 +66,10 @@ public class EmployeeMeetingTaskAdapter extends RecyclerView.Adapter<EmployeeMee
         EmployeeMeetingTaskClickListener employeeMeetingTaskClickListener;
 
 
-        public ViewHolder(MeetingTaskLayoutBinding binding , EmployeeMeetingTaskClickListener employeeMeetingTaskClickListener) {
+        public ViewHolder(MeetingTaskLayoutBinding binding, EmployeeMeetingTaskClickListener employeeMeetingTaskClickListener) {
             super(binding.getRoot());
             this.binding = binding;
             this.employeeMeetingTaskClickListener = employeeMeetingTaskClickListener;
-            Log.e("Show:", "Done");
 
         }
 
@@ -80,7 +79,7 @@ public class EmployeeMeetingTaskAdapter extends RecyclerView.Adapter<EmployeeMee
         }
     }
 
-    public interface EmployeeMeetingTaskClickListener{
+    public interface EmployeeMeetingTaskClickListener {
         void onClickMeetingTask(MeetingTask meetingTask);
     }
 }
