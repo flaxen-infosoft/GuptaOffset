@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="#FFF8E6"
-                android:padding="10dp">
+                android:padding="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -180,7 +180,7 @@
                                 android:id="@+id/cityname_text_id"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Select City"
+                                android:text=""
                                 android:textColor="@color/textcolor"
                                 android:textSize="16sp"
                                 android:layout_gravity="center"

@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.databinding.SingleBookOrderCardBinding;
+
 import com.flaxeninfosoft.guptaoffset.databinding.SingleOrderCardBinding;
 import com.flaxeninfosoft.guptaoffset.models.Order;
 

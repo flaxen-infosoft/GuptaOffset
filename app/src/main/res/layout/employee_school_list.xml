@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
-            name="school"
+            name="schoolList"
             type="com.flaxeninfosoft.guptaoffset.models.School" />
-
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:id="@+id/layout_school_card"
         android:layout_width="match_parent"
@@ -21,13 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
             android:layout_toLeftOf="@id/test_arrow"
-            android:background="@drawable/bg_single_school_card"
-            android:paddingLeft="15dp"
-            android:paddingTop="5dp"
-            android:paddingRight="15dp"
-            android:layout_marginStart="15dp"
-            android:paddingBottom="7dp"
-            tools:ignore="UselessParent">
+            android:background="@color/background_color_cream"
+            android:layout_marginStart="15dp">
 
 
             <LinearLayout
@@ -36,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginEnd="10dp"
+                android:background="@drawable/layoutcorner2"
                 android:maxWidth="200dp"
                 android:layout_marginRight="10dp">
 
@@ -75,7 +71,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:text="@{school.date}"
+                        android:text="@{schoolList.date}"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -109,47 +105,13 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:text="@{school.name}"
+                        android:text="@{schoolList.name}"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
 
                 </LinearLayout>
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="15dp"-->
-<!--                    android:background="@drawable/layoutcorner2"-->
-<!--                    android:orientation="horizontal">-->
-
-
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:layout_marginStart="10dp"-->
-<!--                        android:layout_marginEnd="10dp"-->
-<!--                        android:gravity="start"-->
-<!--                        android:padding="5dp"-->
-<!--                        android:text="Total Strength :"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="15sp"-->
-<!--                        android:textStyle="bold" />-->
-
-<!--                    <TextView-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="@{school.totalStudentStrength}"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="15sp"-->
-<!--                        android:textStyle="bold" />-->
-
-
-<!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -177,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:text="@{school.ninthStudentStrength}"
+                        android:text="@{schoolList.ninthStudentStrength}"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -211,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:text="@{school.tenthStudentStrength}"
+                        android:text="@{schoolList.tenthStudentStrength}"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -280,7 +242,7 @@
                                 android:layout_weight="1"
                                 android:padding="5dp"
                                 android:gravity="center"
-                                android:text="@{school.eleventhCommerceStudentStrength}"
+                                android:text="@{schoolList.eleventhCommerceStudentStrength}"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -321,7 +283,7 @@
                                 android:layout_weight="1"
                                 android:padding="5dp"
                                 android:gravity="center"
-                                android:text="@{school.eleventhScienceStudentStrength}"
+                                android:text="@{schoolList.eleventhScienceStudentStrength}"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -362,7 +324,7 @@
                                 android:layout_weight="1"
                                 android:padding="5dp"
                                 android:gravity="center"
-                                android:text="@{school.eleventhArtsStudentStrength}"
+                                android:text="@{schoolList.eleventhArtsStudentStrength}"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -435,7 +397,7 @@
                                 android:layout_weight="1"
                                 android:padding="5dp"
                                 android:gravity="center"
-                                android:text="@{school.twelfthCommerceStudentStrength}"
+                                android:text="@{schoolList.twelfthCommerceStudentStrength}"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -476,7 +438,7 @@
                                 android:layout_weight="1"
                                 android:padding="5dp"
                                 android:gravity="center"
-                                android:text="@{school.twelfthScienceStudentStrength}"
+                                android:text="@{schoolList.twelfthScienceStudentStrength}"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -517,7 +479,7 @@
                                 android:layout_weight="1"
                                 android:padding="5dp"
                                 android:gravity="center"
-                                android:text="@{school.twelfthArtsStudentStrength}"
+                                android:text="@{schoolList.twelfthArtsStudentStrength}"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
@@ -555,7 +517,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:text="@{school.location.address}"
+                        android:text="@{schoolList.location.address}"
                         android:padding="4dp"
                         android:gravity="center"
                         android:textColor="@color/black"
@@ -591,7 +553,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:text="@{school.contact}"
+                        android:text="@{schoolList.contact}"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -601,6 +563,7 @@
 
 
                 <TextView
+                    android:id="@+id/start_meter_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
@@ -613,7 +576,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/single_school_card_specimen_order_image"
+                    android:id="@+id/employee_school_list_specimen_order_image"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_marginTop="5dp"
@@ -623,6 +586,7 @@
                     android:scaleType="fitXY" />
 
                 <TextView
+                    android:id="@+id/end_meter_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="start"
@@ -635,7 +599,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/single_school_card_school_image"
+                    android:id="@+id/employee_school_list_school_image"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_marginTop="5dp"
@@ -657,12 +621,13 @@
 
         <ImageView
             android:id="@+id/test_arrow"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="14dp"
+            android:layout_height="11dp"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="-6dp"
-            android:scaleX="1.5"
             android:background="@drawable/v_bubble_corner_right"
-            android:backgroundTint="#C6D7F8"/>
+            android:backgroundTint="#FDF4E0"
+            android:scaleX="1.5" />
     </RelativeLayout>
+    </ScrollView>
 </layout>

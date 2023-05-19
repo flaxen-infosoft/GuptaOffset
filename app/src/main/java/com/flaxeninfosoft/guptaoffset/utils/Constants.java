@@ -139,4 +139,5 @@ public class Constants {
     public static final String DESCRIPTION = "description";
     public static final String ATTACHMENT = "attachment";
     public static final String REMAINING_AMOUNT = "remaining_amount";
+    public static final String TASK = "task";
 }

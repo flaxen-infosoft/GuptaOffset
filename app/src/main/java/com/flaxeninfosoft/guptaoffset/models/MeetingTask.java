@@ -4,11 +4,7 @@ import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PaymentStatus {
-
-    @SerializedName(Constants.DATE)
-    @Expose
-    private String date;
+public class MeetingTask {
 
     @SerializedName(Constants.ID)
     @Expose
@@ -18,41 +14,21 @@ public class PaymentStatus {
     @Expose
     private Long empId;
 
+    @SerializedName(Constants.DATE)
+    @Expose
+    private String date;
+
     @SerializedName(Constants.TIME)
     @Expose
     private String time;
 
-    @SerializedName(Constants.AMOUNT_PAID)
+    @SerializedName(Constants.LOCATION)
     @Expose
-    private String amount_paid;
+    private Location location;
 
-    @SerializedName(Constants.REMAINING_AMOUNT)
+    @SerializedName(Constants.TASK)
     @Expose
-    private String remaining_amount;
-
-    public String getAmount_paid() {
-        return amount_paid;
-    }
-
-    public void setAmount_paid(String amount_paid) {
-        this.amount_paid = amount_paid;
-    }
-
-    public String getRemaining_amount() {
-        return remaining_amount;
-    }
-
-    public void setRemaining_amount(String remaining_amount) {
-        this.remaining_amount = remaining_amount;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
+    private String task;
 
     public Long getId() {
         return id;
@@ -70,6 +46,14 @@ public class PaymentStatus {
         this.empId = empId;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public String getTime() {
         return time;
     }
@@ -78,8 +62,19 @@ public class PaymentStatus {
         this.time = time;
     }
 
+    public Location getLocation() {
+        return location;
+    }
 
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
+    public String getTask() {
+        return task;
+    }
 
+    public void setTask(String task) {
+        this.task = task;
+    }
 }
-
