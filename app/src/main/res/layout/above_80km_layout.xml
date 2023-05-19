@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="above80km"
             type="com.flaxeninfosoft.guptaoffset.models.Attendance" />
@@ -14,19 +15,19 @@
         android:layout_margin="5dp"
         android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/background_color_cream"
-                app:cardElevation="5dp">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/background_color_cream"
+            app:cardElevation="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:background="@drawable/layoutcorner2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
 
                 <ScrollView
@@ -44,105 +45,102 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-<!--                            <TextView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:gravity="center"-->
-<!--                                android:padding="15dp"-->
-<!--                                android:text="MORNING ATTENDANCE"-->
-<!--                                android:textColor="#DA4242"-->
-<!--                                android:textSize="20sp"-->
-<!--                                android:textStyle="bold" />-->
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:background="@drawable/layoutcorner2"
-                                    android:layout_marginTop="5dp"
-                                    android:padding="3dp">
-
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:layout_weight="1"
-                                        android:orientation="horizontal">
-
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:drawablePadding="3dp"
-                                            android:gravity="center"
-                                            android:padding="5dp"
-                                            android:text="Name :"
-                                            android:textColor="@color/black"
-                                            android:textSize="15sp"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:text="@{above80km.name}"
-                                            android:textColor="@color/black"
-                                            android:textStyle="bold"
-                                            android:textSize="15sp" />
-
-                                    </LinearLayout>
-
-                                    <View
-                                        android:layout_width="1dp"
-                                        android:layout_height="match_parent"
-                                        android:background="@color/black" />
-
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:drawablePadding="3dp"
-                                            android:gravity="center"
-                                            android:padding="5dp"
-                                            android:text="Date :"
-                                            android:textColor="@color/black"
-                                            android:textSize="15sp"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:text="@{above80km.date}"
-                                            android:textColor="@color/black"
-                                            android:textStyle="bold"
-                                            android:textSize="15sp" />
-
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
+                            <!--                            <TextView-->
+                            <!--                                android:layout_width="match_parent"-->
+                            <!--                                android:layout_height="wrap_content"-->
+                            <!--                                android:gravity="center"-->
+                            <!--                                android:padding="15dp"-->
+                            <!--                                android:text="MORNING ATTENDANCE"-->
+                            <!--                                android:textColor="#DA4242"-->
+                            <!--                                android:textSize="20sp"-->
+                            <!--                                android:textStyle="bold" />-->
 
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:background="@drawable/layoutcorner2"
                                 android:layout_marginTop="5dp"
+                                android:background="@drawable/layoutcorner2"
+                                android:orientation="horizontal"
+                                android:padding="3dp">
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:drawablePadding="3dp"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:text="Name :"
+                                        android:textColor="@color/black"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="@{above80km.name}"
+                                        android:textColor="@color/black"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/layoutcorner2"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:drawablePadding="3dp"
+                                    android:gravity="center"
+                                    android:padding="5dp"
+                                    android:text="Date :"
+                                    android:textColor="@color/black"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="@{above80km.date}"
+                                    android:textColor="@color/black"
+                                    android:textSize="15sp"
+                                    android:layout_marginStart="5dp"
+                                    android:textStyle="bold" />
+
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/layoutcorner2"
+                                android:orientation="horizontal"
                                 android:padding="3dp">
 
 
@@ -171,8 +169,8 @@
                                         android:layout_gravity="center"
                                         android:text="@{above80km.timeIn}"
                                         android:textColor="@color/black"
-                                        android:textStyle="bold"
-                                        android:textSize="15sp" />
+                                        android:textSize="15sp"
+                                        android:textStyle="bold" />
 
                                 </LinearLayout>
 
@@ -210,8 +208,8 @@
                                         android:layout_gravity="center"
                                         android:text="@{above80km.startMeter}"
                                         android:textColor="@color/black"
-                                        android:textStyle="bold"
-                                        android:textSize="15sp" />
+                                        android:textSize="15sp"
+                                        android:textStyle="bold" />
 
 
                                 </LinearLayout>
@@ -221,10 +219,10 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
                                 android:layout_marginTop="5dp"
-                                android:padding="3dp"
-                                android:background="@drawable/layoutcorner2">
+                                android:background="@drawable/layoutcorner2"
+                                android:orientation="horizontal"
+                                android:padding="3dp">
 
 
                                 <LinearLayout
@@ -252,8 +250,8 @@
                                         android:layout_gravity="center"
                                         android:text="@{above80km.timeOut}"
                                         android:textColor="@color/black"
-                                        android:textStyle="bold"
-                                        android:textSize="15sp" />
+                                        android:textSize="15sp"
+                                        android:textStyle="bold" />
 
                                 </LinearLayout>
 
@@ -289,9 +287,9 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:text="@{above80km.endMeter}"
-                                        android:textStyle="bold"
                                         android:textColor="@color/black"
-                                        android:textSize="15sp" />
+                                        android:textSize="15sp"
+                                        android:textStyle="bold" />
 
 
                                 </LinearLayout>
@@ -302,32 +300,32 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
                                 android:layout_marginTop="5dp"
-                                android:background="@drawable/layoutcorner2">
+                                android:background="@drawable/layoutcorner2"
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="3"
+                                    android:gravity="center"
                                     android:padding="5dp"
                                     android:text="Start Address :"
-                                    android:gravity="center"
-                                    android:layout_gravity="center"
                                     android:textColor="@color/black"
-                                    android:layout_weight="3"
-                                    android:textStyle="bold"
-                                    android:textSize="13sp" />
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="5dp"
-                                    android:text="@{above80km.startLocation.address}"
                                     android:layout_gravity="center"
                                     android:layout_weight="1"
-                                    android:textStyle="bold"
+                                    android:padding="5dp"
+                                    android:text="@{above80km.startLocation.address}"
                                     android:textColor="@color/black"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
 
                             </LinearLayout>
@@ -335,69 +333,108 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
                                 android:layout_marginTop="5dp"
-                                android:background="@drawable/layoutcorner2">
+                                android:background="@drawable/layoutcorner2"
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="3"
+                                    android:gravity="center"
                                     android:padding="5dp"
                                     android:text="End Address :"
-                                    android:gravity="center"
-                                    android:layout_gravity="center"
                                     android:textColor="@color/black"
-                                    android:layout_weight="3"
-                                    android:textStyle="bold"
-                                    android:textSize="13sp" />
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
                                     android:padding="5dp"
                                     android:text="@{above80km.endLocation.address}"
-                                    android:layout_gravity="center"
-                                    android:textStyle="bold"
-                                    android:layout_weight="1"
                                     android:textColor="@color/black"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
 
                             </LinearLayout>
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="Start meter image"
                                 android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/layoutcorner2"
+                                android:orientation="horizontal">
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:drawablePadding="3dp"
+                                    android:gravity="center"
+                                    android:padding="5dp"
+                                    android:text="Total Distance :"
+                                    android:textColor="@color/black"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="@{above80km.totalDistance}"
+                                    android:textColor="@color/black"
+                                    android:textSize="15sp"
+                                    android:layout_marginStart="5dp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/start_meter_textview"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="8dp"
                                 android:gravity="center"
+                                android:text="Start meter image"
                                 android:textColor="@color/black"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
 
                             <ImageView
+                                android:id="@+id/start_meter_imageview"
                                 android:layout_width="match_parent"
                                 android:layout_height="200dp"
                                 android:layout_marginBottom="10dp"
                                 android:src="@drawable/speedometer" />
 
                             <View
+                                android:id="@+id/view_line"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/black"/>
+                                android:background="@color/black" />
 
                             <TextView
+                                android:id="@+id/end_meter_textview"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="End meter image"
                                 android:layout_gravity="center"
+                                android:layout_marginTop="8dp"
                                 android:gravity="center"
+                                android:text="End meter image"
                                 android:textColor="@color/black"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <ImageView
+                                android:id="@+id/end_meter_imageview"
                                 android:layout_width="match_parent"
                                 android:layout_height="200dp"
                                 android:layout_marginBottom="10dp"
@@ -407,14 +444,13 @@
                         </LinearLayout>
 
 
-
                     </LinearLayout>
 
                 </ScrollView>
 
             </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 </layout>

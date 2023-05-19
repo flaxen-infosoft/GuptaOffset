@@ -75,7 +75,7 @@ public class EmployeeHomeFragment extends Fragment {
         binding.setMessage(new Message());
         binding.getMessage().setReceiverId(viewModel.getCurrentEmployee().getId());
 
-         employee = viewModel.getCurrentEmployee();
+        employee = viewModel.getCurrentEmployee();
         binding.employeeName.setText(employee.getName());
 
         viewModel.getCurrentEmployeeTodaysAttendance().observe(getViewLifecycleOwner(), this::setAttendance);
@@ -95,6 +95,7 @@ public class EmployeeHomeFragment extends Fragment {
         binding.schoolListTextview.setOnClickListener(this::navigateToSchoolList);
         binding.myAccount.setOnClickListener(this::navigateToDailyReports);
         binding.dateTextId.setOnClickListener(this::onSelectDate);
+        binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
 
         String formattedDateTime = "";
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -358,14 +359,14 @@ public class EmployeeHomeFragment extends Fragment {
 
     private void navigateToPaymentReceive(View view) {
         Bundle bundle = new Bundle();
-        bundle.putLong(Constants.EMPLOYEE_ID,employee.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_paymentReceiveFragment,bundle);
+        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_paymentReceiveFragment, bundle);
     }
 
     private void navigateToBookOrderList(View view) {
         Bundle bundle = new Bundle();
-        bundle.putLong(Constants.EMPLOYEE_ID,employee.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_bookOrderListrFragment,bundle);
+        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_bookOrderListrFragment, bundle);
     }
 
     private void navigateToAbsentOrLeave(View view) {

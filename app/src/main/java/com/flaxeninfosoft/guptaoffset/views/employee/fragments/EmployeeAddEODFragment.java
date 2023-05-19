@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class EmployeeAddEODFragment extends Fragment {
 
@@ -76,6 +78,31 @@ public class EmployeeAddEODFragment extends Fragment {
 
         binding.employeeAddEodExpenseImage.setOnClickListener(this::onClickExpenseImage);
         binding.employeeAddEodPetrolImage.setOnClickListener(this::onClickPetrolImage);
+
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Month starts from 0, so add 1
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+
+        binding.dateTextId.setText(year + "-" + month + "-" + day);
+        binding.tmTextId.setText(hour + ":" + minute + ":" + second);
+
+
+        String[] dailyAllowanceList = {"Select Daily Allowance", "1 Day = 200", "2 Day = 350", "3 Day = 450", "Night Stay = 500"};
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, dailyAllowanceList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, dailyAllowanceList) {
+            @Override
+            public boolean isEnabled(int position) {
+                // Disable the starting item at position 0
+                return position != 0;
+            }
+        };
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.dailyAllowanceSpinner.setAdapter(adapter);
+
 
         return binding.getRoot();
     }
