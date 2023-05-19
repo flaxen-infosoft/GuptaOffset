@@ -71,15 +71,38 @@ public class School {
     @Expose
     private String date;
 
+    @SerializedName(Constants.TIME)
+    @Expose
+    private String time;
     @SerializedName(Constants.LOCATION)
     @Expose
     private Location location;
+
+    @SerializedName(Constants.DISTRICT)
+    @Expose
+    private Location district;
+
+    public Location getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(Location district) {
+        this.district = district;
+    }
 
     private Uri hoadingImageUri;
     private Uri specimenImageUri;
 
     public School() {
         location = new Location();
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public Long getId() {
