@@ -34,6 +34,101 @@ public class Employee {
     @Expose
     private String dailyAllowance;
 
+    @SerializedName(Constants.DAILY_ALLOWANCE_ONE_AMOUNT)
+    @Expose
+    private String dailyAllowance1;
+
+    @SerializedName(Constants.DAILY_ALLOWANCE_TWO_AMOUNT)
+    @Expose
+    private String dailyAllowance2;
+
+    @SerializedName(Constants.DAILY_ALLOWANCE_THREE_AMOUNT)
+    @Expose
+    private String dailyAllowance3;
+
+    @SerializedName(Constants.DAILY_ALLOWANCE_FOUR_AMOUNT)
+    @Expose
+    private String dailyAllowance4;
+
+    @SerializedName(Constants.DAILY_ALLOWANCE_ONE_DESCRIPTION)
+    @Expose
+    private String daily_allowance_description1;
+
+    @SerializedName(Constants.DAILY_ALLOWANCE_TWO_DESCRIPTION)
+    @Expose
+    private String daily_allowance_description2;
+
+    @SerializedName(Constants.DAILY_ALLOWANCE_THREE_DESCRIPTION)
+    @Expose
+    private String daily_allowance_description3;
+
+    public String getDailyAllowance1() {
+        return dailyAllowance1;
+    }
+
+    public void setDailyAllowance1(String dailyAllowance1) {
+        this.dailyAllowance1 = dailyAllowance1;
+    }
+
+    public String getDailyAllowance2() {
+        return dailyAllowance2;
+    }
+
+    public void setDailyAllowance2(String dailyAllowance2) {
+        this.dailyAllowance2 = dailyAllowance2;
+    }
+
+    public String getDailyAllowance3() {
+        return dailyAllowance3;
+    }
+
+    public void setDailyAllowance3(String dailyAllowance3) {
+        this.dailyAllowance3 = dailyAllowance3;
+    }
+
+    public String getDailyAllowance4() {
+        return dailyAllowance4;
+    }
+
+    public void setDailyAllowance4(String dailyAllowance4) {
+        this.dailyAllowance4 = dailyAllowance4;
+    }
+
+    public String getDaily_allowance_description1() {
+        return daily_allowance_description1;
+    }
+
+    public void setDaily_allowance_description1(String daily_allowance_description1) {
+        this.daily_allowance_description1 = daily_allowance_description1;
+    }
+
+    public String getDaily_allowance_description2() {
+        return daily_allowance_description2;
+    }
+
+    public void setDaily_allowance_description2(String daily_allowance_description2) {
+        this.daily_allowance_description2 = daily_allowance_description2;
+    }
+
+    public String getDaily_allowance_description3() {
+        return daily_allowance_description3;
+    }
+
+    public void setDaily_allowance_description3(String daily_allowance_description3) {
+        this.daily_allowance_description3 = daily_allowance_description3;
+    }
+
+    public String getDaily_allowance_description4() {
+        return daily_allowance_description4;
+    }
+
+    public void setDaily_allowance_description4(String daily_allowance_description4) {
+        this.daily_allowance_description4 = daily_allowance_description4;
+    }
+
+    @SerializedName(Constants.DAILY_ALLOWANCE_FOUR_DESCRIPTION)
+    @Expose
+    private String daily_allowance_description4;
     @SerializedName(Constants.STATUS)
     @Expose
     private String status;

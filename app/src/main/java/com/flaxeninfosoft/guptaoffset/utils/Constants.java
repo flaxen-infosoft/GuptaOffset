@@ -11,6 +11,15 @@ public class Constants {
     public static final String DESIGNATION = "designation";
     public static final String AREA = "area";
     public static final String DAILY_ALLOWANCE = "daily_allowance";
+    public static final String DAILY_ALLOWANCE_ONE_AMOUNT = "daily_allowance1";
+    public static final String DAILY_ALLOWANCE_TWO_AMOUNT = "daily_allowance2";
+    public static final String DAILY_ALLOWANCE_THREE_AMOUNT = "daily_allowance3";
+    public static final String DAILY_ALLOWANCE_FOUR_AMOUNT = "daily_allowance4";
+
+    public static final String DAILY_ALLOWANCE_ONE_DESCRIPTION = "daily_allowance_description1";
+    public static final String DAILY_ALLOWANCE_TWO_DESCRIPTION = "daily_allowance_description2";
+    public static final String DAILY_ALLOWANCE_THREE_DESCRIPTION = "daily_allowance_description3";
+    public static final String DAILY_ALLOWANCE_FOUR_DESCRIPTION = "daily_allowance_description4";
     public static final String STATUS = "status";
     public static final String SALARY = "salary";
     public static final String TOKEN = "token";
