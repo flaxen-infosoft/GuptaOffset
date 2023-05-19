@@ -20,33 +20,18 @@
             android:id="@+id/message_send_for_leave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp"
-            android:layout_marginStart="15dp"
-            android:layout_toLeftOf="@id/test_arrow"
-            android:background="@color/background_color_cream"
-            android:paddingLeft="15dp"
-            android:paddingTop="5dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="7dp">
+            android:layout_margin="5dp"
+            android:elevation="4dp"
+            android:background="@color/background_color_cream">
 
             <LinearLayout
                 android:id="@+id/leav_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:maxWidth="200dp"
+                android:padding="8dp"
+                android:background="@drawable/layoutcorner2"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/dealer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total Leaves "
-                    android:layout_gravity="center"
-                    android:textColor="#222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
 
 
 <!--                <LinearLayout-->
@@ -262,27 +247,18 @@
                 </LinearLayout>
 -->
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/check_icon"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="end"/>
+<!--                <ImageView-->
+<!--                    android:layout_width="24dp"-->
+<!--                    android:layout_height="24dp"-->
+<!--                    android:src="@drawable/check_icon"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    android:layout_gravity="end"/>-->
 
             </LinearLayout>
 
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/test_arrow"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="-6dp"
-            android:scaleX="1.5"
-            android:background="@drawable/v_bubble_corner_right"
-            android:backgroundTint="#F8C6C6"/>
     </RelativeLayout>
 
 </layout>

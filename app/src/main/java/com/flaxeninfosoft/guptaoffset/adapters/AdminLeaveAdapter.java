@@ -51,10 +51,6 @@ public class AdminLeaveAdapter extends RecyclerView.Adapter<AdminLeaveAdapter.Vi
         holder.setData(leaveList.get(position));
         Long Id = leaveList.get(position).getId();
         Log.e(""+Id,"");
-        if (context != null){
-            Paper.init(context);
-        }
-        Paper.book().write("CurrentAdminLeaveId",Id);
         Log.e(""+Id,"id 2");
     }
 
