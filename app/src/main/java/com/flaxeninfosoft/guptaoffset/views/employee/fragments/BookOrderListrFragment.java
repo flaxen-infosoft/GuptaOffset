@@ -111,7 +111,7 @@ public class BookOrderListrFragment extends Fragment {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             EmployeeBookOrder employeeBookOrder = gson.fromJson(jsonArray.getJSONObject(i).toString(), EmployeeBookOrder.class);
-                            employeeBookOrders.add(new EmployeeBookOrder());
+                            employeeBookOrders.add(employeeBookOrder);
 
                         }
 
