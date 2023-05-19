@@ -254,6 +254,7 @@
                     android:layout_marginTop="30dp"
                     android:enabled="false"
                     android:padding="5dp"
+                    android:textColor="@color/white"
                     android:text="punch attendance"
                     android:textSize="15sp"
                     app:backgroundTint="#FD7F44" />

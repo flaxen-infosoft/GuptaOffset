@@ -4,15 +4,18 @@ import static android.media.CamcorderProfile.get;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.EmployeeSchoolListBinding;
 import com.flaxeninfosoft.guptaoffset.models.School;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 
 import java.util.List;
 
@@ -69,6 +72,26 @@ public class EmployeeSchoolListAdapter extends RecyclerView.Adapter<EmployeeScho
         public void setData(School school) {
             binding.setSchoolList(school);
             binding.getRoot().setOnClickListener(view -> employeeSchoolListClickListener.onClickSchoolList(school));
+            if (school.getSpecimen() != null) {
+                binding.employeeSchoolListSpecimenOrderImage.setVisibility(View.VISIBLE);
+                binding.startMeterTextview.setVisibility(View.VISIBLE);
+                String url = ApiEndpoints.BASE_URL + school.getSpecimen();
+                Glide.with(binding.getRoot().getContext()).load(url).placeholder(R.drawable.person_vector).into(binding.employeeSchoolListSpecimenOrderImage);
+            } else {
+                binding.employeeSchoolListSpecimenOrderImage.setVisibility(View.GONE);
+                binding.startMeterTextview.setVisibility(View.GONE);
+            }
+
+
+            if (school.getSnap() != null) {
+                binding.employeeSchoolListSchoolImage.setVisibility(View.VISIBLE);
+                binding.endMeterTextview.setVisibility(View.VISIBLE);
+                String url = ApiEndpoints.BASE_URL + school.getSnap();
+                Glide.with(binding.getRoot().getContext()).load(url).placeholder(R.drawable.person_vector).into(binding.employeeSchoolListSchoolImage);
+            } else {
+                binding.employeeSchoolListSchoolImage.setVisibility(View.GONE);
+                binding.endMeterTextview.setVisibility(View.GONE);
+            }
         }
     }
 

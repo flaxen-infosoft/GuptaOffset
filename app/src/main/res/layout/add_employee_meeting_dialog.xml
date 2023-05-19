@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/layoutcorner2"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date : "
+            android:textStyle="bold"
+            android:textColor="@color/textcolor"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/add_meeting_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Date"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_weight="5"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/textcolor"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time : "
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/textcolor"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/add_meeting_task_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Time"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_weight="5"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/textcolor"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/layoutcorner2"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address : "
+            android:textColor="@color/textcolor"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/add_meeting_address_editTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address Here"
+            android:textColor="@color/textcolor"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/add_meeting_task_editTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/layoutcorner2"
+        android:padding="10dp"
+        android:gravity="start"
+        android:hint="Task"
+        android:textStyle="bold"
+        android:textColor="@color/textcolor"
+        android:layout_gravity="center"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FD7F44"
+            android:text="Cancel"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_weight="5"
+            android:layout_margin="5dp" />
+
+        <Button
+            android:id="@+id/btn_okay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FD7F44"
+            android:text="Okay"
+            android:layout_margin="5dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_weight="5" />
+
+    </LinearLayout>
+</LinearLayout>
