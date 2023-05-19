@@ -376,11 +376,15 @@ public class EmployeeHomeFragment extends Fragment {
     }
 
     private void navigateToMeetingOrTask(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_meetingOrTaskFragment);
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID,employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_meetingOrTaskFragment,bundle);
     }
 
     private void navigateToSchoolList(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_schoolListFragment);
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID,employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_schoolListFragment,bundle);
     }
 
     private void navigateToMyAccount(View view) {

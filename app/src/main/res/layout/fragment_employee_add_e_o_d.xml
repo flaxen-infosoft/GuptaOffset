@@ -612,7 +612,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Other Expenses Description"
-                            android:inputType="numberSigned"
+                            android:inputType="text"
                             android:text="@={eod.schoolVisits}" />
                     </com.google.android.material.textfield.TextInputLayout>
 
