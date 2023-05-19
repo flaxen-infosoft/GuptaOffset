@@ -140,4 +140,11 @@ public class Constants {
     public static final String ATTACHMENT = "attachment";
     public static final String REMAINING_AMOUNT = "remaining_amount";
     public static final String TASK = "task";
+
+    public static final String LEAVE_DATES = "leave_dates";
+    public static final String LEAVE_DAYS = "leave_days";
+    public static final String TOTAL_ABSENT = "total_absent";
+
+
+    public static final String D_DATE = "d_date";
 }
