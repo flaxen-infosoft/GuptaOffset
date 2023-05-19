@@ -93,7 +93,7 @@ public class EmployeeHomeFragment extends Fragment {
         binding.absentOrLeaveTextview.setOnClickListener(this::navigateToAbsentOrLeave);
         binding.meetingTaskTextview.setOnClickListener(this::navigateToMeetingOrTask);
         binding.schoolListTextview.setOnClickListener(this::navigateToSchoolList);
-        binding.myAccount.setOnClickListener(this::navigateToMyAccount);
+        binding.myAccount.setOnClickListener(this::navigateToDailyReports);
         binding.dateTextId.setOnClickListener(this::onSelectDate);
         binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
 
@@ -370,7 +370,9 @@ public class EmployeeHomeFragment extends Fragment {
     }
 
     private void navigateToAbsentOrLeave(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_absentOrLeaveFragment);
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID,employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_absentOrLeaveFragment,bundle);
     }
 
     private void navigateToMeetingOrTask(View view) {
