@@ -34,6 +34,10 @@ public class EmployeeAbsentLeave {
     @Expose
     private String from_date;
 
+    @SerializedName(Constants.LEAVE_MESSAGE)
+    @Expose
+    private String message;
+
     public Long getId() {
         return id;
     }

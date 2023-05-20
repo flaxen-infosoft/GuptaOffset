@@ -18,14 +18,14 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.flaxeninfosoft.guptaoffset.R;
-import com.flaxeninfosoft.guptaoffset.adapters.AdminLeaveAdapter;
 import com.flaxeninfosoft.guptaoffset.adapters.EmployeeLeaveAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentAbsentOrLeaveBinding;
 import com.flaxeninfosoft.guptaoffset.models.EmployeeAbsentLeave;
-import com.flaxeninfosoft.guptaoffset.models.Leave;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.Gson;
@@ -57,6 +57,7 @@ public class AbsentOrLeaveFragment extends Fragment {
     Calendar myCalendar = Calendar.getInstance();
 
     FragmentAbsentOrLeaveBinding binding;
+
     public AbsentOrLeaveFragment() {
         // Required empty public constructor
     }
@@ -71,7 +72,7 @@ public class AbsentOrLeaveFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_absent_or_leave, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_absent_or_leave, container, false);
         binding.absentOrLeaveBackImg.setOnClickListener(this::onClickBack);
         employeeAbsentLeaves = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
@@ -80,104 +81,86 @@ public class AbsentOrLeaveFragment extends Fragment {
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Please wait ....");
-        empId = getArguments().getLong(Constants.EMPLOYEE_ID,0L);
-        binding.adminLeaveFromDate.setOnClickListener(this::fromDate);
-        binding.adminLeaveToDate.setOnClickListener(this::toDate);
+        empId = getArguments().getLong(Constants.EMPLOYEE_ID, 0L);
+        binding.leaveFromDate.setOnClickListener(this::fromDate);
+        binding.leaveToDate.setOnClickListener(this::toDate);
 
-        employeeLeaveAdapter = new EmployeeLeaveAdapter(employeeAbsentLeaves , getContext() , employeeAbsentLeave ->  onClickAbsentLeave(employeeAbsentLeave));
+        employeeLeaveAdapter = new EmployeeLeaveAdapter(employeeAbsentLeaves, getContext(), employeeAbsentLeave -> onClickAbsentLeave(employeeAbsentLeave));
         binding.absentOrLeaveRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.absentLeaveSwipeRefresh.setOnRefreshListener(() -> getAllAbsentLeaves(empId));
         binding.absentOrLeaveRecycler.setAdapter(employeeLeaveAdapter);
         employeeLeaveAdapter.notifyDataSetChanged();
         getAllAbsentLeaves(empId);
-        return  binding.getRoot();
+        return binding.getRoot();
     }
 
 
-    private void getAllAbsentLeaves(Long empId) {
-        Log.e("","getAllLave method called ");
+    public void getAllAbsentLeaves(Long empId) {
         employeeAbsentLeaves.clear();
         progressDialog.show();
         String url = ApiEndpoints.BASE_URL + "attendance/getLeaveAndAbsentByempId.php";
+
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("empId", empId);
-        if (fromDate == null || fromDate.isEmpty()){
-            Log.e("absent or leave","fromDate if");
-            hashMap.put("fromDate","");
+        if (fromDate == null || fromDate.isEmpty()) {
+            hashMap.put("fromDate", "");
         } else {
-            Log.e("absent or leave","fromDate else");
-            hashMap.put("fromDate",fromDate);
+            hashMap.put("fromDate", fromDate);
         }
-        if (toDate == null || toDate.isEmpty()){
-            Log.e("absent or leave","toDate if");
-            hashMap.put("toDate","");
+        if (toDate == null || toDate.isEmpty()) {
+            hashMap.put("toDate", "");
         } else {
-            Log.e("absent or leave"," toDate else");
-            hashMap.put("toDate",toDate);
+            hashMap.put("toDate", toDate);
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
-            Log.i("absent or leave", response.toString());
-            Log.e("absent orleave", "inside JsonObjectReq");
-            progressDialog.dismiss();
-            if (binding.absentLeaveSwipeRefresh.isRefreshing()) {
-                binding.absentLeaveSwipeRefresh.setRefreshing(false);
-            }
-            try {
-                Log.e("","inside try ");
-                if (response != null) {
-                    Log.e("absent or leave"+response,"");
-                    if (response.getJSONArray("data").length() > 0) {
-                        JSONArray jsonArray = response.getJSONArray("data");
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            Log.e("absent or leave","inside for loop");
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            EmployeeAbsentLeave employeeAbsentLeave = gson.fromJson(jsonArray.getJSONObject(i).toString(), EmployeeAbsentLeave.class);
-                            employeeAbsentLeaves.add(employeeAbsentLeave);
-                        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                progressDialog.dismiss();
+                progressDialog.dismiss();
+                if (binding.absentLeaveSwipeRefresh.isRefreshing()) {
+                    binding.absentLeaveSwipeRefresh.setRefreshing(false);
+                }
+                Log.i("akshat leave/absent ", response.toString());
 
-                        Log.e(""+employeeAbsentLeaves,"");
+                try {
+                    JSONArray jsonArray = response.getJSONArray("data");
+                    Log.i("akshat jsonarray", jsonArray.toString());
 
-                        binding.absentOrLeaveRecycler.setAdapter(employeeLeaveAdapter);
-                        employeeLeaveAdapter.notifyDataSetChanged();
-                        if (employeeAbsentLeaves == null || employeeAbsentLeaves.isEmpty()) {
-                            binding.absentOrLeaveRecycler.setVisibility(View.GONE);
-                            binding.absentOrLeaveEmptyTV.setVisibility(View.VISIBLE);
-                        } else {
-                            binding.absentOrLeaveRecycler.setVisibility(View.VISIBLE);
-                            binding.absentOrLeaveEmptyTV.setVisibility(View.GONE);
-                        }
-                    } else {
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        EmployeeAbsentLeave employeeAbsentLeave = gson.fromJson(jsonArray.getJSONObject(i).toString(), EmployeeAbsentLeave.class);
+                        employeeAbsentLeaves.add(employeeAbsentLeave);
+                    }
+
+                    employeeLeaveAdapter.notifyDataSetChanged();
+                    if (employeeAbsentLeaves == null || employeeAbsentLeaves.isEmpty() || employeeAbsentLeaves.size() == 0) {
                         binding.absentOrLeaveRecycler.setVisibility(View.GONE);
                         binding.absentOrLeaveEmptyTV.setVisibility(View.VISIBLE);
-                        Toast.makeText(getContext(), response.getString("data"), Toast.LENGTH_SHORT).show();
+                    } else {
+                        binding.absentOrLeaveRecycler.setVisibility(View.VISIBLE);
+                        binding.absentOrLeaveEmptyTV.setVisibility(View.GONE);
                     }
-                } else {
 
-
-                    try {
-                        Toast.makeText(getContext(), response.getString("data"), Toast.LENGTH_SHORT).show();
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
+                    Log.i("aksaht list size", employeeAbsentLeaves.size() + "");
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
             }
-        }, error -> {
-            progressDialog.dismiss();
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
             if (binding.absentLeaveSwipeRefresh.isRefreshing()) {
                 binding.absentLeaveSwipeRefresh.setRefreshing(false);
+            }
+                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
-//        int timeout = 10000; // 10 seconds
-//        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
 
     }
-
 
 
     private void fromDate(View view) {
@@ -192,7 +175,7 @@ public class AbsentOrLeaveFragment extends Fragment {
                 Calendar calendar = Calendar.getInstance();
                 java.util.Date date = new Date(year, month, day);
                 Format format = new SimpleDateFormat("20yy-MM-dd");
-                binding.adminLeaveFromDate.setText(format.format(date));
+                binding.leaveFromDate.setText(format.format(date));
                 fromDate = format.format(date);
 //                    fromDate = format.format(date);
             }
@@ -214,7 +197,7 @@ public class AbsentOrLeaveFragment extends Fragment {
                 Calendar calendar = Calendar.getInstance();
                 java.util.Date date = new Date(year, month, day);
                 Format format = new SimpleDateFormat("20yy-MM-dd");
-                binding.adminLeaveToDate.setText(format.format(date));
+                binding.leaveToDate.setText(format.format(date));
                 toDate = format.format(date);
                 getAllAbsentLeaves(empId);
             }
@@ -224,6 +207,7 @@ public class AbsentOrLeaveFragment extends Fragment {
         datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
 
     }
+
     private void onClickAbsentLeave(EmployeeAbsentLeave employeeAbsentLeave) {
     }
 

@@ -147,4 +147,5 @@ public class Constants {
 
 
     public static final String D_DATE = "d_date";
+    public static final String LEAVE_MESSAGE = "message";
 }
