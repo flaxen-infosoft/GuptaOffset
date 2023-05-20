@@ -38,6 +38,27 @@ public class EmployeeAbsentLeave {
     @Expose
     private String message;
 
+    @SerializedName("days_leave")
+    @Expose
+    private String days_leave;
+
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getDays_leave() {
+        return days_leave;
+    }
+
+    public void setDays_leave(String days_leave) {
+        this.days_leave = days_leave;
+    }
+
     public Long getId() {
         return id;
     }
