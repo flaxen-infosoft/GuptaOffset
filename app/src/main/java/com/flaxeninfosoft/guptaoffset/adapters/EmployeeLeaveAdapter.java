@@ -25,7 +25,7 @@ public class EmployeeLeaveAdapter extends RecyclerView.Adapter<EmployeeLeaveAdap
 
     EmployeeAbsentLeaveClickListener employeeAbsentLeaveClickListener;
 
-    public EmployeeLeaveAdapter(List<EmployeeAbsentLeave> employeeAbsentLeaves, Context context, EmployeeAbsentLeaveClickListener employeeAbsentLeaveClickListener){
+    public EmployeeLeaveAdapter(List<EmployeeAbsentLeave> employeeAbsentLeaves, Context context, EmployeeAbsentLeaveClickListener employeeAbsentLeaveClickListener) {
         this.employeeAbsentLeaves = employeeAbsentLeaves;
         this.employeeAbsentLeaveClickListener = employeeAbsentLeaveClickListener;
     }
@@ -33,8 +33,8 @@ public class EmployeeLeaveAdapter extends RecyclerView.Adapter<EmployeeLeaveAdap
     @NonNull
     @Override
     public EmployeeLeaveAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-         SingleEmployeeAbsentLeaveBinding singleEmployeeAbsentLeaveBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.single_employee_absent_leave,parent,false);
-        return new ViewHolder(singleEmployeeAbsentLeaveBinding,employeeAbsentLeaveClickListener);
+        SingleEmployeeAbsentLeaveBinding singleEmployeeAbsentLeaveBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.single_employee_absent_leave, parent, false);
+        return new ViewHolder(singleEmployeeAbsentLeaveBinding, employeeAbsentLeaveClickListener);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class EmployeeLeaveAdapter extends RecyclerView.Adapter<EmployeeLeaveAdap
 
     @Override
     public int getItemCount() {
-        if (employeeAbsentLeaves == null){
+        if (employeeAbsentLeaves == null) {
             return 0;
 
         }
@@ -62,13 +62,23 @@ public class EmployeeLeaveAdapter extends RecyclerView.Adapter<EmployeeLeaveAdap
         EmployeeAbsentLeaveClickListener employeeLeaveclicklistener;
 
 
-        public ViewHolder(SingleEmployeeAbsentLeaveBinding binding,EmployeeAbsentLeaveClickListener employeeLeaveclicklistener) {
+        public ViewHolder(SingleEmployeeAbsentLeaveBinding binding, EmployeeAbsentLeaveClickListener employeeLeaveclicklistener) {
             super(binding.getRoot());
             this.binding = binding;
             this.employeeLeaveclicklistener = employeeLeaveclicklistener;
         }
-        public void setData(EmployeeAbsentLeave employeeAbsentLeave){
+
+        public void setData(EmployeeAbsentLeave employeeAbsentLeave) {
             binding.setAbsentleave(employeeAbsentLeave);
+            if (employeeAbsentLeave.getD_date() == null) {
+                binding.absentLeaveTag.setText("Leave");
+                binding.absentDateLinear.setVisibility(View.GONE);
+                binding.leaveLinear.setVisibility(View.VISIBLE);
+            } else {
+                binding.absentLeaveTag.setText("Absent");
+                binding.absentDateLinear.setVisibility(View.VISIBLE);
+                binding.leaveLinear.setVisibility(View.GONE);
+            }
             binding.getRoot().setOnClickListener(view -> employeeAbsentLeaveClickListener.employeeLeave(employeeAbsentLeave));
         }
     }

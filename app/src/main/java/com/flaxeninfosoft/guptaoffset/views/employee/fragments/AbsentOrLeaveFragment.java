@@ -87,11 +87,17 @@ public class AbsentOrLeaveFragment extends Fragment {
 
         employeeLeaveAdapter = new EmployeeLeaveAdapter(employeeAbsentLeaves, getContext(), employeeAbsentLeave -> onClickAbsentLeave(employeeAbsentLeave));
         binding.absentOrLeaveRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.absentLeaveSwipeRefresh.setOnRefreshListener(() -> getAllAbsentLeaves(empId));
+        binding.absentLeaveSwipeRefresh.setOnRefreshListener(this::onSwipe);
         binding.absentOrLeaveRecycler.setAdapter(employeeLeaveAdapter);
         employeeLeaveAdapter.notifyDataSetChanged();
         getAllAbsentLeaves(empId);
         return binding.getRoot();
+    }
+
+    private void onSwipe() {
+        toDate = "";
+        fromDate = "";
+        getAllAbsentLeaves(empId);
     }
 
 
@@ -117,13 +123,15 @@ public class AbsentOrLeaveFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 progressDialog.dismiss();
-                progressDialog.dismiss();
+
                 if (binding.absentLeaveSwipeRefresh.isRefreshing()) {
                     binding.absentLeaveSwipeRefresh.setRefreshing(false);
                 }
-                Log.i("akshat leave/absent ", response.toString());
+
 
                 try {
+                    binding.totalLeaveTexview.setText(response.getString("total_leave"));
+                    binding.totalAbsentTexview.setText(response.getString("total_absent"));
                     JSONArray jsonArray = response.getJSONArray("data");
                     Log.i("akshat jsonarray", jsonArray.toString());
 
@@ -142,7 +150,6 @@ public class AbsentOrLeaveFragment extends Fragment {
                         binding.absentOrLeaveEmptyTV.setVisibility(View.GONE);
                     }
 
-                    Log.i("aksaht list size", employeeAbsentLeaves.size() + "");
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -151,9 +158,9 @@ public class AbsentOrLeaveFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-            if (binding.absentLeaveSwipeRefresh.isRefreshing()) {
-                binding.absentLeaveSwipeRefresh.setRefreshing(false);
-            }
+                if (binding.absentLeaveSwipeRefresh.isRefreshing()) {
+                    binding.absentLeaveSwipeRefresh.setRefreshing(false);
+                }
                 Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
