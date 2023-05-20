@@ -75,7 +75,7 @@ public class SuperEmployeeHomeFragment extends Fragment {
 
         binding.superEmployeeHomeSendMessageFab.setOnClickListener(this::sendMessage);
 
-        viewModel.getCurrentEmployeeHistory().observe(getViewLifecycleOwner(), this::setEmployeeHistory);
+        viewModel.getCurrentEmployeeHistory("").observe(getViewLifecycleOwner(), this::setEmployeeHistory);
 
         binding.superEmployeeHomeViewFab.setOnClickListener(view -> {
             if (binding.superEmployeeHomeCard.getVisibility() == View.VISIBLE) {

@@ -94,7 +94,8 @@ public class EmployeeHomeFragment extends Fragment {
         binding.meetingTaskTextview.setOnClickListener(this::navigateToMeetingOrTask);
         binding.schoolListTextview.setOnClickListener(this::navigateToSchoolList);
         binding.myAccount.setOnClickListener(this::navigateToDailyReports);
-        binding.dateTextId.setOnClickListener(this::onSelectDate);
+        binding.selectDateLinear.setOnClickListener(this::onSelectDate);
+        binding.todayDataTextview.setOnClickListener(this::onClickTodayData);
         binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
 
         String formattedDateTime = "";
@@ -116,7 +117,7 @@ public class EmployeeHomeFragment extends Fragment {
         lm.setStackFromEnd(true);
         binding.employeeHomeRecycler.setLayoutManager(lm);
 
-        viewModel.getCurrentEmployeeHistory().observe(getViewLifecycleOwner(), this::setEmployeeHistory);
+//        viewModel.getCurrentEmployeeHistory().observe(getViewLifecycleOwner(), this::setEmployeeHistory);
 
         binding.employeeHomeViewFab.setOnClickListener(view -> {
             if (binding.employeeHomeCard.getVisibility() == View.VISIBLE) {
@@ -126,11 +127,17 @@ public class EmployeeHomeFragment extends Fragment {
             }
         });
 
+        getAllHistory();
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
         binding.employeeHomeSendMessageFab.setOnClickListener(this::sendMessage);
 
         return binding.getRoot();
+    }
+
+    private void onClickTodayData(View view) {
+        selectedDate = "";
+        getAllHistory();
     }
 
     private void onSelectDate(View view) {
@@ -161,7 +168,11 @@ public class EmployeeHomeFragment extends Fragment {
                 datePickerDialog.getDatePicker().setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
                     @Override
                     public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
-
+                        Date date = new Date(i, i1, i2);
+                        Format format = new SimpleDateFormat("20yy-MM-dd");
+                        binding.dateTextId.setText(format.format(date));
+                        selectedDate = format.format(date);
+                        getAllHistory();
                     }
                 });
             }
@@ -169,6 +180,19 @@ public class EmployeeHomeFragment extends Fragment {
         }
     }
 
+
+    private void getAllHistory() {
+        if (selectedDate.isEmpty()) {
+            Toast.makeText(getContext(), currentDate + " History", Toast.LENGTH_SHORT).show();
+            viewModel.getCurrentEmployeeHistory(currentDate).observe(getViewLifecycleOwner(), this::setEmployeeHistory);
+            binding.dateTextId.setText(currentDate);
+        } else {
+            Toast.makeText(getContext(), selectedDate + " History", Toast.LENGTH_SHORT).show();
+            viewModel.getCurrentEmployeeHistory(selectedDate).observe(getViewLifecycleOwner(), this::setEmployeeHistory);
+            binding.dateTextId.setText(selectedDate);
+        }
+
+    }
 
     private void setAttendance(Attendance attendance) {
 
@@ -221,7 +245,7 @@ public class EmployeeHomeFragment extends Fragment {
             binding.getMessage().setReceiverId(viewModel.getCurrentEmployee().getId());
             viewModel.sendMessage(binding.getMessage()).observe(getViewLifecycleOwner(), message -> {
                 if (message != null) {
-                    viewModel.getCurrentEmployeeHistory();
+                    getAllHistory();
                 }
             });
             binding.setMessage(new Message());
@@ -371,20 +395,20 @@ public class EmployeeHomeFragment extends Fragment {
 
     private void navigateToAbsentOrLeave(View view) {
         Bundle bundle = new Bundle();
-        bundle.putLong(Constants.EMPLOYEE_ID,employee.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_absentOrLeaveFragment,bundle);
+        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_absentOrLeaveFragment, bundle);
     }
 
     private void navigateToMeetingOrTask(View view) {
         Bundle bundle = new Bundle();
-        bundle.putLong(Constants.EMPLOYEE_ID,employee.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_meetingOrTaskFragment,bundle);
+        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_meetingOrTaskFragment, bundle);
     }
 
     private void navigateToSchoolList(View view) {
         Bundle bundle = new Bundle();
-        bundle.putLong(Constants.EMPLOYEE_ID,employee.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_schoolListFragment,bundle);
+        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_schoolListFragment, bundle);
     }
 
     private void navigateToMyAccount(View view) {

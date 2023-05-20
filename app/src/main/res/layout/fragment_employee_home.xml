@@ -51,7 +51,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="2dp"
+                        android:weightSum="10"
                         android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:id="@+id/select_date_linear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3.3"
+                            android:orientation="horizontal">
+
+
 
                         <TextView
                             android:id="@+id/calender_text_id"
@@ -77,6 +88,37 @@
                             android:layout_weight="7"
                             android:textSize="15sp"
                             android:layout_gravity="center"/>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/black"/>
+
+                        <LinearLayout
+                            android:id="@+id/linear_today_data"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6.7"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/today_data_textview"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Today Data"
+                                android:gravity="center"
+                                android:textColor="@color/red"
+                                android:textStyle="bold"
+                                android:layout_weight="7"
+                                android:textSize="15sp"
+                                android:layout_gravity="center"/>
+
+                        </LinearLayout>
+
 
 
                     </LinearLayout>

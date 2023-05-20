@@ -556,9 +556,9 @@ public class EmployeeViewModel extends AndroidViewModel {
 
     private final MutableLiveData<List<EmployeeHistory>> history = new MutableLiveData<>();
 
-    public LiveData<List<EmployeeHistory>> getCurrentEmployeeHistory() {
+    public LiveData<List<EmployeeHistory>> getCurrentEmployeeHistory(String date) {
 
-        repo.getEmployeeHomeHistory(getCurrentEmployeeId(), getCurrentEmployeeId(), new ApiResponseListener<List<EmployeeHistory>, String>() {
+        repo.getEmployeeHomeHistory(getCurrentEmployeeId(), getCurrentEmployeeId(), date, new ApiResponseListener<List<EmployeeHistory>, String>() {
             @Override
             public void onSuccess(List<EmployeeHistory> response) {
                 history.postValue(response);
@@ -591,7 +591,7 @@ public class EmployeeViewModel extends AndroidViewModel {
                 toastMessage.postValue(error);
             }
         });
-        getCurrentEmployeeHistory();
+        getCurrentEmployeeHistory("");
         return flag;
     }
 

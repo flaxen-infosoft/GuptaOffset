@@ -140,7 +140,8 @@ public class SuperEmployeeViewModel extends EmployeeViewModel {
     public LiveData<List<EmployeeHistory>> getEmployeeHistoryById(Long empId) {
         MutableLiveData<List<EmployeeHistory>> flag = new MutableLiveData<>();
 
-        repo.getEmployeeHomeHistory(empId, getCurrentEmployeeId(), new ApiResponseListener<List<EmployeeHistory>, String>() {
+        //empty string is passed instead of date which gives all history data
+        repo.getEmployeeHomeHistory(empId, getCurrentEmployeeId(),"", new ApiResponseListener<List<EmployeeHistory>, String>() {
             @Override
             public void onSuccess(List<EmployeeHistory> response) {
                 flag.postValue(response);

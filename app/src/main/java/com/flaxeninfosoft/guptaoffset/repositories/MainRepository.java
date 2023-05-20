@@ -700,8 +700,8 @@ public class MainRepository {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public void getEmployeeHomeHistory(Long empId, Long currentEmpId, ApiResponseListener<List<EmployeeHistory>, String> listener) {
-        Call<List<EmployeeHistory>> historyCall = historyApiInterface.getEmployeeHistory(empId, currentEmpId);
+    public void getEmployeeHomeHistory(Long empId, Long currentEmpId,String date, ApiResponseListener<List<EmployeeHistory>, String> listener) {
+        Call<List<EmployeeHistory>> historyCall = historyApiInterface.getEmployeeHistory(empId, currentEmpId,date);
 
         historyCall.enqueue(new Callback<List<EmployeeHistory>>() {
             @Override
