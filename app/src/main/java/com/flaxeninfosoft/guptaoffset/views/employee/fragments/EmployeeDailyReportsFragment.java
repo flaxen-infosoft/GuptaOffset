@@ -42,6 +42,7 @@ public class EmployeeDailyReportsFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_daily_reports, container, false);
 
         binding.employeeDailyReportsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.myAccountBackImg.setOnClickListener(this::onClickBack);
 
         try {
             long empId = getArguments().getLong(Constants.EMPLOYEE_ID, -1);
@@ -58,6 +59,10 @@ public class EmployeeDailyReportsFragment extends Fragment {
 
 
         return binding.getRoot();
+    }
+
+    private void onClickBack(View view) {
+        Navigation.findNavController(view).navigateUp();
     }
 
     private void setEods(List<Eod> eods) {
