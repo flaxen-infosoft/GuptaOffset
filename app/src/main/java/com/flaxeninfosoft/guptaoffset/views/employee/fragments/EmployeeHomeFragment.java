@@ -73,9 +73,8 @@ public class EmployeeHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_home, container, false);
         binding.setMessage(new Message());
-        binding.getMessage().setReceiverId(viewModel.getCurrentEmployee().getId());
-
         employee = viewModel.getCurrentEmployee();
+        binding.getMessage().setReceiverId(employee.getId());
         binding.employeeName.setText(employee.getName());
 
         viewModel.getCurrentEmployeeTodaysAttendance().observe(getViewLifecycleOwner(), this::setAttendance);
@@ -96,7 +95,7 @@ public class EmployeeHomeFragment extends Fragment {
         binding.myAccount.setOnClickListener(this::navigateToDailyReports);
         binding.selectDateLinear.setOnClickListener(this::onSelectDate);
         binding.todayDataTextview.setOnClickListener(this::onClickTodayData);
-        binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
+       // binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
 
         String formattedDateTime = "";
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -354,11 +353,15 @@ public class EmployeeHomeFragment extends Fragment {
     }
 
     private void navigateToAddShop(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddDealerFragment);
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddDealerFragment,bundle);
     }
 
     private void navigateToAddSchool(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddSchoolFragment);
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddSchoolFragment,bundle);
     }
 
     private void navigateAddAttendance(View view) {

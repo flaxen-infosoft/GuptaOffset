@@ -92,7 +92,7 @@ public class EmployeeAddOrderFragment extends Fragment {
             return;
         }
 
-        progressDialog.show();
+//        progressDialog.show();
 
         try {
             viewModel.addOrder(binding.getOrder(), image).observe(getViewLifecycleOwner(), b -> {

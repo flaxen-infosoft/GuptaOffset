@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,21 +33,34 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddSchoolBinding;
+import com.flaxeninfosoft.guptaoffset.models.PaymentStatus;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
+import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -59,7 +73,11 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
     private String pictureSpecimanImagePath;
 
+    RequestQueue requestQueue;
+
     private String pictureHoadingImagePath;
+
+    Long empId ;
 
     public EmployeeAddSchoolFragment() {
         // Required empty public constructor
@@ -83,10 +101,11 @@ public class EmployeeAddSchoolFragment extends Fragment {
         progressDialog.setTitle("Adding School...");
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
-
+        requestQueue = Volley.newRequestQueue(getContext());
+        empId = getArguments().getLong(Constants.EMPLOYEE_ID,0L);
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
-
         binding.setSchool(viewModel.getNewSchool());
+        getSchoolCount(empId);
         setHoadingImage();
         setSpecimenImage();
         setAddress();
@@ -105,6 +124,37 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
         return binding.getRoot();
     }
+
+    private void getSchoolCount(Long empId) {
+
+        String url = ApiEndpoints.BASE_URL + "school/schoolcount.php";
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("empId", empId);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
+            Log.i("schoolCount", response.toString());
+
+            if (response != null) {
+                try {
+                    String var = response.getString("data");
+                    binding.schoolCount.setText(var);
+                } catch (JSONException e) {
+                    progressDialog.dismiss();
+                    throw new RuntimeException(e);
+                }
+            }
+        }, error -> {
+            progressDialog.dismiss();
+            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+        });
+
+//        int timeout = 10000; // 10 seconds
+//        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+
+
+    }
+
 
     private void setAddress() {
         FusedLocationProviderClient mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());

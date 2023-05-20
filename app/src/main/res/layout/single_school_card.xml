@@ -67,7 +67,7 @@
                         android:padding="5dp"
                         android:text="Date :"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -101,7 +101,7 @@
                         android:padding="5dp"
                         android:text="Name :"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -169,7 +169,7 @@
                         android:padding="5dp"
                         android:text="Class 9th :"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -203,7 +203,7 @@
                         android:padding="5dp"
                         android:text="Class 10th :"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -270,7 +270,7 @@
                                 android:padding="3dp"
                                 android:text="Commerce"
                                 android:textColor="@color/black"
-                                android:textSize="15sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -311,7 +311,7 @@
                                 android:padding="3dp"
                                 android:text="Science"
                                 android:textColor="@color/black"
-                                android:textSize="15sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -352,7 +352,7 @@
                                 android:padding="3dp"
                                 android:text="Arts"
                                 android:textColor="@color/black"
-                                android:textSize="15sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -425,7 +425,7 @@
                                 android:padding="3dp"
                                 android:text="Commerce"
                                 android:textColor="@color/black"
-                                android:textSize="15sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -466,7 +466,7 @@
                                 android:padding="3dp"
                                 android:text="Science"
                                 android:textColor="@color/black"
-                                android:textSize="15sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -507,7 +507,7 @@
                                 android:padding="3dp"
                                 android:text="Arts"
                                 android:textColor="@color/black"
-                                android:textSize="15sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -559,7 +559,7 @@
                         android:padding="4dp"
                         android:gravity="center"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
 
@@ -583,7 +583,7 @@
                         android:padding="5dp"
                         android:text="Contact :"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -593,7 +593,7 @@
                         android:layout_weight="1"
                         android:text="@{school.contact}"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
 

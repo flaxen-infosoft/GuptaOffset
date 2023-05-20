@@ -17,36 +17,36 @@
         android:orientation="vertical">
 
 
-        <LinearLayout
-            android:id="@+id/top_linearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/orange"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/top_linearlayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/orange"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:padding="10dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
 
-            <ImageView
-                android:id="@+id/above_80Km_drive_Report_back_img"
-                android:layout_width="35dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_back"
-                android:backgroundTint="@color/white" />
+<!--            <ImageView-->
+<!--                android:id="@+id/above_80Km_drive_Report_back_img"-->
+<!--                android:layout_width="35dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:background="@drawable/ic_back"-->
+<!--                android:backgroundTint="@color/white" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:text="Add Attendance"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:text="Add Attendance"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="20dp"-->
+<!--                android:textStyle="bold" />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
         <ScrollView
             android:layout_width="match_parent"

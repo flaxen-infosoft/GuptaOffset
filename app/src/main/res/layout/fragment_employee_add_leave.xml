@@ -64,6 +64,7 @@
                 android:gravity="start"
                 android:hint="Number of days"
                 android:inputType="number"
+                android:visibility="gone"
                 android:text="@={leave.daysLeave}" />
         </com.google.android.material.textfield.TextInputLayout>
 
