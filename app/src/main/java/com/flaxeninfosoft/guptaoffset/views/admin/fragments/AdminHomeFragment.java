@@ -223,6 +223,10 @@ public class AdminHomeFragment extends Fragment {
                 datePickerDialog.getDatePicker().setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
                     @Override
                     public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
+                        Date date = new Date(i, i1, i2);
+                        Format format = new SimpleDateFormat("20yy-MM-dd");
+                        binding.dateTextId.setText(format.format(date));
+                        selectedDate = format.format(date);
                         getAllEmployees();
                     }
                 });
