@@ -312,7 +312,7 @@
                                 android:paddingBottom="5dp"
                                 android:text="School"
                                 android:textColor="@color/black"
-                                android:textSize="15dp"
+                                android:textSize="13dp"
                                 android:textStyle="bold" />
 
                             <View
@@ -360,7 +360,7 @@
                                 android:paddingBottom="1dp"
                                 android:text="Petrol"
                                 android:textColor="@color/black"
-                                android:textSize="15dp"
+                                android:textSize="13dp"
                                 android:textStyle="bold" />
 
                             <View
@@ -404,9 +404,10 @@
                                 android:layout_gravity="center"
                                 android:paddingTop="5dp"
                                 android:paddingBottom="7dp"
+                                android:gravity="center"
                                 android:text="Tehsil Cover"
                                 android:textColor="@color/black"
-                                android:textSize="15sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <View
@@ -426,7 +427,7 @@
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:padding="2sp"
-                                    android:text="0"
+                                    android:text="@{employee.tehsil_cover}"
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
                                     android:textStyle="bold" />
@@ -466,7 +467,7 @@
                                 android:paddingBottom="5dp"
                                 android:text="K.M."
                                 android:textColor="@color/black"
-                                android:textSize="15sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <View
@@ -486,6 +487,7 @@
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:paddingTop="7dp"
+                                    android:padding="2dp"
                                     android:paddingBottom="7dp"
                                     android:text="@{employee.km != null ? employee.km : `0`}"
                                     android:textColor="@color/textcolor"
@@ -513,7 +515,7 @@
                                 android:paddingBottom="5dp"
                                 android:text="Dealer"
                                 android:textColor="@color/black"
-                                android:textSize="15sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <View
@@ -534,7 +536,8 @@
                                     android:gravity="center"
                                     android:paddingTop="7dp"
                                     android:paddingBottom="7dp"
-                                    android:text="@{employee.dealer_count != null ? employee.dealer_count : `0`}"
+                                    android:padding="2dp"
+                                    android:text="@{employee.dealer_count}"
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
                                     android:textStyle="bold" />
@@ -560,7 +563,7 @@
                                 android:paddingBottom="5dp"
                                 android:text="T.A.Amt."
                                 android:textColor="@color/black"
-                                android:textSize="15sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <View
@@ -579,6 +582,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
+                                    android:padding="2dp"
                                     android:paddingTop="7dp"
                                     android:paddingBottom="7dp"
                                     android:text="@{employee.total_amount != null ? employee.total_amount : `0`}"
@@ -622,11 +626,12 @@
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:paddingTop="7dp"
                                     android:paddingBottom="7dp"
+                                    android:padding="2dp"
                                     android:text="@{employee.school_visit_duration != null ? employee.school_visit_duration : `0`}"
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
