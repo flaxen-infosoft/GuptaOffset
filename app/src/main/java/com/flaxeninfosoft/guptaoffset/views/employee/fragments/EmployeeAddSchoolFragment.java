@@ -18,6 +18,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -36,6 +40,8 @@ import androidx.navigation.Navigation;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
@@ -72,12 +78,18 @@ public class EmployeeAddSchoolFragment extends Fragment {
     private ProgressDialog progressDialog;
 
     private String pictureSpecimanImagePath;
+    View view;
 
     RequestQueue requestQueue;
+    String hindi_medium;
+    String medium;
+   String english_medium;
+
+   String opt[] ={"English Medium, Hindi Medium"};
 
     private String pictureHoadingImagePath;
 
-    Long empId ;
+    Long empId;
 
     public EmployeeAddSchoolFragment() {
         // Required empty public constructor
@@ -93,16 +105,16 @@ public class EmployeeAddSchoolFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_add_school, container, false);
-
         binding.employeeAddSchoolBtn.setOnClickListener(this::onClickAddSchool);
         binding.employeeAddSchoolSpecimenImage.setOnClickListener(this::onClickSpecimenImage);
         binding.employeeAddSchoolHoadingImage.setOnClickListener(this::onClickHoadingImage);
+     //   binding.medium.setOnClickListener(this::OnClickedRadioButton);
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Adding School...");
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
         requestQueue = Volley.newRequestQueue(getContext());
-        empId = getArguments().getLong(Constants.EMPLOYEE_ID,0L);
+        empId = getArguments().getLong(Constants.EMPLOYEE_ID, 0L);
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
         binding.setSchool(viewModel.getNewSchool());
         getSchoolCount(empId);
@@ -121,9 +133,64 @@ public class EmployeeAddSchoolFragment extends Fragment {
         binding.dateTextId.setText(year + "/" + month + "/" + day);
         binding.tmTextId.setText(hour + ":" + minute + ":" + second);
 
+        String[] schoolMedium = {"Select School Medium", "English Medium", "Hindi Medium"};
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, dailyAllowanceList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, schoolMedium) {
+            @Override
+            public boolean isEnabled(int position) {
+                // Disable the starting item at position 0
+                return position != 0;
+            }
+        };
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.schoolMediumSpinner.setAdapter(adapter);
+
+        binding.schoolMediumSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String medium = parent.getItemAtPosition(position).toString();
+                sendDataToApi(medium);
+
+           //     Toast.makeText(parent.getContext(), "Selected: " + medium,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         return binding.getRoot();
     }
+
+    private void sendDataToApi(String medium) {
+
+        String apiUrl = "school/addSchool.php";
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("medium", medium);
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("data",true);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, apiUrl, jsonBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle API response
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle error
+            }
+        });
+
+        requestQueue.add(request);
+    }
+
 
     private void getSchoolCount(Long empId) {
 
@@ -383,10 +450,10 @@ public class EmployeeAddSchoolFragment extends Fragment {
             return false;
         }
 
-//        if (binding.getSchool().getContact() == null || binding.getSchool().getContact().trim().isEmpty()) {
-//            binding.employeeAddSchoolContact.setError("**Enter contact number");
-//            return false;
-//        }
+     /*   if (binding.getSchool().getMedium() == null || binding.getSchool().getMedium().trim().isEmpty()) {
+            binding.employeeAddSchoolContact.setError("**Enter medium");
+            return false;
+        }*/
 
         return true;
     }

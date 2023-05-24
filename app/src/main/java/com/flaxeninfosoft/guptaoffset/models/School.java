@@ -82,6 +82,44 @@ public class School {
     @Expose
     private Location district;
 
+    @SerializedName(Constants.MEDIUM)
+    @Expose
+    private String medium;
+
+    @SerializedName(Constants.HINDI)
+    @Expose
+    private String hindi;
+
+    @SerializedName(Constants.ENGLISH)
+    @Expose
+    private String english;
+
+    public String getHindi() {
+        return hindi;
+    }
+
+    public void setHindi(String hindi) {
+        this.hindi = hindi;
+    }
+
+    public String getEnglish() {
+        return english;
+    }
+
+    public void setEnglish(String english) {
+        this.english = english;
+    }
+
+
+    public String getMedium() {
+        return medium;
+    }
+
+    public void setMedium(String medium) {
+        this.medium = medium;
+    }
+
+
     public Location getDistrict() {
         return district;
     }

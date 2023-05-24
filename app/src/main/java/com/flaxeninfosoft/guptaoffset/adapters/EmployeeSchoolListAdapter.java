@@ -46,7 +46,7 @@ public class EmployeeSchoolListAdapter extends RecyclerView.Adapter<EmployeeScho
         if (context != null){
             Paper.init(context);
         }
-        Paper.book().write("CurrentAbove80Id",Id);
+        Paper.book().write("Schoool List",Id);
     }
 
     @Override
