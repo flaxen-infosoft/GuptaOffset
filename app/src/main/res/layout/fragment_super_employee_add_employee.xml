@@ -90,20 +90,20 @@
                         android:text="@={employee.area}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/super_employee_add_employee_daily_allowance"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp">
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:id="@+id/super_employee_add_employee_daily_allowance"-->
+<!--                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginVertical="8dp">-->
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Daily Allowance"
-                        android:inputType="phone"
-                        android:text="@={employee.dailyAllowance}" />
-                </com.google.android.material.textfield.TextInputLayout>
+<!--                    <com.google.android.material.textfield.TextInputEditText-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:hint="Daily Allowance"-->
+<!--                        android:inputType="phone"-->
+<!--                        android:text="@={employee.dailyAllowance}" />-->
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                                 android:layout_height="wrap_content"
                                 android:hint="1.Daily Allowance Description"
                                 android:inputType="text"
-                                android:text="@={employee.daily_allowance_description1}" />
+                                android:text="@{employee.daily_allowance_description1}" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -185,7 +185,7 @@
                                 android:layout_height="wrap_content"
                                 android:hint="2.Daily Allowance Description"
                                 android:inputType="text"
-                                android:text="@={employee.daily_allowance_description2}" />
+                                android:text="@={employee.daily_allowance_description2 }" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout

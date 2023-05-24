@@ -96,7 +96,7 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
             binding.superEmployeeAddEmployeeName.setError(null);
             binding.superEmployeeAddEmployeeEmail.setError(null);
             binding.superEmployeeAddEmployeePassword.setError(null);
-            binding.superEmployeeAddEmployeeDailyAllowance.setError(null);
+//            binding.superEmployeeAddEmployeeDailyAllowance.setError(null);
             binding.superEmployeeAddEmployeePhone.setError(null);
             binding.superEmployeeAddEmployeeSalary.setError(null);
             binding.superEmployeeAddEmployeeFirm.setError(null);

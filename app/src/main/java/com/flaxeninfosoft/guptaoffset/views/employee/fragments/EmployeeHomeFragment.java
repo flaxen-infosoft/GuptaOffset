@@ -95,6 +95,7 @@ public class EmployeeHomeFragment extends Fragment {
         binding.myAccount.setOnClickListener(this::navigateToDailyReports);
         binding.selectDateLinear.setOnClickListener(this::onSelectDate);
         binding.todayDataTextview.setOnClickListener(this::onClickTodayData);
+        binding.districtMap.setOnClickListener(this::onClickDistrictMap);
        // binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
 
         String formattedDateTime = "";
@@ -416,5 +417,8 @@ public class EmployeeHomeFragment extends Fragment {
 
     private void navigateToMyAccount(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_myAccountFragment);
+    }
+    private void onClickDistrictMap(View view) {
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_districtMapFragment);
     }
 }
