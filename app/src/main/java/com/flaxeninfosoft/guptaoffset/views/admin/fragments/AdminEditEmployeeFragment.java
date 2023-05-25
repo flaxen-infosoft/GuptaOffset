@@ -108,20 +108,20 @@ public class AdminEditEmployeeFragment extends Fragment {
             return false;
         }
 
-        if (employee.getDailyAllowance() == null || employee.getDailyAllowance().trim().isEmpty()){
-            Toast.makeText(getContext(), "Daily allowance required", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+//        if (employee.getDailyAllowance() == null || employee.getDailyAllowance().trim().isEmpty()){
+//            Toast.makeText(getContext(), "Daily allowance required", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
 
-        try {
-            int da = Integer.parseInt(employee.getDailyAllowance());
-            if (da<0){
-                throw new Exception();
-            }
-        }catch (Exception e){
-            Toast.makeText(getContext(), "Enter valid daily allowance", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+//        try {
+//            int da = Integer.parseInt(employee.getDailyAllowance());
+//            if (da<0){
+//                throw new Exception();
+//            }
+//        }catch (Exception e){
+//            Toast.makeText(getContext(), "Enter valid daily allowance", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
 
         if (employee.getSalary() == null || employee.getSalary().trim().isEmpty()){
             Toast.makeText(getContext(), "Salary required", Toast.LENGTH_SHORT).show();
@@ -136,6 +136,45 @@ public class AdminEditEmployeeFragment extends Fragment {
         }catch (Exception e){
             Toast.makeText(getContext(), "Enter valid Salary", Toast.LENGTH_SHORT).show();
             return false;
+        }
+
+        if (employee.getDaily_allowance_description1() == null || employee.getDaily_allowance_description1().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Minimum 1 DA Description required", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (employee.getDailyAllowance1() == null || employee.getDailyAllowance1().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Minimum 1 DA Amount required", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        try {
+            int da = Integer.parseInt(employee.getDailyAllowance1());
+            if (da < 0) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Enter valid daily allowance", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (employee.getDaily_allowance_description2() == null || employee.getDaily_allowance_description2().isEmpty()) {
+            employee.setDaily_allowance_description2("NO Allowance");
+        }
+        if (employee.getDaily_allowance_description3() == null || employee.getDaily_allowance_description3().isEmpty()) {
+            employee.setDaily_allowance_description3("NO Allowance");
+        }
+        if (employee.getDaily_allowance_description4() == null || employee.getDaily_allowance_description4().isEmpty()) {
+            employee.setDaily_allowance_description4("NO Allowance");
+        }
+        if (employee.getDailyAllowance2() == null || employee.getDailyAllowance2().isEmpty()) {
+            employee.setDailyAllowance2("0");
+        }
+        if (employee.getDailyAllowance3() == null || employee.getDailyAllowance3().isEmpty()) {
+            employee.setDailyAllowance3("0");
+        }
+        if (employee.getDailyAllowance4() == null || employee.getDailyAllowance4().isEmpty()) {
+            employee.setDailyAllowance4("0");
         }
 
         return true;
