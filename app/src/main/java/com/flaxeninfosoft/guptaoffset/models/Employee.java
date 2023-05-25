@@ -453,6 +453,14 @@ public class Employee {
                 ", designation='" + designation + '\'' +
                 ", area='" + area + '\'' +
                 ", dailyAllowance='" + dailyAllowance + '\'' +
+                ", dailyAllowance1='" + dailyAllowance1 + '\'' +
+                ", dailyAllowance2='" + dailyAllowance2 + '\'' +
+                ", dailyAllowance3='" + dailyAllowance3 + '\'' +
+                ", dailyAllowance4='" + dailyAllowance4 + '\'' +
+                ", daily_allowance_description1='" + daily_allowance_description1 + '\'' +
+                ", daily_allowance_description2='" + daily_allowance_description2 + '\'' +
+                ", daily_allowance_description3='" + daily_allowance_description3 + '\'' +
+                ", daily_allowance_description4='" + daily_allowance_description4 + '\'' +
                 ", status='" + status + '\'' +
                 ", phone='" + phone + '\'' +
                 ", salary='" + salary + '\'' +

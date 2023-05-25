@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
@@ -23,20 +24,38 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddEODBinding;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
+import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
+import com.flaxeninfosoft.guptaoffset.models.Location;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 
 public class EmployeeAddEODFragment extends Fragment {
 
@@ -46,10 +65,13 @@ public class EmployeeAddEODFragment extends Fragment {
 
     private Uri expenseImage;
     private Uri petrolImage;
+    String selectedDailyAllowance;
 
     private String picturePetrolExpenseImagePath;
 
     private String pictureOtherExpenseImagePath;
+
+    List<String> dailyAllowanceList;
 
     public EmployeeAddEODFragment() {
         // Required empty public constructor
@@ -75,9 +97,14 @@ public class EmployeeAddEODFragment extends Fragment {
 
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
         viewModel.getCurrentEmployeeTodaysAttendance().observe(getViewLifecycleOwner(), this::setAttendance);
+        Long empId = viewModel.getCurrentEmployee().getId();
 
         binding.employeeAddEodExpenseImage.setOnClickListener(this::onClickExpenseImage);
         binding.employeeAddEodPetrolImage.setOnClickListener(this::onClickPetrolImage);
+
+        dailyAllowanceList = new ArrayList<>();
+        dailyAllowanceList.add(0, "Please Select Daily Allowance");
+        getDailyAllowanceList(empId);
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -91,7 +118,7 @@ public class EmployeeAddEODFragment extends Fragment {
         binding.tmTextId.setText(hour + ":" + minute + ":" + second);
 
 
-        String[] dailyAllowanceList = {"Select Daily Allowance", "1 Day = 200", "2 Day = 350", "3 Day = 450", "Night Stay = 500"};
+//        String[] dailyAllowanceList = {"Select Daily Allowance", "1 Day = 200", "2 Day = 350", "3 Day = 450", "Night Stay = 500"};
 //        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, dailyAllowanceList);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, dailyAllowanceList) {
             @Override
@@ -103,8 +130,76 @@ public class EmployeeAddEODFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.dailyAllowanceSpinner.setAdapter(adapter);
 
+        binding.dailyAllowanceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedDailyAllowance = parent.getItemAtPosition(position).toString();
+                selectedDailyAllowance = selectedDailyAllowance.substring(selectedDailyAllowance.lastIndexOf("/") + 1);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(parent.getContext(), "Please Select School Medium ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         return binding.getRoot();
+    }
+
+    private void getDailyAllowanceList(Long empId) {
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        Gson gson = new Gson();
+        String url = ApiEndpoints.BASE_URL + "employee/getDailyAllowanceByempId.php";
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("empId", empId);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response != null) {
+                        JSONObject jsonObject = response.getJSONObject("data");
+                        Employee employee = gson.fromJson(jsonObject.toString(), Employee.class);
+                        String da1, da2, da3, da4;
+                        if (employee.getDaily_allowance_description1() != null || employee.getDaily_allowance_description1().isEmpty()
+                                && employee.getDailyAllowance1() != null || employee.getDailyAllowance1().isEmpty()) {
+                            da1 = employee.getDaily_allowance_description1() + " / " + employee.getDailyAllowance1();
+                            dailyAllowanceList.add(da1);
+                        }
+                        if (employee.getDaily_allowance_description2() != null || employee.getDaily_allowance_description2().isEmpty()
+                                && employee.getDailyAllowance2() != null || employee.getDailyAllowance2().isEmpty()) {
+                            da2 = employee.getDaily_allowance_description2() + " / " + employee.getDailyAllowance2();
+                            dailyAllowanceList.add(da2);
+                        }
+                        if (employee.getDaily_allowance_description3() != null || employee.getDaily_allowance_description3().isEmpty()
+                                && employee.getDailyAllowance3() != null || employee.getDailyAllowance3().isEmpty()) {
+                            da3 = employee.getDaily_allowance_description3() + " / " + employee.getDailyAllowance3();
+                            dailyAllowanceList.add(da3);
+                        }
+                        if (employee.getDaily_allowance_description4() != null || employee.getDaily_allowance_description4().isEmpty()
+                                && employee.getDailyAllowance4() != null || employee.getDailyAllowance4().isEmpty()) {
+                            da4 = employee.getDaily_allowance_description4() + " / " + employee.getDailyAllowance4();
+                            dailyAllowanceList.add(da4);
+                        }
+
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        int timeout = 10000; // 10 seconds
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
     }
 
     private void setAttendance(Attendance attendance) {
@@ -268,22 +363,51 @@ public class EmployeeAddEODFragment extends Fragment {
 
     private void onClickAddEod(View view) {
         clearErrors();
+
         if (isValidFields()) {
             progressDialog.show();
             try {
-                viewModel.addEod(binding.getEod(), expenseImage, petrolImage).observe(getViewLifecycleOwner(), b -> {
-                    if (b) {
-                        progressDialog.dismiss();
-                        navigateUp();
-                        Toast.makeText(getContext(), "रिपोर्ट ऐड हो गई है।\n", Toast.LENGTH_SHORT).show();
-                    } else {
-                        progressDialog.dismiss();
+                Eod eod = binding.getEod();
+                eod.setDailyAllowance(selectedDailyAllowance);
+
+                LiveData<Boolean> liveData = viewModel.addEod(eod, expenseImage, petrolImage);
+                Observer<Boolean> observer = aBoolean -> {
+                    if (aBoolean != null) {
+                        if (aBoolean) {
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "EOD Added Successfully.", Toast.LENGTH_SHORT).show();
+                            clearErrors();
+                            navigateUp();
+                        } else {
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                });
+                };
+                liveData.observe(getViewLifecycleOwner(), observer);
+////
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
+
+
+//        if (isValidFields()) {
+//            progressDialog.show();
+//            try {
+//                viewModel.addEod(binding.getEod(), expenseImage, petrolImage).observe(getViewLifecycleOwner(), b -> {
+//                    if (b) {
+//                        progressDialog.dismiss();
+//                        navigateUp();
+//                        Toast.makeText(getContext(), "रिपोर्ट ऐड हो गई है।\n", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        progressDialog.dismiss();
+//                    }
+//                });
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
     }
 
     private void showToast(String s) {
@@ -299,6 +423,11 @@ public class EmployeeAddEODFragment extends Fragment {
     private boolean isValidFields() {
         if (binding.getEod().getSchoolVisits() == null) {
             binding.employeeAddEodSchoolsVisits.setError("Enter schools visits");
+            return false;
+        }
+
+        if (binding.dailyAllowanceSpinner.getSelectedItem().equals("Please Select Daily Allowance")) {
+            Toast.makeText(getContext(), "Please Select Daily Allowance.", Toast.LENGTH_SHORT).show();
             return false;
         }
 //        if (binding.getEod().getPetrolExpense() == null) {
