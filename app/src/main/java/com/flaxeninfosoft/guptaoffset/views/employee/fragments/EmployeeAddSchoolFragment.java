@@ -34,6 +34,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -49,6 +51,7 @@ import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeAddSchoolBinding;
 import com.flaxeninfosoft.guptaoffset.models.PaymentStatus;
+import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.utils.FileEncoder;
@@ -69,23 +72,22 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Observable;
 
 
 public class EmployeeAddSchoolFragment extends Fragment {
 
     private FragmentEmployeeAddSchoolBinding binding;
     private EmployeeViewModel viewModel;
+    String selectedSchoolMedium;
     private ProgressDialog progressDialog;
 
     private String pictureSpecimanImagePath;
     View view;
 
     RequestQueue requestQueue;
-    String hindi_medium;
-    String medium;
-   String english_medium;
 
-   String opt[] ={"English Medium, Hindi Medium"};
+    String schoolMedium[] = {"Please Select Medium", "English", "Hindi", "Hindi & English"};
 
     private String pictureHoadingImagePath;
 
@@ -108,7 +110,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
         binding.employeeAddSchoolBtn.setOnClickListener(this::onClickAddSchool);
         binding.employeeAddSchoolSpecimenImage.setOnClickListener(this::onClickSpecimenImage);
         binding.employeeAddSchoolHoadingImage.setOnClickListener(this::onClickHoadingImage);
-     //   binding.medium.setOnClickListener(this::OnClickedRadioButton);
+        //   binding.medium.setOnClickListener(this::OnClickedRadioButton);
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Adding School...");
         progressDialog.setMessage("Loading...");
@@ -133,8 +135,6 @@ public class EmployeeAddSchoolFragment extends Fragment {
         binding.dateTextId.setText(year + "/" + month + "/" + day);
         binding.tmTextId.setText(hour + ":" + minute + ":" + second);
 
-        String[] schoolMedium = {"Select School Medium", "English Medium", "Hindi Medium"};
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, dailyAllowanceList);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, schoolMedium) {
             @Override
             public boolean isEnabled(int position) {
@@ -148,47 +148,17 @@ public class EmployeeAddSchoolFragment extends Fragment {
         binding.schoolMediumSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String medium = parent.getItemAtPosition(position).toString();
-                sendDataToApi(medium);
-
-           //     Toast.makeText(parent.getContext(), "Selected: " + medium,Toast.LENGTH_SHORT).show();
+                selectedSchoolMedium = parent.getItemAtPosition(position).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                Toast.makeText(parent.getContext(), "Please Select School Medium ", Toast.LENGTH_SHORT).show();
             }
         });
 
 
         return binding.getRoot();
-    }
-
-    private void sendDataToApi(String medium) {
-
-        String apiUrl = "school/addSchool.php";
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("medium", medium);
-        JSONObject jsonBody = new JSONObject();
-        try {
-            jsonBody.put("data",true);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, apiUrl, jsonBody,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // Handle API response
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Handle error
-            }
-        });
-
-        requestQueue.add(request);
     }
 
 
@@ -202,8 +172,13 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
             if (response != null) {
                 try {
-                    String var = response.getString("data");
-                    binding.schoolCount.setText(var);
+                    if (response.getString("data")!=null) {
+                        String var = response.getString("data");
+                        binding.schoolCount.setText(var);
+                    }
+                    else {
+                        binding.schoolCount.setText("0");
+                    }
                 } catch (JSONException e) {
                     progressDialog.dismiss();
                     throw new RuntimeException(e);
@@ -404,14 +379,43 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
             progressDialog.show();
             try {
-                viewModel.addSchool(binding.getSchool()).observe(getViewLifecycleOwner(), b -> {
-                    if (b) {
-                        progressDialog.dismiss();
-                        Toast.makeText(getContext(), "स्कूल ऐड हो गया है।\n", Toast.LENGTH_SHORT).show();
-                        clearErrors();
-                        navigateUp();
+                School school = binding.getSchool();
+                school.setMedium(selectedSchoolMedium);
+                com.flaxeninfosoft.guptaoffset.models.Location location = new com.flaxeninfosoft.guptaoffset.models.Location();
+                location.setAddress("Onam plaza");
+                school.setLocation(location);
+
+                LiveData<Boolean> booleanLiveData = viewModel.addSchool(school);
+
+                Observer<Boolean> observer = new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean aBoolean) {
+                        if (aBoolean != null) {
+                            if (aBoolean) {
+                                progressDialog.dismiss();
+                                Toast.makeText(getContext(), "School Added Successfully.", Toast.LENGTH_SHORT).show();
+                                clearErrors();
+                                navigateUp();
+                            }
+                            else {
+                                progressDialog.dismiss();
+                                Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     }
-                });
+                };
+
+                booleanLiveData.observe(getViewLifecycleOwner(), observer);
+
+
+//                viewModel.addSchool(binding.getSchool()).observe(getViewLifecycleOwner(), b -> {
+//                    if (b) {
+//                        progressDialog.dismiss();
+//                        Toast.makeText(getContext(), "स्कूल ऐड हो गया है।\n", Toast.LENGTH_SHORT).show();
+//                        clearErrors();
+//                        navigateUp();
+//                    }
+//                });
             } catch (IOException e) {
                 e.printStackTrace();
                 Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -447,6 +451,11 @@ public class EmployeeAddSchoolFragment extends Fragment {
 //        }
         if (binding.getSchool().getLocation().getAddress() == null || binding.getSchool().getLocation().getAddress().trim().isEmpty()) {
             binding.employeeAddSchoolAddress.setError("**Enter address");
+            return false;
+        }
+
+        if (binding.schoolMediumSpinner.getSelectedItem().equals("Please Select Medium")) {
+            Toast.makeText(getContext(), "Please Select School Medium.", Toast.LENGTH_SHORT).show();
             return false;
         }
 
