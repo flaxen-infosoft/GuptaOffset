@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.bumptech.glide.gifdecoder.GifDecoder;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentSuperEmployeeAddEmployeeBinding;
 import com.flaxeninfosoft.guptaoffset.models.Employee;
@@ -65,7 +66,7 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
     }
 
     private void showToast(String s) {
-        if (!s.isEmpty()){
+        if (!s.isEmpty()) {
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
@@ -88,74 +89,117 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
         }
     }
 
-       private void navigateUp() {
+    private void navigateUp() {
         Navigation.findNavController(binding.getRoot()).navigateUp();
-     }
+    }
 
-        private void clearErrors() {
-            binding.superEmployeeAddEmployeeName.setError(null);
-            binding.superEmployeeAddEmployeeEmail.setError(null);
-            binding.superEmployeeAddEmployeePassword.setError(null);
+    private void clearErrors() {
+        binding.superEmployeeAddEmployeeName.setError(null);
+        binding.superEmployeeAddEmployeeEmail.setError(null);
+        binding.superEmployeeAddEmployeePassword.setError(null);
 //            binding.superEmployeeAddEmployeeDailyAllowance.setError(null);
-            binding.superEmployeeAddEmployeePhone.setError(null);
-            binding.superEmployeeAddEmployeeSalary.setError(null);
-            binding.superEmployeeAddEmployeeFirm.setError(null);
-            binding.superEmployeeAddEmployeeArea.setError(null);
-        }
+        binding.superEmployeeAddEmployeePhone.setError(null);
+        binding.superEmployeeAddEmployeeSalary.setError(null);
+        binding.superEmployeeAddEmployeeFirm.setError(null);
+        binding.superEmployeeAddEmployeeArea.setError(null);
+    }
 
     private boolean isValidInput() {
         Employee employee = binding.getEmployee();
 
-        if (employee.getName() == null || employee.getName().trim().isEmpty()){
+        if (employee.getName() == null || employee.getName().trim().isEmpty()) {
             Toast.makeText(getContext(), "Name required", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if (employee.getEmail() == null || employee.getEmail().trim().isEmpty()){
-            Toast.makeText(getContext(), "Email required", Toast.LENGTH_SHORT).show();;
+        if (employee.getEmail() == null || employee.getEmail().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Email required", Toast.LENGTH_SHORT).show();
+            ;
             return false;
         }
 
-        if (employee.getPassword() == null || employee.getPassword().trim().isEmpty()){
-            Toast.makeText(getContext(), "Password required", Toast.LENGTH_SHORT).show();;
+        if (employee.getPassword() == null || employee.getPassword().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Password required", Toast.LENGTH_SHORT).show();
+            ;
             return false;
         }
 
-        if (employee.getArea() == null || employee.getArea().trim().isEmpty()){
-            Toast.makeText(getContext(), "Area required", Toast.LENGTH_SHORT).show();;
+        if (employee.getArea() == null || employee.getArea().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Area required", Toast.LENGTH_SHORT).show();
+            ;
             return false;
         }
 
-        if (employee.getDailyAllowance() == null || employee.getDailyAllowance().trim().isEmpty()){
-            Toast.makeText(getContext(), "Daily allowance required", Toast.LENGTH_SHORT).show();
+//        if (employee.getDailyAllowance() == null || employee.getDailyAllowance().trim().isEmpty()) {
+//            Toast.makeText(getContext(), "Daily allowance required", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+
+        //        try {
+//            int da = Integer.parseInt(employee.getDailyAllowance());
+//            if (da < 0) {
+//                throw new Exception();
+//            }
+//        } catch (Exception e) {
+//            Toast.makeText(getContext(), "Enter valid daily allowance", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+
+        if (employee.getDaily_allowance_description1() == null || employee.getDaily_allowance_description1().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Minimum 1 DA Description required", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        if (employee.getDailyAllowance1() == null || employee.getDailyAllowance1().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Minimum 1 DA Amount required", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
 
         try {
-            int da = Integer.parseInt(employee.getDailyAllowance());
-            if (da<0){
+            int da = Integer.parseInt(employee.getDailyAllowance1());
+            if (da < 0) {
                 throw new Exception();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(getContext(), "Enter valid daily allowance", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if (employee.getSalary() == null || employee.getSalary().trim().isEmpty()){
-            Toast.makeText(getContext(), "Salary required", Toast.LENGTH_SHORT).show();;
+        if (employee.getSalary() == null || employee.getSalary().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Salary required", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         try {
             int da = Integer.parseInt(employee.getSalary());
-            if (da<0){
+            if (da < 0) {
                 throw new Exception();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(getContext(), "Enter valid Salary", Toast.LENGTH_SHORT).show();
             return false;
         }
 
+
+        if (employee.getDaily_allowance_description2() == null || employee.getDaily_allowance_description2().isEmpty()) {
+            employee.setDaily_allowance_description2("NO Allowance");
+        }
+        if (employee.getDaily_allowance_description3() == null || employee.getDaily_allowance_description3().isEmpty()) {
+            employee.setDaily_allowance_description3("NO Allowance");
+        }
+        if (employee.getDaily_allowance_description4() == null || employee.getDaily_allowance_description4().isEmpty()) {
+            employee.setDaily_allowance_description4("NO Allowance");
+        }
+        if (employee.getDailyAllowance2() == null || employee.getDailyAllowance2().isEmpty()) {
+            employee.setDailyAllowance2("0");
+        }
+        if (employee.getDailyAllowance3() == null || employee.getDailyAllowance3().isEmpty()) {
+            employee.setDailyAllowance3("0");
+        }
+        if (employee.getDailyAllowance4() == null || employee.getDailyAllowance4().isEmpty()) {
+            employee.setDailyAllowance4("0");
+        }
         return true;
     }
 }

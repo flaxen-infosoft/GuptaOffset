@@ -142,7 +142,7 @@
                                 android:layout_height="wrap_content"
                                 android:hint="1.Daily Allowance Description"
                                 android:inputType="text"
-                                android:text="@{employee.daily_allowance_description1}" />
+                                android:text="@={employee.daily_allowance_description1}" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
