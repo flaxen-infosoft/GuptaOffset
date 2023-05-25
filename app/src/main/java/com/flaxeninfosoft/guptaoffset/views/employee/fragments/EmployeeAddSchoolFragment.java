@@ -381,9 +381,6 @@ public class EmployeeAddSchoolFragment extends Fragment {
             try {
                 School school = binding.getSchool();
                 school.setMedium(selectedSchoolMedium);
-                com.flaxeninfosoft.guptaoffset.models.Location location = new com.flaxeninfosoft.guptaoffset.models.Location();
-                location.setAddress("Onam plaza");
-                school.setLocation(location);
 
                 LiveData<Boolean> booleanLiveData = viewModel.addSchool(school);
 
