@@ -242,7 +242,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/employee_add_dealer_name"
+                android:id="@+id/employee_add_dealer_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
@@ -274,7 +274,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/employee_add_dealer_address"
+                android:id="@+id/employee_add_dealer_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"

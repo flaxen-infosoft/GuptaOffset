@@ -2,6 +2,7 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -159,7 +161,7 @@ public class EmployeeAddDealerFragment extends Fragment {
                             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                             Address currentAddress = addresses.get(0);
                             binding.getDealer().getLocation().setAddress(currentAddress.getAddressLine(0));
-//                            binding.employeeAddDealerAddress.getEditText().setText(currentAddress.getAddressLine(0));
+                            binding.employeeAddDealerAddress.getEditText().setText(currentAddress.getAddressLine(0));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -253,8 +255,18 @@ public class EmployeeAddDealerFragment extends Fragment {
                     if (b) {
                         progressDialog.dismiss();
                         clearErrors();
+                        Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.data_submit_dialog_layout);
+                        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        Button button = dialog.findViewById(R.id.okButton);
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
                         navigateUp();
-                        Toast.makeText(getContext(), "डीलर ऐड हो गए है ।\n", Toast.LENGTH_SHORT).show();
 
                     }
                 });
