@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -98,6 +100,17 @@ public class EmployeeAddOrderFragment extends Fragment {
             viewModel.addOrder(binding.getOrder(), image).observe(getViewLifecycleOwner(), b -> {
                 if (b) {
                     progressDialog.dismiss();
+                    Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.data_submit_dialog_layout);
+                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    Button button = dialog.findViewById(R.id.okButton);
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
                     navigateUp();
                 }
             });
