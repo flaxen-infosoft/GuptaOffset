@@ -1,11 +1,13 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -102,7 +104,17 @@ public class EmployeeAddLeaveFragment extends Fragment {
                 progressDialog.dismiss();
                 if (isSuccess) {
                     navigateUp();
-                    Toast.makeText(getContext(),  "छुट्टी ऐड हो गई है ।\n", Toast.LENGTH_SHORT).show();
+                    Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.data_submit_dialog_layout);
+                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    Button button = dialog.findViewById(R.id.okButton);
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
                 } else {
                     binding.employeeApplyLeaveSubmitBtn.setEnabled(true);
                 }
