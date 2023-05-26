@@ -151,9 +151,10 @@ public class Constants {
     public static final String MEDIUM = "medium";
     public static final String HINDI = "hindi";
     public static final String ENGLISH = "english";
-    public static final String MORNING_ATTENDANCE = "morning";
-    public static final String EVENING_ATTENDANCE = "evening";
+    public static final String MORNING_ATTENDANCE = "morning_attendance";
+    public static final String EVENING_ATTENDANCE = "evening_attendance";
     public static final String KM = "km";
-    public static final String DEALER_COUNT = "dealercount";
-    public static final String SCHOOL_COUNT = "schoolcount";
+    public static final String DEALER_COUNT = "dealer_count";
+    public static final String SCHOOL_COUNT = "school_count";
+    public static final String EVENING_ATTENDANCE_AVAILABLITY = "evening_attendance_availability";
 }

@@ -79,13 +79,14 @@ public class EmployeeAddAttendanceFragment extends Fragment {
     }
 
     private void showToast(String s) {
+        progressDialog.dismiss();
         if (s != null && !s.isEmpty()) {
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
 
     private void setAttendance(Attendance attendance) {
-
+        progressDialog.dismiss();
         if (attendance == null) {
             attendance = new Attendance();
             attendance.setPunchStatus(0);
@@ -93,52 +94,78 @@ public class EmployeeAddAttendanceFragment extends Fragment {
             binding.setAttendance(attendance);
         }
 
-        switch (attendance.getPunchStatus()) {
-            case 0:
-                binding.employeeAddAttendanceStartMeter.setEnabled(true);
-                binding.employeeAddAttendanceStartMeter.setVisibility(View.VISIBLE);
+
+        if (attendance.getPunchStatus() == 0) {
+            binding.employeeAddAttendanceStartMeter.setEnabled(true);
+            binding.employeeAddAttendanceStartMeter.setVisibility(View.VISIBLE);
+            binding.employeeAddAttendanceStartAddress.setVisibility(View.GONE);
+            binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
+
+            binding.employeeAddAttendanceEndMeter.setEnabled(false);
+            binding.employeeAddAttendanceEndMeter.setVisibility(View.GONE);
+            binding.employeeAddAttendanceEndAddress.setVisibility(View.GONE);
+            binding.employeeAddAttendanceEndMeterImage.setVisibility(View.GONE);
+            binding.endTimeEditText.setVisibility(View.GONE);
+            binding.hindiText2.setVisibility(View.GONE);
+            binding.eveningText.setVisibility(View.GONE);
+
+            binding.startTimeEditText2.setVisibility(View.GONE);
+            binding.employeeAddAttendanceStartAddress2.setVisibility(View.GONE);
+            binding.employeeAddAttendanceStartMeter2.setVisibility(View.GONE);
+
+            binding.employeeAddAttendanceTotalMeter.setVisibility(View.GONE);
+
+            binding.employeeAddAttendanceStartMeterImage.setOnClickListener(this::selectStartImage);
+
+            binding.employeeAddAttendanceBtn.setEnabled(true);
+            binding.employeeAddAttendanceBtn.setOnClickListener(v -> {
+                clearErrors();
+                if (image == null) {
+                    Toast.makeText(getContext(), "Insert image.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (binding.getAttendance().getStartMeter() == null) {
+                    binding.employeeAddAttendanceStartMeter.setError("**Enter Starting Meter");
+                    return;
+                }
+
+                punch(binding.getAttendance().getStartMeter(), image);
+
+            });
+        } else if (attendance.getPunchStatus() == 1) {
+
+            binding.employeeAddAttendanceStartMeter.setEnabled(false);
+            binding.employeeAddAttendanceStartMeter.setVisibility(View.VISIBLE);
+            binding.employeeAddAttendanceStartAddress.setVisibility(View.VISIBLE);
+            binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
+
+            binding.employeeAddAttendanceStartMeter2.setVisibility(View.GONE);
+            binding.employeeAddAttendanceStartAddress2.setVisibility(View.GONE);
+            binding.startTimeEditText2.setVisibility(View.GONE);
+            binding.employeeAddAttendanceBtn.setVisibility(View.GONE);
+            binding.employeeAddAttendanceEndMeter.setEnabled(false);
+            binding.employeeAddAttendanceEndMeter.setVisibility(View.GONE);
+            binding.employeeAddAttendanceEndAddress.setVisibility(View.GONE);
+            binding.employeeAddAttendanceEndMeterImage.setVisibility(View.GONE);
+            binding.endTimeEditText.setVisibility(View.GONE);
+            binding.hindiText2.setVisibility(View.GONE);
+            binding.eveningText.setVisibility(View.GONE);
+
+            binding.employeeAddAttendanceTotalMeter.setVisibility(View.GONE);
+
+            String imageLink = ApiEndpoints.BASE_URL + attendance.getSnapIn();
+            Glide.with(binding.getRoot().getContext()).load(imageLink).placeholder(R.drawable.loading_image).into(binding.employeeAddAttendanceStartMeterImage);
+
+            if (attendance.getEvening_attendance_availability().equals("1")) {
+                binding.employeeAddAttendanceStartMeter.setVisibility(View.GONE);
                 binding.employeeAddAttendanceStartAddress.setVisibility(View.GONE);
-                binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
+                binding.startTimeEditText.setVisibility(View.GONE);
 
-                binding.employeeAddAttendanceEndMeter.setEnabled(false);
-                binding.employeeAddAttendanceEndMeter.setVisibility(View.GONE);
-                binding.employeeAddAttendanceEndAddress.setVisibility(View.GONE);
-                binding.employeeAddAttendanceEndMeterImage.setVisibility(View.GONE);
-                binding.endTimeEditText.setVisibility(View.GONE);
-                binding.hindiText2.setVisibility(View.GONE);
-                binding.eveningText.setVisibility(View.GONE);
 
-                binding.employeeAddAttendanceTotalMeter.setVisibility(View.GONE);
-
-                binding.employeeAddAttendanceStartMeterImage.setOnClickListener(this::selectStartImage);
-
-                binding.employeeAddAttendanceBtn.setEnabled(true);
-                binding.employeeAddAttendanceBtn.setOnClickListener(v -> {
-                    clearErrors();
-                    if (image == null) {
-                        Toast.makeText(getContext(), "Insert image.", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (binding.getAttendance().getStartMeter() == null) {
-                        binding.employeeAddAttendanceStartMeter.setError("**Enter Starting Meter");
-                        return;
-                    }
-
-                    punch(binding.getAttendance().getStartMeter(), image);
-
-                });
-
-                break;
-
-            case 1:
-                binding.employeeAddAttendanceStartMeter.setEnabled(false);
-                binding.employeeAddAttendanceStartMeter.setVisibility(View.VISIBLE);
-                binding.employeeAddAttendanceStartAddress.setVisibility(View.VISIBLE);
-                binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
-
-                String imageLink = ApiEndpoints.BASE_URL + attendance.getSnapIn();
-                Glide.with(binding.getRoot().getContext()).load(imageLink).placeholder(R.drawable.loading_image).into(binding.employeeAddAttendanceStartMeterImage);
-
+                binding.employeeAddAttendanceStartMeter2.setVisibility(View.VISIBLE);
+                binding.employeeAddAttendanceStartMeter2.setEnabled(false);
+                binding.employeeAddAttendanceStartAddress2.setVisibility(View.VISIBLE);
+                binding.startTimeEditText2.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceEndMeter.setEnabled(true);
                 binding.employeeAddAttendanceEndMeter.setVisibility(View.VISIBLE);
                 binding.employeeAddAttendanceEndAddress.setVisibility(View.GONE);
@@ -148,6 +175,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 binding.eveningText.setVisibility(View.VISIBLE);
 
                 binding.employeeAddAttendanceTotalMeter.setVisibility(View.GONE);
+                binding.employeeAddAttendanceBtn.setVisibility(View.VISIBLE);
 
                 binding.employeeAddAttendanceEndMeterImage.setOnClickListener(this::selectEndImage);
 
@@ -168,36 +196,39 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                     punch(binding.getAttendance().getEndMeter(), image);
 
                 });
-                break;
-            case 2:
-                binding.employeeAddAttendanceStartMeter.setEnabled(false);
-                binding.employeeAddAttendanceStartMeter.setVisibility(View.VISIBLE);
-                binding.employeeAddAttendanceStartAddress.setVisibility(View.VISIBLE);
-                binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
+            }
+        } else if (attendance.getPunchStatus() == 2) {
+            binding.employeeAddAttendanceStartMeter.setEnabled(false);
+            binding.employeeAddAttendanceStartMeter2.setEnabled(false);
+            binding.employeeAddAttendanceStartMeter.setVisibility(View.GONE);
+            binding.employeeAddAttendanceStartAddress.setVisibility(View.GONE);
+            binding.startTimeEditText.setVisibility(View.GONE);
+            binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
 
-                String imageLink1 = ApiEndpoints.BASE_URL + attendance.getSnapOut();
-                Glide.with(binding.getRoot().getContext()).load(imageLink1).placeholder(R.drawable.loading_image).into(binding.employeeAddAttendanceEndMeterImage);
+            String imageLink1 = ApiEndpoints.BASE_URL + attendance.getSnapOut();
+            Glide.with(binding.getRoot().getContext()).load(imageLink1).placeholder(R.drawable.loading_image).into(binding.employeeAddAttendanceEndMeterImage);
 
-                String imageLink2 = ApiEndpoints.BASE_URL + attendance.getSnapIn();
-                Glide.with(binding.getRoot().getContext()).load(imageLink2).placeholder(R.drawable.loading_image).into(binding.employeeAddAttendanceStartMeterImage);
+            String imageLink2 = ApiEndpoints.BASE_URL + attendance.getSnapIn();
+            Glide.with(binding.getRoot().getContext()).load(imageLink2).placeholder(R.drawable.loading_image).into(binding.employeeAddAttendanceStartMeterImage);
 
-                binding.employeeAddAttendanceEndMeter.setEnabled(false);
-                binding.employeeAddAttendanceEndMeter.setVisibility(View.VISIBLE);
-                binding.employeeAddAttendanceEndAddress.setVisibility(View.VISIBLE);
-                binding.employeeAddAttendanceEndMeterImage.setVisibility(View.VISIBLE);
-                binding.endTimeEditText.setVisibility(View.VISIBLE);
-                binding.hindiText2.setVisibility(View.VISIBLE);
-                binding.eveningText.setVisibility(View.VISIBLE);
-                binding.employeeAddAttendanceTotalMeter.setVisibility(View.VISIBLE);
+            binding.employeeAddAttendanceEndMeter.setEnabled(false);
+            binding.employeeAddAttendanceEndMeter.setVisibility(View.VISIBLE);
+            binding.employeeAddAttendanceEndAddress.setVisibility(View.VISIBLE);
+            binding.employeeAddAttendanceEndMeterImage.setVisibility(View.VISIBLE);
+            binding.endTimeEditText.setVisibility(View.VISIBLE);
+            binding.hindiText2.setVisibility(View.VISIBLE);
+            binding.eveningText.setVisibility(View.VISIBLE);
+            binding.employeeAddAttendanceTotalMeter.setVisibility(View.VISIBLE);
 
-                binding.employeeAddAttendanceBtn.setEnabled(false);
-                break;
-            default:
-                Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_SHORT).show();
-                navigateUp();
+            binding.employeeAddAttendanceBtn.setEnabled(false);
+        } else {
+            Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_SHORT).show();
+            navigateUp();
         }
 
+
         progressDialog.dismiss();
+//        }
     }
 
     private void selectEndImage(View view) {

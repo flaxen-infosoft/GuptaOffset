@@ -68,6 +68,18 @@ public class Attendance {
     @Expose
     private Location location;
 
+    public String getEvening_attendance_availability() {
+        return evening_attendance_availability;
+    }
+
+    public void setEvening_attendance_availability(String evening_attendance_availability) {
+        this.evening_attendance_availability = evening_attendance_availability;
+    }
+
+    @SerializedName(Constants.EVENING_ATTENDANCE_AVAILABLITY)
+    @Expose
+    private String evening_attendance_availability;
+
     public Location getLocation() {
         return location;
     }
