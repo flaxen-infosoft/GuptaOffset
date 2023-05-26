@@ -2,6 +2,7 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -390,8 +392,18 @@ public class EmployeeAddSchoolFragment extends Fragment {
                         if (aBoolean != null) {
                             if (aBoolean) {
                                 progressDialog.dismiss();
-                                Toast.makeText(getContext(), "School Added Successfully.", Toast.LENGTH_SHORT).show();
                                 clearErrors();
+                                Dialog dialog = new Dialog(getContext());
+                                dialog.setContentView(R.layout.data_submit_dialog_layout);
+                                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                                Button button = dialog.findViewById(R.id.okButton);
+                                button.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                dialog.show();
                                 navigateUp();
                             }
                             else {
