@@ -65,18 +65,19 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
             Paper.init(context);
         }
         Paper.book().write("CurrentEmployeeId", empId);
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID,empId);
         holder.binding.linearLayoutSchool.setOnClickListener(view ->
-                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateSchoolFragment));
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateSchoolFragment,bundle));
         holder.binding.linearLayoutDealer.setOnClickListener(view ->
-                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateDealerFragment));
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateDealerFragment,bundle));
         holder.binding.addToFlagTextview.setOnClickListener(view -> AdminHomeFragment.addToFlagDialog(context, empId));
 
         holder.binding.removeFromFlagTextview.setOnClickListener(view -> {
             AdminHomeFragment.removeFromFlagDialog(context, empId);
         });
         holder.binding.addNotesTextview.setOnClickListener(view -> AdminHomeFragment.notesDialog(context, empId));
-        Bundle bundle = new Bundle();
-        bundle.putLong(Constants.EMPLOYEE_ID,empId);
+
         holder.binding.showNotesTextview.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_showNotesFragment,bundle));
         holder.binding.leaveTextview.setOnClickListener(view ->

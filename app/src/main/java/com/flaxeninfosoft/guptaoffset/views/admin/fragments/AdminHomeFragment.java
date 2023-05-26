@@ -82,7 +82,7 @@ public class AdminHomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_home, container, false);
-
+        binding.adminHomeSearch.setText("");
         binding.adminHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         String formattedDateTime = "";
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -95,11 +95,16 @@ public class AdminHomeFragment extends Fragment {
 
 //        ((AdminMainActivity) requireActivity()).setupActionBar(binding.adminHomeToolbar, "Admin");
         if (selectedDate.isEmpty()) {
+            binding.adminHomeSearch.setText("");
             Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
             viewModel.getAllEmployees(currentDate).observe(getViewLifecycleOwner(), this::onChange);
+            Paper.init(getContext());
+            Paper.book().write("selectedDate2", currentDate);
         } else {
+            binding.adminHomeSearch.setText("");
             Toast.makeText(getContext(), selectedDate + " Employee History", Toast.LENGTH_SHORT).show();
             viewModel.getAllEmployees(selectedDate).observe(getViewLifecycleOwner(), this::onChange);
+            Paper.book().write("selectedDate2", selectedDate);
         }
         binding.adminHomeAddSuperEmployee.setOnClickListener(this::navigateToAddSuperEmployee);
         binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
@@ -241,13 +246,17 @@ public class AdminHomeFragment extends Fragment {
 
     private void getAllEmployees() {
         if (selectedDate.isEmpty()) {
+            binding.adminHomeSearch.setText("");
             Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
             viewModel.fetchAllEmployees(currentDate);
             binding.dateTextId.setText(currentDate);
+            Paper.book().write("selectedDate2", currentDate);
         } else {
+            binding.adminHomeSearch.setText("");
             Toast.makeText(getContext(), selectedDate + " Employee History", Toast.LENGTH_SHORT).show();
             viewModel.fetchAllEmployees(selectedDate);
             binding.dateTextId.setText(selectedDate);
+            Paper.book().write("selectedDate2", selectedDate);
         }
         if (binding.adminHomeSwipeRefresh.isRefreshing()) {
             binding.adminHomeSwipeRefresh.setRefreshing(false);
@@ -256,7 +265,7 @@ public class AdminHomeFragment extends Fragment {
 
 
     private void getAllEmployeesOnSwipe() {
-
+        binding.adminHomeSearch.setText("");
         Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
         viewModel.fetchAllEmployees(currentDate);
         binding.dateTextId.setText(currentDate);

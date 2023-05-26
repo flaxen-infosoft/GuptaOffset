@@ -30,9 +30,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import io.paperdb.Paper;
 
@@ -66,9 +69,11 @@ public class SeprateDealerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_seprate_dealer, container, false);
-        empId = Paper.book().read("CurrentEmployeeId", 0L);
-        currentDate = Paper.book().read("currentDate");
-        selectedDate = Paper.book().read("selectedDate");
+        empId = getArguments().getLong(Constants.EMPLOYEE_ID,0);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+        currentDate = dateFormat.format(date);
+        selectedDate = Paper.book().read("selectedDate2");
         dealerList = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
         gson = new Gson();

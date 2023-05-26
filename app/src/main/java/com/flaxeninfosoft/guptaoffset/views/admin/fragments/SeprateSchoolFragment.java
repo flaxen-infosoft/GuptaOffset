@@ -31,9 +31,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import io.paperdb.Paper;
 
@@ -64,10 +67,12 @@ public class SeprateSchoolFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_seprate_school, container, false);
-        empId = Paper.book().read("CurrentEmployeeId", 0L);
-        currentDate = Paper.book().read("currentDate");
-        selectedDate = Paper.book().read("selectedDate");
+        empId = getArguments().getLong(Constants.EMPLOYEE_ID,0);
+        selectedDate = Paper.book().read("selectedDate2");
         schoolList = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+        currentDate = dateFormat.format(date);
         binding.schoolBackImg.setOnClickListener(view -> Navigation.findNavController(view).navigateUp());
         requestQueue = Volley.newRequestQueue(getContext());
         gson = new Gson();
@@ -80,6 +85,7 @@ public class SeprateSchoolFragment extends Fragment {
         binding.schoolSwipeRefresh.setOnRefreshListener(() -> getSchool());
         binding.schoolRecycler.setAdapter(schoolAdminRecyclerAdapter);
         schoolAdminRecyclerAdapter.notifyDataSetChanged();
+
         getSchool();
         schoolAdminRecyclerAdapter.notifyDataSetChanged();
         return binding.getRoot();
@@ -88,10 +94,10 @@ public class SeprateSchoolFragment extends Fragment {
     private void onClickSchool(School school) {
         Paper.init(getContext());
         Bundle bundle = new Bundle();
-        bundle.putLong(Constants.SCHOOL_ID,school.getId());
-        Paper.book().write("EmpId_School",school.getEmpId());
-        Paper.book().write("Current_SchoolId",school.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_seprateSchoolFragment_to_schoolProfileFragment,bundle);
+        bundle.putLong(Constants.SCHOOL_ID, school.getId());
+        Paper.book().write("EmpId_School", school.getEmpId());
+        Paper.book().write("Current_SchoolId", school.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_seprateSchoolFragment_to_schoolProfileFragment, bundle);
     }
 
 
