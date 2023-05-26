@@ -2,6 +2,7 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -375,8 +376,18 @@ public class EmployeeAddEODFragment extends Fragment {
                     if (aBoolean != null) {
                         if (aBoolean) {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "EOD Added Successfully.", Toast.LENGTH_SHORT).show();
                             clearErrors();
+                            Dialog dialog = new Dialog(getContext());
+                            dialog.setContentView(R.layout.data_submit_dialog_layout);
+                            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            Button button = dialog.findViewById(R.id.okButton);
+                            button.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            dialog.show();
                             navigateUp();
                         } else {
                             progressDialog.dismiss();
@@ -423,6 +434,7 @@ public class EmployeeAddEODFragment extends Fragment {
     private boolean isValidFields() {
         if (binding.getEod().getSchoolVisits() == null) {
             binding.employeeAddEodSchoolsVisits.setError("Enter schools visits");
+            binding.employeeAddEodSchoolsVisits.requestFocus();
             return false;
         }
 
@@ -430,6 +442,31 @@ public class EmployeeAddEODFragment extends Fragment {
             Toast.makeText(getContext(), "Please Select Daily Allowance.", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        if (binding.getEod().getPetrolExpense() != null) {
+            if (!binding.petrolExpenseEdittext.getText().toString().isEmpty()) {
+                if (petrolImage == null) {
+                    Toast.makeText(getContext(), "Add Petrol Expense Image", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }
+        }
+
+        if (binding.getEod().getOtherExpense() != null) {
+            if (!binding.otherExpenseEdittext.getText().toString().isEmpty()) {
+                if (!binding.otherExpenseDescriptionEdittext.getText().toString().isEmpty()) {
+                    if (expenseImage == null) {
+                        Toast.makeText(getContext(), "Add other Expense Image", Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                }
+                else {
+                   binding.otherExpenseDescriptionEdittext.setError("Description Required");
+                    return false;
+                }
+            }
+        }
+
 //        if (binding.getEod().getPetrolExpense() == null) {
 //            binding.employeeAddEodPetrolExpense.setError("Enter petrol expense");
 //            return false;

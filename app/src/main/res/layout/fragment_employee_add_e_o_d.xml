@@ -193,10 +193,6 @@
             </LinearLayout>
 
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/textcolor" />
 
 
             <LinearLayout
@@ -224,9 +220,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -305,6 +301,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/morning_attendance_time"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -321,6 +318,7 @@
                             android:background="@color/textcolor" />
 
                         <TextView
+                            android:id="@+id/evening_attendance_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -370,12 +368,12 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/km_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:paddingTop="7dp"
                             android:paddingBottom="7dp"
-                            android:text="@{eod.petrolExpense != null ? eod.petrolExpense : `0`}"
                             android:textColor="@color/textcolor"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -419,11 +417,11 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/school_visit_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:padding="2sp"
-                            android:text="@{eod.schoolVisits != null ? eod.schoolVisits : `0`}"
                             android:textColor="@color/textcolor"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -467,12 +465,13 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/delaer_count_edittext"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:paddingTop="7dp"
                             android:paddingBottom="7dp"
-                            android:text="NA"
+                            android:text=""
                             android:textColor="@color/textcolor"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -546,6 +545,7 @@
                     android:layout_margin="8dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/petrol_expense_edittext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Petrol expense"
@@ -593,6 +593,7 @@
                         android:layout_weight="7">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/other_expense_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Other Expenses"
@@ -609,6 +610,7 @@
                         android:layout_weight="3">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/other_expense_description_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Other Expenses Description"
