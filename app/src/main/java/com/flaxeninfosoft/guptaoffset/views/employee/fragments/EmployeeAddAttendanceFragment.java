@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -329,7 +331,14 @@ public class EmployeeAddAttendanceFragment extends Fragment {
             viewModel.punchAttendance(reading, uri).observe(getViewLifecycleOwner(), attendance -> {
                 if (attendance != null) {
                     progressDialog.dismiss();
-                    Toast.makeText(getContext(), "आपकी उपस्थिति दर्ज हो गई है ।\n", Toast.LENGTH_SHORT).show();
+                    Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.data_submit_dialog_layout);
+                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    Button button = dialog.findViewById(R.id.okButton);
+                    button.setOnClickListener(view -> {
+                        dialog.dismiss();
+                    });
+                    dialog.show();
                     navigateUp();
                 } else {
                     progressDialog.dismiss();
