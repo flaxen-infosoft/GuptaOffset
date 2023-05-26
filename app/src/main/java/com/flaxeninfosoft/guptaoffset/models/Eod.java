@@ -50,6 +50,67 @@ public class Eod {
     @Expose
     private Location location;
 
+
+    @SerializedName(Constants.MORNING_ATTENDANCE)
+    @Expose
+    private String morning_attendance;
+
+    @SerializedName(Constants.EVENING_ATTENDANCE)
+    @Expose
+    private String evening_attendance;
+
+    @SerializedName(Constants.KM)
+    @Expose
+    private String km;
+
+    @SerializedName(Constants.DEALER_COUNT)
+    @Expose
+    private String dealer_count;
+
+    @SerializedName(Constants.SCHOOL_COUNT)
+    @Expose
+    private String school_count;
+
+    public String getMorning_attendance() {
+        return morning_attendance;
+    }
+
+    public void setMorning_attendance(String morning_attendance) {
+        this.morning_attendance = morning_attendance;
+    }
+
+    public String getEvening_attendance() {
+        return evening_attendance;
+    }
+
+    public void setEvening_attendance(String evening_attendance) {
+        this.evening_attendance = evening_attendance;
+    }
+
+    public String getKm() {
+        return km;
+    }
+
+    public void setKm(String km) {
+        this.km = km;
+    }
+
+    public String getDealer_count() {
+        return dealer_count;
+    }
+
+    public void setDealer_count(String dealer_count) {
+        this.dealer_count = dealer_count;
+    }
+
+    public String getSchool_count() {
+        return school_count;
+    }
+
+    public void setSchool_count(String school_count) {
+        this.school_count = school_count;
+    }
+
     public Eod() {
         location = new Location();
     }
