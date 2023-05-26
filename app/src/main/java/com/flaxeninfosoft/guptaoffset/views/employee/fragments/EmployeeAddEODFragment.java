@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,7 @@ import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -105,7 +107,10 @@ public class EmployeeAddEODFragment extends Fragment {
 
         dailyAllowanceList = new ArrayList<>();
         dailyAllowanceList.add(0, "Please Select Daily Allowance");
+        getEodIsFilledOrNot(empId);
         getDailyAllowanceList(empId);
+        getDaliyData(empId);
+
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -146,6 +151,55 @@ public class EmployeeAddEODFragment extends Fragment {
 
 
         return binding.getRoot();
+    }
+
+    private void getDaliyData(Long empId) {
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        Gson gson = new Gson();
+        String url = ApiEndpoints.BASE_URL + "eod/geteodContent.php";
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("empId", empId);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response != null) {
+                        JSONObject jsonObject = response.getJSONObject("data");
+                        String morning_attendance = jsonObject.getString("morning_attendance");
+                        String evening_attendance = jsonObject.getString("evening_attendance");
+                        String total_km = jsonObject.getString("km");
+                        String school_visit = jsonObject.getString("school_count");
+                        String delaer_visit = jsonObject.getString("dealer_count");
+
+                        binding.morningAttendanceTime.setText(morning_attendance);
+                        binding.eveningAttendanceTime.setText(evening_attendance);
+                        binding.kmTextview.setText(total_km);
+                        binding.schoolVisitTextview.setText(school_visit);
+                        binding.delaerCountEdittext.setText(delaer_visit);
+                        binding.schoolVisitEdittext.setText(school_visit);
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    try {
+                        Toast.makeText(getContext(), response.getString("message").toString(), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        int timeout = 10000; // 10 seconds
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
     }
 
     private void getDailyAllowanceList(Long empId) {
@@ -459,9 +513,8 @@ public class EmployeeAddEODFragment extends Fragment {
                         Toast.makeText(getContext(), "Add other Expense Image", Toast.LENGTH_SHORT).show();
                         return false;
                     }
-                }
-                else {
-                   binding.otherExpenseDescriptionEdittext.setError("Description Required");
+                } else {
+                    binding.otherExpenseDescriptionEdittext.setError("Description Required");
                     return false;
                 }
             }
@@ -497,5 +550,51 @@ public class EmployeeAddEODFragment extends Fragment {
         binding.employeeAddEodSchoolsVisits.setError(null);
         binding.employeeAddEodPetrolExpense.setError(null);
         binding.employeeAddEodOtherExpense.setError(null);
+    }
+
+    private void getEodIsFilledOrNot(Long empId) {
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        String url = ApiEndpoints.BASE_URL + "eod/EodsubmitByempId.php";
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("empId", empId);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
+            Log.i("schoolCount", response.toString());
+
+            if (response != null) {
+                try {
+
+                    String status = response.get("submited_status").toString();
+                    int status_value = Integer.parseInt(status);
+
+                    if (status_value == 1) {
+                        Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.eod_already_submitted_dialog);
+                        dialog.setCancelable(false);
+                        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        Button button = dialog.findViewById(R.id.okButton);
+                        button.setOnClickListener(view -> {
+                            dialog.dismiss();
+                            navigateUp();
+                        });
+                        dialog.show();
+                    } else if (status_value == 0) {
+                        //do nothingn
+                    } else {
+                        //do nothing
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, error -> {
+            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+        });
+
+        int timeout = 10000; // 10 seconds
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
+
+
     }
 }
