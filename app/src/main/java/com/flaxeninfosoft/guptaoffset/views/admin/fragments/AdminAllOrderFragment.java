@@ -25,6 +25,7 @@ import com.flaxeninfosoft.guptaoffset.databinding.FragmentAdminAllOrderBinding;
 import com.flaxeninfosoft.guptaoffset.models.AllOrder;
 import com.flaxeninfosoft.guptaoffset.models.Location;
 import com.flaxeninfosoft.guptaoffset.models.Order;
+import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.Gson;
 
@@ -69,7 +70,7 @@ public class AdminAllOrderFragment extends Fragment {
         adapter = new AllOrdersRecyclerAdapter(orderList, new AllOrdersRecyclerAdapter.AllOrderCardOnClickListener() {
             @Override
             public void onCLickCard(AllOrder allOrder) {
-                Toast.makeText(getContext(), String.valueOf(allOrder.getId()),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), String.valueOf(allOrder.getId()),Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
                 bundle.putLong(Constants.ORDER_ID,allOrder.getId());
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminAllOrderFragment_to_orderProfileFragment,bundle);
@@ -88,7 +89,7 @@ public class AdminAllOrderFragment extends Fragment {
     private void getAllOrder() {
 
         progressDialog.show();
-        String url = "http://103.118.17.202/~anand/api/order/getAllOrders.php";
+        String url = ApiEndpoints.BASE_URL+ "order/getAllOrders.php";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, response -> {
             Log.i("allorder rsp", response.toString());
@@ -105,7 +106,7 @@ public class AdminAllOrderFragment extends Fragment {
                         AllOrder order = new AllOrder();
                         order.setId(Long.valueOf(jsonObject.getString("id")));
                         order.setEmpId(Long.valueOf(jsonObject.getString("empId")));
-                        order.setSnap("http://103.118.17.202/~anand/api/"+jsonObject.getString("snap"));
+                        order.setSnap(ApiEndpoints.BASE_URL+jsonObject.getString("snap"));
                         order.setDate(jsonObject.getString("date"));
                         order.setAddress(jsonObject.getString("address"));
                         order.setDbo(jsonObject.getString("dbo"));

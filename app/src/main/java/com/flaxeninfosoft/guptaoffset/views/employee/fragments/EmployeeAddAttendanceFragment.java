@@ -98,7 +98,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
         if (attendance.getPunchStatus() == 0) {
             binding.employeeAddAttendanceStartMeter.setEnabled(true);
             binding.employeeAddAttendanceStartMeter.setVisibility(View.VISIBLE);
-            binding.employeeAddAttendanceStartAddress.setVisibility(View.GONE);
+//            binding.employeeAddAttendanceStartAddress.setVisibility(View.GONE);
             binding.employeeAddAttendanceStartMeterImage.setVisibility(View.VISIBLE);
 
             binding.employeeAddAttendanceEndMeter.setEnabled(false);

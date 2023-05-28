@@ -1,9 +1,11 @@
 package com.flaxeninfosoft.guptaoffset.views.profiles;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -76,6 +78,21 @@ public class OrderProfileFragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString("IMAGE", image);
             Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
+        });
+
+        binding.orderProfileSpecimenImage.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Toast.makeText(getContext(), "click", Toast.LENGTH_SHORT).show();
+                String textToSend = "Hello, this is order image :  " +image;
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, textToSend);
+                sendIntent.setType("text/plain");
+
+                startActivity(sendIntent);
+                return true;
+            }
         });
 
         mapReadyCallback = googleMap -> {

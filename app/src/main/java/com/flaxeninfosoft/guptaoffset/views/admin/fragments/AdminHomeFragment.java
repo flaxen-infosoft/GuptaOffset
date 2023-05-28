@@ -91,6 +91,8 @@ public class AdminHomeFragment extends Fragment {
             currentDate = now.format(formatter);
             Paper.init(getContext());
             Paper.book().write("currentDate", formattedDateTime);
+            Paper.init(getContext());
+            Paper.book().write("selectedDate2", currentDate);
         }
 
 //        ((AdminMainActivity) requireActivity()).setupActionBar(binding.adminHomeToolbar, "Admin");
@@ -98,7 +100,6 @@ public class AdminHomeFragment extends Fragment {
             binding.adminHomeSearch.setText("");
             Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
             viewModel.getAllEmployees(currentDate).observe(getViewLifecycleOwner(), this::onChange);
-            Paper.init(getContext());
             Paper.book().write("selectedDate2", currentDate);
         } else {
             binding.adminHomeSearch.setText("");
@@ -220,6 +221,7 @@ public class AdminHomeFragment extends Fragment {
                     selectedDate = format.format(date);
                     Paper.init(getContext());
                     Paper.book().write("selectedDate", selectedDate);
+                    Paper.book().write("selectedDate2", selectedDate);
 
                 }
             }, y, m, d);

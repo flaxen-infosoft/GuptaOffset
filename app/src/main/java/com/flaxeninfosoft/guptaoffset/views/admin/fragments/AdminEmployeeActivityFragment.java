@@ -35,6 +35,8 @@ import com.flaxeninfosoft.guptaoffset.views.superEmployee.SuperEmployeeMainActiv
 
 import java.util.List;
 
+import io.paperdb.Paper;
+
 public class AdminEmployeeActivityFragment extends Fragment {
 
     private AdminViewModel viewModel;
@@ -50,13 +52,14 @@ public class AdminEmployeeActivityFragment extends Fragment {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(AdminViewModel.class);
     }
-
+    String selectedDate;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_employee_activity, container, false);
         binding.setMessage(new Message());
-
+         selectedDate = Paper.book().read("selectedDate2");
+        Toast.makeText(getContext(), selectedDate, Toast.LENGTH_SHORT).show();
         LinearLayoutManager lm = new LinearLayoutManager(getContext());
         lm.setStackFromEnd(true);
         binding.adminEmployeeActivityRecycler.setLayoutManager(lm);
@@ -78,7 +81,7 @@ public class AdminEmployeeActivityFragment extends Fragment {
             Navigation.findNavController(binding.getRoot()).navigateUp();
         } else {
 
-            viewModel.getEmployeeHistoryById(empId).observe(getViewLifecycleOwner(), this::setHistory);
+            viewModel.getEmployeeHistoryById(empId,selectedDate).observe(getViewLifecycleOwner(), this::setHistory);
             viewModel.getEmployeeById(empId).observe(getViewLifecycleOwner(), employee -> {
                 if (employee != null && employee.getName() != null) {
                   try{
@@ -112,7 +115,7 @@ public class AdminEmployeeActivityFragment extends Fragment {
         if (!binding.getMessage().getMessage().trim().isEmpty()) {
             binding.getMessage().setReceiverId(empId);
             viewModel.sendMessage(binding.getMessage()).observe(getViewLifecycleOwner(),
-                    message -> viewModel.getEmployeeHistoryById(empId).observe(getViewLifecycleOwner(), employeeHistories -> setHistory(employeeHistories)));
+                    message -> viewModel.getEmployeeHistoryById(empId,selectedDate).observe(getViewLifecycleOwner(), employeeHistories -> setHistory(employeeHistories)));
             binding.setMessage(new Message());
         }
     }

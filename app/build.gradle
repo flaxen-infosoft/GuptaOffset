@@ -3,6 +3,7 @@ plugins {
 }
 
 android {
+    namespace 'com.flaxeninfosoft.guptaoffset'
     compileSdk 32
 
     defaultConfig {

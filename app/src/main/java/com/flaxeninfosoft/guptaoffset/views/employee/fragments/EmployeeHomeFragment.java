@@ -95,7 +95,7 @@ public class EmployeeHomeFragment extends Fragment {
         binding.myAccount.setOnClickListener(this::navigateToDailyReports);
         binding.selectDateLinear.setOnClickListener(this::onSelectDate);
         binding.todayDataTextview.setOnClickListener(this::onClickTodayData);
-        binding.districtMap.setOnClickListener(this::onClickDistrictMap);
+//        binding.districtMap.setOnClickListener(this::onClickDistrictMap);
        // binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
 
         String formattedDateTime = "";
@@ -213,9 +213,13 @@ public class EmployeeHomeFragment extends Fragment {
         Log.i("time", String.valueOf(time));
 
 
-//        if (punchStatus.equals("0")) {
-//            showDialog();
-//        } else if (punchStatus.equals("1") && time >= 19) {
+        if (punchStatus.equals("0")) {
+            showDialog();
+        }
+        else {
+
+        }
+//        else if (punchStatus.equals("1") && time >= 19) { //for attendance mandatory after 7 pm
 //            showDialog();
 //        }
 

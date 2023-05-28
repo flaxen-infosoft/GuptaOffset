@@ -244,6 +244,7 @@
             android:layout_height="wrap_content"
             android:padding="3dp"
             android:layout_marginTop="10dp"
+            android:enabled="false"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
             <com.google.android.material.textfield.TextInputEditText
