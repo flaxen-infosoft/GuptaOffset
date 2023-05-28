@@ -4,14 +4,14 @@ plugins {
 
 android {
     namespace 'com.flaxeninfosoft.guptaoffset'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.flaxeninfosoft.guptaoffset"
         minSdk 21
-        targetSdk 32
-        versionCode 10
-        versionName "10.0"
+        targetSdk 33
+        versionCode 11
+        versionName "11.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
