@@ -56,9 +56,9 @@ public class FlagEmployeeRecyclerAdapter extends RecyclerView.Adapter<FlagEmploy
             FlagEmployeeFragment.removeFromFlagDialog(context, empId);
         });
         holder.binding.linearLayoutSchool.setOnClickListener(view ->
-                Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_seprateSchoolFragment));
+                Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_seprateSchoolFragment,bundle));
         holder.binding.linearLayoutDealer.setOnClickListener(view ->
-                Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_seprateDealerFragment));
+                Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_seprateDealerFragment,bundle));
         holder.binding.addNotesTextview.setOnClickListener(view -> FlagEmployeeFragment.notesDialog(context, empId));
         holder.binding.showNotesTextview.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_showNotesFragment,bundle));
         holder.binding.leaveTextview.setOnClickListener(view ->
