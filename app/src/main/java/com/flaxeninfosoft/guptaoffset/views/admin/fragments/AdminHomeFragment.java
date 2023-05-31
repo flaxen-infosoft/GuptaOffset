@@ -78,6 +78,7 @@ public class AdminHomeFragment extends Fragment {
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(AdminViewModel.class);
     }
 
+    boolean isFirstTime = true;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,17 +97,17 @@ public class AdminHomeFragment extends Fragment {
         }
 
 //        ((AdminMainActivity) requireActivity()).setupActionBar(binding.adminHomeToolbar, "Admin");
-        if (selectedDate.isEmpty()) {
-            binding.adminHomeSearch.setText("");
-            Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
-            viewModel.getAllEmployees(currentDate).observe(getViewLifecycleOwner(), this::onChange);
-            Paper.book().write("selectedDate2", currentDate);
-        } else {
-            binding.adminHomeSearch.setText("");
-            Toast.makeText(getContext(), selectedDate + " Employee History", Toast.LENGTH_SHORT).show();
-            viewModel.getAllEmployees(selectedDate).observe(getViewLifecycleOwner(), this::onChange);
-            Paper.book().write("selectedDate2", selectedDate);
-        }
+//        if (selectedDate.isEmpty()) {
+//            binding.adminHomeSearch.setText("");
+//            Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
+//            viewModel.getAllEmployees(currentDate).observe(getViewLifecycleOwner(), this::onChange);
+//            Paper.book().write("selectedDate2", currentDate);
+//        } else {
+//            binding.adminHomeSearch.setText("");
+//            Toast.makeText(getContext(), selectedDate + " Employee History", Toast.LENGTH_SHORT).show();
+//            viewModel.getAllEmployees(selectedDate).observe(getViewLifecycleOwner(), this::onChange);
+//            Paper.book().write("selectedDate2", selectedDate);
+//        }
         binding.adminHomeAddSuperEmployee.setOnClickListener(this::navigateToAddSuperEmployee);
         binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
 //        binding.adminHomeLeave.setOnClickListener(this::navigateToAdminLeave);
@@ -533,5 +534,28 @@ public class AdminHomeFragment extends Fragment {
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (isFirstTime) {
+            // Call your method here
+
+            if (selectedDate.isEmpty()) {
+                binding.adminHomeSearch.setText("");
+                Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
+                viewModel.getAllEmployees(currentDate).observe(getViewLifecycleOwner(), this::onChange);
+                Paper.book().write("selectedDate2", currentDate);
+            } else {
+                binding.adminHomeSearch.setText("");
+                Toast.makeText(getContext(), selectedDate + " Employee History", Toast.LENGTH_SHORT).show();
+                viewModel.getAllEmployees(selectedDate).observe(getViewLifecycleOwner(), this::onChange);
+                Paper.book().write("selectedDate2", selectedDate);
+            }
+
+            // Set the flag to false to indicate that the method has been called
+            isFirstTime = false;
+        }
     }
 }
