@@ -146,12 +146,12 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
 //        }
 
         if (employee.getDaily_allowance_description1() == null || employee.getDaily_allowance_description1().trim().isEmpty()) {
-            Toast.makeText(getContext(), "Minimum 1 DA Description required", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "1st DA Description required", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (employee.getDailyAllowance1() == null || employee.getDailyAllowance1().trim().isEmpty()) {
-            Toast.makeText(getContext(), "Minimum 1 DA Amount required", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), " 1st DA Amount required", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -164,6 +164,34 @@ public class SuperEmployeeAddEmployeeFragment extends Fragment {
         } catch (Exception e) {
             Toast.makeText(getContext(), "Enter valid daily allowance", Toast.LENGTH_SHORT).show();
             return false;
+        }
+
+
+        if (employee.getDaily_allowance_description2() != null) {
+            if (!employee.getDaily_allowance_description2().isEmpty()) {
+                if (employee.getDailyAllowance2() == null || employee.getDailyAllowance2().isEmpty()) {
+                    binding.allowanceTwoAmount.setError("Amount Required");
+                    return false;
+                }
+            }
+        }
+
+        if (employee.getDaily_allowance_description3() != null) {
+            if (!employee.getDaily_allowance_description3().isEmpty()) {
+                if (employee.getDailyAllowance3() == null || employee.getDailyAllowance3().isEmpty()) {
+                    binding.allowanceThreeAmount.setError("Amount Required");
+                    return false;
+                }
+            }
+        }
+
+        if (employee.getDaily_allowance_description4() != null) {
+            if (!employee.getDaily_allowance_description4().isEmpty()) {
+                if (employee.getDailyAllowance4() == null || employee.getDailyAllowance4().isEmpty()) {
+                    binding.allowanceFourAmount.setError("Amount Required");
+                    return false;
+                }
+            }
         }
 
         if (employee.getSalary() == null || employee.getSalary().trim().isEmpty()) {
