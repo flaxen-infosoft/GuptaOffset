@@ -220,22 +220,30 @@ public class EmployeeAddEODFragment extends Fragment {
                         if (employee.getDaily_allowance_description1() != null || employee.getDaily_allowance_description1().isEmpty()
                                 && employee.getDailyAllowance1() != null || employee.getDailyAllowance1().isEmpty()) {
                             da1 = employee.getDaily_allowance_description1() + " / " + employee.getDailyAllowance1();
-                            dailyAllowanceList.add(da1);
+                            if (!employee.getDailyAllowance1().equals("0")|| employee.getDaily_allowance_description1().equals("NO Allowance")) {
+                                dailyAllowanceList.add(da1);
+                            }
                         }
                         if (employee.getDaily_allowance_description2() != null || employee.getDaily_allowance_description2().isEmpty()
                                 && employee.getDailyAllowance2() != null || employee.getDailyAllowance2().isEmpty()) {
                             da2 = employee.getDaily_allowance_description2() + " / " + employee.getDailyAllowance2();
-                            dailyAllowanceList.add(da2);
+                            if (!employee.getDailyAllowance2().equals("0")|| employee.getDaily_allowance_description2().equals("NO Allowance")) {
+                                dailyAllowanceList.add(da2);
+                            }
                         }
                         if (employee.getDaily_allowance_description3() != null || employee.getDaily_allowance_description3().isEmpty()
                                 && employee.getDailyAllowance3() != null || employee.getDailyAllowance3().isEmpty()) {
                             da3 = employee.getDaily_allowance_description3() + " / " + employee.getDailyAllowance3();
-                            dailyAllowanceList.add(da3);
+                            if (!employee.getDailyAllowance3().equals("0")|| employee.getDaily_allowance_description3().equals("NO Allowance")) {
+                                dailyAllowanceList.add(da3);
+                            }
                         }
                         if (employee.getDaily_allowance_description4() != null || employee.getDaily_allowance_description4().isEmpty()
                                 && employee.getDailyAllowance4() != null || employee.getDailyAllowance4().isEmpty()) {
                             da4 = employee.getDaily_allowance_description4() + " / " + employee.getDailyAllowance4();
-                            dailyAllowanceList.add(da4);
+                            if (!employee.getDailyAllowance4().equals("0") || employee.getDaily_allowance_description4().equals("NO Allowance")) {
+                                dailyAllowanceList.add(da4);
+                            }
                         }
 
 
