@@ -283,7 +283,17 @@ public class EmployeeAddEODFragment extends Fragment {
         attendaceDialog.setView(view);
         attendaceDialog.setCancelable(false);
         attendaceDialog.show();
-//        Button buttonCancel = view.findViewById(R.id.button2);
+        Button buttonCancel = view.findViewById(R.id.button2);
+        buttonCancel.setVisibility(View.VISIBLE);
+        try {
+           buttonCancel.setOnClickListener(view1 -> {
+               Navigation.findNavController(binding.getRoot()).navigateUp();
+               attendaceDialog.dismiss();
+           });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Button buttonPunch = view.findViewById(R.id.button1);
         buttonPunch.setOnClickListener(view12 -> {
             Navigation.findNavController(binding.getRoot()).navigate(R.id.employeeAddAttendanceFragment);
