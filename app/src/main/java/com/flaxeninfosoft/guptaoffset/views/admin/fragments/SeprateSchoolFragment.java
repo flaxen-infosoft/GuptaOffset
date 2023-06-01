@@ -102,6 +102,7 @@ public class SeprateSchoolFragment extends Fragment {
 
 
     private void getSchool() {
+        schoolList.clear();
 
         progressDialog.show();
         String url = ApiEndpoints.BASE_URL + "school/getSchoolByempId.php";
