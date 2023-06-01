@@ -538,7 +538,7 @@ public class AdminHomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
+        binding.adminHomeSearch.setText("");
         if (isFirstTime) {
             // Call your method here
 
