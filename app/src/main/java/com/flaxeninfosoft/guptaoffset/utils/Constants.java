@@ -157,4 +157,6 @@ public class Constants {
     public static final String DEALER_COUNT = "dealer_count";
     public static final String SCHOOL_COUNT = "school_count";
     public static final String EVENING_ATTENDANCE_AVAILABLITY = "evening_attendance_availability";
+    public static final String DISTRICT_NAME = "district_name";
+    public static final String DISTRICT_IMAGE = "district_image";
 }
