@@ -175,4 +175,8 @@
         android:id="@+id/adminLeaveFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.AdminLeaveFragment"
         android:label="AdminLeaveFragment" />
+    <fragment
+        android:id="@+id/districtListFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.DistrictListFragment"
+        android:label="DistrictListFragment" />
 </navigation>

@@ -223,6 +223,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
                             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                             Address currentAddress = addresses.get(0);
                             binding.getSchool().getLocation().setAddress(currentAddress.getAddressLine(0));
+                            Log.i("location", binding.getSchool().getLocation().getAddress());
                             binding.employeeAddSchoolAddress.getEditText().setText(currentAddress.getAddressLine(0));
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -260,8 +261,8 @@ public class EmployeeAddSchoolFragment extends Fragment {
 //        hoadingImageIntent.launch(cameraIntent);
 
         ImagePicker.with(this)
-                .compress(1024)         //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+//                .compress(512)         //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(512, 512)  //Final image resolution will be less than 1080 x 1080(Optional)
                 .cameraOnly()
                 .createIntent(intent -> {
                     newHoadingImageIntent.launch(intent);
@@ -289,8 +290,8 @@ public class EmployeeAddSchoolFragment extends Fragment {
 //        specimenImageIntent.launch(cameraIntent);
 
         ImagePicker.with(this)
-                .compress(1024)         //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+//                .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(512, 512)  //Final image resolution will be less than 1080 x 1080(Optional)
                 .cameraOnly()
                 .createIntent(intent -> {
                     newSpecimenImageIntent.launch(intent);
