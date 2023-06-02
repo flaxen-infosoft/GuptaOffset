@@ -108,7 +108,7 @@ public class MainRepository {
         processEmployeeCall(getEmployeeByIdCall, listener);
     }
 
-    public void getAllEmployees(String date,ApiResponseListener<List<Employee>, String> listener) {
+    public void getAllEmployees(String date, ApiResponseListener<List<Employee>, String> listener) {
         Call<List<Employee>> getAllEmployeesCall = employeeApiInterface.getAllEmployees(date);
 
         processEmployeeListCall(getAllEmployeesCall, listener);
@@ -700,8 +700,8 @@ public class MainRepository {
 
 //    ----------------------------------------------------------------------------------------------
 
-    public void getEmployeeHomeHistory(Long empId, Long currentEmpId,String date, ApiResponseListener<List<EmployeeHistory>, String> listener) {
-        Call<List<EmployeeHistory>> historyCall = historyApiInterface.getEmployeeHistory(empId, currentEmpId,date);
+    public void getEmployeeHomeHistory(Long empId, Long currentEmpId, String date, ApiResponseListener<List<EmployeeHistory>, String> listener) {
+        Call<List<EmployeeHistory>> historyCall = historyApiInterface.getEmployeeHistory(empId, currentEmpId, date);
 
         historyCall.enqueue(new Callback<List<EmployeeHistory>>() {
             @Override
@@ -804,8 +804,8 @@ public class MainRepository {
         });
     }
 
-    public void getAllPendingPaymentRequests(ApiResponseListener<List<PaymentRequest>, String> listener) {
-        Call<List<PaymentRequest>> call = paymentApiInterface.getAllPendingPaymentRequests();
+    public void getAllPendingPaymentRequests(String date, ApiResponseListener<List<PaymentRequest>, String> listener) {
+        Call<List<PaymentRequest>> call = paymentApiInterface.getAllPendingPaymentRequests(date);
 
         processRequestsListCall(call, listener);
     }

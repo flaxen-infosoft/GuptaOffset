@@ -18,7 +18,12 @@ import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.AdminViewModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import io.paperdb.Paper;
 
 public class PendingPaymentRequestsFragment extends Fragment {
 
@@ -26,6 +31,8 @@ public class PendingPaymentRequestsFragment extends Fragment {
     private AdminViewModel viewModel;
 
     private long superEmployeeId;
+    String selectedDate;
+    String currentDate = "";
 
     public PendingPaymentRequestsFragment() {
         // Required empty public constructor
@@ -43,6 +50,10 @@ public class PendingPaymentRequestsFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_pending_payment_requests, container, false);
 
         binding.pendingPaymentRequestsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+        currentDate = dateFormat.format(date);
+        selectedDate = Paper.book().read("selectedDate2");
 
         try {
             superEmployeeId = getArguments().getLong(Constants.EMPLOYEE_ID, -1);
@@ -59,21 +70,26 @@ public class PendingPaymentRequestsFragment extends Fragment {
 
     private void loadRequests() {
         if (superEmployeeId == -1) {
-            viewModel.getAllPendingPaymentRequests().observe(getViewLifecycleOwner(), this::setRequestsList);
+            if (selectedDate == null) {
+                viewModel.getAllPendingPaymentRequests(currentDate).observe(getViewLifecycleOwner(), this::setRequestsList);
+            } else {
+                viewModel.getAllPendingPaymentRequests(selectedDate).observe(getViewLifecycleOwner(), this::setRequestsList);
+            }
+
         } else {
             viewModel.getAllPendingPaymentRequestsToEmployee().observe(getViewLifecycleOwner(), this::setRequestsList);
         }
-        if (binding.pendingPaymentSwipeRefresh.isRefreshing()){
+        if (binding.pendingPaymentSwipeRefresh.isRefreshing()) {
             binding.pendingPaymentSwipeRefresh.setRefreshing(false);
         }
     }
 
     private void setRequestsList(List<PaymentRequest> paymentRequests) {
 
-        if (paymentRequests == null || paymentRequests.isEmpty()){
+        if (paymentRequests == null || paymentRequests.isEmpty()) {
             binding.pendingPaymentRequestsRecycler.setVisibility(View.GONE);
             binding.pendingPaymentEmptyRecycler.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             binding.pendingPaymentRequestsRecycler.setVisibility(View.VISIBLE);
             binding.pendingPaymentEmptyRecycler.setVisibility(View.GONE);
         }
