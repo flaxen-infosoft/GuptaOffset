@@ -100,7 +100,7 @@ public class LocationService extends Service {
 
                 try {
                     Geocoder geocoder;
-                    Geocoder geocoder1 = null;
+                    Geocoder geocoder1 = new Geocoder(getApplication().getApplicationContext(), Locale.getDefault());;
                     Locale locale = Resources.getSystem().getConfiguration().locale;
                     if (locale.getLanguage().equals("hi")) {
                         geocoder = new Geocoder(getApplicationContext(), new Locale("hi"));
