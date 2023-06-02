@@ -32,9 +32,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import io.paperdb.Paper;
 
@@ -74,6 +77,10 @@ public class TodayNotWokingEmployeeFragment extends Fragment {
         employeeList = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
         gson = new Gson();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+        currentDate = dateFormat.format(date);
+        selectedDate = Paper.book().read("selectedDate2");
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Wait");
@@ -101,9 +108,13 @@ public class TodayNotWokingEmployeeFragment extends Fragment {
 
         progressDialog.show();
         String url = ApiEndpoints.BASE_URL + "attendance/getTodaynotWorking.php";
-
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        if (selectedDate == null) {
+            hashMap.put("date", currentDate);
+        } else {
+            hashMap.put("date", selectedDate);
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
             Log.i("Dealer", response.toString());
             progressDialog.dismiss();
             if (binding.notWorkingSwipeRefresh.isRefreshing()) {
