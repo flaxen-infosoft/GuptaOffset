@@ -104,7 +104,7 @@ public class SeprateDealerFragment extends Fragment {
 
 
     private void getDealer() {
-
+        dealerList.clear();
         progressDialog.show();
         String url = ApiEndpoints.BASE_URL + "dealer/getDealerByEmployeeId.php";
         HashMap<String, Object> hashMap = new HashMap<>();
