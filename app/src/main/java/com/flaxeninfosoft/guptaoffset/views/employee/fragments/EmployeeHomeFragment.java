@@ -95,7 +95,7 @@ public class EmployeeHomeFragment extends Fragment {
         binding.myAccount.setOnClickListener(this::navigateToDailyReports);
         binding.selectDateLinear.setOnClickListener(this::onSelectDate);
         binding.todayDataTextview.setOnClickListener(this::onClickTodayData);
-//        binding.districtMap.setOnClickListener(this::onClickDistrictMap);
+        binding.districtMap.setOnClickListener(this::onClickDistrictMap);
        // binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
 
         String formattedDateTime = "";
@@ -360,13 +360,13 @@ public class EmployeeHomeFragment extends Fragment {
     private void navigateToAddShop(View view) {
         Bundle bundle = new Bundle();
         bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddDealerFragment,bundle);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddDealerFragment, bundle);
     }
 
     private void navigateToAddSchool(View view) {
         Bundle bundle = new Bundle();
         bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddSchoolFragment,bundle);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddSchoolFragment, bundle);
     }
 
     private void navigateAddAttendance(View view) {
@@ -423,6 +423,9 @@ public class EmployeeHomeFragment extends Fragment {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_myAccountFragment);
     }
     private void onClickDistrictMap(View view) {
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_districtMapFragment);
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+//        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_districtMapFragment);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_districtListFragment2,bundle);
     }
 }
