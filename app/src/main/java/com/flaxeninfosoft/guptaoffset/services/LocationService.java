@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -98,11 +99,24 @@ public class LocationService extends Service {
                 location.setLongitude(locationResult.getLastLocation().getLongitude());
 
                 try {
-                    Geocoder geocoder = new Geocoder(getApplication().getApplicationContext(), Locale.getDefault());
+                    Geocoder geocoder;
+                    Geocoder geocoder1 = null;
+                    Locale locale = Resources.getSystem().getConfiguration().locale;
+                    if (locale.getLanguage().equals("hi")) {
+                        geocoder = new Geocoder(getApplicationContext(), new Locale("hi"));
+                        geocoder1 = new Geocoder(getApplicationContext(), Locale.ENGLISH);
+                    } else {
+                        geocoder = new Geocoder(getApplicationContext(), Locale.ENGLISH);
+                    }
                     // initialising address list
                     List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     Address currentAddress = addresses.get(0);
-                    location.setDistrict(currentAddress.getSubAdminArea());
+
+                    List<Address> addresses1 = geocoder1.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                    Address currentAddress1 = addresses1.get(0);
+                    location.setDistrict(currentAddress1.getSubAdminArea());
+                    Log.i("location Hindi", currentAddress.getSubAdminArea());
+                    Log.i("location english", currentAddress1.getSubAdminArea());
                     location.setAddress(currentAddress.getAddressLine(0));
                     location.setBatteryStatus("" + (Math.round(Utilities.getBatteryLevel(LocationService.this))));
                     viewModel.addCurrentEmployeeLocation(location);
