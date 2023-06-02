@@ -55,6 +55,7 @@
                         android:textStyle="bold" />
 
                     <LinearLayout
+                        android:id="@+id/district_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"

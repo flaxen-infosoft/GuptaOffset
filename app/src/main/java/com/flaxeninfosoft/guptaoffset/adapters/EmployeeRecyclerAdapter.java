@@ -66,11 +66,11 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
         }
         Paper.book().write("CurrentEmployeeId", empId);
         Bundle bundle = new Bundle();
-        bundle.putLong(Constants.EMPLOYEE_ID,empId);
+        bundle.putLong(Constants.EMPLOYEE_ID, empId);
         holder.binding.linearLayoutSchool.setOnClickListener(view ->
-                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateSchoolFragment,bundle));
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateSchoolFragment, bundle));
         holder.binding.linearLayoutDealer.setOnClickListener(view ->
-                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateDealerFragment,bundle));
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seprateDealerFragment, bundle));
         holder.binding.addToFlagTextview.setOnClickListener(view -> AdminHomeFragment.addToFlagDialog(context, empId));
 
         holder.binding.removeFromFlagTextview.setOnClickListener(view -> {
@@ -79,9 +79,11 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
         holder.binding.addNotesTextview.setOnClickListener(view -> AdminHomeFragment.notesDialog(context, empId));
 
         holder.binding.showNotesTextview.setOnClickListener(view ->
-                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_showNotesFragment,bundle));
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_showNotesFragment, bundle));
         holder.binding.leaveTextview.setOnClickListener(view ->
-                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_adminLeaveFragment,bundle));
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_adminLeaveFragment, bundle));
+        holder.binding.districtLayout.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_districtListFragment, bundle));
     }
 
     @Override
@@ -168,7 +170,7 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
                     binding.removeFromFlagTextview.setVisibility(View.GONE);
                     binding.addToFlagTextview.setVisibility(View.VISIBLE);
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
