@@ -32,10 +32,16 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+
+import io.paperdb.Paper;
 
 
 public class AdminAllOrderFragment extends Fragment {
@@ -51,6 +57,8 @@ public class AdminAllOrderFragment extends Fragment {
     Gson gson;
     AllOrdersRecyclerAdapter adapter;
     ProgressDialog progressDialog;
+    String selectedDate;
+    String currentDate = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +68,10 @@ public class AdminAllOrderFragment extends Fragment {
         requestQueue = Volley.newRequestQueue(getContext());
         orderList = new ArrayList<>();
         gson = new Gson();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+        currentDate = dateFormat.format(date);
+        selectedDate = Paper.book().read("selectedDate2");
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Wait");
@@ -72,8 +84,8 @@ public class AdminAllOrderFragment extends Fragment {
             public void onCLickCard(AllOrder allOrder) {
 //                Toast.makeText(getContext(), String.valueOf(allOrder.getId()),Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
-                bundle.putLong(Constants.ORDER_ID,allOrder.getId());
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminAllOrderFragment_to_orderProfileFragment,bundle);
+                bundle.putLong(Constants.ORDER_ID, allOrder.getId());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_adminAllOrderFragment_to_orderProfileFragment, bundle);
             }
         });
 
@@ -87,9 +99,18 @@ public class AdminAllOrderFragment extends Fragment {
 
 
     private void getAllOrder() {
-
+        orderList.clear();
+        String url;
         progressDialog.show();
-        String url = ApiEndpoints.BASE_URL+ "order/getAllOrders.php";
+        if (selectedDate == null) {
+            url = ApiEndpoints.BASE_URL + "order/getAllOrders.php" + "?date=" + currentDate;
+        } else {
+            url = ApiEndpoints.BASE_URL + "order/getAllOrders.php" + "?date=" + selectedDate;
+        }
+//        String url = ApiEndpoints.BASE_URL + "order/getAllOrders.php";
+        Log.i("order",url);
+        HashMap<String, Object> hashMap = new HashMap<>();
+
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, response -> {
             Log.i("allorder rsp", response.toString());
@@ -106,14 +127,14 @@ public class AdminAllOrderFragment extends Fragment {
                         AllOrder order = new AllOrder();
                         order.setId(Long.valueOf(jsonObject.getString("id")));
                         order.setEmpId(Long.valueOf(jsonObject.getString("empId")));
-                        order.setSnap(ApiEndpoints.BASE_URL+jsonObject.getString("snap"));
+                        order.setSnap(ApiEndpoints.BASE_URL + jsonObject.getString("snap"));
                         order.setDate(jsonObject.getString("date"));
                         order.setAddress(jsonObject.getString("address"));
                         order.setDbo(jsonObject.getString("dbo"));
                         order.setName(jsonObject.getString("name"));
                         order.setDbo(jsonObject.getString("dbo"));
 
-                        Log.i("name",jsonObject.getString("name"));
+                        Log.i("name", jsonObject.getString("name"));
 
                         orderList.add(order);
 //                        binding.allOrdersRecycler.scrollToPosition(orderList.size()-1);
@@ -136,7 +157,8 @@ public class AdminAllOrderFragment extends Fragment {
 
         }, error -> {
             if (binding.allOrdersSwipeRefresh.isRefreshing()) {
-                binding.allOrdersSwipeRefresh.setRefreshing(false);}
+                binding.allOrdersSwipeRefresh.setRefreshing(false);
+            }
             progressDialog.dismiss();
             Log.i("allorder err", error.toString());
             Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
