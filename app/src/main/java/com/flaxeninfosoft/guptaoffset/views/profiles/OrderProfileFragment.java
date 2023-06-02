@@ -83,13 +83,11 @@ public class OrderProfileFragment extends Fragment {
         binding.orderProfileSpecimenImage.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Toast.makeText(getContext(), "click", Toast.LENGTH_SHORT).show();
                 String textToSend = "Hello, this is order image :  " +image;
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT, textToSend);
                 sendIntent.setType("text/plain");
-
                 startActivity(sendIntent);
                 return true;
             }

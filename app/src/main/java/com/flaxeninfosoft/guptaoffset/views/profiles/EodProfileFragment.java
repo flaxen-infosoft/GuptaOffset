@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.views.profiles;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,10 @@ public class EodProfileFragment extends Fragment {
 
     private OnMapReadyCallback mapReadyCallback;
 
+    Eod eod1;
+    String otherExpense;
+    String petrolExpense;
+
     public EodProfileFragment() {
         // Required empty public constructor
     }
@@ -48,21 +53,43 @@ public class EodProfileFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_eod_profile, container, false);
 
         long eodId = getArguments().getLong(Constants.EOD_ID, -1);
-
-        binding.eodProfileToolbar.setNavigationOnClickListener(view -> navigateUp());
-        binding.eodProfileToolbar.setNavigationIcon(R.drawable.ic_back);
-
         if (eodId == -1) {
             navigateUp();
         }else {
             viewModel.getEodById(eodId).observe(getViewLifecycleOwner(), this::setEod);
         }
 
+        binding.eodProfileToolbar.setNavigationOnClickListener(view -> navigateUp());
+        binding.eodProfileToolbar.setNavigationIcon(R.drawable.ic_back);
+        binding.eodProfileOtherExpenseImage.setOnLongClickListener(this::onLongClickOtherExpense);
+        binding.eodProfilePetrolExpenseImage.setOnLongClickListener(this::onLongClickPetrolExpnese);
+
 
         return binding.getRoot();
     }
 
+    private boolean onLongClickPetrolExpnese(View view) {
+        String textToSend = "Hello, This is petrol expense image :  " + petrolExpense;
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, textToSend);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+        return true;
+    }
+
+    private boolean onLongClickOtherExpense(View view) {
+        String textToSend = "Hello, This is other expense image :  " + otherExpense;
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, textToSend);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+        return true;
+    }
+
     private void setEod(Eod eod) {
+        eod1 = eod;
         binding.setEod(eod);
 
         if (eod == null) {
@@ -73,6 +100,7 @@ public class EodProfileFragment extends Fragment {
 
         if (eod.getPetrolExpenseImage() != null && !eod.getPetrolExpenseImage().isEmpty()) {
             String image = ApiEndpoints.BASE_URL + eod.getPetrolExpenseImage();
+            petrolExpense = image;
             Glide.with(getContext()).load(image).placeholder(R.drawable.loading_image).into(binding.eodProfilePetrolExpenseImage);
 
             binding.eodProfilePetrolExpenseImage.setOnClickListener(view->{
@@ -86,6 +114,7 @@ public class EodProfileFragment extends Fragment {
 
         if (eod.getExpenseImage() != null && !eod.getExpenseImage().isEmpty()) {
             String image = ApiEndpoints.BASE_URL + eod.getExpenseImage();
+            otherExpense = image;
             Glide.with(getContext()).load(image).placeholder(R.drawable.loading_image).into(binding.eodProfileOtherExpenseImage);
 
             binding.eodProfileOtherExpenseImage.setOnClickListener(view->{
