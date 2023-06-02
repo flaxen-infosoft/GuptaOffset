@@ -79,6 +79,7 @@ public class AdminHomeFragment extends Fragment {
     }
 
     boolean isFirstTime = true;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -111,7 +112,7 @@ public class AdminHomeFragment extends Fragment {
         binding.adminHomeAddSuperEmployee.setOnClickListener(this::navigateToAddSuperEmployee);
         binding.adminHomeAddEmployee.setOnClickListener(this::navigateToAddEmployee);
 //        binding.adminHomeLeave.setOnClickListener(this::navigateToAdminLeave);
-     //   binding.adminHomePaymentRequests.setOnClickListener(this::navigateToPaymentRequests);
+        //   binding.adminHomePaymentRequests.setOnClickListener(this::navigateToPaymentRequests);
         binding.adminHomeAllOrders.setOnClickListener(this::onClickAllOrders);
         binding.paymentReqText.setOnClickListener(this::navigateToPaymentRequests);
         binding.bookOrderText.setOnClickListener(this::onClickAllOrders);
@@ -269,9 +270,12 @@ public class AdminHomeFragment extends Fragment {
 
     private void getAllEmployeesOnSwipe() {
         binding.adminHomeSearch.setText("");
+
         Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
         viewModel.fetchAllEmployees(currentDate);
         binding.dateTextId.setText(currentDate);
+        Paper.book().write("selectedDate2", currentDate);
+
 
         if (binding.adminHomeSwipeRefresh.isRefreshing()) {
             binding.adminHomeSwipeRefresh.setRefreshing(false);
@@ -353,6 +357,7 @@ public class AdminHomeFragment extends Fragment {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
     public static void removeFromFlagDialog(Context context, Long empId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -409,6 +414,7 @@ public class AdminHomeFragment extends Fragment {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
+
     private static void removeFromFlag(Context context, Long empId) {
 //        String empId = Paper.book().read("CurrentEmployeeId");
         RequestQueue requestQueue = Volley.newRequestQueue(context);
@@ -497,6 +503,7 @@ public class AdminHomeFragment extends Fragment {
         });
         alertDialog.show();
     }
+
     private static void addNotes(Context context, String message, Long empId) {
 //              String empId = Paper.book().read("CurrentEmployeeId");
         RequestQueue requestQueue = Volley.newRequestQueue(context);
@@ -535,10 +542,16 @@ public class AdminHomeFragment extends Fragment {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
+
     @Override
     public void onResume() {
         super.onResume();
-        binding.adminHomeSearch.setText("");
+
+        if (!binding.adminHomeSearch.getText().toString().isEmpty()) {
+            binding.adminHomeSearch.setText("");
+            getAllEmployeesOnSwipe();
+        }
+
         if (isFirstTime) {
             // Call your method here
 
