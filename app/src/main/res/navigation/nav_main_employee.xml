@@ -74,6 +74,9 @@
         <action
             android:id="@+id/action_employeeHomeFragment_to_districtMapFragment"
             app:destination="@id/districtMapFragment" />
+        <action
+            android:id="@+id/action_employeeHomeFragment_to_districtListFragment2"
+            app:destination="@id/districtListFragment2" />
     </fragment>
 
     <fragment
@@ -186,6 +189,10 @@
         android:id="@+id/districtMapFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.DistrictMapFragment"
         android:label="DistrictMapFragment" />
+    <fragment
+        android:id="@+id/districtListFragment2"
+        android:name="com.flaxeninfosoft.guptaoffset.views.DistrictListFragment"
+        android:label="DistrictListFragment" />
 
 
 </navigation>
