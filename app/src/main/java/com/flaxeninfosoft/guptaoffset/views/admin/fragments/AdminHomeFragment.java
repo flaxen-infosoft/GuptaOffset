@@ -116,7 +116,7 @@ public class AdminHomeFragment extends Fragment {
         binding.adminHomeAllOrders.setOnClickListener(this::onClickAllOrders);
         binding.paymentReqText.setOnClickListener(this::navigateToPaymentRequests);
         binding.bookOrderText.setOnClickListener(this::onClickAllOrders);
-        binding.dateTextId.setOnClickListener(this::onClickCalender);
+        binding.selectDateLayout.setOnClickListener(this::onClickCalender);
         binding.todayNotWorkingEmployeeText.setOnClickListener(this::onClickTodayNotWorking);
         binding.flagEmployeeText.setOnClickListener(this::onClickFlagEmployee);
         binding.above80KmDriveReport.setOnClickListener(this::onClickAbove80KmDriver);
