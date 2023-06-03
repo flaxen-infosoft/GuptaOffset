@@ -51,6 +51,7 @@ DistrictListForTehsilFragment extends Fragment {
     RequestQueue requestQueue;
     DistrictListForTehsilAdapter adapter;
     Gson gson;
+    String selectedDate;
     Long empId;
 
     @Override
@@ -117,7 +118,8 @@ DistrictListForTehsilFragment extends Fragment {
 
     private void onClickDistrict(DistrictData districtData) {
         Bundle bundle = new Bundle();
-        bundle.putString("IMAGE", ApiEndpoints.BASE_URL + districtData.getDistrict_image());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
+        bundle.putLong(Constants.EMPLOYEE_ID,empId);
+        bundle.putLong(Constants.DISTRICT_ID,districtData.getDistrict_id());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_districtListForTehsilFragment_to_tehsilFragment, bundle);
     }
 }

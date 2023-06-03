@@ -199,7 +199,15 @@
     <fragment
         android:id="@+id/districtListForTehsilFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.DistrictListForTehsilFragment"
-        android:label="DistrictListForTehsilFragment" />
+        android:label="DistrictListForTehsilFragment" >
+        <action
+            android:id="@+id/action_districtListForTehsilFragment_to_tehsilFragment"
+            app:destination="@id/tehsilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tehsilFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.TehsilFragment"
+        android:label="TehsilFragment" />
 
 
 </navigation>
