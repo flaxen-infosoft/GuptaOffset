@@ -159,4 +159,5 @@ public class Constants {
     public static final String EVENING_ATTENDANCE_AVAILABLITY = "evening_attendance_availability";
     public static final String DISTRICT_NAME = "district_name";
     public static final String DISTRICT_IMAGE = "district_image";
+    public static final String DISTRICT_ID = "district_id";
 }
