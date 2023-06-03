@@ -47,6 +47,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import io.paperdb.Paper;
 
@@ -74,6 +75,7 @@ public class EmployeeHomeFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_home, container, false);
         binding.setMessage(new Message());
         employee = viewModel.getCurrentEmployee();
+        Paper.init(getContext());
         binding.getMessage().setReceiverId(employee.getId());
         binding.employeeName.setText(employee.getName());
 
@@ -96,21 +98,25 @@ public class EmployeeHomeFragment extends Fragment {
         binding.selectDateLinear.setOnClickListener(this::onSelectDate);
         binding.todayDataTextview.setOnClickListener(this::onClickTodayData);
         binding.districtMap.setOnClickListener(this::onClickDistrictMap);
-       // binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
+        binding.tehsilList.setOnClickListener(this::onClickTehsil);
+        // binding.employeeHomeCardDailyReport.setOnClickListener(this::navigateToDailyReports);
 
         String formattedDateTime = "";
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            currentDate = now.format(formatter);
-            Paper.init(getContext());
-            Paper.book().write("currentDate", formattedDateTime);
-        }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+        currentDate = dateFormat.format(date);
+        Paper.init(getContext());
+        Paper.book().write("currentDate", currentDate);
+        Paper.book().write("selectedDate", currentDate);
+
 
         if (selectedDate.isEmpty()) {
             binding.dateTextId.setText(currentDate);
+            Paper.book().write("selectedDate", currentDate);
         } else {
             binding.dateTextId.setText(selectedDate);
+            Paper.book().write("selectedDate", selectedDate);
         }
 
         LinearLayoutManager lm = new LinearLayoutManager(getContext());
@@ -172,6 +178,8 @@ public class EmployeeHomeFragment extends Fragment {
                         Format format = new SimpleDateFormat("20yy-MM-dd");
                         binding.dateTextId.setText(format.format(date));
                         selectedDate = format.format(date);
+
+                        Paper.book().write("selectedDate", selectedDate);
                         getAllHistory();
                     }
                 });
@@ -215,8 +223,7 @@ public class EmployeeHomeFragment extends Fragment {
 
         if (punchStatus.equals("0")) {
             showDialog();
-        }
-        else {
+        } else {
 
         }
 //        else if (punchStatus.equals("1") && time >= 19) { //for attendance mandatory after 7 pm
@@ -422,10 +429,17 @@ public class EmployeeHomeFragment extends Fragment {
     private void navigateToMyAccount(View view) {
         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_myAccountFragment);
     }
+
     private void onClickDistrictMap(View view) {
         Bundle bundle = new Bundle();
         bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
 //        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_districtMapFragment);
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_districtListFragment2,bundle);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_districtListFragment2, bundle);
+    }
+
+    private void onClickTehsil(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
+        Navigation.findNavController(view).navigate(R.id.action_employeeHomeFragment_to_districtListForTehsilFragment,bundle);
     }
 }
