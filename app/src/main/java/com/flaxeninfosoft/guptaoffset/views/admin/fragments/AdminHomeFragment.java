@@ -399,6 +399,7 @@ public class AdminHomeFragment extends Fragment {
 
                 try {
                     Toast.makeText(context, response.getString("data"), Toast.LENGTH_SHORT).show();
+                    viewModel.fetchAllEmployees(currentDate);
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -437,11 +438,7 @@ public class AdminHomeFragment extends Fragment {
 
                 try {
                     Toast.makeText(context, response.getString("data"), Toast.LENGTH_SHORT).show();
-                    if (selectedDate.isEmpty()) {
-                        viewModel.fetchAllEmployees(currentDate);
-                    } else {
-                        viewModel.fetchAllEmployees(selectedDate);
-                    }
+                    viewModel.fetchAllEmployees(currentDate);
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
