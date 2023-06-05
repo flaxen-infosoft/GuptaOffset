@@ -36,9 +36,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+
+import io.paperdb.Paper;
 
 
 public class FlagEmployeeFragment extends Fragment {
@@ -62,6 +67,8 @@ public class FlagEmployeeFragment extends Fragment {
     }
 
     FragmentFlagEmployeeBinding binding;
+    String selectedDate;
+    String currentDate = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,12 +79,16 @@ public class FlagEmployeeFragment extends Fragment {
         employeeList = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
         gson = new Gson();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+        currentDate = dateFormat.format(date);
+        selectedDate = Paper.book().read("selectedDate2");
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Please wait ....");
 
-        flagEmployeeRecyclerAdapter = new FlagEmployeeRecyclerAdapter(employeeList,getContext(), new FlagEmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
+        flagEmployeeRecyclerAdapter = new FlagEmployeeRecyclerAdapter(employeeList, getContext(), new FlagEmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
             @Override
             public void onClickCard(Employee employee) {
                 onCLickEmployeeCard(employee);
@@ -116,7 +127,13 @@ public class FlagEmployeeFragment extends Fragment {
         employeeList.clear();
         progressDialog.show();
         String url = ApiEndpoints.BASE_URL + "employee/getallFlagEmployee.php";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        if (selectedDate == null) {
+            hashMap.put("date", currentDate);
+        } else {
+            hashMap.put("date", selectedDate);
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
             Log.i("employee", response.toString());
             progressDialog.dismiss();
             if (binding.flagEmployeeSwipeRefresh.isRefreshing()) {
@@ -158,7 +175,7 @@ public class FlagEmployeeFragment extends Fragment {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public static void removeFromFlagDialog(Context context,Long empId) {
+    public static void removeFromFlagDialog(Context context, Long empId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
         builder.setMessage("Are you sure you want to remove employee from flag ?");
@@ -177,7 +194,7 @@ public class FlagEmployeeFragment extends Fragment {
         alertDialog.show();
     }
 
-    private static void removeFromFlag(Context context,Long empId) {
+    private static void removeFromFlag(Context context, Long empId) {
 //        String empId = Paper.book().read("CurrentEmployeeId");
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         ProgressDialog progressDialog = new ProgressDialog(context);

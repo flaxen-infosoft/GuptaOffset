@@ -56,7 +56,6 @@ public class EmployeeAddLeaveFragment extends Fragment {
 
         binding.employeeApplyLeaveDateFromTv.setOnClickListener(this::selectFromDate);
         binding.employeeApplyLeaveDateToTv.setOnClickListener(this::selectToDate);
-
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
         return binding.getRoot();
@@ -67,24 +66,26 @@ public class EmployeeAddLeaveFragment extends Fragment {
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
-
+    Date date;
     private void selectFromDate(View view) {
         Calendar calendar = Calendar.getInstance();
-        new DatePickerDialog(getContext(), (datePicker, y, m, d) -> {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (datePicker, y, m, d) -> {
             calendar.set(Calendar.YEAR, y);
             calendar.set(Calendar.MONTH, m);
             calendar.set(Calendar.DAY_OF_MONTH, d);
-
-            Date date = new Date(calendar.getTime().getTime());
-
+             date = new Date(calendar.getTime().getTime());
             binding.getLeave().setFromDate(date.toString());
             binding.employeeApplyLeaveDateFromTv.setText(date.toString());
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+
+        // Set the minimum date to today's date
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        datePickerDialog.show();
     }
 
     private void selectToDate(View view) {
         Calendar calendar = Calendar.getInstance();
-        new DatePickerDialog(getContext(), (datePicker, y, m, d) -> {
+         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (datePicker, y, m, d) -> {
             calendar.set(Calendar.YEAR, y);
             calendar.set(Calendar.MONTH, m);
             calendar.set(Calendar.DAY_OF_MONTH, d);
@@ -93,7 +94,17 @@ public class EmployeeAddLeaveFragment extends Fragment {
 
             binding.getLeave().setToDate(date.toString());
             binding.employeeApplyLeaveDateToTv.setText(date.toString());
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+
+         // Set the minimum date to today's date
+        try {
+            datePickerDialog.getDatePicker().setMinDate(date.getTime());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+          datePickerDialog.show();
     }
 
     private void onClickSubmit(View view) {

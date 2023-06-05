@@ -36,9 +36,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import io.paperdb.Paper;
 
@@ -81,8 +84,10 @@ public class Above80KmDriveReportFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_above80_km_drive_report, container, false);
         binding.above80KmDriveReportBackImg.setOnClickListener(this::onClickBack);
-        currentDate = Paper.book().read("currentDate");
-        selectedDate = Paper.book().read("selectedDate");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+        currentDate = dateFormat.format(date);
+        selectedDate = Paper.book().read("selectedDate2");
         attendanceList = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
         gson = new Gson();
@@ -109,10 +114,13 @@ public class Above80KmDriveReportFragment extends Fragment {
         attendanceList.clear();
         progressDialog.show();
         String url = ApiEndpoints.BASE_URL + "attendance/gettotodayeightyAttendance.php";
-//        HashMap<String, Object> hashMap = new HashMap<>();
-//        hashMap.put("empId", empId);
-//        Toast.makeText(getContext(), ""+empId, Toast.LENGTH_SHORT).show();
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
+      HashMap<String, Object> hashMap = new HashMap<>();
+        if (selectedDate == null) {
+            hashMap.put("date", currentDate);
+        } else {
+            hashMap.put("date", selectedDate);
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
             Log.i("Above80km", response.toString());
             progressDialog.dismiss();
 

@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_adminLeaveFragment"
             app:destination="@id/adminLeaveFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_districtListFragment"
+            app:destination="@id/districtListFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"

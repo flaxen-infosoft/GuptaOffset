@@ -93,10 +93,10 @@ public class AdminViewModel extends SuperEmployeeViewModel {
         return flag;
     }
 
-    public LiveData<List<PaymentRequest>> getAllPendingPaymentRequests() {
+    public LiveData<List<PaymentRequest>> getAllPendingPaymentRequests(String date) {
         MutableLiveData<List<PaymentRequest>> flag = new MutableLiveData<>();
 
-        repo.getAllPendingPaymentRequests(new ApiResponseListener<List<PaymentRequest>, String>() {
+        repo.getAllPendingPaymentRequests(date ,new ApiResponseListener<List<PaymentRequest>, String>() {
             @Override
             public void onSuccess(List<PaymentRequest> response) {
                 flag.postValue(response);
