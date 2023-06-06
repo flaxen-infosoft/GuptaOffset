@@ -618,7 +618,7 @@
                             android:layout_height="wrap_content"
                             android:hint="Other Expenses Description"
                             android:inputType="text"
-                            android:text="@={eod.schoolVisits}" />
+                            android:text="@={eod.expenseDescription}" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 

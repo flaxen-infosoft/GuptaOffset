@@ -307,7 +307,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             }
             if (eod.getExpenseImage() != null) {
                 String url = ApiEndpoints.BASE_URL + eod.getExpenseImage();
-                  Glide.with(binding.getRoot().getContext()).load(url).into(binding.otherExpenseImageview);
+                  Glide.with(binding.getRoot().getContext()).load(url).placeholder(R.drawable.loading_image).into(binding.otherExpenseImageview);
             } else {
                 binding.otherExpenseImageview.setVisibility(View.GONE);
                 binding.textOtherexpenseImage.setVisibility(View.GONE);
@@ -315,7 +315,7 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
 
             if (eod.getPetrolExpenseImage() != null) {
                 String url = ApiEndpoints.BASE_URL + eod.getPetrolExpenseImage();
-                Glide.with(binding.getRoot().getContext()).load(url).into(binding.petrolExpenseImageview);
+                Glide.with(binding.getRoot().getContext()).load(url).placeholder(R.drawable.loading_image).into(binding.petrolExpenseImageview);
             } else {
                 binding.petrolExpenseImageview.setVisibility(View.GONE);
                 binding.textPetrolexpenseImage.setVisibility(View.GONE);
