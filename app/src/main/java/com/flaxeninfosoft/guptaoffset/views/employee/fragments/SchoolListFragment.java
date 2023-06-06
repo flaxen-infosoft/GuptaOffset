@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -39,6 +40,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import io.paperdb.Paper;
+
 
 public class SchoolListFragment extends Fragment {
 
@@ -50,6 +53,7 @@ public class SchoolListFragment extends Fragment {
     ProgressDialog progressDialog;
     EmployeeSchoolListAdapter employeeSchoolListAdapter;
     Gson gson;
+    String selectedDate;
 
     public SchoolListFragment() {
         // Required empty public constructor
@@ -71,6 +75,7 @@ public class SchoolListFragment extends Fragment {
         binding.schoolListBackImg.setOnClickListener(this::onClickBack);
         empId = getArguments().getLong(Constants.EMPLOYEE_ID,0L);
         schoolList = new ArrayList<>();
+        selectedDate = Paper.book().read("selectedDate");
         requestQueue = Volley.newRequestQueue(getContext());
         gson = new Gson();
         progressDialog = new ProgressDialog(getContext());
@@ -95,7 +100,8 @@ public class SchoolListFragment extends Fragment {
         String url = ApiEndpoints.BASE_URL + "school/getSchoolListByempId.php";
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("empId", empId);
-
+        hashMap.put("date", selectedDate);
+        Toast.makeText(getContext(), selectedDate, Toast.LENGTH_SHORT).show();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url , new JSONObject(hashMap) , response -> {
             Log.i("Above80km", response.toString());
             progressDialog.dismiss();
