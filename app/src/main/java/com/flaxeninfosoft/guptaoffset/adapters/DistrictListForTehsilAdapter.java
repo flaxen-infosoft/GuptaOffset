@@ -41,7 +41,6 @@ public class DistrictListForTehsilAdapter extends RecyclerView.Adapter<DistrictL
         if (districtLists == null) {
             return 0;
         } else {
-            Log.i("akshat", districtLists.size() + "");
             return districtLists.size();
         }
     }
