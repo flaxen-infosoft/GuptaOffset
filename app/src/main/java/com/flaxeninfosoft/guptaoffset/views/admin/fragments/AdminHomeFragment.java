@@ -55,6 +55,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import io.paperdb.Paper;
 
@@ -87,15 +88,15 @@ public class AdminHomeFragment extends Fragment {
         binding.adminHomeSearch.setText("");
         binding.adminHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         String formattedDateTime = "";
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            currentDate = now.format(formatter);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            Date date = new Date();
+            currentDate = dateFormat.format(date);
             Paper.init(getContext());
             Paper.book().write("currentDate", formattedDateTime);
             Paper.init(getContext());
             Paper.book().write("selectedDate2", currentDate);
-        }
+
 
 //        ((AdminMainActivity) requireActivity()).setupActionBar(binding.adminHomeToolbar, "Admin");
 //        if (selectedDate.isEmpty()) {
@@ -167,9 +168,8 @@ public class AdminHomeFragment extends Fragment {
             }
         });
 
-        binding.adminHomeSwipeRefresh.setOnRefreshListener(this::getAllEmployeesOnSwipe);
-
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
+        binding.adminHomeSwipeRefresh.setOnRefreshListener(this::getAllEmployeesOnSwipe);
 
         if (selectedDate.isEmpty()) {
             binding.dateTextId.setText(currentDate);
