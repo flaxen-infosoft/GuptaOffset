@@ -69,6 +69,7 @@ public class PaymentReceiveFragment extends Fragment {
         binding.paymentReceiveBackImg.setOnClickListener(this::onCLickBack);
        /* currentDate = Paper.book().read("currentDate");
         selectedDate = Paper.book().read("selectdate");*/
+        selectedDate = Paper.book().read("selectedDate");
         paymentStatusList = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
         gson = new Gson();
@@ -99,6 +100,8 @@ private void onClickPaymentRecieve(PaymentStatus paymentStatus){
         String url = ApiEndpoints.BASE_URL + "payment/getpaymentReceivedByEmpId.php";
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("empId", empId);
+        hashMap.put("date", selectedDate);
+        Toast.makeText(getContext(), selectedDate, Toast.LENGTH_SHORT).show();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
             Log.i("paymentrecieve", response.toString());
             progressDialog.dismiss();

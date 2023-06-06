@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -37,6 +38,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import io.paperdb.Paper;
 
 
 public class BookOrderListrFragment extends Fragment {
@@ -71,6 +74,7 @@ public class BookOrderListrFragment extends Fragment {
         empId = getArguments().getLong(Constants.EMPLOYEE_ID,0L);
         binding.bookOrderListBackImg.setOnClickListener(this::onClickBack);
         employeeBookOrders = new ArrayList<>();
+        selectedDate = Paper.book().read("selectedDate");
         requestQueue = Volley.newRequestQueue(getContext());
         gson = new Gson();
         progressDialog = new ProgressDialog(getContext());
@@ -98,6 +102,8 @@ public class BookOrderListrFragment extends Fragment {
         String url = ApiEndpoints.BASE_URL + "order/getOrdersByEmpId.php" ;
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("empId", empId);
+        hashMap.put("date", selectedDate);
+        Toast.makeText(getContext(), selectedDate, Toast.LENGTH_SHORT).show();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
             Log.i("bookOrder", response.toString());
             progressDialog.dismiss();
