@@ -616,7 +616,7 @@
                             android:id="@+id/other_expense_description_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Other Expenses Description"
+                            android:hint="Other Expenses Description / खर्चे का कारण लिखे"
                             android:inputType="text"
                             android:text="@={eod.expenseDescription}" />
                     </com.google.android.material.textfield.TextInputLayout>
