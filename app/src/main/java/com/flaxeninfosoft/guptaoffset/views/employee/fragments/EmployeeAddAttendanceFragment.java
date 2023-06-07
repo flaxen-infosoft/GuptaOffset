@@ -120,12 +120,14 @@ public class EmployeeAddAttendanceFragment extends Fragment {
             binding.employeeAddAttendanceBtn.setEnabled(true);
             binding.employeeAddAttendanceBtn.setOnClickListener(v -> {
                 clearErrors();
-                if (image == null) {
-                    Toast.makeText(getContext(), "Insert image.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+
                 if (binding.getAttendance().getStartMeter() == null) {
                     binding.employeeAddAttendanceStartMeter.setError("**Enter Starting Meter");
+                    return;
+                }
+
+                if (image == null) {
+                    Toast.makeText(getContext(), "Insert image.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -182,15 +184,17 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                 binding.employeeAddAttendanceBtn.setEnabled(true);
                 binding.employeeAddAttendanceBtn.setOnClickListener(v -> {
                     clearErrors();
-                    if (image == null) {
-                        Toast.makeText(getContext(), "Insert image.", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
 
                     if (binding.getAttendance().getEndMeter() == null) {
                         binding.employeeAddAttendanceEndMeter.setError("**Enter Ending Meter");
                         return;
                     }
+
+                    if (image == null) {
+                        Toast.makeText(getContext(), "Insert image.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
 
                     binding.employeeAddAttendanceBtn.setEnabled(false);
                     punch(binding.getAttendance().getEndMeter(), image);
