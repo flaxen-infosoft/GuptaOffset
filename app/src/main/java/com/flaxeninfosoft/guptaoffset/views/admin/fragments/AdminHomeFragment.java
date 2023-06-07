@@ -65,6 +65,7 @@ public class AdminHomeFragment extends Fragment {
     private static AdminViewModel viewModel;
     private List<Employee> employeeList;
     static String selectedDate = "";
+    EmployeeRecyclerAdapter adapter;
 
     static String currentDate = "";
 
@@ -141,7 +142,7 @@ public class AdminHomeFragment extends Fragment {
                     binding.adminHomeEmptyRecycler.setVisibility(View.GONE);
                     binding.adminHomeRecycler.setVisibility(View.VISIBLE);
                 }
-                EmployeeRecyclerAdapter adapter = new EmployeeRecyclerAdapter(employeeList, getContext(), new EmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
+                 adapter = new EmployeeRecyclerAdapter(employeeList, getContext(), new EmployeeRecyclerAdapter.SingleEmployeeCardOnClickListener() {
                     @Override
                     public void onClickCard(Employee employee) {
                         onCLickEmployeeCard(employee);
@@ -273,6 +274,7 @@ public class AdminHomeFragment extends Fragment {
 
         Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
         viewModel.fetchAllEmployees(currentDate);
+        adapter.notifyDataSetChanged();
         binding.dateTextId.setText(currentDate);
         Paper.book().write("selectedDate2", currentDate);
 
@@ -547,6 +549,7 @@ public class AdminHomeFragment extends Fragment {
         if (!binding.adminHomeSearch.getText().toString().isEmpty()) {
             binding.adminHomeSearch.setText("");
             getAllEmployeesOnSwipe();
+            adapter.notifyDataSetChanged();
         }
 
         if (isFirstTime) {
