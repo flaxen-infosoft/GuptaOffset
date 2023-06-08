@@ -46,6 +46,12 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_districtListFragment"
             app:destination="@id/districtListFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_firsrAndLastSchoolVisitDurationFragment"
+            app:destination="@id/firsrAndLastSchoolVisitDurationFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_EODForKm_TA_AndPetrolFragment"
+            app:destination="@id/EODForKm_TA_AndPetrolFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
@@ -182,4 +188,13 @@
         android:id="@+id/districtListFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.DistrictListFragment"
         android:label="DistrictListFragment" />
+    <fragment
+        android:id="@+id/firsrAndLastSchoolVisitDurationFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.FirstAndLastSchoolVisitDurationFragment"
+        android:label="fragment_firsr_and_last_school_visit_duration"
+        tools:layout="@layout/fragment_firsr_and_last_school_visit_duration" />
+    <fragment
+        android:id="@+id/EODForKm_TA_AndPetrolFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.EODForKm_TA_AndPetrolFragment"
+        android:label="EODForKm_TA_AndPetrolFragment" />
 </navigation>
