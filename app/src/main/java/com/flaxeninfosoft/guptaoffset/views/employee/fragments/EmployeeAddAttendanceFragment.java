@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -8,6 +9,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +45,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
 
     private FragmentEmployeeAddAttendanceBinding binding;
     private EmployeeViewModel viewModel;
+    boolean checkReading = true;
 
     private ProgressDialog progressDialog;
     private Uri image;
@@ -47,6 +53,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
     private String pictureStartImagePath = "";
 
     private String pictureEndImagePath = "";
+    Attendance attendance;
 
     public EmployeeAddAttendanceFragment() {
         // Required empty public constructor
@@ -86,6 +93,7 @@ public class EmployeeAddAttendanceFragment extends Fragment {
     }
 
     private void setAttendance(Attendance attendance) {
+        this.attendance = attendance;
         progressDialog.dismiss();
         if (attendance == null) {
             attendance = new Attendance();
@@ -195,10 +203,27 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                         return;
                     }
 
+                    Long end = Long.valueOf(binding.getAttendance().getEndMeter());
+                    Long start = Long.valueOf(binding.getAttendance().getStartMeter());
+                    Long totalKm = end - start;
+
+                    if (end < start) {
+                        binding.endMeterEdittext.setError("Invalid Reading");
+                        return;
+                    }
+
+                    int punchWhenReadingGreater150 = 0;
+                    if (totalKm >= 150) {
+                        punchWhenReadingGreater150 = 1;
+                        showReadingConfirmDialog(binding.getAttendance().getEndMeter(), image);
+                        return;
+                    }
+
 
                     binding.employeeAddAttendanceBtn.setEnabled(false);
-                    punch(binding.getAttendance().getEndMeter(), image);
-
+                    if (punchWhenReadingGreater150 ==0) {
+                        punch(binding.getAttendance().getEndMeter(), image);
+                    }
                 });
             }
         } else if (attendance.getPunchStatus() == 2) {
@@ -356,34 +381,67 @@ public class EmployeeAddAttendanceFragment extends Fragment {
             }
     );
 
-    private void punch(String reading, Uri uri) {
-        binding.employeeAddAttendanceBtn.setEnabled(false);
-        progressDialog.setTitle("Wait");
-        progressDialog.setMessage("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        try {
-            viewModel.punchAttendance(reading, uri).observe(getViewLifecycleOwner(), attendance -> {
-                if (attendance != null) {
-                    progressDialog.dismiss();
-                    Dialog dialog = new Dialog(getContext());
-                    dialog.setContentView(R.layout.data_submit_dialog_layout);
-                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    Button button = dialog.findViewById(R.id.okButton);
-                    button.setOnClickListener(view -> {
-                        dialog.dismiss();
-                    });
-                    dialog.show();
-                    navigateUp();
+    private boolean checkReading() {
+        Attendance attendance1 = binding.getAttendance();
+        if (attendance != null) {
+            if (!attendance.getStartMeter().isEmpty()) {
+                String endMeterRe = binding.endMeterEdittext.getText().toString();
+                Long endMeterReading = Long.valueOf(endMeterRe);
+                Long startMeterReading = Long.valueOf(attendance1.getStartMeter());
+                Long totalKiloMeter = endMeterReading - startMeterReading;
+                Log.i("meter endMeterReading", endMeterReading.toString());
+                Log.i("meter startMeterReading", startMeterReading.toString());
+                Log.i("meter totalKiloMeter", totalKiloMeter.toString());
+
+                if (totalKiloMeter >= 150) {
+                    //show confirm dialog
+                    checkReading = false;
+//                    showReadingConfirmDialog();
+                    return false;
+                } else if (endMeterReading < startMeterReading) {//continue krna hai end meter start se jyda hona chahiye
+                    binding.endMeterEdittext.setError("Invalid Meter Reading");
+                    return false;
                 } else {
-                    progressDialog.dismiss();
-                    binding.employeeAddAttendanceBtn.setEnabled(true);
+                    //show error
+                    return true;
                 }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            } else {
+                //do nothing
+                return true;
+            }
+        } else {
+            return true;
         }
+    }
+
+    private void punch(String reading, Uri uri) {
+            binding.employeeAddAttendanceBtn.setEnabled(false);
+            progressDialog.setTitle("Wait");
+            progressDialog.setMessage("Loading...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            try {
+                viewModel.punchAttendance(reading, uri).observe(getViewLifecycleOwner(), attendance -> {
+                    if (attendance != null) {
+                        progressDialog.dismiss();
+                        Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.data_submit_dialog_layout);
+                        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        Button button = dialog.findViewById(R.id.okButton);
+                        button.setOnClickListener(view -> {
+                            dialog.dismiss();
+                        });
+                        dialog.show();
+                        navigateUp();
+                    } else {
+                        progressDialog.dismiss();
+                        binding.employeeAddAttendanceBtn.setEnabled(true);
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
     }
 
     private void navigateUp() {
@@ -395,4 +453,29 @@ public class EmployeeAddAttendanceFragment extends Fragment {
         binding.employeeAddAttendanceEndMeter.setError(null);
         binding.employeeAddAttendanceTotalMeter.setError(null);
     }
+
+
+
+    private boolean showReadingConfirmDialog(String reading, Uri uri) {
+
+        LayoutInflater factory = LayoutInflater.from(getContext());
+        final View view = factory.inflate(R.layout.reading_confirm_dialog_layout, null);
+        AlertDialog attendaceDialog = new AlertDialog.Builder(getContext()).create();
+        attendaceDialog.setView(view);
+        attendaceDialog.setCancelable(false);
+        attendaceDialog.show();
+        attendaceDialog.findViewById(R.id.button_haa).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attendaceDialog.dismiss();
+                punch(reading,uri);
+            }
+        });
+        attendaceDialog.findViewById(R.id.button_nahi).setOnClickListener(view1 -> {
+            attendaceDialog.dismiss();
+            checkReading = false;
+        });
+        return checkReading;
+    }
+
 }

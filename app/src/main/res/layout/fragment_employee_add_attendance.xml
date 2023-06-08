@@ -99,6 +99,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Start meter"
+                        android:maxLength="10"
                         android:inputType="numberSigned"
                         android:text="@={attendance.startMeter}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -234,9 +235,11 @@
                     app:boxStrokeWidth="1dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/end_meter_edittext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="End meter"
+                        android:maxLength="10"
                         android:inputType="numberSigned"
                         android:text="@={attendance.endMeter}" />
                 </com.google.android.material.textfield.TextInputLayout>
