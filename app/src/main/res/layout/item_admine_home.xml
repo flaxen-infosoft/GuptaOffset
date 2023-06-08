@@ -9,11 +9,18 @@
             type="com.flaxeninfosoft.guptaoffset.models.Employee" />
     </data>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:background="@drawable/layoutcornor"
         android:orientation="vertical">
 
@@ -126,12 +133,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2.6"
+                        android:layout_weight="3"
                         android:gravity="center"
                         android:padding="5sp"
                         android:text="@{employee.currentLocation.address}"
                         android:textColor="@color/textcolor"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <View
@@ -142,8 +149,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="7.4"
+                        android:layout_weight="7"
                         android:gravity="center"
+                        android:layout_gravity="center"
                         android:orientation="vertical"
                         android:padding="3dp">
 
@@ -151,8 +159,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Last Update :"
+                            android:layout_gravity="center"
+                            android:gravity="center"
                             android:textColor="@color/textcolor"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -163,7 +173,7 @@
                             android:gravity="center"
                             android:text="@{employee.currentLocation.date}"
                             android:textColor="@color/textcolor"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
 
 
@@ -216,78 +226,107 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="M"
-                                    android:textColor="@color/black"
-                                    android:textStyle="bold" />
+                                    android:orientation="vertical"
+                                    android:layout_weight="5">
 
-                                <ImageView
-                                    android:layout_width="15sp"
-                                    android:layout_height="15sp"
-                                    android:layout_marginStart="5sp"
-                                    android:src="@drawable/greencheck" />
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="M"
+                                        android:textSize="13sp"
+                                        android:layout_marginStart="3dp"
+                                        android:layout_gravity="center"
+                                        android:textColor="@color/black"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginStart="3sp"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/greencheck" />
+                                    </LinearLayout>
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1.5dp"
+                                        android:background="@color/textcolor" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:padding="3dp"
+                                        android:text="@{employee.morning_attendance != null ? employee.morning_attendance : `0:0`}"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/textcolor"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"/>
+
+                                </LinearLayout>
 
                                 <View
                                     android:layout_width="1dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginStart="3sp"
-                                    android:layout_marginEnd="5sp"
                                     android:background="@color/textcolor" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="E"
-                                    android:textColor="@color/black"
-                                    android:textStyle="bold" />
+                                    android:orientation="vertical"
+                                    android:layout_weight="5">
 
-                                <ImageView
-                                    android:layout_width="15sp"
-                                    android:layout_height="15sp"
-                                    android:layout_marginStart="5sp"
-                                    android:src="@drawable/redcheck" />
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
 
-                            </LinearLayout>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="E"
+                                        android:textSize="13sp"
+                                        android:layout_marginStart="3dp"
+                                        android:textColor="@color/black"
+                                        android:layout_gravity="center"
+                                        android:textStyle="bold" />
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/textcolor" />
+                                    <ImageView
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginStart="3sp"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/redcheck" />
+                                    </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="horizontal">
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1.5dp"
+                                        android:background="@color/textcolor" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="@{employee.morning_attendance != null ? employee.morning_attendance : `0:0`}"
-                                    android:textColor="@color/black"
-                                    android:textStyle="bold" />
-
-                                <View
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginStart="5sp"
-                                    android:layout_marginEnd="3sp"
-                                    android:background="@color/textcolor" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="@{employee.evening_attendance != null ? employee.evening_attendance : `0:0`}"
-                                    android:textColor="@color/black"
-                                    android:textStyle="bold" />
-
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:padding="3dp"
+                                        android:text="@{employee.evening_attendance != null ? employee.evening_attendance : `0:0`}"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/textcolor"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"/>
+                                </LinearLayout>
 
                             </LinearLayout>
 
@@ -343,6 +382,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/petrol_admin"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="3sp"
@@ -449,6 +489,7 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
+                            android:id="@+id/kilometer_admin"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="3sp"
@@ -465,7 +506,7 @@
                                 android:drawableTint="@color/textcolor"
                                 android:paddingTop="5dp"
                                 android:paddingEnd="3dp"
-                                android:paddingBottom="5dp"
+                                android:paddingBottom="4dp"
                                 android:text="K.M."
                                 android:textColor="@color/black"
                                 android:textSize="13sp"
@@ -549,6 +590,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/total_amount_admin"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="3sp"
@@ -597,6 +639,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/first_last_school_visit_duration"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="3sp"
@@ -660,10 +703,10 @@
                             android:layout_weight="5"
                             android:background="@drawable/soild_card_corner"
                             android:gravity="center"
-                            android:padding="6dp"
+                            android:padding="5dp"
                             android:text="Add to Flag"
                             android:textColor="@color/white"
-                            android:textSize="12sp"
+                            android:textSize="11sp"
                             android:textStyle="bold"
                             android:visibility="visible" />
 
@@ -681,7 +724,7 @@
                             android:padding="6dp"
                             android:text="Remove Flag"
                             android:textColor="@color/white"
-                            android:textSize="11sp"
+                            android:textSize="10sp"
                             android:textStyle="bold"
                             android:visibility="gone" />
 
@@ -694,10 +737,10 @@
                             android:layout_weight="5"
                             android:background="@drawable/soild_card_corner"
                             android:gravity="center"
-                            android:padding="4dp"
+                            android:padding="5dp"
                             android:text="Add Notes"
                             android:textColor="@color/white"
-                            android:textSize="15sp"
+                            android:textSize="11sp"
                             android:textStyle="bold" />
 
 
@@ -710,10 +753,10 @@
                             android:layout_weight="5"
                             android:background="@drawable/soild_card_corner"
                             android:gravity="center"
-                            android:padding="4dp"
+                            android:padding="5dp"
                             android:text="Notes"
                             android:textColor="@color/white"
-                            android:textSize="15sp"
+                            android:textSize="11sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -725,10 +768,10 @@
                             android:layout_weight="5"
                             android:background="@drawable/soild_card_corner"
                             android:gravity="center"
-                            android:padding="4dp"
+                            android:padding="5dp"
                             android:text="Leave"
                             android:textColor="@color/white"
-                            android:textSize="15sp"
+                            android:textSize="11sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -741,4 +784,6 @@
 
 
     </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
