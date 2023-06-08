@@ -1,6 +1,7 @@
 package com.flaxeninfosoft.guptaoffset.views.admin.fragments;
 
 import android.app.ProgressDialog;
+import android.graphics.fonts.FontStyle;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
@@ -82,7 +83,7 @@ public class FirstAndLastSchoolVisitDurationFragment extends Fragment {
         binding.firstAndLastSwipeRefresh.setOnRefreshListener(() -> getSchool());
         binding.firstAndLastRecycler.setAdapter(firstAndLastSchoolVisitAdapter);
         firstAndLastSchoolVisitAdapter.notifyDataSetChanged();
-        
+        getSchool();
         return  binding.getRoot();
     }
 
@@ -90,9 +91,10 @@ public class FirstAndLastSchoolVisitDurationFragment extends Fragment {
     }
 
     private void getSchool() {
+        Toast.makeText(getContext(), ""+selectedDate, Toast.LENGTH_SHORT).show();
         schoolList.clear();
         progressDialog.show();
-        String url = ApiEndpoints.BASE_URL + "";
+        String url = ApiEndpoints.BASE_URL + "school/FirstAndLastSchoolByEmp.php";
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("empId", empId);
         if (selectedDate==null) {
@@ -108,25 +110,33 @@ public class FirstAndLastSchoolVisitDurationFragment extends Fragment {
                 binding.firstAndLastSwipeRefresh.setRefreshing(false);
             }
             if (response != null) {
-                try {
-                    JSONArray jsonArray = response.getJSONArray("data");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        School school = gson.fromJson(jsonArray.getJSONObject(i).toString(), School.class);
-                        schoolList.add(school);
-                    }
+                if (response.has("data")) {
+                    try {
+                        JSONArray jsonArray = response.getJSONArray("data");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            School school = gson.fromJson(jsonArray.getJSONObject(i).toString(), School.class);
+                            schoolList.add(school);
+                        }
 
-                    binding.firstAndLastRecycler.setAdapter(firstAndLastSchoolVisitAdapter);
-                    firstAndLastSchoolVisitAdapter.notifyDataSetChanged();
-                    if (schoolList == null || schoolList.isEmpty()) {
-                        binding.firstAndLastRecycler.setVisibility(View.GONE);
-                        binding.firstAndLastEmptyTV.setVisibility(View.VISIBLE);
-                    } else {
-                        binding.firstAndLastRecycler.setVisibility(View.VISIBLE);
-                        binding.firstAndLastEmptyTV.setVisibility(View.GONE);
+                        binding.firstAndLastRecycler.setAdapter(firstAndLastSchoolVisitAdapter);
+                        firstAndLastSchoolVisitAdapter.notifyDataSetChanged();
+                        if (schoolList == null || schoolList.isEmpty()) {
+                            binding.firstAndLastRecycler.setVisibility(View.GONE);
+                            binding.firstAndLastEmptyTV.setVisibility(View.VISIBLE);
+                        } else {
+                            binding.firstAndLastRecycler.setVisibility(View.VISIBLE);
+                            binding.firstAndLastEmptyTV.setVisibility(View.GONE);
+                        }
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
                     }
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
+                } else {
+                    try {
+                        Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
 
