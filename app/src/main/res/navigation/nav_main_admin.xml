@@ -46,6 +46,12 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_districtListFragment"
             app:destination="@id/districtListFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_fragment_admin_attendence_section"
+            app:destination="@id/fragment_admin_attendence_section" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_districtListForTehsilFragment"
+            app:destination="@id/districtListForTehsilFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
@@ -182,4 +188,22 @@
         android:id="@+id/districtListFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.DistrictListFragment"
         android:label="DistrictListFragment" />
+    <fragment
+        android:id="@+id/fragment_admin_attendence_section"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.fragment_admin_attendence_section"
+        android:label="fragment_admin_attendence_section" />
+    <fragment
+        android:id="@+id/districtListForTehsilFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.DistrictListForTehsilFragment"
+        android:label="DistrictListForTehsilFragment" >
+        <action
+            android:id="@+id/action_districtListForTehsilFragment_to_tehsilFragment"
+            app:destination="@id/tehsilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tehsilFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.TehsilFragment"
+        android:label="TehsilFragment" />
+
+
 </navigation>
