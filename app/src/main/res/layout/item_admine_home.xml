@@ -200,6 +200,7 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
+                            android:id="@+id/linear_layout_attendence"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="3sp"
@@ -432,6 +433,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/admin_tehsil"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="3sp"

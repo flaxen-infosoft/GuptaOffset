@@ -47,11 +47,11 @@
             android:id="@+id/action_adminHomeFragment_to_districtListFragment"
             app:destination="@id/districtListFragment" />
         <action
-            android:id="@+id/action_adminHomeFragment_to_firsrAndLastSchoolVisitDurationFragment"
-            app:destination="@id/firsrAndLastSchoolVisitDurationFragment" />
+            android:id="@+id/action_adminHomeFragment_to_fragment_admin_attendence_section"
+            app:destination="@id/fragment_admin_attendence_section" />
         <action
-            android:id="@+id/action_adminHomeFragment_to_EODForKm_TA_AndPetrolFragment"
-            app:destination="@id/EODForKm_TA_AndPetrolFragment" />
+            android:id="@+id/action_adminHomeFragment_to_districtListForTehsilFragment"
+            app:destination="@id/districtListForTehsilFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
@@ -189,12 +189,21 @@
         android:name="com.flaxeninfosoft.guptaoffset.views.DistrictListFragment"
         android:label="DistrictListFragment" />
     <fragment
-        android:id="@+id/firsrAndLastSchoolVisitDurationFragment"
-        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.FirstAndLastSchoolVisitDurationFragment"
-        android:label="fragment_firsr_and_last_school_visit_duration"
-        tools:layout="@layout/fragment_firsr_and_last_school_visit_duration" />
+        android:id="@+id/fragment_admin_attendence_section"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.fragment_admin_attendence_section"
+        android:label="fragment_admin_attendence_section" />
     <fragment
-        android:id="@+id/EODForKm_TA_AndPetrolFragment"
-        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.EODForKm_TA_AndPetrolFragment"
-        android:label="EODForKm_TA_AndPetrolFragment" />
+        android:id="@+id/districtListForTehsilFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.DistrictListForTehsilFragment"
+        android:label="DistrictListForTehsilFragment" >
+        <action
+            android:id="@+id/action_districtListForTehsilFragment_to_tehsilFragment"
+            app:destination="@id/tehsilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tehsilFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.TehsilFragment"
+        android:label="TehsilFragment" />
+
+
 </navigation>
