@@ -88,6 +88,14 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
                 Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_fragment_admin_attendence_section, bundle));
         holder.binding.adminTehsil.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_districtListForTehsilFragment,bundle));
+        holder.binding.firstLastSchoolVisitDuration.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_firstAndLastSchoolVisitDurationFragment , bundle));
+        holder.binding.kilometerAdmin.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_EODForKm_TA_AndPetrolFragment , bundle));
+        holder.binding.petrolAdmin.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_EODForKm_TA_AndPetrolFragment , bundle));
+        holder.binding.totalAmountAdmin.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_EODForKm_TA_AndPetrolFragment , bundle));
     }
 
     @Override

@@ -52,6 +52,12 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_districtListForTehsilFragment"
             app:destination="@id/districtListForTehsilFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_firstAndLastSchoolVisitDurationFragment"
+            app:destination="@id/firstAndLastSchoolVisitDurationFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_EODForKm_TA_AndPetrolFragment"
+            app:destination="@id/EODForKm_TA_AndPetrolFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminEmployeeActivityFragment"
@@ -204,6 +210,22 @@
         android:id="@+id/tehsilFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.TehsilFragment"
         android:label="TehsilFragment" />
+    <fragment
+        android:id="@+id/updateAttendanceFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.UpdateAttendanceFragment"
+        android:label="UpdateAttendanceFragment" />
+    <fragment
+        android:id="@+id/updateEodFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.UpdateEodFragment"
+        android:label="UpdateEodFragment" />
+    <fragment
+        android:id="@+id/firstAndLastSchoolVisitDurationFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.FirstAndLastSchoolVisitDurationFragment"
+        android:label="FirstAndLastSchoolVisitDurationFragment" />
+    <fragment
+        android:id="@+id/EODForKm_TA_AndPetrolFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.EODForKm_TA_AndPetrolFragment"
+        android:label="EODForKm_TA_AndPetrolFragment" />
 
 
 </navigation>
