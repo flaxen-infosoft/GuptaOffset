@@ -1,16 +1,17 @@
 package com.flaxeninfosoft.guptaoffset.views.admin.fragments;
 
 import android.app.ProgressDialog;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -18,22 +19,23 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.AdminAttendenceAdapter;
-import com.flaxeninfosoft.guptaoffset.adapters.EmployeeSchoolListAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentAdminAttendenceSectionBinding;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
-import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+
 import io.paperdb.Paper;
 
 public class fragment_admin_attendence_section extends Fragment {
@@ -43,7 +45,7 @@ public class fragment_admin_attendence_section extends Fragment {
     List<Attendance> attendanceList;
     RequestQueue requestQueue;
     ProgressDialog progressDialog;
-    String currentDate="";
+    String currentDate = "";
     AdminAttendenceAdapter adminAttendenceAdapter;
     Gson gson;
     String selectedDate;
@@ -82,13 +84,12 @@ public class fragment_admin_attendence_section extends Fragment {
 
         return binding.getRoot();
     }
-    private void onClickAttendenceList(Attendance attendance){
+
+    private void onClickAttendenceList(Attendance attendance) {
 
     }
 
     private void getAllAttendenceList() {
-
-        Toast.makeText(getContext(), " getAllAttendenceList() called", Toast.LENGTH_SHORT).show();
         attendanceList.clear();
         progressDialog.show();
         String url = ApiEndpoints.BASE_URL + "attendance/getEmpAttendanceByDate.php";
@@ -96,7 +97,7 @@ public class fragment_admin_attendence_section extends Fragment {
         hashMap.put("empId", empId);
         hashMap.put("date", selectedDate);
         Toast.makeText(getContext(), selectedDate, Toast.LENGTH_SHORT).show();
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url , new JSONObject(hashMap) , response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
             progressDialog.dismiss();
 
             if (binding.attendenceSwipeRefresh.isRefreshing()) {
@@ -121,8 +122,7 @@ public class fragment_admin_attendence_section extends Fragment {
                             binding.attendenceAdminRecycle.setVisibility(View.VISIBLE);
                             binding.attendenceListEmptyTV.setVisibility(View.GONE);
                         }
-                    }
-                    else {
+                    } else {
                         Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
@@ -144,6 +144,7 @@ public class fragment_admin_attendence_section extends Fragment {
         requestQueue.add(jsonObjectRequest);
 
     }
+
     private void onClickBack(View view) {
         Navigation.findNavController(view).navigateUp();
     }
