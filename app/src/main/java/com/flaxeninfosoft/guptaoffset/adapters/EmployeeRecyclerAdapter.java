@@ -84,6 +84,10 @@ public class EmployeeRecyclerAdapter extends RecyclerView.Adapter<EmployeeRecycl
                 Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_adminLeaveFragment, bundle));
         holder.binding.districtLayout.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_districtListFragment, bundle));
+        holder.binding.linearLayoutAttendence.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_fragment_admin_attendence_section, bundle));
+        holder.binding.adminTehsil.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_districtListForTehsilFragment,bundle));
     }
 
     @Override
