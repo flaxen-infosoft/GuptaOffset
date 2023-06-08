@@ -101,7 +101,7 @@ public class TehsilFragment extends Fragment {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put(Constants.EMPLOYEE_ID, empId);
         hashMap.put(Constants.DISTRICT_ID, district_id);
-        hashMap.put("date", selectedDate);
+     //   hashMap.put("date", selectedDate);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
             Log.i("Tehsil", response.toString());
