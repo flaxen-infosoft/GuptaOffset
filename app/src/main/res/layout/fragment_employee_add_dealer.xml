@@ -272,7 +272,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Contact"
                     android:inputType="phone"
-                    android:maxLength="10"
+                    android:maxLength="13"
+                    android:minLength="10"
                     android:text="@={dealer.contact}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
