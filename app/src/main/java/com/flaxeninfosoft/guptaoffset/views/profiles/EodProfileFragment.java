@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEodProfileBinding;
+import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.models.Eod;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
@@ -36,6 +37,7 @@ public class EodProfileFragment extends Fragment {
     Eod eod1;
     String otherExpense;
     String petrolExpense;
+    long eodId;
 
     public EodProfileFragment() {
         // Required empty public constructor
@@ -52,7 +54,13 @@ public class EodProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_eod_profile, container, false);
 
-        long eodId = getArguments().getLong(Constants.EOD_ID, -1);
+        Employee employee = viewModel.getCurrentEmployee();
+        if (employee.getDesignation().equals("admin")) {
+            binding.updateLayout.setVisibility(View.VISIBLE);
+        } else {
+            binding.updateLayout.setVisibility(View.GONE);
+        }
+         eodId = getArguments().getLong(Constants.EOD_ID, -1);
         if (eodId == -1) {
             navigateUp();
         }else {
@@ -63,9 +71,15 @@ public class EodProfileFragment extends Fragment {
         binding.eodProfileToolbar.setNavigationIcon(R.drawable.ic_back);
         binding.eodProfileOtherExpenseImage.setOnLongClickListener(this::onLongClickOtherExpense);
         binding.eodProfilePetrolExpenseImage.setOnLongClickListener(this::onLongClickPetrolExpnese);
-
+        binding.updateLayout.setOnClickListener(this::onClickUpdate);
 
         return binding.getRoot();
+    }
+
+    private void onClickUpdate(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EOD_ID,eodId);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.updateEodFragment,bundle);
     }
 
     private boolean onLongClickPetrolExpnese(View view) {
@@ -103,7 +117,7 @@ public class EodProfileFragment extends Fragment {
             petrolExpense = image;
             Glide.with(getContext()).load(image).placeholder(R.drawable.loading_image).into(binding.eodProfilePetrolExpenseImage);
 
-            binding.eodProfilePetrolExpenseImage.setOnClickListener(view->{
+            binding.eodProfilePetrolExpenseImage.setOnClickListener(view -> {
                 Bundle bundle = new Bundle();
                 bundle.putString("IMAGE", image);
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
@@ -117,7 +131,7 @@ public class EodProfileFragment extends Fragment {
             otherExpense = image;
             Glide.with(getContext()).load(image).placeholder(R.drawable.loading_image).into(binding.eodProfileOtherExpenseImage);
 
-            binding.eodProfileOtherExpenseImage.setOnClickListener(view->{
+            binding.eodProfileOtherExpenseImage.setOnClickListener(view -> {
                 Bundle bundle = new Bundle();
                 bundle.putString("IMAGE", image);
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
@@ -132,7 +146,7 @@ public class EodProfileFragment extends Fragment {
                 googleMap.addMarker(new MarkerOptions()
                         .position(latLng));
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         };
