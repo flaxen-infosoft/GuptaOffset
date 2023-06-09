@@ -122,6 +122,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Total school strength"
                         android:inputType="phone"
+                        android:enabled="false"
                         android:text="@={school.totalStudentStrength}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,14 +132,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp">
-
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Class 9th strength"
+                        android:enabled="false"
                         android:inputType="number"
-                        android:text="@={school.ninthStudentStrength}" />
+                        android:text="@={school.ninthStudentStrength}">
+                    </com.google.android.material.textfield.TextInputEditText>
+
                 </com.google.android.material.textfield.TextInputLayout>
+
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -151,6 +156,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Class 10th strength"
                         android:inputType="number"
+                        android:enabled="false"
                         android:text="@={school.tenthStudentStrength}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -178,6 +184,7 @@
                             android:layout_height="wrap_content"
                             android:hint="Science"
                             android:inputType="number"
+                            android:enabled="false"
                             android:text="@={school.eleventhScienceStudentStrength}" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -193,6 +200,7 @@
                             android:layout_height="wrap_content"
                             android:hint="Commerce"
                             android:inputType="number"
+                            android:enabled="false"
                             android:text="@={school.eleventhCommerceStudentStrength}" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -207,6 +215,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Arts"
+                            android:enabled="false"
                             android:inputType="number"
                             android:text="@={school.eleventhArtsStudentStrength}" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -238,6 +247,7 @@
                             android:layout_height="wrap_content"
                             android:hint="Science"
                             android:inputType="number"
+                            android:enabled="false"
                             android:text="@={school.twelfthScienceStudentStrength}" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -252,6 +262,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Commerce"
+                            android:enabled="false"
                             android:inputType="number"
                             android:text="@={school.twelfthCommerceStudentStrength}" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -268,6 +279,7 @@
                             android:layout_height="wrap_content"
                             android:hint="Arts"
                             android:inputType="number"
+                            android:enabled="false"
                             android:text="@={school.twelfthArtsStudentStrength}" />
                     </com.google.android.material.textfield.TextInputLayout>
 
