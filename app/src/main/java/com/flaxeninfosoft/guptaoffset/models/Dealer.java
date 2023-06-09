@@ -30,6 +30,18 @@ public class Dealer {
     @Expose
     private String date;
 
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    @SerializedName(Constants.NOTES)
+    @Expose
+    private String notes;
+
     @SerializedName(Constants.LOCATION)
     @Expose
     private Location location;
