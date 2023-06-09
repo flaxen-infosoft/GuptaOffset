@@ -94,7 +94,6 @@ public class TehsilFragment extends Fragment {
     }
 
     private void getTehsilsData() {
-        Toast.makeText(getContext(), selectedDate +" Data", Toast.LENGTH_SHORT).show();
         tehsilDataList.clear();
 
         String url = ApiEndpoints.BASE_URL + "/tehsil/getTehsilDataByEmpId.php\n";

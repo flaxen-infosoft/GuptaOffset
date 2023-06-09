@@ -123,7 +123,7 @@ public class EodProfileFragment extends Fragment {
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
             });
         } else {
-            binding.eodProfilePetrolExpenseImage.setVisibility(View.GONE);
+              binding.eodProfilePetrolExpenseImage.setImageResource(R.drawable.image_not_available);
         }
 
         if (eod.getExpenseImage() != null && !eod.getExpenseImage().isEmpty()) {
@@ -137,7 +137,7 @@ public class EodProfileFragment extends Fragment {
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment, bundle);
             });
         } else {
-            binding.eodProfileOtherExpenseImage.setVisibility(View.GONE);
+            binding.eodProfileOtherExpenseImage.setImageResource(R.drawable.image_not_available);
         }
 
         mapReadyCallback = googleMap -> {

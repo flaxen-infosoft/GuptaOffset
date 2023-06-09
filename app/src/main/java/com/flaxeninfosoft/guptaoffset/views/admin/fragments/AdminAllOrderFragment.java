@@ -161,7 +161,7 @@ public class AdminAllOrderFragment extends Fragment {
             }
             progressDialog.dismiss();
             Log.i("allorder err", error.toString());
-            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
         });
 
 

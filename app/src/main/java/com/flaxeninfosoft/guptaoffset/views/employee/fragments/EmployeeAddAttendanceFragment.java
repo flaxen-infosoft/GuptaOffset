@@ -134,6 +134,13 @@ public class EmployeeAddAttendanceFragment extends Fragment {
                     return;
                 }
 
+                Long startmeter = Long.valueOf(binding.startMeterEdittext.getText().toString());
+                if (startmeter <= 0) {
+                    binding.employeeAddAttendanceStartMeter.setError("Invalid Reading");
+                    return;
+                }
+
+
                 if (image == null) {
                     Toast.makeText(getContext(), "Insert image.", Toast.LENGTH_SHORT).show();
                     return;

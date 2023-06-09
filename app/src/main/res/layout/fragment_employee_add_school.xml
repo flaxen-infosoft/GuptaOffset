@@ -286,7 +286,6 @@
                 android:gravity="center"
                 android:inputType="phone"
                 android:maxLength="13"
-                android:minLength="10"
                 android:text="@={school.contact}" />
         </com.google.android.material.textfield.TextInputLayout>
 
