@@ -90,9 +90,9 @@ public class AdminHomeFragment extends Fragment {
         binding.adminHomeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         String formattedDateTime = "";
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            Date date = new Date();
-            currentDate = dateFormat.format(date);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+        currentDate = dateFormat.format(date);
             Paper.init(getContext());
             Paper.book().write("currentDate", formattedDateTime);
             Paper.init(getContext());
@@ -174,8 +174,10 @@ public class AdminHomeFragment extends Fragment {
 
         if (selectedDate.isEmpty()) {
             binding.dateTextId.setText(currentDate);
+            Paper.book().write("selectedDate2", currentDate);
         } else {
             binding.dateTextId.setText(selectedDate);
+            Paper.book().write("selectedDate2", selectedDate);
         }
 
 
@@ -225,6 +227,7 @@ public class AdminHomeFragment extends Fragment {
                     Paper.init(getContext());
                     Paper.book().write("selectedDate", selectedDate);
                     Paper.book().write("selectedDate2", selectedDate);
+                    getAllEmployees();
 
                 }
             }, y, m, d);
@@ -233,11 +236,11 @@ public class AdminHomeFragment extends Fragment {
                 datePickerDialog.getDatePicker().setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
                     @Override
                     public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
-                        Date date = new Date(i, i1, i2);
-                        Format format = new SimpleDateFormat("20yy-MM-dd");
-                        binding.dateTextId.setText(format.format(date));
-                        selectedDate = format.format(date);
-                        getAllEmployees();
+//                        Date date = new Date(i, i1, i2);
+//                        Format format = new SimpleDateFormat("20yy-MM-dd");
+//                        binding.dateTextId.setText(format.format(date));
+//                        selectedDate = format.format(date);
+//                        getAllEmployees();
                     }
                 });
             }
@@ -253,13 +256,13 @@ public class AdminHomeFragment extends Fragment {
         if (selectedDate.isEmpty()) {
             binding.adminHomeSearch.setText("");
             Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
-            viewModel.fetchAllEmployees(currentDate);
+            viewModel.getAllEmployees(currentDate).observe(getViewLifecycleOwner(), this::onChange);
             binding.dateTextId.setText(currentDate);
             Paper.book().write("selectedDate2", currentDate);
         } else {
             binding.adminHomeSearch.setText("");
             Toast.makeText(getContext(), selectedDate + " Employee History", Toast.LENGTH_SHORT).show();
-            viewModel.fetchAllEmployees(selectedDate);
+            viewModel.getAllEmployees(selectedDate).observe(getViewLifecycleOwner(), this::onChange);
             binding.dateTextId.setText(selectedDate);
             Paper.book().write("selectedDate2", selectedDate);
         }
@@ -272,10 +275,12 @@ public class AdminHomeFragment extends Fragment {
     private void getAllEmployeesOnSwipe() {
         binding.adminHomeSearch.setText("");
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+        String date1 = dateFormat.format(date);
         Toast.makeText(getContext(), currentDate + " Employee History", Toast.LENGTH_SHORT).show();
-        viewModel.fetchAllEmployees(currentDate);
-        adapter.notifyDataSetChanged();
-        binding.dateTextId.setText(currentDate);
+        viewModel.getAllEmployees(date1).observe(getViewLifecycleOwner(), this::onChange);
+        binding.dateTextId.setText(date1);
         Paper.book().write("selectedDate2", currentDate);
 
 
