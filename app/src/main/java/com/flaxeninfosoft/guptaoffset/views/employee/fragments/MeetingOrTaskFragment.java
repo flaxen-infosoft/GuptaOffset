@@ -224,7 +224,7 @@ public class MeetingOrTaskFragment extends Fragment {
             if (binding.meetingTaskSwipeRefresh.isRefreshing()) {
                 binding.meetingTaskSwipeRefresh.setRefreshing(false);
             }
-            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
         });
 
         int timeout = 10000; // 10 seconds
