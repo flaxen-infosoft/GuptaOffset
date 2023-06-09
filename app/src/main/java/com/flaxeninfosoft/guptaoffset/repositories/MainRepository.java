@@ -721,7 +721,7 @@ public class MainRepository {
             @Override
             public void onFailure(@NonNull Call<List<EmployeeHistory>> call, @NonNull Throwable t) {
                 t.printStackTrace();
-                listener.onFailure("Unable to connect to server");
+                listener.onFailure("Connecting...");
             }
         });
     }
