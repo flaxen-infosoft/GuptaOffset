@@ -224,7 +224,7 @@ public class MeetingOrTaskFragment extends Fragment {
             if (binding.meetingTaskSwipeRefresh.isRefreshing()) {
                 binding.meetingTaskSwipeRefresh.setRefreshing(false);
             }
-            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
         });
 
         int timeout = 10000; // 10 seconds
@@ -288,18 +288,19 @@ public class MeetingOrTaskFragment extends Fragment {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(year, month, day); // Set selected date to calendar
 
-                        Date date = new Date(year, month, day);
+                        java.util.Date date = calendar.getTime();
                         Format format = new SimpleDateFormat("20yy-MM-dd");
                         add_meeting_date.setText(format.format(date));
                         datepicker = format.format(date);
-//                getAllLeave(empId);
-
+//            getAllLeave(empId);
                     }
                 }, y, m, d);
-                datePickerDialog.show();
-                datePickerDialog.getDatePicker().getMaxDate();
 
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000); // Set minimum date to today
+                datePickerDialog.show();
             }
         });
 

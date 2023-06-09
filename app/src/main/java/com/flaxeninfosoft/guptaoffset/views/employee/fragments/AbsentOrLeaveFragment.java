@@ -35,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -202,17 +203,29 @@ public class AbsentOrLeaveFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 Calendar calendar = Calendar.getInstance();
-                java.util.Date date = new Date(year, month, day);
+                calendar.set(year, month, day); // Set selected date to calendar
+
+                java.util.Date date = calendar.getTime();
                 Format format = new SimpleDateFormat("20yy-MM-dd");
                 binding.leaveToDate.setText(format.format(date));
                 toDate = format.format(date);
                 getAllAbsentLeaves(empId);
             }
         }, y, m, d);
-        datePickerDialog.show();
-        Calendar calendar = Calendar.getInstance();
-        datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
 
+        // Set minimum date for selection based on fromDate value
+        if (fromDate != null) {
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("20yy-MM-dd");
+                Date fromDateObj = dateFormat.parse(fromDate);
+                long minDate = fromDateObj.getTime();
+                datePickerDialog.getDatePicker().setMinDate(minDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        datePickerDialog.show();
     }
 
     private void onClickAbsentLeave(EmployeeAbsentLeave employeeAbsentLeave) {
