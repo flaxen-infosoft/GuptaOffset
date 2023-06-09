@@ -172,6 +172,21 @@
         <action
             android:id="@+id/action_flagEmployeeFragment_to_adminLeaveFragment"
             app:destination="@id/adminLeaveFragment" />
+        <action
+            android:id="@+id/action_flagEmployeeFragment_to_firstAndLastSchoolVisitDurationFragment"
+            app:destination="@id/firstAndLastSchoolVisitDurationFragment" />
+        <action
+            android:id="@+id/action_flagEmployeeFragment_self"
+            app:destination="@id/flagEmployeeFragment" />
+        <action
+            android:id="@+id/action_flagEmployeeFragment_to_districtListForTehsilFragment"
+            app:destination="@id/districtListForTehsilFragment" />
+        <action
+            android:id="@+id/action_flagEmployeeFragment_to_EODForKm_TA_AndPetrolFragment"
+            app:destination="@id/EODForKm_TA_AndPetrolFragment" />
+        <action
+            android:id="@+id/action_flagEmployeeFragment_to_fragment_admin_attendence_section"
+            app:destination="@id/fragment_admin_attendence_section" />
     </fragment>
     <fragment
         android:id="@+id/todayNotWokingEmployeeFragment"

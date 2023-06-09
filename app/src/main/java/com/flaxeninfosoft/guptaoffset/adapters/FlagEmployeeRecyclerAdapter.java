@@ -63,6 +63,19 @@ public class FlagEmployeeRecyclerAdapter extends RecyclerView.Adapter<FlagEmploy
         holder.binding.showNotesTextview.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_showNotesFragment,bundle));
         holder.binding.leaveTextview.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_adminLeaveFragment,bundle));
+        holder.binding.firstLastSchoolVisitDuration.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_firstAndLastSchoolVisitDurationFragment,bundle));
+        holder.binding.linearLayoutAttendence.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_fragment_admin_attendence_section,bundle));
+        holder.binding.adminTehsil.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_districtListForTehsilFragment,bundle));
+        holder.binding.kilometerAdmin.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_EODForKm_TA_AndPetrolFragment,bundle));
+        holder.binding.totalAmountAdmin.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_EODForKm_TA_AndPetrolFragment,bundle));
+        holder.binding.petrolAdmin.setOnClickListener(view ->
+                Navigation.findNavController(view).navigate(R.id.action_flagEmployeeFragment_to_EODForKm_TA_AndPetrolFragment,bundle));
+
     }
 
     @Override
