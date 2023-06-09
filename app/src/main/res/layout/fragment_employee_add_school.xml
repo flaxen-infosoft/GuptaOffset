@@ -285,7 +285,8 @@
                 android:hint="Contact"
                 android:gravity="center"
                 android:inputType="phone"
-                android:maxLength="10"
+                android:maxLength="13"
+                android:minLength="10"
                 android:text="@={school.contact}" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -585,7 +586,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Note :"/>
+                    android:hint="Note :"
+                    android:text="@={school.notes}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton

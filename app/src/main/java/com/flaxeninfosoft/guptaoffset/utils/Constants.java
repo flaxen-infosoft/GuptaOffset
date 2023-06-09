@@ -164,4 +164,5 @@ public class Constants {
     public static final String TEHSIL_VISITED = "visited";
     public static final String TEHSIL_SCHOOL_COUNT = "school_count";
     public static final String TEHSIL_ID = "tehsil_id";
+    public static final String NOTES = "notes";
 }

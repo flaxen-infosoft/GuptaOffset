@@ -272,7 +272,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Contact"
                     android:inputType="phone"
-                    android:maxLength="10"
+                    android:maxLength="13"
+                    android:minLength="10"
                     android:text="@={dealer.contact}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -321,7 +322,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Notes"
-                    android:text=""/>
+                    android:text="@={dealer.notes}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
