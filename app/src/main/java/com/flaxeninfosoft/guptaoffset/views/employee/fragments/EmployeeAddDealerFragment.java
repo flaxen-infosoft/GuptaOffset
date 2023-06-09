@@ -302,6 +302,19 @@ public class EmployeeAddDealerFragment extends Fragment {
             return false;
         }
 
+        if (binding.getDealer().getLocation().getAddress() == null || binding.getDealer().getLocation().getAddress().trim().isEmpty()) {
+            if (!binding.addressEdittext.getText().toString().isEmpty()){
+                binding.getDealer().getLocation().setAddress(binding.addressEdittext.getText().toString());
+                return true;
+            }
+        }
+
+        if (binding.addressEdittext.getText().toString().isEmpty()){
+            binding.employeeAddDealerAddress.setError("**Enter address");
+            binding.employeeAddDealerAddress.requestFocus();
+            return false;
+        }
+
         return true;
     }
 
