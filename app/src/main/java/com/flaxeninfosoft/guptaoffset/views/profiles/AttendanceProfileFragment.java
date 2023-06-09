@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentAttendanceProfileBinding;
 import com.flaxeninfosoft.guptaoffset.models.Attendance;
+import com.flaxeninfosoft.guptaoffset.models.Employee;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
@@ -25,6 +26,7 @@ public class AttendanceProfileFragment extends Fragment {
 
     private FragmentAttendanceProfileBinding binding;
     private EmployeeViewModel viewModel;
+    long atnId;
 
     private ProgressDialog progressDialog;
 
@@ -53,7 +55,7 @@ public class AttendanceProfileFragment extends Fragment {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
-        long atnId = getArguments().getLong(Constants.ATN_ID, -1);
+        atnId = getArguments().getLong(Constants.ATN_ID, -1);
 
         if (atnId == -1) {
             Navigation.findNavController(binding.getRoot()).navigateUp();
@@ -62,9 +64,23 @@ public class AttendanceProfileFragment extends Fragment {
         }
 
 
+        Employee employee = viewModel.getCurrentEmployee();
+        if (employee.getDesignation().equals("admin")) {
+            binding.updateLayout.setVisibility(View.VISIBLE);
+        } else {
+            binding.updateLayout.setVisibility(View.GONE);
+        }
+
+        binding.updateLayout.setOnClickListener(this::onClickUpdate);
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
         return binding.getRoot();
+    }
+
+    private void onClickUpdate(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.ATN_ID,atnId);
+        Navigation.findNavController(view).navigate(R.id.updateAttendanceFragment,bundle);
     }
 
     private void showToast(String s) {
