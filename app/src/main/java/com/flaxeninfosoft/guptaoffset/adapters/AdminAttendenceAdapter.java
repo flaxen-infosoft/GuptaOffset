@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,11 +65,21 @@ public class AdminAttendenceAdapter extends RecyclerView.Adapter<AdminAttendence
             binding.setAttendance(attendance);
             binding.getRoot().setOnClickListener(v -> attendenceLayoutClickListener.onClickAttendence(attendance));
             try {
-                String startMeterImage = ApiEndpoints.BASE_URL + attendance.getStartMeter();
-                Glide.with(binding.getRoot().getContext()).load(startMeterImage).placeholder(R.drawable.loading_image).into(binding.singleAttendanceCardTimeInImage);
+                if (!attendance.getSnapIn().isEmpty()) {
+                    String startMeterImage = ApiEndpoints.BASE_URL + attendance.getSnapIn();
+                    Log.i("start",startMeterImage);
+                    Glide.with(binding.getRoot().getContext()).load(startMeterImage).placeholder(R.drawable.loading_image).into(binding.singleAttendanceCardTimeInImage);
+                } else {
+                    binding.singleAttendanceCardTimeInImage.setImageResource(R.drawable.image_not_available);
+                }
 
-                String endMeterimage = ApiEndpoints.BASE_URL + attendance.getEndMeter();
-                Glide.with(binding.getRoot().getContext()).load(endMeterimage).placeholder(R.drawable.loading_image).into(binding.singleAttendanceCardTimeInImage);
+                if (!attendance.getSnapOut().isEmpty()) {
+                    String endMeterimage = ApiEndpoints.BASE_URL + attendance.getSnapOut();
+                    Log.i("end",endMeterimage);
+                    Glide.with(binding.getRoot().getContext()).load(endMeterimage).placeholder(R.drawable.loading_image).into(binding.singleAttendanceCardTimeOutImage);
+                } else {
+                    binding.singleAttendanceCardTimeOutImage.setImageResource(R.drawable.image_not_available);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -80,5 +91,5 @@ public class AdminAttendenceAdapter extends RecyclerView.Adapter<AdminAttendence
     }
 
 
-    }
+}
 

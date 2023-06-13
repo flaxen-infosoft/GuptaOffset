@@ -459,8 +459,22 @@ public class EmployeeAddSchoolFragment extends Fragment {
 //            binding.employeeAddSchoolStrength.setError("**Enter strength");
 //            return false;
 //        }
+//        if (binding.getSchool().getLocation().getAddress() == null || binding.getSchool().getLocation().getAddress().trim().isEmpty()) {
+//            binding.employeeAddSchoolAddress.setError("**Enter address");
+//            return false;
+//        }
+
+
         if (binding.getSchool().getLocation().getAddress() == null || binding.getSchool().getLocation().getAddress().trim().isEmpty()) {
+            if (!binding.addressEdittext.getText().toString().isEmpty()){
+                binding.getSchool().getLocation().setAddress(binding.addressEdittext.getText().toString());
+                return true;
+            }
+        }
+
+        if (binding.addressEdittext.getText().toString().isEmpty()){
             binding.employeeAddSchoolAddress.setError("**Enter address");
+            binding.employeeAddSchoolAddress.requestFocus();
             return false;
         }
 

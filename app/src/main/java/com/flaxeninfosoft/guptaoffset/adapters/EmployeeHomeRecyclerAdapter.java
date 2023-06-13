@@ -305,20 +305,29 @@ public class EmployeeHomeRecyclerAdapter extends RecyclerView.Adapter {
             if (eod.getOtherExpense() == null) {
                 eod.setOtherExpense("0");
             }
-            if (eod.getExpenseImage() != null) {
+            if (eod.getExpenseImage() != null && !eod.getExpenseImage().isEmpty()) {
                 String url = ApiEndpoints.BASE_URL + eod.getExpenseImage();
-                  Glide.with(binding.getRoot().getContext()).load(url).placeholder(R.drawable.loading_image).into(binding.otherExpenseImageview);
-            } else {
-                binding.otherExpenseImageview.setVisibility(View.GONE);
-                binding.textOtherexpenseImage.setVisibility(View.GONE);
+                Glide.with(binding.getRoot().getContext()).load(url).placeholder(R.drawable.loading_image).into(binding.otherExpenseImageview);
+            }
+            else {
+                binding.otherExpenseImageview.setImageResource(R.drawable.image_not_available);
             }
 
-            if (eod.getPetrolExpenseImage() != null) {
+            if (eod.getExpenseImage() != null && !eod.getExpenseImage().isEmpty()) {
+                String url = ApiEndpoints.BASE_URL + eod.getExpenseImage();
+                Glide.with(binding.getRoot().getContext()).load(url).placeholder(R.drawable.loading_image).into(binding.otherExpenseImageview);
+            }
+            else {
+                binding.otherExpenseImageview.setImageResource(R.drawable.image_not_available);
+            }
+
+            if (eod.getPetrolExpenseImage() != null && !eod.getPetrolExpenseImage().isEmpty()) {
                 String url = ApiEndpoints.BASE_URL + eod.getPetrolExpenseImage();
                 Glide.with(binding.getRoot().getContext()).load(url).placeholder(R.drawable.loading_image).into(binding.petrolExpenseImageview);
             } else {
-                binding.petrolExpenseImageview.setVisibility(View.GONE);
-                binding.textPetrolexpenseImage.setVisibility(View.GONE);
+//                binding.petrolExpenseImageview.setVisibility(View.GONE);
+//                binding.textPetrolexpenseImage.setVisibility(View.GONE);
+                binding.petrolExpenseImageview.setImageResource(R.drawable.image_not_available);
             }
             binding.getRoot().setOnClickListener(v -> onCLickListener.onClickCard(eod));
         }

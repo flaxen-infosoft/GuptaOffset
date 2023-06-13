@@ -75,7 +75,8 @@ public class fragment_admin_attendence_section extends Fragment {
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Please wait ....");
-        adminAttendenceAdapter = new AdminAttendenceAdapter(attendanceList, this::onClickAttendenceList);
+        adminAttendenceAdapter = new
+                AdminAttendenceAdapter(attendanceList, this::onClickAttendenceList);
         binding.attendenceAdminRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.attendenceSwipeRefresh.setOnRefreshListener(() -> getAllAttendenceList());
         binding.attendenceAdminRecycle.setAdapter(adminAttendenceAdapter);
@@ -86,7 +87,9 @@ public class fragment_admin_attendence_section extends Fragment {
     }
 
     private void onClickAttendenceList(Attendance attendance) {
-
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.ATN_ID,attendance.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.attendanceProfileFragment,bundle);
     }
 
     private void getAllAttendenceList() {
