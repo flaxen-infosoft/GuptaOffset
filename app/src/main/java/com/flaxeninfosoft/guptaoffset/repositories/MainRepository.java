@@ -167,7 +167,7 @@ public class MainRepository {
 
             @Override
             public void onFailure(@NonNull Call<Employee> call, @NonNull Throwable t) {
-                listener.onFailure("Unable to connect to server.");
+                listener.onFailure("Connecting...");
             }
         });
     }
@@ -189,7 +189,7 @@ public class MainRepository {
             @Override
             public void onFailure(@NonNull Call<List<Employee>> call, @NonNull Throwable t) {
                 t.printStackTrace();
-                listener.onFailure("Unable to connect to server.");
+                listener.onFailure("Connecting...");
             }
         });
     }
@@ -267,7 +267,7 @@ public class MainRepository {
             @Override
             public void onFailure(@NonNull Call<List<Leave>> call, @NonNull Throwable t) {
                 t.printStackTrace();
-                listener.onFailure("Unable to connect to server.");
+                listener.onFailure("Connecting...");
             }
         });
     }
@@ -289,7 +289,7 @@ public class MainRepository {
             @Override
             public void onFailure(@NonNull Call<Leave> call, @NonNull Throwable t) {
                 t.printStackTrace();
-                listener.onFailure("Unable to connect to server.");
+                listener.onFailure("Connecting...");
             }
         });
     }
@@ -407,7 +407,7 @@ public class MainRepository {
             @Override
             public void onFailure(@NonNull Call<Location> call, @NonNull Throwable t) {
                 t.printStackTrace();
-                listener.onFailure("Unable to connect to server.");
+                listener.onFailure("Connecting...");
             }
         });
     }
@@ -429,7 +429,7 @@ public class MainRepository {
             @Override
             public void onFailure(@NonNull Call<List<Location>> call, @NonNull Throwable t) {
                 t.printStackTrace();
-                listener.onFailure("Unable to connect to server.");
+                listener.onFailure("Connecting...");
             }
         });
     }
@@ -543,7 +543,7 @@ public class MainRepository {
             @Override
             public void onFailure(@NonNull Call<Dealer> call, @NonNull Throwable t) {
                 t.printStackTrace();
-                listener.onFailure("Unable to connect to server");
+                listener.onFailure("Connecting...");
             }
         });
     }
@@ -567,7 +567,7 @@ public class MainRepository {
             @Override
             public void onFailure(@NonNull Call<List<Dealer>> call, @NonNull Throwable t) {
                 t.printStackTrace();
-                listener.onFailure("Unable to connect to server");
+                listener.onFailure("Connecting...");
             }
         });
     }
@@ -599,7 +599,7 @@ public class MainRepository {
             @Override
             public void onFailure(@NonNull Call<PaymentRequest> call, @NonNull Throwable t) {
                 t.printStackTrace();
-                listener.onFailure("Unable to connect to server");
+                listener.onFailure("Connecting...");
             }
         });
     }
@@ -631,7 +631,7 @@ public class MainRepository {
             @Override
             public void onFailure(@NonNull Call<School> call, @NonNull Throwable t) {
                 t.printStackTrace();
-                listener.onFailure("Unable to connect to server");
+                listener.onFailure("Connecting...");
             }
         });
     }
@@ -772,7 +772,7 @@ public class MainRepository {
                 @Override
                 public void onFailure(@NonNull Call<Attendance> call, @NonNull Throwable t) {
                     t.printStackTrace();
-                    listener.onFailure("Unable to connect to server");
+                    listener.onFailure("Connecting...");
                 }
             });
         } catch (Exception e) {
@@ -830,7 +830,7 @@ public class MainRepository {
             @Override
             public void onFailure(@NonNull Call<List<PaymentRequest>> call, @NonNull Throwable t) {
                 t.printStackTrace();
-                listener.onFailure("Unable to connect to server");
+                listener.onFailure("Connecting...");
             }
         });
     }
@@ -860,7 +860,7 @@ public class MainRepository {
 
             @Override
             public void onFailure(@NonNull Call<Lr> call, @NonNull Throwable t) {
-                listener.onFailure("Unable to connect to server");
+                listener.onFailure("Connecting...");
             }
         });
     }
