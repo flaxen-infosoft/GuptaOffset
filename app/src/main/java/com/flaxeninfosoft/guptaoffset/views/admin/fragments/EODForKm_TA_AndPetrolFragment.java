@@ -152,5 +152,8 @@ public class EODForKm_TA_AndPetrolFragment extends Fragment {
     }
 
     private void onClickEodKmTaPetrol(Eod eod) {
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.EOD_ID,eod.getId());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.eodProfileFragment,bundle);
     }
 }

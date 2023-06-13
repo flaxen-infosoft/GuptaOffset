@@ -1,5 +1,6 @@
 package com.flaxeninfosoft.guptaoffset.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,26 +68,32 @@ public class EODForKmPetrolTotalAmountAdapter extends RecyclerView.Adapter<EODFo
             if (eod.getOtherExpense() == null) {
                 eod.setOtherExpense("0");
             }
-            if (eod.getExpenseImage() != null) {
+
+            Log.i("expense",eod.getExpenseImage());
+            Log.i("petrol",eod.getPetrolExpenseImage());
+
+            if (eod.getExpenseImage() != null && !eod.getExpenseImage().isEmpty()) {
                 String url = ApiEndpoints.BASE_URL + eod.getExpenseImage();
                 Glide.with(binding.getRoot().getContext()).load(url).placeholder(R.drawable.loading_image).into(binding.otherExpenseImageview);
-            } else {
-                binding.otherExpenseImageview.setVisibility(View.GONE);
-                binding.textOtherexpenseImage.setVisibility(View.GONE);
+            }
+            else {
+                binding.otherExpenseImageview.setImageResource(R.drawable.image_not_available);
             }
 
-            if (eod.getPetrolExpenseImage() != null) {
+            if (eod.getPetrolExpenseImage() != null && !eod.getPetrolExpenseImage().isEmpty()) {
                 String url = ApiEndpoints.BASE_URL + eod.getPetrolExpenseImage();
                 Glide.with(binding.getRoot().getContext()).load(url).placeholder(R.drawable.loading_image).into(binding.petrolExpenseImageview);
             } else {
-                binding.petrolExpenseImageview.setVisibility(View.GONE);
-                binding.textPetrolexpenseImage.setVisibility(View.GONE);
+//                binding.petrolExpenseImageview.setVisibility(View.GONE);
+//                binding.textPetrolexpenseImage.setVisibility(View.GONE);
+                binding.petrolExpenseImageview.setImageResource(R.drawable.image_not_available);
             }
+
             binding.getRoot().setOnClickListener(v -> eodForKmTaPetrolClickListener.onClickCard(eod));
         }
     }
 
-    public interface EodForKmTaPetrolClickListener{
+    public interface EodForKmTaPetrolClickListener {
 
         void onClickCard(Eod eod);
     }
