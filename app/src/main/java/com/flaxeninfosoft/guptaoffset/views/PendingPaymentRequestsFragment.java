@@ -1,9 +1,11 @@
 package com.flaxeninfosoft.guptaoffset.views;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -33,6 +35,7 @@ public class PendingPaymentRequestsFragment extends Fragment {
     private long superEmployeeId;
     String selectedDate;
     String currentDate = "";
+    ProgressDialog progressDialog;
 
     public PendingPaymentRequestsFragment() {
         // Required empty public constructor
@@ -52,6 +55,10 @@ public class PendingPaymentRequestsFragment extends Fragment {
         binding.pendingPaymentRequestsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date date = new Date();
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Wait");
+        progressDialog.setMessage("Please wait ....");
         currentDate = dateFormat.format(date);
         selectedDate = Paper.book().read("selectedDate2");
 
@@ -69,6 +76,7 @@ public class PendingPaymentRequestsFragment extends Fragment {
     }
 
     private void loadRequests() {
+        Toast.makeText(getContext(), "Loading please wait...", Toast.LENGTH_SHORT).show();
         if (superEmployeeId == -1) {
             if (selectedDate == null) {
                 viewModel.getAllPendingPaymentRequests(currentDate).observe(getViewLifecycleOwner(), this::setRequestsList);
