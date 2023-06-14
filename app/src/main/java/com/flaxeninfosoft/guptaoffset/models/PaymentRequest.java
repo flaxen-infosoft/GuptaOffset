@@ -40,9 +40,23 @@ public class PaymentRequest {
     @Expose
     private String received;
 
+    @SerializedName(Constants.PENDING_AMOUNT)
+    @Expose
+    private String pending;
+
     @SerializedName(Constants.MESSAGE)
     @Expose
     private String message;
+
+    public String getPending() {
+        return pending;
+    }
+
+    public void setPending(String pending) {
+        this.pending = pending;
+    }
+
+
 
     public PaymentRequest() {
         location = new Location();
