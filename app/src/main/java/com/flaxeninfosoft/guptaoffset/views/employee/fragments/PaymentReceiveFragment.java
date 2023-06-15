@@ -69,7 +69,7 @@ public class PaymentReceiveFragment extends Fragment {
         binding.paymentReceiveBackImg.setOnClickListener(this::onCLickBack);
        /* currentDate = Paper.book().read("currentDate");
         selectedDate = Paper.book().read("selectdate");*/
-        selectedDate = Paper.book().read("selectedDate");
+       // selectedDate = Paper.book().read("selectedDate");
         paymentStatusList = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
         gson = new Gson();
