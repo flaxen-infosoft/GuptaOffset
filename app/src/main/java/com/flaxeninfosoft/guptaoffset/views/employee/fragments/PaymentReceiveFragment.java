@@ -100,8 +100,8 @@ private void onClickPaymentRecieve(PaymentStatus paymentStatus){
         String url = ApiEndpoints.BASE_URL + "payment/getpaymentReceivedByEmpId.php";
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("empId", empId);
-        hashMap.put("date", selectedDate);
-        Toast.makeText(getContext(), selectedDate, Toast.LENGTH_SHORT).show();
+        /*hashMap.put("date", selectedDate);
+        Toast.makeText(getContext(), selectedDate, Toast.LENGTH_SHORT).show();*/
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
             Log.i("paymentrecieve", response.toString());
             progressDialog.dismiss();
