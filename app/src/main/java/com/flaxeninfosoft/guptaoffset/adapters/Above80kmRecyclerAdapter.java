@@ -1,12 +1,14 @@
 package com.flaxeninfosoft.guptaoffset.adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -82,6 +84,12 @@ public class Above80kmRecyclerAdapter extends RecyclerView.Adapter<Above80kmRecy
                 binding.startMeterTextview.setVisibility(View.VISIBLE);
                 String url = ApiEndpoints.BASE_URL + attendance.getSnapIn();
                 Glide.with(binding.getRoot().getContext()).load(url).placeholder(R.drawable.loading_image).into(binding.startMeterImageview);
+
+                binding.startMeterImageview.setOnClickListener(view -> {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("IMAGE", url);
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment,bundle);
+                });
             } else {
                 binding.startMeterImageview.setVisibility(View.GONE);
                 binding.startMeterTextview.setVisibility(View.GONE);
@@ -94,6 +102,12 @@ public class Above80kmRecyclerAdapter extends RecyclerView.Adapter<Above80kmRecy
                 binding.endMeterTextview.setVisibility(View.VISIBLE);
                 String url = ApiEndpoints.BASE_URL + attendance.getSnapOut();
                 Glide.with(binding.getRoot().getContext()).load(url).placeholder(R.drawable.loading_image).into(binding.endMeterImageview);
+
+                binding.endMeterImageview.setOnClickListener(view -> {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("IMAGE", url);
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.imageViewFragment,bundle);
+                });
             } else {
                 binding.endMeterImageview.setVisibility(View.GONE);
                 binding.endMeterTextview.setVisibility(View.GONE);
