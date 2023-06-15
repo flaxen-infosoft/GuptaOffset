@@ -26,6 +26,18 @@ public class Eod {
     @Expose
     private String petrolExpense;
 
+    @SerializedName(Constants.NOTES)
+    @Expose
+    private String notes;
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
     @SerializedName(Constants.PETROL_EXPENSE_IMAGE)
     @Expose
     private String petrolExpenseImage;
