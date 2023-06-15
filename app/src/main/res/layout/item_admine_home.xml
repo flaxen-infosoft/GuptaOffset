@@ -606,7 +606,7 @@
                                 android:layout_gravity="center"
                                 android:paddingTop="5dp"
                                 android:paddingBottom="5dp"
-                                android:text="T.A.Amt."
+                                android:text="Oth. Expe."
                                 android:textColor="@color/black"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
