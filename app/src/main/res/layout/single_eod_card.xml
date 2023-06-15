@@ -311,30 +311,6 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/text_petrolexpense_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:layout_gravity="center"
-                   android:padding="3dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Petrol Expense Image"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/petrol_expense_imageview"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="8dp"
-                    android:scaleType="fitXY"
-                    android:padding="5dp"
-                    android:background="@drawable/layoutcorner2"
-                    android:src="@drawable/person_vector" />
-
                 <LinearLayout
                     android:layout_marginTop="15dp"
                     android:layout_width="match_parent"
@@ -368,6 +344,64 @@
 
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/layoutcorner2"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:gravity="start"
+                        android:layout_marginStart="10dp"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:text="Note :"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:text="@{eod.notes}"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/text_petrolexpense_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_gravity="center"
+                   android:padding="3dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Petrol Expense Image"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/petrol_expense_imageview"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="8dp"
+                    android:scaleType="fitXY"
+                    android:padding="5dp"
+                    android:background="@drawable/layoutcorner2"
+                    android:src="@drawable/person_vector" />
 
                 <LinearLayout
                     android:layout_marginTop="15dp"
