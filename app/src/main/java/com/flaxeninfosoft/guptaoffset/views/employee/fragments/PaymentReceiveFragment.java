@@ -89,8 +89,7 @@ public class PaymentReceiveFragment extends Fragment {
     }
 
 
-private void onClickPaymentRecieve(PaymentStatus paymentStatus){
-
+private void onClickPaymentRecieve(PaymentStatus paymentStatus) {
 }
 
 
