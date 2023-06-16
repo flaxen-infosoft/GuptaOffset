@@ -166,5 +166,5 @@ public class Constants {
     public static final String TEHSIL_ID = "tehsil_id";
     public static final String NOTES = "notes";
     public static final String PENDING_AMOUNT = "pending_amount";
-    public static final String LEAVE_STATUS = "leaveStatus";
+    public static final String LEAVE_STATUS = "leave_status";
 }

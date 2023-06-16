@@ -2,7 +2,6 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +19,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.flaxeninfosoft.guptaoffset.R;
 import com.flaxeninfosoft.guptaoffset.adapters.EmployeeHomeRecyclerAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentEmployeeHomeBinding;
@@ -36,16 +40,18 @@ import com.flaxeninfosoft.guptaoffset.models.PaymentRequest;
 import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
-import com.flaxeninfosoft.guptaoffset.viewModels.AdminViewModel;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -58,6 +64,7 @@ public class EmployeeHomeFragment extends Fragment {
     static String selectedDate = "";
     static String currentDate = "";
     private Employee employee;
+    int leaveStatus;
 
     public EmployeeHomeFragment() {
         // Required empty public constructor
@@ -222,7 +229,8 @@ public class EmployeeHomeFragment extends Fragment {
 
 
         if (punchStatus.equals("0")) {
-            showDialog();
+//            showDialog();
+            getLeaveStatus();
         } else {
 
         }
@@ -243,10 +251,22 @@ public class EmployeeHomeFragment extends Fragment {
         attendaceDialog.setCancelable(false);
         attendaceDialog.show();
 //        Button buttonCancel = view.findViewById(R.id.button2);
+        Button leaveButton = view.findViewById(R.id.leave_button);
         Button buttonPunch = view.findViewById(R.id.button1);
         buttonPunch.setOnClickListener(view12 -> {
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddAttendanceFragment);
             attendaceDialog.dismiss();
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_employeeHomeFragment_to_employeeAddAttendanceFragment);
+        });
+
+        if (leaveStatus==0) {
+            leaveButton.setVisibility(View.VISIBLE);// if leave not applied
+        }
+        else {
+            leaveButton.setVisibility(View.GONE);// if leave applied
+        }
+        leaveButton.setOnClickListener(view1 -> {
+            attendaceDialog.dismiss();
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.employeeAddLeaveFragment);
         });
 //        buttonCancel.setOnClickListener(view1 -> attendaceDialog.dismiss());
     }
@@ -441,5 +461,40 @@ public class EmployeeHomeFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putLong(Constants.EMPLOYEE_ID, employee.getId());
         Navigation.findNavController(view).navigate(R.id.action_employeeHomeFragment_to_districtListForTehsilFragment,bundle);
+    }
+
+
+    private void getLeaveStatus() {
+        RequestQueue requestQueue= Volley.newRequestQueue(getContext());
+        String url = ApiEndpoints.BASE_URL + ApiEndpoints.LEAVE_STATUS;
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("empId", employee.getId());
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
+            Log.i("Dealer", response.toString());
+
+
+            if (response != null) {
+                try {
+                    Log.i("leave_status",response.toString());
+                    leaveStatus = Integer.parseInt(response.getString("leave_status"));
+                    showDialog();
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else {
+                Toast.makeText(getContext(), "Something Went Wrong.", Toast.LENGTH_SHORT).show();
+                showDialog();
+            }
+        }, error -> {
+            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+        });
+
+        int timeout = 10000; // 10 seconds
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonObjectRequest);
     }
 }
