@@ -95,7 +95,7 @@ public class TehsilFragment extends Fragment {
         bundle.putLong(Constants.EMPLOYEE_ID,empId);
         bundle.putLong(Constants.DISTRICT_ID,district_id);
         bundle.putString(Constants.TEHSIL_NAME,tehsilData.getTehsil_name());
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_tehsilFragment_to_schoolAccordingTehsilFragment,bundle);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.schoolAccordingTehsilFragment,bundle);
     }
 
     private void getTehsilsData() {
