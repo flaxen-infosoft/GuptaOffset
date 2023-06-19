@@ -90,7 +90,12 @@ public class TehsilFragment extends Fragment {
     }
 
     private void onClickTehsil(TehsilData tehsilData) {
-
+        Bundle bundle = new Bundle();
+        bundle.putLong(Constants.TEHSIL_ID,tehsilData.getTehsil_id());
+        bundle.putLong(Constants.EMPLOYEE_ID,empId);
+        bundle.putLong(Constants.DISTRICT_ID,district_id);
+        bundle.putString(Constants.TEHSIL_NAME,tehsilData.getTehsil_name());
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_tehsilFragment_to_schoolAccordingTehsilFragment,bundle);
     }
 
     private void getTehsilsData() {

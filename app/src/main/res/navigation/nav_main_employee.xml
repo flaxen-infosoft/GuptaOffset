@@ -207,7 +207,15 @@
     <fragment
         android:id="@+id/tehsilFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.TehsilFragment"
-        android:label="TehsilFragment" />
+        android:label="TehsilFragment" >
+        <action
+            android:id="@+id/action_tehsilFragment_to_schoolAccordingTehsilFragment"
+            app:destination="@id/schoolAccordingTehsilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/schoolAccordingTehsilFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.SchoolAccordingTehsilFragment"
+        android:label="SchoolAccordingTehsilFragment" />
 
 
 </navigation>

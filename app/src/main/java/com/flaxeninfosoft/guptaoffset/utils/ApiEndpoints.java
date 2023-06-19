@@ -89,4 +89,5 @@ public class ApiEndpoints {
 
     public static final String SEND_LR = "lr/sendLr.php";
     public static final String LEAVE_STATUS = "/leave/TodayLeaveStatus.php";
+    public static final String SCHOOL_BY_TEHSIL = "school/getSchoolByTehsilId.php";
 }

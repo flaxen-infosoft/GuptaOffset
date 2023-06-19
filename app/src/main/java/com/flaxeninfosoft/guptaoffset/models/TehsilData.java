@@ -9,7 +9,7 @@ public class TehsilData {
 
     @SerializedName(Constants.TEHSIL_ID)
     @Expose
-    private String tehsil_id;
+    private Long tehsil_id;
 
     @SerializedName(Constants.TEHSIL_NAME)
     @Expose
@@ -24,11 +24,11 @@ public class TehsilData {
     private String tehsil_school_count;
 
 
-    public String getTehsil_id() {
+    public Long getTehsil_id() {
         return tehsil_id;
     }
 
-    public void setTehsil_id(String tehsil_id) {
+    public void setTehsil_id(Long tehsil_id) {
         this.tehsil_id = tehsil_id;
     }
 

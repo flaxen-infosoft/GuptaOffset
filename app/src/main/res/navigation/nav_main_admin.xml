@@ -224,7 +224,11 @@
     <fragment
         android:id="@+id/tehsilFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.employee.fragments.TehsilFragment"
-        android:label="TehsilFragment" />
+        android:label="TehsilFragment" >
+        <action
+            android:id="@+id/action_tehsilFragment_to_schoolAccordingTehsilFragment2"
+            app:destination="@id/schoolAccordingTehsilFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/updateAttendanceFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.UpdateAttendanceFragment"
@@ -241,6 +245,10 @@
         android:id="@+id/EODForKm_TA_AndPetrolFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.admin.fragments.EODForKm_TA_AndPetrolFragment"
         android:label="EODForKm_TA_AndPetrolFragment" />
+    <fragment
+        android:id="@+id/schoolAccordingTehsilFragment2"
+        android:name="com.flaxeninfosoft.guptaoffset.views.SchoolAccordingTehsilFragment"
+        android:label="SchoolAccordingTehsilFragment" />
 
 
 </navigation>
