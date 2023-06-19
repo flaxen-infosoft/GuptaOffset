@@ -498,7 +498,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Address "
+                    android:hint="पता"
                     android:enabled="false"
                     android:text="@{eod.location.address}" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -530,7 +530,7 @@
                     android:id="@+id/school_visit_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Number of schools visits"
+                    android:hint="स्कूल संख्या"
                     android:inputType="numberSigned"
                     android:enabled="false"
                     android:text="@={eod.schoolVisits}" />
@@ -555,7 +555,7 @@
                         android:id="@+id/petrol_expense_edittext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Petrol expense"
+                        android:hint="पेट्रोल खर्च"
                         android:inputType="numberSigned"
                         android:text="@={eod.petrolExpense}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -565,7 +565,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="8dp"
-                    android:text="petrol expense snap"
+                    android:textColor="@color/black"
+                    android:text="पेट्रोल के बिल का फोटो आवश्यक है ।"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -603,7 +604,7 @@
                             android:id="@+id/other_expense_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Other Expenses"
+                            android:hint="अन्य खर्च"
                             android:inputType="number"
                             android:text="@={eod.otherExpense}" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -620,7 +621,7 @@
                             android:id="@+id/other_expense_description_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Other Expenses Description / खर्चे का कारण लिखे"
+                            android:hint="अन्य खर्च का विवरण।"
                             android:inputType="text"
                             android:text="@={eod.expenseDescription}" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -633,7 +634,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="8dp"
-                    android:text="other expense snap"
+                    android:text="अन्य खर्च के बिल का फोटो आवश्यक है।"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -657,7 +659,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Select Daily Allowance"
+                    android:text="सिलेक्ट डेली अलाउंस"
                     android:textColor="@color/textcolor"
                     android:textSize="18sp"
                     android:textStyle="normal" />
@@ -684,6 +686,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="10"
+                    android:visibility="gone"
                     android:layout_marginTop="10dp">
 
 
@@ -724,7 +727,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Note"
+                    android:hint="नोट"
                     android:text="@={eod.notes}" />
             </com.google.android.material.textfield.TextInputLayout>
 

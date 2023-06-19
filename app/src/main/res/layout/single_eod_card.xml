@@ -60,7 +60,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="Date :"
+                        android:text="तारीख :"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -82,6 +82,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:background="@drawable/layoutcorner2"
                     android:orientation="horizontal">
 
@@ -127,7 +128,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="Morning Attendence :"
+                        android:text="सुबह की उपस्तिथि :"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -160,7 +161,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="Evening Attendence :"
+                        android:text="शाम की उपस्तिथि :"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -193,7 +194,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="Kilometer Travel :"
+                        android:text="कि.मी. ट्रैवल :"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -226,7 +227,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="School Count :"
+                        android:text="स्कूल संख्या :"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -259,7 +260,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="Dealer Count :"
+                        android:text="व्यापारी संख्या :"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -293,7 +294,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="Petrol Expense :"
+                        android:text="पेट्रोल खर्च :"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -327,7 +328,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="Dialy Allowance :"
+                        android:text="डेली अलाउंस :"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -361,7 +362,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="Note :"
+                        android:text="नोट :"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -387,7 +388,7 @@
                     android:layout_gravity="center"
                    android:padding="3dp"
                     android:layout_marginTop="10dp"
-                    android:text="Petrol Expense Image"
+                    android:text="पेट्रोल के बिल का फोटो ।"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -419,7 +420,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="Other Expense :"
+                        android:text="अन्य खर्च :"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -453,7 +454,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="Expense Description:"
+                        android:text="अन्य खर्च का विवरण :"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -481,7 +482,7 @@
                     android:layout_gravity="center"
                     android:padding="3dp"
                     android:layout_marginTop="10dp"
-                    android:text="Other Expense Image"
+                    android:text="अन्य खर्च के बिल का फोटो ।"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -513,7 +514,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:text="Address :"
+                        android:text="पता :"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
