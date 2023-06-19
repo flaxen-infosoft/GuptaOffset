@@ -134,6 +134,7 @@ public class SchoolAccordingTehsilFragment extends Fragment {
                         }
                         else {
                             Toast.makeText(getContext(), "School Not Visited in "+tehsil_name, Toast.LENGTH_SHORT).show();
+                            binding.schoolEmptyTV.setVisibility(View.VISIBLE);
                         }
                     }
                     else {
