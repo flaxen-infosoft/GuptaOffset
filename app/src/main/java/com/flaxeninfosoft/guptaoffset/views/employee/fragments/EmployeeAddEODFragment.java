@@ -522,6 +522,9 @@ public class EmployeeAddEODFragment extends Fragment {
                     return false;
                 }
             }
+            else {
+                binding.petrolExpenseEdittext.setError("Petrol Amount Required");
+            }
         }
 
         if (binding.getEod().getOtherExpense() != null) {
@@ -533,8 +536,38 @@ public class EmployeeAddEODFragment extends Fragment {
                     }
                 } else {
                     binding.otherExpenseDescriptionEdittext.setError("Description Required");
+                    binding.otherExpenseDescriptionEdittext.requestFocus();
                     return false;
                 }
+            }
+            else {
+                binding.otherExpenseDescriptionEdittext.setError("Amount Required");
+                binding.otherExpenseDescriptionEdittext.requestFocus();
+                return false;
+            }
+        }
+
+        if (petrolImage != null) {
+            if (binding.petrolExpenseEdittext.getText().toString().isEmpty()){
+                binding.petrolExpenseEdittext.setError("Petrol Expense Required");
+                binding.petrolExpenseEdittext.requestFocus();
+                return false;
+            }
+        }
+
+        if (expenseImage != null) {
+            if (binding.otherExpenseEdittext.getText().toString().isEmpty()){
+                binding.otherExpenseEdittext.setError("Other Expense Required");
+                binding.otherExpenseEdittext.requestFocus();
+                return false;
+            }
+        }
+
+        if (expenseImage != null) {
+            if (binding.otherExpenseDescriptionEdittext.getText().toString().isEmpty()){
+                binding.otherExpenseDescriptionEdittext.setError("Other Expense Description Required");
+                binding.otherExpenseDescriptionEdittext.requestFocus();
+                return false;
             }
         }
 
