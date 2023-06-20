@@ -567,13 +567,13 @@
                     android:layout_marginHorizontal="8dp"
                     android:textColor="@color/black"
                     android:text="पेट्रोल के बिल का फोटो आवश्यक है ।"
-                    android:textSize="16sp" />
+                    android:textSize="19sp" />
 
                 <ImageView
                     android:id="@+id/employee_add_eod_petrol_image"
                     android:layout_width="match_parent"
                     android:layout_height="170dp"
-                    android:src="@drawable/ic_add_image" />
+                    android:src="@drawable/camra_imgae" />
 
             </LinearLayout>
 
@@ -636,13 +636,13 @@
                     android:layout_marginHorizontal="8dp"
                     android:text="अन्य खर्च के बिल का फोटो आवश्यक है।"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="19sp" />
 
                 <ImageView
                     android:id="@+id/employee_add_eod_expense_image"
                     android:layout_width="match_parent"
                     android:layout_height="170dp"
-                    android:src="@drawable/ic_add_image" />
+                    android:src="@drawable/camra_imgae" />
 
             </LinearLayout>
 
