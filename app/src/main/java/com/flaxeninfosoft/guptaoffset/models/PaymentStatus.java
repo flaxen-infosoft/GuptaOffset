@@ -22,6 +22,10 @@ public class PaymentStatus {
     @Expose
     private String time;
 
+    @SerializedName(Constants.AMOUNT)
+    @Expose
+    private String amount;
+
     @SerializedName(Constants.AMOUNT_PAID)
     @Expose
     private String amount_paid;
@@ -78,8 +82,12 @@ public class PaymentStatus {
         this.time = time;
     }
 
+    public String getAmount() {
+        return amount;
+    }
 
-
-
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
 }
 
