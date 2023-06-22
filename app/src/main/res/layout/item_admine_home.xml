@@ -669,7 +669,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
-                                android:orientation="vertical">
+                                android:orientation="horizontal">
 
                                 <TextView
                                      android:layout_width="wrap_content"
@@ -682,6 +682,21 @@
                                     android:textColor="@color/textcolor"
                                     android:textSize="18sp"
                                     android:textStyle="bold" />
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:paddingTop="7dp"
+                                    android:paddingBottom="7dp"
+                                    android:padding="2dp"
+                                    android:text="Hour"
+                                    android:textColor="@color/textcolor"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+
 
                             </LinearLayout>
 
