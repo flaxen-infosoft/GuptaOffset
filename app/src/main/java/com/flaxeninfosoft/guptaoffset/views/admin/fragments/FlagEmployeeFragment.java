@@ -166,7 +166,7 @@ public class FlagEmployeeFragment extends Fragment {
             if (binding.flagEmployeeSwipeRefresh.isRefreshing()) {
                 binding.flagEmployeeSwipeRefresh.setRefreshing(false);
             }
-            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
         });
 
         int timeout = 10000; // 10 seconds
