@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="eod"
+            type="com.flaxeninfosoft.guptaoffset.models.Eod" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_marginVertical="2dp"
+        app:cardElevation="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#13000000"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="आपकी दिनांक "
+                    android:textColor="@color/orange"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/start_date_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/orange"
+                    android:text="@{eod.from_date}"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" से "
+                    android:textColor="@color/orange"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/end_date_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/orange"
+                    android:text="@{eod.to_date}"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="तक की एकाउंटिंग हो गई है ।"
+                android:textColor="@color/orange"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/message_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:text="@{eod.message}"
+                android:textColor="@color/red"
+                android:textStyle="bold"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
