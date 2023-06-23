@@ -26,6 +26,10 @@ public class Eod {
     @Expose
     private String petrolExpense;
 
+    @SerializedName(Constants.MESSAGE)
+    @Expose
+    private String message;
+
     @SerializedName(Constants.NOTES)
     @Expose
     private String notes;
@@ -82,6 +86,18 @@ public class Eod {
     @SerializedName(Constants.SCHOOL_COUNT)
     @Expose
     private String school_count;
+
+    @SerializedName(Constants.TYPE)
+    @Expose
+    private String type;
+
+    @SerializedName(Constants.FROM_DATE)
+    @Expose
+    private String from_date;
+
+    @SerializedName(Constants.TO_DATE)
+    @Expose
+    private String to_date;
 
     public String getMorning_attendance() {
         return morning_attendance;
@@ -214,6 +230,39 @@ public class Eod {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+
+    public String getFrom_date() {
+        return from_date;
+    }
+
+    public void setFrom_date(String from_date) {
+        this.from_date = from_date;
+    }
+
+    public String getTo_date() {
+        return to_date;
+    }
+
+    public void setTo_date(String to_date) {
+        this.to_date = to_date;
     }
 
     @Override
