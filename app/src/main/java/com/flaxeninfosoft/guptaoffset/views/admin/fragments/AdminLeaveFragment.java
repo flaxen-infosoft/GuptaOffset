@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.flaxeninfosoft.guptaoffset.R;
@@ -26,6 +28,7 @@ import com.flaxeninfosoft.guptaoffset.adapters.AdminLeaveAdapter;
 import com.flaxeninfosoft.guptaoffset.adapters.ShowNotesRecyclerAdapter;
 import com.flaxeninfosoft.guptaoffset.databinding.FragmentAdminLeaveBinding;
 import com.flaxeninfosoft.guptaoffset.models.Leave;
+import com.flaxeninfosoft.guptaoffset.models.School;
 import com.flaxeninfosoft.guptaoffset.models.ShowNotes;
 import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
@@ -83,8 +86,9 @@ public class AdminLeaveFragment extends Fragment {
         binding.adminLeaveSwipeRefresh.setOnRefreshListener(this::onSwipe);
         binding.adminLeaveRecycler.setAdapter(adminLeaveAdapter);
         adminLeaveAdapter.notifyDataSetChanged();
-        getAllLeave(empId);
+//        getAllLeave(empId);
 
+        getLeave(empId);
 
         return binding.getRoot();
 
@@ -93,7 +97,8 @@ public class AdminLeaveFragment extends Fragment {
     private void onSwipe() {
         binding.adminLeaveFromDate.setText("From Date");
         binding.adminLeaveToDate.setText("To Date");
-        getAllLeave(empId);
+//        getAllLeave(empId);
+        getLeave(empId);
     }
 
     private void getAllLeave(Long empId) {
@@ -114,8 +119,6 @@ public class AdminLeaveFragment extends Fragment {
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
-            Log.i("leave", response.toString());
-            Log.e("leave", "inside JsonObjectReq");
             progressDialog.dismiss();
             if (binding.adminLeaveSwipeRefresh.isRefreshing()) {
                 binding.adminLeaveSwipeRefresh.setRefreshing(false);
@@ -147,13 +150,12 @@ public class AdminLeaveFragment extends Fragment {
                     } else {
                         binding.adminLeaveRecycler.setVisibility(View.GONE);
                         binding.adminLeaveEmptyTV.setVisibility(View.VISIBLE);
-                        Toast.makeText(getContext(), response.getString("data"), Toast.LENGTH_SHORT).show();
                     }
                 } else {
 
 
                     try {
-                        Toast.makeText(getContext(), response.getString("data"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
@@ -175,6 +177,79 @@ public class AdminLeaveFragment extends Fragment {
         requestQueue.add(jsonObjectRequest);
 
     }
+
+    private void getLeave(Long empId) {
+        leaveList.clear();
+        progressDialog.show();
+
+        String url = ApiEndpoints.BASE_URL + "leave/getLeaveData.php";
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("empId", empId);
+        if (fromDate == null || fromDate.isEmpty()) {
+            hashMap.put("fromDate", "");
+        } else {
+            hashMap.put("fromDate", fromDate);
+        }
+        if (toDate == null || toDate.isEmpty()) {
+            hashMap.put("toDate", "");
+        } else {
+            hashMap.put("toDate", toDate);
+        }
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), response -> {
+            progressDialog.dismiss();
+            if (binding.adminLeaveSwipeRefresh.isRefreshing()) {
+                binding.adminLeaveSwipeRefresh.setRefreshing(false);
+            }
+
+            if (response!=null){
+
+                if (response.has("data")){
+                    try {
+                        JSONArray jsonArray = response.getJSONArray("data");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            Log.e("leave", "inside for loop");
+                            Leave leave = gson.fromJson(jsonArray.getJSONObject(i).toString(), Leave.class);
+                            leaveList.add(leave);
+                        }
+                        binding.adminLeaveRecycler.setAdapter(adminLeaveAdapter);
+                        adminLeaveAdapter.notifyDataSetChanged();
+
+                        if (leaveList == null || leaveList.isEmpty()) {
+                            binding.adminLeaveRecycler.setVisibility(View.GONE);
+                            binding.adminLeaveEmptyTV.setVisibility(View.VISIBLE);
+                        } else {
+                            binding.adminLeaveRecycler.setVisibility(View.VISIBLE);
+                            binding.adminLeaveEmptyTV.setVisibility(View.GONE);
+                        }
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                else {
+                    try {
+                        binding.adminLeaveRecycler.setVisibility(View.GONE);
+                        binding.adminLeaveEmptyTV.setVisibility(View.VISIBLE);
+                        Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+            else {
+
+            }
+        }, error -> {
+            progressDialog.dismiss();
+            if (binding.adminLeaveSwipeRefresh.isRefreshing()) {
+                binding.adminLeaveSwipeRefresh.setRefreshing(false);
+            }
+        });
+
+        requestQueue.add(jsonObjectRequest);
+    }
+
 
     private void fromDate(View view) {
         final Calendar c = Calendar.getInstance();
@@ -215,7 +290,8 @@ public class AdminLeaveFragment extends Fragment {
                 Format format = new SimpleDateFormat("20yy-MM-dd");
                 binding.adminLeaveToDate.setText(format.format(date));
                 toDate = format.format(date);
-                getAllLeave(empId);
+//                getAllLeave(empId);
+                getLeave(empId);
             }
         }, y, m, d);
         datePickerDialog.show();
