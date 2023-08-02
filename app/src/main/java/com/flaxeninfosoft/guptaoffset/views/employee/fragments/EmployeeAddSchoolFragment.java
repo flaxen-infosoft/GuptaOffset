@@ -262,7 +262,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
         ImagePicker.with(this)
 //                .compress(512)         //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(512, 512)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .maxResultSize(712,712)  //Final image resolution will be less than 1080 x 1080(Optional)
                 .cameraOnly()
                 .createIntent(intent -> {
                     newHoadingImageIntent.launch(intent);
@@ -291,7 +291,7 @@ public class EmployeeAddSchoolFragment extends Fragment {
 
         ImagePicker.with(this)
 //                .compress(1024)         //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(512, 512)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .maxResultSize(712, 712)  //Final image resolution will be less than 1080 x 1080(Optional)
                 .cameraOnly()
                 .createIntent(intent -> {
                     newSpecimenImageIntent.launch(intent);

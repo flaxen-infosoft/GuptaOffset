@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -55,6 +56,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -340,6 +342,7 @@ public class EmployeeAddEODFragment extends Fragment {
                     Uri data = result.getData().getData();
 
                     if (resCode == Activity.RESULT_OK) {
+                        Log.i("akshat expenseImage",data.toString());
                         expenseImage = data;
                         binding.employeeAddEodExpenseImage.setImageURI(expenseImage);
                     } else if (resCode == ImagePicker.RESULT_ERROR) {
@@ -381,6 +384,7 @@ public class EmployeeAddEODFragment extends Fragment {
 
                     if (resCode == Activity.RESULT_OK) {
                         petrolImage = data;
+                        Log.i("akshat petrolExpense",data.toString());
                         binding.employeeAddEodPetrolImage.setImageURI(petrolImage);
                     } else if (resCode == ImagePicker.RESULT_ERROR) {
                         Toast.makeText(getContext(), ImagePicker.getError(result.getData()), Toast.LENGTH_SHORT).show();
@@ -403,7 +407,7 @@ public class EmployeeAddEODFragment extends Fragment {
 
         ImagePicker.with(this)
 //                .compress(1024)         //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(512, 512)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .maxResultSize(712, 712)  //Final image resolution will be less than 1080 x 1080(Optional)
                 .cameraOnly()
                 .createIntent(intent -> {
                     newPetrolImageLauncher.launch(intent);
@@ -426,7 +430,7 @@ public class EmployeeAddEODFragment extends Fragment {
 
         ImagePicker.with(this)
 //                .compress(512)         //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(512, 512)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .maxResultSize(712, 712)  //Final image resolution will be less than 1080 x 1080(Optional)
                 .cameraOnly()
                 .createIntent(intent -> {
                     newExpenseImageLauncher.launch(intent);
