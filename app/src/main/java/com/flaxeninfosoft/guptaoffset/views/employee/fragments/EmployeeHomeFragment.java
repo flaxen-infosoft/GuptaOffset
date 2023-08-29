@@ -2,8 +2,12 @@ package com.flaxeninfosoft.guptaoffset.views.employee.fragments;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -42,7 +47,6 @@ import com.flaxeninfosoft.guptaoffset.utils.ApiEndpoints;
 import com.flaxeninfosoft.guptaoffset.utils.Constants;
 import com.flaxeninfosoft.guptaoffset.viewModels.EmployeeViewModel;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -141,6 +145,7 @@ public class EmployeeHomeFragment extends Fragment {
         });
 
         getAllHistory();
+        startLocationService();
         viewModel.getToastMessageLiveData().observe(getViewLifecycleOwner(), this::showToast);
 
         binding.employeeHomeSendMessageFab.setOnClickListener(this::sendMessage);
@@ -479,6 +484,7 @@ public class EmployeeHomeFragment extends Fragment {
                 try {
                     Log.i("leave_status",response.toString());
                     leaveStatus = Integer.parseInt(response.getString("leave_status"));
+
                     showDialog();
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -496,5 +502,65 @@ public class EmployeeHomeFragment extends Fragment {
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(timeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
+    }
+
+    int check = 0;
+    private void startLocationService() {
+
+        if (isLocationPermissionGranted()) {
+            Toast.makeText(getActivity(), "Permission Granted.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+
+            androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
+            builder.setTitle("Permission Denied")
+                    .setCancelable(false)
+                    .setMessage("आपने लोकेशन की परमिशन नही दी है कृप्या सेटिंग में जाकर परमिशन दे")
+                    .setNegativeButton(null, null)
+                    .setPositiveButton("Ok", (dialog, which) -> {
+
+                        Intent intent = new Intent();
+                        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        intent.setData(Uri.fromParts("package", getActivity().getPackageName(), null));
+                        startActivity(intent);
+
+                    });
+
+
+            androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+            Toast.makeText(getActivity(), "Permission Denied.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private boolean isLocationPermissionGranted() {
+
+        if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        check++;
+        Log.i("TAG","Resume Called...");
+        if (check>2) {
+        try {
+            startLocationService();
+        }
+        catch (Exception e){
+            Log.i("Problem",e.getMessage());
+        }
+
+        }
     }
 }

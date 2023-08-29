@@ -63,19 +63,19 @@ public class EmployeeMainActivity extends AppCompatActivity {
             startService(intent);
         } else {
             Toast.makeText(this, "Location and Network permission needed", Toast.LENGTH_SHORT).show();
-            AlertDialog.Builder builder = new AlertDialog.Builder(EmployeeMainActivity.this);
-            builder.setTitle("Permission Denied")
-                    .setCancelable(false)
-                    .setMessage("आपने लोकेशन की परमिशन नही दी है कृप्या सेटिंग में जाकर परमिशन दे")
-                    .setNegativeButton("Cancel", null)
-                    .setPositiveButton("Ok", (dialog, which) -> {
-
-                        Intent intent = new Intent();
-                        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                        intent.setData(Uri.fromParts("package", getPackageName(), null));
-                        startActivity(intent);
-
-                    }).show();
+//            AlertDialog.Builder builder = new AlertDialog.Builder(EmployeeMainActivity.this);
+//            builder.setTitle("Permission Denied")
+//                    .setCancelable(false)
+//                    .setMessage("आपने लोकेशन की परमिशन नही दी है कृप्या सेटिंग में जाकर परमिशन दे")
+//                    .setNegativeButton(null, null)
+//                    .setPositiveButton("Ok", (dialog, which) -> {
+//
+//                        Intent intent = new Intent();
+//                        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+//                        intent.setData(Uri.fromParts("package", getPackageName(), null));
+//                        startActivity(intent);
+//
+//                    }).show();
         }
     }
 
@@ -152,7 +152,7 @@ public class EmployeeMainActivity extends AppCompatActivity {
     private void showToastMessage(String s) {
         Log.d("CRM-LOG", s);
         if (s != null && !s.isEmpty()) {
-            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
 

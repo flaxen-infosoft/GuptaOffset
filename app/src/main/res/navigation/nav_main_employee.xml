@@ -203,6 +203,9 @@
         <action
             android:id="@+id/action_districtListForTehsilFragment_to_tehsilFragment"
             app:destination="@id/tehsilFragment" />
+        <action
+            android:id="@+id/action_districtListForTehsilFragment_to_selectProductFragment"
+            app:destination="@id/selectProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/tehsilFragment"
@@ -216,6 +219,14 @@
         android:id="@+id/schoolAccordingTehsilFragment"
         android:name="com.flaxeninfosoft.guptaoffset.views.SchoolAccordingTehsilFragment"
         android:label="SchoolAccordingTehsilFragment" />
+    <fragment
+        android:id="@+id/selectProductFragment"
+        android:name="com.flaxeninfosoft.guptaoffset.views.SelectProductFragment"
+        android:label="SelectProductFragment" >
+        <action
+            android:id="@+id/action_selectProductFragment_to_tehsilFragment"
+            app:destination="@id/tehsilFragment" />
+    </fragment>
 
 
 </navigation>
